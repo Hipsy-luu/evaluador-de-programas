@@ -1,0 +1,20 @@
+/* You can add global styles to this file, and also import other style files */
+
+.full-centered{
+    text-align: center;
+}
+
+.full-width{
+    width: -webkit-fill-available;
+}
+
+.text-left{
+    text-align: left;
+}
+
+.notificacion-flotante{
+    position: fixed;
+    top: 19px;
+    right: 19px;
+    height: 79px;
+}
