@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RegisterProgramComponent } from './views/register-program/register-program.component';
 import { LoginComponent } from './views/login/login.component';
 import { ValidationsComponent } from './views/validations/validations.component';
+import { AdminDashboardComponent } from './views/admin-dashboard/admin-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { ValidationsComponent } from './views/validations/validations.component'
     RegisterProgramComponent,
     LoginComponent,
     ValidationsComponent,
+    AdminDashboardComponent,
   ],
   imports: [
     BrowserModule,

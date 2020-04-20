@@ -1,8 +1,41 @@
 
 <!-- Es el encargado de que se mueva el contenido -->
 <div class="wrapper" style="margin-top: 40px;">
-    <div class="container" style="text-align: -webkit-center;">
-
+    <span>
+        
+        <button class="btnnu" (click)="reloadData()">
+            <img class="boton-flotante" src="/assets/images/reload.png">
+             Recargar
+        </button>
+    </span>
+    <div class="navbar-custom">
+        <div class="row" style="height: -webkit-fill-available;align-items: center;">
+            <div class="col">
+            
+            </div>
+            <div class="col-10" style="max-width: 1050px;">
+                <div class="row" style="">
+                    <div class="col" style="color: aliceblue;">
+                        <img src="/assets/images/logo-trans.png" style="height: 40px;">
+                    </div>
+                    <div class="col">
+                        <div style="text-align: right;">
+                            <label style="color: white;padding: 0px 37px;font-size: x-large;">Bienvenido {{apiDataService.user.nombre}}</label>
+                            <button type="button" class="btn btn-light"(click)="apiDataService.logOut()">
+                                Cerrar sesión
+                                <img style="height: 30px;" src="/assets/images/icon-logout.png">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+            
+            </div>
+        </div>
+    </div>
+    <div class="container" style="text-align: -webkit-center;" style="margin-top: 80px;">
+        
         <table class="table table-hover" style="max-width: 1050px;">
             <tr >
                 <th>ID Respuesta</th>

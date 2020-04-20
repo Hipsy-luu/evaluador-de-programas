@@ -123,9 +123,32 @@ export class RegisterProgramComponent implements OnInit {
 
   async ngOnInit() {
     this.show = false;
-    if(this.apiDataService.user.usuario == ""){
+    this.apiDataService.checkLogin(async (success)=>{
+      /* console.log(success); */
+      switch(this.apiDataService.user.rolusuario){
+        case 0:
+          //this.route.navigateByUrl('/register-program');
+          await this.loadData();
+          break;
+        case 1:
+          this.route.navigateByUrl('/validations')
+          break;
+        case 2: //Usuario que registra los programas
+        await this.loadData();
+          break;
+        case 3:
+          this.route.navigateByUrl('/validations')
+          break;
+      }
+    },(error)=>{
+      console.log("error")
+      console.log(error);
+      
       this.route.navigateByUrl('/')
-    }
+    })
+  }
+
+  async loadData(){
     await this.apiDataService.getCatprograms((this.apiDataService.user.entidad=="") ? "105" : this.apiDataService.user.entidad);
     await this.apiDataService.awaitTime(2200,async ()=>{
       await this.initData();
@@ -163,6 +186,9 @@ export class RegisterProgramComponent implements OnInit {
       console.log(response);
       this.apiDataService.awaitTime(2000,()=>{
         this.succeesSave = true;
+        this.apiDataService.user.alreadyLoged = true;
+        this.apiDataService.user.token = this.apiDataService.token.toString();
+        localStorage.setItem('user',JSON.stringify(this.apiDataService.user) );
         this.apiDataService.awaitTime(3000,()=>{
           console.log("navegando");
           const currentRoute = this.route.url;

@@ -1,0 +1,121 @@
+<div class="navbar-custom">
+    <div class="row" style="height: -webkit-fill-available;align-items: center;">
+        <div class="col">
+        
+        </div>
+        <div class="col-10" style="max-width: 1050px;">
+            <div class="row" >
+                <div class="col" style="color: aliceblue;">
+                    <img src="/assets/images/logo-trans.png" style="height: 40px;">
+                </div>
+                <div class="col">
+                    <div style="text-align: right;">
+                        <label style="color: white;padding: 0px 37px;font-size: x-large;">Bienvenido {{apiDataService.user.nombre}}</label>
+                        <button type="button" class="btn btn-light"(click)="apiDataService.logOut()">
+                            Cerrar sesión
+                            <img style="height: 30px;" src="/assets/images/icon-logout.png">
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+        
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <img class="logo-flotante" src="/assets/images/logo-trans.png">
+    <div *ngIf="apiDataService.successMessage" class="alert alert-success notificacion-flotante" role="alert">
+        {{apiDataService.actualMessageServer}} <a href="#" (click)="apiDataService.closeNotification()">X</a>
+    </div>
+    <div *ngIf="apiDataService.failMessage" class="alert alert-warning notificacion-flotante" role="alert">
+        {{apiDataService.actualMessageServer}} <a href="#" (click)="apiDataService.closeNotification()">X</a>
+    </div>
+    <div class="row fullpage-centered" style="background-image: url(./assets/images/img2.jpg);background-size: cover;">
+        <div class="col-sm">
+
+        </div>
+        <div class="col-sm-10" style="text-align: -webkit-center;">
+            <div class="card" style="width: 90%;min-height: 460px;">
+                <img class="card-img-top"  style="height: 40px;background-color: #4892a9;    margin: 10px;">
+                <div class="card-body" style="padding: 0px 45px;">
+                    <div class="row" style="text-align: -webkit-center;">
+                        <div class="col-sm-4" style="text-align: -webkit-center;">
+                            <div class="row" style="max-height: 50px;margin-bottom: 15px;">
+                                <div class="col" style="text-align: left;padding: 0px;">
+                                    <h4 style="padding-top: 10px;font-weight: 600;font-size: x-large;">MENU</h4>
+                                </div>
+                            </div>
+                            <div class="row" style="max-height: 50px;margin-bottom: 15px;">
+                                <div class="col" style="text-align: left;padding: 0px;">
+                                    <h4 style="padding-top: 2px;font-weight: 400;font-size: large;">Validador</h4>
+                                </div>
+                            </div>
+                            <div class="row" style="max-height: 50px;margin-bottom: 15px;">
+                                <div class="col" style="text-align: left;padding: 0px;">
+                                    <ul>
+                                        <li><a routerLink="/register-program" routerLinkActive="active">
+                                            <h4 style="padding-top: 2px;font-weight: 400;font-size: large;">Capturador</h4>
+                                        </a></li>
+                                        <li><a routerLink="/first-component" routerLinkActive="active">
+                                            <h4 style="padding-top: 2px;font-weight: 400;font-size: large;">
+                                                <li>
+                                                  <a routerLink="/validations" routerLinkActive="active">Validador</a></li></h4>
+                                            </a>
+                                        </li>
+                                        
+                                      </ul>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-8" style="text-align: -webkit-center;">
+                            <div class="row" style="max-height: 50px;margin-bottom: 15px;">
+                                <div class="col" style="text-align: left;padding: 0px;">
+                                    <h4 style="padding-top: 10px;font-weight: 600;font-size: x-large;">Usuarios</h4>
+                                </div>
+                                <div class="col"style="text-align: right;padding: 0px;">
+                                    <span>
+                                        <button class="btnnu" (click)="reloadData()">
+                                            <img class="img-reload" src="/assets/images/reload.png">
+                                             Recargar
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <table class="table table-hover" style="max-width: 1050px;">
+                                    <tr >
+                                        <th>ID</th>
+                                        <th>Nombre</th>
+                                        <th>Entidad</th>
+                                        <th>Usuario</th>
+                                        <th>Rol</th>
+                                        <th>extension</th>
+                                        <th>Accion</th>
+                                    </tr>
+                                    <tr *ngFor="let user of userList; ">
+                                        <th>{{user.idusuarios}}</th>
+                                        <th>{{user.nombre}} {{user.apellidos}}</th>
+                                        <th>{{user.entidad}}</th>
+                                        <th>{{user.usuario}}</th>
+                                        <th>{{user.rolusuario}}</th>
+                                        <th>{{user.extension}}</th>
+                                        <td>
+                                            <button *ngIf="!user.estatus" (click)="selectUser(user)" class='btn btn-danger' data-target='#modalValidacion' data-toggle='modal' data-id=''>Editar</button>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-sm">
+
+        </div>
+    </div>
+</div>

@@ -18,3 +18,28 @@
     right: 19px;
     height: 79px;
 }
+
+.navbar-custom {
+    position: fixed;
+    z-index: 1;
+    background-color: antiquewhite;
+    width: -webkit-fill-available;
+    margin: 0px;
+    top: 0px;
+    background-color: #282e38;
+    height: 70px;
+    max-height: 70px;
+}
+
+.fullpage-centered{
+    height: -webkit-fill-available;
+    align-content: center;
+    background-position: center;
+}
+
+.logo-flotante{
+    position: fixed;
+    bottom: 19px;
+    right: 19px;
+    height: 79px;
+}

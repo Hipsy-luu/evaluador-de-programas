@@ -1,12 +1,9 @@
-.boton-flotante{
+.img-reload{
     
-    height: 79px;
+    height: 20px;
 }
 
 .btnnu {
-    position: fixed;
-    bottom: 19px;
-    right: 19px;
     background-color: DodgerBlue; /* Blue background */
     border: none; /* Remove borders */
     color: white; /* White text */

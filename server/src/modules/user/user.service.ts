@@ -92,8 +92,13 @@ export class UserService {
     });
   }
 
-  async getAllUsers(): Promise<User[]> {
-    return await this.userRepository.findAll<User>();
+  async getAllUsers(): Promise<ServerMessage> {
+    try {
+      var userList = await this.userRepository.findAll<User>();
+      return new ServerMessage(false, "Lista de usuarios obtenida", userList);
+    } catch (error) {
+      return new ServerMessage(true, "Error obteniendo lista de usuarios", {});
+    }
   }
 
   async createUser(createUser: CreateUserDto): Promise<ServerMessage> {

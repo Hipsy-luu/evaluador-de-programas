@@ -8,9 +8,9 @@ import { ServerMessage } from './../../utils/dtos/serverMessages.dto';
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
-  @Get()
+  @Get('user-list')
   /* @UseGuards(AuthGuard()) */
-  public async getUsers(): Promise<User[]> {
+  public async getUsers(): Promise<ServerMessage> {
     return this.userService.getAllUsers();
   }
 

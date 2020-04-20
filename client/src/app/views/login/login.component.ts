@@ -18,11 +18,34 @@ export class LoginComponent implements OnInit {
     public apiDataService : ApiDataService,
     private route: Router,
   ){
-    this.username = "capturan";
-    this.password = "capturan";
+    this.username = "validadorn";
+    this.password = "validadorn";
   }
 
   ngOnInit(){
+    this.apiDataService.checkLogin((success)=>{
+      //this.apiDataService.showNotification(0,success.message,6000);
+      /* console.log(success) */
+      switch(this.apiDataService.user.rolusuario){
+        case 0:
+          //this.route.navigateByUrl('/register-program')
+          break;
+        case 1:
+          this.route.navigateByUrl('/validations')
+          break;
+        case 2: //Usuario que registra los programas
+          this.route.navigateByUrl('/register-program');
+          break;
+        case 3:
+          this.route.navigateByUrl('/validations')
+          break;
+      }
+    },(error)=>{
+      /* console.log("error") */
+      /* console.log(error); */
+      
+      //this.apiDataService.showNotification(1,error.message,6000);
+    });
   }
 
   login(){
@@ -42,10 +65,12 @@ export class LoginComponent implements OnInit {
           this.apiDataService.showNotification(0,result.message,6000);
           console.log(result)
           this.apiDataService.user = result.data.user;
+          this.apiDataService.user.password = this.password;
           this.apiDataService.token = result.data.token;
+          localStorage.setItem('user', JSON.stringify(this.apiDataService.user));
           switch(result.data.user.rolusuario){
             case 0:
-              //this.route.navigateByUrl('/register-program')
+              this.route.navigateByUrl('/admin-dashboard')
               break;
             case 1:
               this.route.navigateByUrl('/validations')
@@ -58,7 +83,6 @@ export class LoginComponent implements OnInit {
               break;
 
           }
-          //this.route.navigateByUrl('/register-program')
         }
       },(error)=>{
         console.log("error")

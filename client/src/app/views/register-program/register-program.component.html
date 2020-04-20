@@ -96,6 +96,32 @@
     <div id="loader_form" *ngIf="!show">
         <div data-loader="circle-side-2"></div>
     </div>
+    <div class="navbar-custom">
+        <div class="row" style="height: -webkit-fill-available;align-items: center;">
+            <div class="col">
+            
+            </div>
+            <div class="col-10" style="max-width: 1050px;">
+                <div class="row" style="">
+                    <div class="col" style="color: aliceblue;">
+                        <img src="/assets/images/logo-trans.png" style="height: 40px;">
+                    </div>
+                    <div class="col">
+                        <div style="text-align: right;">
+                            <label style="color: white;padding: 0px 37px;font-size: x-large;">Bienvenido {{apiDataService.user.nombre}}</label>
+                            <button type="button" class="btn btn-light"(click)="apiDataService.logOut()">
+                                Cerrar sesión
+                                <img style="height: 30px;" src="/assets/images/icon-logout.png">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+            
+            </div>
+        </div>
+    </div>
     <div id="form_container" >
         <div class="row" *ngIf="!showModal">
             <div class="col-lg-5">

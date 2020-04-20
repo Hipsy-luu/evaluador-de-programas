@@ -22,15 +22,44 @@ export class ValidationsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    /* if(this.apiDataService.user.usuario == ""){
+    this.respuestas = [];
+    this.respuestaSeleccionada = new Respuestas();
+
+    this.apiDataService.checkLogin(async (success)=>{
+      console.log(success);
+      switch(this.apiDataService.user.rolusuario){
+        case 0:
+          this.reloadData();
+          break;
+        case 1:
+          this.reloadData();
+          console.log("smn");
+          console.log(this.apiDataService.user);
+          
+          
+          break;
+        case 2: //Usuario que registra los programas
+            this.route.navigateByUrl('/register-program')
+          break;
+        case 3:
+          this.reloadData();
+          break;
+      }
+    },(error)=>{
+      /* console.log(error); */
+      
       this.route.navigateByUrl('/')
-    } */
+    })
+  }
+
+  reloadData(){
     this.respuestas = [];
     this.respuestaSeleccionada = new Respuestas();
     this.apiDataService.getRespuestas(this.apiDataService.user.entidad).then((response : ServerMessage)=>{
       this.respuestas = response.data.respuestas;
     }).catch((error)=>{
-
+      console.log("error");
+      console.log(error);
     })
   }
 
