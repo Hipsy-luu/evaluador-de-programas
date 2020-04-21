@@ -9,7 +9,7 @@ export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Get('user-list')
-  /* @UseGuards(AuthGuard()) */
+  @UseGuards(AuthGuard())
   public async getUsers(): Promise<ServerMessage> {
     return this.userService.getAllUsers();
   }
@@ -21,18 +21,19 @@ export class UserController {
   }
 
   @Post('save-respuestas')
-  /* @UseGuards(AuthGuard()) */
+  @UseGuards(AuthGuard())
   public async saveRespuestas(@Body() respuestas): Promise<ServerMessage> {
     return this.userService.saveRespuestas(respuestas);
   }
 
   @Get('obtener-respuestas')
-  /* @UseGuards(AuthGuard()) */
-  public async getRespuestas(): Promise<ServerMessage> {
-    return this.userService.getAllRespuestas();
+  @UseGuards(AuthGuard())
+  public async getRespuestas(@Request() req): Promise<ServerMessage> {
+    return this.userService.getAllRespuestas(req.user.dataValues.entidad);
   }
 
   @Post('update-validaciones/:idrespuestas')
+  @UseGuards(AuthGuard())
   async updateCreateValidation(@Param('idrespuestas') idrespuesta : number,@Body() validaciones): Promise<ServerMessage>{
       return await this.userService.upCreateValidations(validaciones,idrespuesta);
   }

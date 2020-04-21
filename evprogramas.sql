@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 19-04-2020 a las 09:12:00
+-- Tiempo de generación: 21-04-2020 a las 16:01:31
 -- Versión del servidor: 10.1.38-MariaDB
 -- Versión de PHP: 5.6.40
 
@@ -853,7 +853,10 @@ INSERT INTO `respuestas` (`idrespuestas`, `pregunta1complemento`, `pregunta2`, `
 (187, '', 'no', 'no', '', 'entregaayudas', '', 'no', 'directamente', 'unico', 'si', 4, 'federal', 'educacionobligatoria', '', 'no', '', 'no', '', '105', '41', 0, 14, 1),
 (188, '', 'no', 'no', '', 'entregaayudas', '', 'no', 'directamente', 'unico', 'no', 0, 'federal', 'prevenirviolencia', '', 'si', 'fgdgdgs', 'si', 'jnkkml', '105', '41', 0, 14, 0),
 (189, '', 'no', 'si', 'zonaprioritariaestatal', 'desarrolloservicios', '', 'si', 'directamente', 'unico', 'si', 4, 'estatal', 'prevenirviolencia', '', 'si', 'jnjnjnjnnnj', 'si', 'jhgvbhnjmk,l', '105', '41', 6, 14, 0),
-(190, '', 'no', 'no', '', 'entregaayudas', '', 'no', 'directamente', 'unico', 'no', 0, 'federal', 'educacionobligatoria', '', 'no', '', 'no', '', '105', '41', 0, 14, 1);
+(190, '', 'no', 'no', '', 'entregaayudas', '', 'no', 'directamente', 'unico', 'no', 0, 'federal', 'educacionobligatoria', '', 'no', '', 'no', '', '105', '41', 0, 14, 1),
+(191, 'sasa', 'no', 'no', '', 'entregaayudas', '', 'no', 'directamente', 'unico', 'no', 0, 'federal', 'educacionobligatoria', '', 'no', '', 'no', '', '105', '43', 0, 14, 0),
+(192, '', 'si', 'no', '', 'entregaayudas', '', 'no', 'directamente', 'unico', 'no', 0, 'federal', 'generacinoempleo', '', 'no', '', 'no', '', '105', '42', 0, 14, 0),
+(193, '', 'no', 'no', '', 'entregaayudas', '', 'no', 'directamente', 'unico', 'no', 0, 'federal', 'educacionobligatoria', '', 'no', '', 'no', '', '105', '41', 0, 11, 1);
 
 -- --------------------------------------------------------
 
@@ -1188,7 +1191,9 @@ INSERT INTO `respuestasp1` (`id`, `idrespuesta`, `sujeto`) VALUES
 (314, 184, 'sujetoninasninos'),
 (315, 184, 'sujetomayores60'),
 (316, 184, 'sujetodiscapacidad'),
-(317, 184, 'sujetoadultas30a59');
+(317, 184, 'sujetoadultas30a59'),
+(318, 191, 'sujetootro'),
+(319, 192, 'sujetojornaleras');
 
 -- --------------------------------------------------------
 
@@ -1436,7 +1441,8 @@ INSERT INTO `respuestasp2complemento` (`id`, `idrespuesta`, `derecho`) VALUES
 (227, 184, 4),
 (228, 184, 7),
 (229, 184, 9),
-(230, 184, 10);
+(230, 184, 10),
+(231, 192, 11);
 
 -- --------------------------------------------------------
 
@@ -1452,21 +1458,22 @@ CREATE TABLE `usuarios` (
   `password` varchar(100) NOT NULL,
   `entidad` varchar(45) NOT NULL,
   `extension` varchar(45) NOT NULL,
-  `rolusuario` int(11) NOT NULL
+  `rolusuario` int(11) NOT NULL,
+  `email` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`idusuarios`, `usuario`, `nombre`, `apellidos`, `password`, `entidad`, `extension`, `rolusuario`) VALUES
-(1, 'validador', '', '', '8cc6cdee6d900f584dc20a04354f8c46', '105', '12698', 1),
-(2, 'captura', '', '', 'af17de7b4a53e832a9beb3e9b196ac74', '105', '12698', 2),
-(3, 'visualizador', '', '', '1412f29047d8c20a2cd9ae572b5386e5', '105', '12669', 3),
-(11, 'admin', '', '', '$2b$10$fcn7brM2inZ6IQv4we8jouZ9.nJlkvsZ17SxhhQVAgkqof8LOFohy', '105', '12698', 0),
-(13, 'validadorn', '', '', '$2b$10$2BTM4ShtKS/i0FC5MzTOv.Q5wA8RiAbCjBRB.yNZIp/Dj4tqlKrkW', '105', '102255', 1),
-(14, 'capturan', 'Luismiguel', 'Ortiz Alvarez', '$2b$10$uP4Lr3g3PgUgaBbTvYv/COpWYSWOLLKrPtDlJBjnVEb9NqVA0P.mq', '105', '102255', 2),
-(15, 'visualizadorn', '', '', '$2b$10$v0IzsuRz7FvHX0MqYzTwCuClVoqvg7214GOSUIZlfRK64skwE33Fq', '105', '102255', 3);
+INSERT INTO `usuarios` (`idusuarios`, `usuario`, `nombre`, `apellidos`, `password`, `entidad`, `extension`, `rolusuario`, `email`) VALUES
+(1, 'validador', '', '', '8cc6cdee6d900f584dc20a04354f8c46', '105', '12698', 1, ''),
+(2, 'captura', '', '', 'af17de7b4a53e832a9beb3e9b196ac74', '105', '12698', 2, ''),
+(3, 'visualizador', '', '', '1412f29047d8c20a2cd9ae572b5386e5', '105', '12669', 3, ''),
+(11, 'admin', 'Administrador', 'admin', '$2b$10$fcn7brM2inZ6IQv4we8jouZ9.nJlkvsZ17SxhhQVAgkqof8LOFohy', '105', '12698', 0, ''),
+(13, 'validadorn', 'Alberto', 'Cortes', '$2b$10$2BTM4ShtKS/i0FC5MzTOv.Q5wA8RiAbCjBRB.yNZIp/Dj4tqlKrkW', '105', '102255', 1, ''),
+(14, 'capturan', 'Luismiguel', 'Ortiz Alvarez', '$2b$10$uP4Lr3g3PgUgaBbTvYv/COpWYSWOLLKrPtDlJBjnVEb9NqVA0P.mq', '105', '102255', 2, ''),
+(15, 'visualizadorn', 'Laura', 'Ejemplo', '$2b$10$v0IzsuRz7FvHX0MqYzTwCuClVoqvg7214GOSUIZlfRK64skwE33Fq', '105', '102255', 3, '');
 
 -- --------------------------------------------------------
 
@@ -1511,7 +1518,10 @@ INSERT INTO `validaciones` (`id`, `idrespuesta`, `validacion1`, `validacion1a`, 
 (2, 190, 1, 0, 'dadad', 1, 0, '', 1, 0, '', 1, 0, 'SSS', 1, 0, '', 1, 0, 'ss', 'sssssss', 1, 0, 'S', 'aaaaaa'),
 (3, 181, 1, 0, '', 1, 0, '', 1, 0, '', 1, 0, '', 1, 0, '', 1, 0, '', '', 1, 0, '', ''),
 (4, 184, 1, 0, '', 1, 0, '', 1, 0, '', 1, 0, '', 1, 0, '', 1, 0, '', '', 1, 0, '', ''),
-(5, 187, 1, 0, '', 1, 0, '', 1, 0, '', 1, 0, '', 1, 0, '', 1, 0, '', '', 1, 0, '', '');
+(5, 187, 1, 0, '', 1, 0, '', 1, 0, '', 1, 0, '', 1, 0, '', 1, 0, '', '', 1, 0, '', ''),
+(6, 191, 0, 0, '', 0, 0, '', 0, 0, '', 0, 0, '', 0, 0, '', 0, 0, '', '', 0, 0, '', ''),
+(7, 192, 0, 1, '', 0, 0, '', 0, 0, '', 0, 0, '', 0, 0, '', 0, 0, '', '', 0, 0, '', ''),
+(8, 193, 1, 0, '', 1, 0, '', 1, 0, '', 1, 0, '', 1, 0, '', 1, 0, '', '', 1, 0, '', '');
 
 --
 -- Índices para tablas volcadas
@@ -1598,19 +1608,19 @@ ALTER TABLE `catprogramas`
 -- AUTO_INCREMENT de la tabla `respuestas`
 --
 ALTER TABLE `respuestas`
-  MODIFY `idrespuestas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=191;
+  MODIFY `idrespuestas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=194;
 
 --
 -- AUTO_INCREMENT de la tabla `respuestasp1`
 --
 ALTER TABLE `respuestasp1`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=318;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=320;
 
 --
 -- AUTO_INCREMENT de la tabla `respuestasp2complemento`
 --
 ALTER TABLE `respuestasp2complemento`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=231;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=232;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
@@ -1622,7 +1632,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `validaciones`
 --
 ALTER TABLE `validaciones`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

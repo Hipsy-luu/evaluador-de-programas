@@ -15,7 +15,6 @@ import { Catderechos } from '../models/catderechos.entity';
 import { CatapoyosSociales } from '../models/catapoyos_sociales.entity';
 import { CatobjetivosPolitica } from '../models/catobjetivos_politica.entity';
 import { Validaciones } from '../models/validaciones.entity';
-/* import { Band } from '../models/band.entity'; */
 
 export const databaseProviders = [
   {
@@ -26,6 +25,7 @@ export const databaseProviders = [
         define: {
           timestamps: false
         },
+        logging : false,
         host: 'localhost',
         port: 3306,
         username: 'rootsec',
@@ -49,7 +49,6 @@ export const databaseProviders = [
         CatapoyosSociales,
         CatobjetivosPolitica,
         Validaciones
-        /* Band */
       ]);
 
       await sequelize.sync();

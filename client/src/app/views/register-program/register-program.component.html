@@ -102,17 +102,21 @@
             
             </div>
             <div class="col-10" style="max-width: 1050px;">
-                <div class="row" style="">
-                    <div class="col" style="color: aliceblue;">
+                <div class="row" >
+                    <div class="col-2" style="color: aliceblue;">
                         <img src="/assets/images/logo-trans.png" style="height: 40px;">
                     </div>
-                    <div class="col">
-                        <div style="text-align: right;">
-                            <label style="color: white;padding: 0px 37px;font-size: x-large;">Bienvenido {{apiDataService.user.nombre}}</label>
-                            <button type="button" class="btn btn-light"(click)="apiDataService.logOut()">
-                                Cerrar sesión
-                                <img style="height: 30px;" src="/assets/images/icon-logout.png">
-                            </button>
+                    <div class="col-10">
+                        <div class="row" style="text-align: right;">
+                                <div class="col">
+                                    <label style="color: white;padding: 0px 37px;font-size: x-large;">Bienvenido {{apiDataService.user.nombre}}</label>
+                                </div>
+                                <div class="col">
+                                    <button type="button" class="btn btn-light"(click)="apiDataService.logOut()">
+                                        Cerrar sesión
+                                        <img style="height: 30px;" src="/assets/images/icon-logout.png">
+                                    </button>
+                                </div>
                         </div>
                     </div>
                 </div>

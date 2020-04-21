@@ -6,4 +6,5 @@ export class CreateUserDto {
   entidad: string;
   extension: string;
   rolusuario: number;
+  email: string;
 }

@@ -18,8 +18,8 @@ export class LoginComponent implements OnInit {
     public apiDataService : ApiDataService,
     private route: Router,
   ){
-    this.username = "validadorn";
-    this.password = "validadorn";
+    this.username = "";
+    this.password = "";
   }
 
   ngOnInit(){

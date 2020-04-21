@@ -72,6 +72,12 @@ export class User extends Model<User> {
     allowNull: false,
   })
   rolusuario : number;
+
+  @Column({
+    type: DataType.STRING(200),
+    allowNull: false,
+  })
+  email : string;
   
   @BeforeCreate
   public static async hashPassword( user : User ) {

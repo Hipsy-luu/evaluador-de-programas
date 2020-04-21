@@ -100,8 +100,12 @@ export class ApiDataService {
 
   async getRespuestas( entidad : string ) {
     return new Promise(async (resolve,reject)=>{
-      /* const headers = { 'content-type': 'application/json'}   */
-      this.http.get(this.baseURL + 'user/obtener-respuestas',{}).subscribe((response : ServerMessage)=>{
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer '+this.user.token
+      })
+       
+      this.http.get(this.baseURL + 'user/obtener-respuestas',{ headers: headers }).subscribe((response : ServerMessage)=>{
         resolve(response);
       });;
     });
@@ -109,8 +113,12 @@ export class ApiDataService {
 
   async getUsers() {
     return new Promise(async (resolve,reject)=>{
-      /* const headers = { 'content-type': 'application/json'}   */
-      this.http.get(this.baseURL + 'user/user-list',{}).subscribe((response : ServerMessage)=>{
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer '+this.user.token
+      });
+
+      this.http.get(this.baseURL + 'user/user-list',{ headers: headers }).subscribe((response : ServerMessage)=>{
         resolve(response);
       });;
     });
@@ -118,7 +126,12 @@ export class ApiDataService {
 
   async saveRespuestas(respuestas : any){
     return new Promise((resolve,reject)=>{
-      this.http.post(this.baseURL + 'user/save-respuestas',respuestas).subscribe((response : ServerMessage)=>{
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer '+this.user.token
+      });
+
+      this.http.post(this.baseURL + 'user/save-respuestas',respuestas,{ headers: headers }).subscribe((response : ServerMessage)=>{
         resolve(response);
       });
     })
@@ -126,7 +139,12 @@ export class ApiDataService {
 
   async saveValidations(validaciones : any,idrespuestas){
     return new Promise((resolve,reject)=>{
-      this.http.post(this.baseURL + 'user/update-validaciones/'+idrespuestas,validaciones).subscribe((response : ServerMessage)=>{
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer '+this.user.token
+      });
+
+      this.http.post(this.baseURL + 'user/update-validaciones/'+idrespuestas,validaciones,{ headers: headers }).subscribe((response : ServerMessage)=>{
         resolve(response);
       });
     })

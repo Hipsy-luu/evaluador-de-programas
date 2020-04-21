@@ -4,7 +4,6 @@ import { User } from '../../models/user.entity';
 //Normalmente se usa para formatear el objeto que recibimos en el request
 import { CreateUserDto } from './dto/createUser.dto';
 import { validators } from '../../utils/validators'
-import { Band } from '../../models/band.entity';
 import { LoginUserDto } from './dto/loginUser.dto';
 import { ServerMessage } from '../../utils/dtos/serverMessages.dto';
 import { Respuestas } from '../../models/respuestas.entity';
@@ -103,7 +102,7 @@ export class UserService {
 
   async createUser(createUser: CreateUserDto): Promise<ServerMessage> {
     if (!createUser.usuario || !createUser.nombre || !createUser.apellidos || !createUser.password || !createUser.extension
-      || !createUser.entidad || !createUser.rolusuario) {
+      || !createUser.entidad || !createUser.rolusuario || !createUser.email) {
       return new ServerMessage(true, "Peticion incompleta", {});
     }
     var user = await this.findOneByUsername(createUser.usuario);
@@ -120,16 +119,16 @@ export class UserService {
     }
   }
 
-  async getAllRespuestas(/* dependencia */): Promise<ServerMessage> {
+  async getAllRespuestas( dependencia ): Promise<ServerMessage> {
     let dataResponse: any = {
       respuestas: [Respuestas]
     };
     try {
       dataResponse.respuestas = await this.respuestasRepository.findAll<Respuestas>({
         /* attributes: ['idrespuestas','dependencia','pregunta1complemento','programapresupuestal','usuario','estatus'], */
-        /* where: {
+        where: {
           dependencia: dependencia,
-        } */
+        },
         order: [
           ['idrespuestas', 'DESC'],
         ],
