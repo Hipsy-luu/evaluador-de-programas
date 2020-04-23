@@ -417,6 +417,333 @@
     aria-labelledby="myLargeModalLabel" aria-hidden="false" style="display: none;" #modalValidacion>
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
+            <!-- <div class="modal-header">
+                <h5 class="modal-title" id="myLargeModalLabel">Respuestas</h5>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <table class="table table-hover">
+                    <tr>
+                        <th>Pregunta</th>
+                        <th>Complemento</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <tr>
+                                <th>1. ¿CUÁL ES EL O LOS SUJETOS DE DERECHO QUE ATIENDE EL PROGRAMA?</th>
+                            </tr>
+                            <tr>
+                                <span *ngFor="let respuesta of respuestaSeleccionada.respuestasp1; ">
+                                    <span *ngIf="respuesta == 'sujetoninasninos'">
+                                        - Niñas y niños de 0 a 11 años <br>
+                                    </span>
+                                    <span *ngIf="respuesta == 'sujetoadolescentes'">
+                                        - Adolescentes de 12 a 17 años <br>
+                                    </span>
+                                    <span *ngIf="respuesta == 'sujetojovenes'">
+                                        - Adolescentes de 18 a 29 años <br>
+                                    </span>
+                                    <span *ngIf="respuesta == 'mujeres'">
+                                        - Mujeres <br>
+                                    </span>
+                                    <span *ngIf="respuesta == 'sujetomayores60'">
+                                        - Personas mayores de 60 a más <br>
+                                    </span>
+                                    <span *ngIf="respuesta == 'sujetodiscapacidad'">
+                                        - Personas con discapacidad <br>
+                                    </span>
+                                    <span *ngIf="respuesta == 'sujetoindigenas'">
+                                        - Personas indígenas <br>
+                                    </span>
+                                    <span *ngIf="respuesta == 'sujetojornaleras'">
+                                        - Personas jornaleras <br>
+                                    </span>
+                                    <span *ngIf="respuesta == 'sujetomigrantes'">
+                                        - Personas migrantes <br>
+                                    </span>
+                                    <span *ngIf="respuesta == 'sujetoadultas30a59'">
+                                        - Personas adultas de 30 a 59 <br>
+                                    </span>
+                                    <span *ngIf="respuesta == 'sujetofamilias'">
+                                        - Familias o comunidades <br>
+                                    </span>
+                                    <span *ngIf="respuesta == 'sujetosociedadcivil'">
+                                        - Organizaciones d ela sociedad civil <br>
+                                    </span>
+                                    <span *ngIf="respuesta == 'sujetootro'">
+                                        - Otro <br>
+                                    </span>
+                                </span>
+                            </tr>
+                        </td>
+                        <td>
+                            <span >
+                                {{respuestaSeleccionada.respuestas.pregunta1complemento ? respuestaSeleccionada.respuestas.pregunta1complemento : ""}} <br>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <tr>
+                                <th >
+                                    2. ¿EL PROGRAMA PRESUPUESTARIO ESTÁ ALINEADO A ALGÚN DERECHO HUMANO - SOCIAL?
+                                </th>
+                            </tr>
+                            <tr>
+                                <span *ngFor="let respuesta of respuestaSeleccionada.respuestasp2; ">
+                                    - {{respuesta}}<br>
+                                </span>
+                            </tr>
+                        </td>
+                        <td>
+                            <span >
+                                {{respuestaSeleccionada.respuestas.pregunta2 ? respuestaSeleccionada.respuestas.pregunta2 : "no"}} <br>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <tr>
+                                <th >
+                                    3. ¿EL PROGRAMA ATIENDE POBLACIÓN  EN ALGUNA CONDICIÓN DE VULNERABILIDAD?
+                                </th>
+                            </tr>
+                        </td>
+                        <td>
+                            <tr>
+                                <span>
+                                    {{respuestaSeleccionada.respuestas.pregunta3 ? respuestaSeleccionada.respuestas.pregunta3 : "no"}}<br>
+                                </span>
+                            </tr>
+                            <tr>
+                                <span *ngIf="respuestaSeleccionada.respuestas.pregunta3complemento.toString() == 'pobreza'">
+                                    Personas en condición de pobreza
+                                 </span>
+                                <span *ngIf="respuestaSeleccionada.respuestas.pregunta3complemento.toString() == 'pobrezaextrema'">
+                                    Persoersonas en condición de pobreza extrema
+                                </span>
+                                <span *ngIf="respuestaSeleccionada.respuestas.pregunta3complemento.toString() == 'vulnerable'">
+                                    Personas en condición vulnerable
+                                </span>
+                                <span *ngIf="respuestaSeleccionada.respuestas.pregunta3complemento.toString() == 'zonaprioritariaestatal'">
+                                    Personas habitantes de zonas de atención prioritaria estatales
+                                </span>
+                                <span *ngIf="respuestaSeleccionada.respuestas.pregunta3complemento.toString() == 'zonaprioritariafederal'">
+                                    Personas habitantes de zonas de atención prioritaria federales
+                                </span>
+                            </tr>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <tr>
+                                <th >
+                                    4. ¿CUÁL ES LA SUBCATEGORÍA DEL PROGRAMA PRESUPUESTARIO?
+                                </th>
+                            </tr>
+                        </td>
+                        <td>
+                            <tr>
+                                <span *ngIf="respuestaSeleccionada.respuestas.pregunta4.toString() == 'entregaayudas'">
+                                    El Programa entrega ayudas y subsidios directamente a la población
+                                 </span>
+                                <span *ngIf="respuestaSeleccionada.respuestas.pregunta4.toString() == 'desarrollocapacidades'">
+                                    El Programa se enfoca al desarrollo de capacidades
+                                </span>
+                                <span *ngIf="respuestaSeleccionada.respuestas.pregunta4.toString() == 'desarrolloservicios'">
+                                    El Programa se enfoca al desarrollo de servicios públicos
+                                </span>
+                                <span *ngIf="respuestaSeleccionada.respuestas.pregunta4.toString() == 'desarrolloinfraestructura'">
+                                    El Programa desarrolla infraestructura social
+                                </span>
+                            </tr>
+
+                            <tr>
+                                <span>
+                                    {{respuestaSeleccionada.respuestas.pregunta4complemento ? respuestaSeleccionada.respuestas.pregunta4complemento : ""}}<br>
+                                </span>
+                            </tr>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <tr>
+                                <th >
+                                    5. ¿EL PROGRAMA PRESUPUESTARIO ENTREGA ALGÚN TIPO DE APOYO SOCIAL A LA POBLACIÓN?
+                                </th>
+                            </tr>
+                        </td>
+                        <td>
+                            <tr>
+                                <span>
+                                    {{respuestaSeleccionada.respuestas.pregunta5 ? respuestaSeleccionada.respuestas.pregunta5 : "no"}}<br>
+                                </span>
+                            </tr>
+                            <tr>
+                                <span>
+                                    {{respuestaSeleccionada.respuestas.pregunta5complemento ? respuestaSeleccionada.respuestas.pregunta5complemento : ""}}<br>
+                                </span>
+                            </tr>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <tr>
+                                <th >
+                                    6. ¿EL APOYO SOCIAL SE ENTREGA DIRECTAMENTE O INDIRECTAMENTE A LA POBLACIÓN?
+                                </th>
+                            </tr>
+                        </td>
+                        <td>
+                            <tr>
+                                <span>
+                                    {{respuestaSeleccionada.respuestas.pregunta6 ? respuestaSeleccionada.respuestas.pregunta6 : "no"}}<br>
+                                </span>
+                            </tr>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <tr>
+                                <th >
+                                    7. ¿CON QUÉ FRECUENCIA EL PROGRAMA ENTREGA EL APOYO SOCIAL A LA MISMA PERSONA BENEFICIARIA?
+                                </th>
+                            </tr>
+                        </td>
+                        <td>
+                            <tr>
+                                <span>
+                                    {{respuestaSeleccionada.respuestas.pregunta7 ? respuestaSeleccionada.respuestas.pregunta7 : "no"}}<br>
+                                </span>
+                            </tr>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <tr>
+                                <th >
+                                    8. ¿EL PROGRAMA PRESUPUESTARIO COADYUVA AL CUMPLIMIENTO DE ALGUNO DE LOS OBJETIVOS DE LA POLÍTICA DE DESARROLLO SOCIAL Y HUMANO ESTATAL?
+                                </th>
+                            </tr>
+                        </td>
+                        <td>
+                            <tr>
+                                <span>
+                                    {{respuestaSeleccionada.respuestas.pregunta8 ? respuestaSeleccionada.respuestas.pregunta8 : "no"}}<br>
+                                </span>
+                            </tr>
+                            <tr *ngIf="respuestaSeleccionada.respuestas.pregunta8.toString()=='si'">
+                                <span>
+                                    {{respuestaSeleccionada.respuestas.pregunta8complemento ? respuestaSeleccionada.respuestas.pregunta8complemento : ""}}<br>
+                                </span>
+                            </tr>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <tr>
+                                <th >
+                                    9. ¿CUÁL ES LA PROCEDENCIA DE LOS RECURSOS DESTINADOS AL PROGRAMA PRESUPUESTARIO?
+                                </th>
+                            </tr>
+                        </td>
+                        <td>
+                            <tr>
+                                <span>
+                                    {{respuestaSeleccionada.respuestas.pregunta9 ? respuestaSeleccionada.respuestas.pregunta9 : "no"}}<br>
+                                </span>
+                            </tr>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <tr>
+                                <th >
+                                    10. LOS RECURSOS DESTINADOS AL PROGRAMA PRESUPUESTARIO SON PRIORITARIOS Y DE INTERÉS PÚBLICO PORQUE ESTÁN DIRIGIDOS A:
+                                </th>
+                            </tr>
+                        </td>
+                        <td>
+                            <tr>
+                                <span *ngIf="respuestaSeleccionada.respuestas.pregunta10.toString() == 'educacionobligatoria'">
+                                    Educación obligatoria<br>
+                                </span>
+                                <span *ngIf="respuestaSeleccionada.respuestas.pregunta10.toString() == 'promocionsalud'">
+                                    Promoción de la salud, prevención y control de enfermedades transmisibles y atención médica<br>
+                                </span>
+                                <span *ngIf="respuestaSeleccionada.respuestas.pregunta10.toString() == 'prevenirviolencia'">
+                                    Prevenir, atender y erradicar la violencia de género<br>
+                                </span>
+                                <span *ngIf="respuestaSeleccionada.respuestas.pregunta10.toString() == 'alimentacion'">
+                                    Alimentación y nutrición<br>
+                                </span>
+                                <span *ngIf="respuestaSeleccionada.respuestas.pregunta10.toString() == 'productosbasicos'">
+                                    Abasto social de productos básicos<br>
+                                </span>
+                                <span *ngIf="respuestaSeleccionada.respuestas.pregunta10.toString() == 'vivienda'">
+                                    Vivienda<br>
+                                </span>
+                                <span *ngIf="respuestaSeleccionada.respuestas.pregunta10.toString() == 'generacinoempleo'">
+                                    Generación y conservación del empleo, actividades productivas y empresas del sector social de la economía<br>
+                                </span>
+                                <span *ngIf="respuestaSeleccionada.respuestas.pregunta10.toString() == 'obrasinfraestructura'">
+                                    Obras de infraestructura para agua potable, drenaje, electrificación, caminos y otras vías de comunicación, saneamiento ambiental y equipamiento urbano<br>
+                                </span>
+                                <span *ngIf="respuestaSeleccionada.respuestas.pregunta10.toString() == 'desarrollopueblos'">
+                                    Fomentar el desarrollo de los pueblos y las comunidades Indígenas en el estado<br>
+                                </span>
+                                <span *ngIf="respuestaSeleccionada.respuestas.pregunta10.toString() == 'ninguno'">
+                                    Ninguno<br>
+                                </span>
+                                <span *ngIf="respuestaSeleccionada.respuestas.pregunta10.toString() == 'otro'">
+                                    Educación obligatoria<br>
+                                </span>
+                            </tr>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <tr>
+                                <th >
+                                    11. ¿EL PROGRAMA PRESUPUESTARIO CUENTA CON PADRÓN DE BENEFICIARIOS?
+                                </th>
+                            </tr>
+                        </td>
+                        <td>
+                            <tr>
+                                <span>
+                                    {{respuestaSeleccionada.respuestas.pregunta11 ? respuestaSeleccionada.respuestas.pregunta11 : "no"}}<br>
+                                </span>
+                            </tr>
+                            <tr *ngIf="respuestaSeleccionada.respuestas.pregunta11.toString()=='si'">
+                                <span>
+                                    {{respuestaSeleccionada.respuestas.pregunta11complemento ? respuestaSeleccionada.respuestas.pregunta11complemento : ""}}<br>
+                                </span>
+                            </tr>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <tr>
+                                <th >
+                                    12. ¿EL PROGRAMA PRESUPUESTARIO CUENTA CON REGLAS DE OPERACIÓN VIGENTES Y/O NORMATIVIDAD APLICABLE?
+                                </th>
+                            </tr>
+                        </td>
+                        <td>
+                            <tr>
+                                <span>
+                                    {{respuestaSeleccionada.respuestas.pregunta12 ? respuestaSeleccionada.respuestas.pregunta12 : "no"}}<br>
+                                </span>
+                            </tr>
+                            <tr>
+                                <span>
+                                    {{respuestaSeleccionada.respuestas.pregunta12complemento ? respuestaSeleccionada.respuestas.pregunta12complemento : ""}}<br>
+                                </span>
+                            </tr>
+                        </td>
+                    </tr>
+                </table>
+            </div> -->
             <div class="modal-header">
                 <h5 class="modal-title" id="myLargeModalLabel">Validacion</h5>
             </div>
@@ -565,6 +892,11 @@
                     type="button" (click)="sendResponse()" class='btn btn-success'>Validar</button>
                 <!-- <button type="button" (click)="sendResponse()" class='btn btn-success'>Validar</button> -->
                 <button #btnClose type="button" class="btn btn-secondary text-left" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-secondary " (click)="exportAsXLSX()">
+                    <i class=" fa fa-file-excel-o" style="color:gainsboro">
+                        Guardar Exel
+                    </i>
+                </button>
             </div>
         </div>
         <!-- /.modal-content -->

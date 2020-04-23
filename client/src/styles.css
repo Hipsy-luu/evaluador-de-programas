@@ -14,9 +14,10 @@
 
 .notificacion-flotante{
     position: fixed;
-    top: 19px;
+    top: 80px;
     right: 19px;
     height: 79px;
+    z-index: 999;
 }
 
 .navbar-custom {

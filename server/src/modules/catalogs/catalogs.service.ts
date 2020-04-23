@@ -1,6 +1,7 @@
 import { Injectable, Inject } from '@nestjs/common';
 import { Catprogramas } from '../../models/catprogramas.entity';
 import { ServerMessage } from '../../utils/dtos/serverMessages.dto';
+import { Sequelize } from 'sequelize';
 
 @Injectable()
 export class CatalogsService {
@@ -12,8 +13,16 @@ export class CatalogsService {
 
     async getCatProgramasByEntidad(entidad:number): Promise<ServerMessage> {
         let catalogo = await this.catprogramasRepository.findAll<Catprogramas>({
-          attributes: ['idprograma', 'entidad','departamento','nombre_programa'],
-          where: {entidad: entidad}});
+          attributes: [
+            'idprograma', 
+            'entidad',
+            'departamento',
+            'nombre_programa'
+            //[Sequelize.fn('DISTINCT', Sequelize.col('nombre_programa')) ,'nombre_programa'],
+            //[Sequelize.literal('DISTINCT `nombre_programa`'), 'nombre_programa'],
+          ],
+          group: ['nombre_programa'],
+          where: {entidad: entidad},});
         return new ServerMessage(false,"Catalogo obtenido", catalogo)
     }
 }

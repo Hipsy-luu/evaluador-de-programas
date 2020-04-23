@@ -165,7 +165,7 @@ export class UserService {
         });
 
         let programa: any = await this.catprogramasRepository.findOne<Catprogramas>({
-          attributes: ['nombre_programa'],
+          /* attributes: ['nombre_programa'], */
           where: {
             idprograma: respuesta.programapresupuestal,
           }
@@ -207,7 +207,8 @@ export class UserService {
               pregunta11complemento: respuesta.pregunta11complemento ? respuesta.pregunta11complemento : "",
               pregunta12: respuesta.pregunta12 ? respuesta.pregunta12 : "no",
               pregunta12complemento: respuesta.pregunta12complemento ? respuesta.pregunta12complemento : "",
-            }
+            },
+            program : programa
           })
       });
 
@@ -370,6 +371,5 @@ export class UserService {
     } catch (error) {
       return new ServerMessage(true, "Error consultando las validaciones", error);
     }
-    
   }
 }

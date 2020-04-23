@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
       /* console.log(success) */
       switch(this.apiDataService.user.rolusuario){
         case 0:
-          //this.route.navigateByUrl('/register-program')
+          this.route.navigateByUrl('/admin-dashboard')
           break;
         case 1:
           this.route.navigateByUrl('/validations')
@@ -67,22 +67,28 @@ export class LoginComponent implements OnInit {
           this.apiDataService.user = result.data.user;
           this.apiDataService.user.password = this.password;
           this.apiDataService.token = result.data.token;
-          localStorage.setItem('user', JSON.stringify(this.apiDataService.user));
-          switch(result.data.user.rolusuario){
-            case 0:
-              this.route.navigateByUrl('/admin-dashboard')
-              break;
-            case 1:
-              this.route.navigateByUrl('/validations')
-              break;
-            case 2: //Usuario que registra los programas
-              this.route.navigateByUrl('/register-program');
-              break;
-            case 3:
-              this.route.navigateByUrl('/validations')
-              break;
+          this.apiDataService.user.token = result.data.token;
 
-          }
+          console.log(this.apiDataService.user);
+          
+          this.apiDataService.awaitTime(2000,()=>{
+            localStorage.setItem('user', JSON.stringify(this.apiDataService.user));
+            switch(result.data.user.rolusuario){
+              case 0:
+                this.route.navigateByUrl('/admin-dashboard')
+                break;
+              case 1:
+                this.route.navigateByUrl('/validations')
+                break;
+              case 2: //Usuario que registra los programas
+                this.route.navigateByUrl('/register-program');
+                break;
+              case 3:
+                this.route.navigateByUrl('/validations')
+                break;
+  
+            }
+          })
         }
       },(error)=>{
         console.log("error")

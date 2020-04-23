@@ -117,10 +117,16 @@ export class ApiDataService {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer '+this.user.token
       });
-
-      this.http.get(this.baseURL + 'user/user-list',{ headers: headers }).subscribe((response : ServerMessage)=>{
-        resolve(response);
-      });;
+        console.log("intentando");
+        
+        this.http.get(this.baseURL + 'user/user-list',{ headers: headers }).subscribe((response : ServerMessage)=>{
+          console.log("coomunico");
+          resolve(response);
+        },(error)=>{
+          console.log("errorrrrr");
+          reject(error);
+        });
+      
     });
   }
 
