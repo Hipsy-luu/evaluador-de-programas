@@ -1,4 +1,9 @@
-
+<div *ngIf="apiDataService.successMessage" class="alert alert-success notificacion-flotante" role="alert">
+    {{apiDataService.actualMessageServer}} <a href="#" (click)="apiDataService.closeNotification()">X</a>
+</div>
+<div *ngIf="apiDataService.failMessage" class="alert alert-warning notificacion-flotante" role="alert">
+    {{apiDataService.actualMessageServer}} <a href="#" (click)="apiDataService.closeNotification()">X</a>
+</div>
 <!-- Es el encargado de que se mueva el contenido -->
 <div class="wrapper" >
     <span>
@@ -80,7 +85,7 @@
                 <table class="table table-hover">
                     <tr>
                         <th>Pregunta</th>
-                        <th>Complemento</th>
+                        <th style="width: 10px;">Complemento</th>
                     </tr>
                     <tr>
                         <td>
@@ -227,16 +232,16 @@
                                     5. ¿EL PROGRAMA PRESUPUESTARIO ENTREGA ALGÚN TIPO DE APOYO SOCIAL A LA POBLACIÓN?
                                 </th>
                             </tr>
+                            <tr>
+                                <span>
+                                    {{respuestaSeleccionada.respuestas.pregunta5complemento ? respuestaSeleccionada.respuestas.pregunta5complemento : ""}}<br>
+                                </span>
+                            </tr>
                         </td>
                         <td>
                             <tr>
                                 <span>
                                     {{respuestaSeleccionada.respuestas.pregunta5 ? respuestaSeleccionada.respuestas.pregunta5 : "no"}}<br>
-                                </span>
-                            </tr>
-                            <tr>
-                                <span>
-                                    {{respuestaSeleccionada.respuestas.pregunta5complemento ? respuestaSeleccionada.respuestas.pregunta5complemento : ""}}<br>
                                 </span>
                             </tr>
                         </td>
@@ -280,6 +285,11 @@
                                     8. ¿EL PROGRAMA PRESUPUESTARIO COADYUVA AL CUMPLIMIENTO DE ALGUNO DE LOS OBJETIVOS DE LA POLÍTICA DE DESARROLLO SOCIAL Y HUMANO ESTATAL?
                                 </th>
                             </tr>
+                            <tr *ngIf="respuestaSeleccionada.respuestas.pregunta8.toString()=='si'">
+                                <span>
+                                    {{respuestaSeleccionada.respuestas.pregunta8complemento ? respuestaSeleccionada.respuestas.pregunta8complemento : ""}}<br>
+                                </span>
+                            </tr>
                         </td>
                         <td>
                             <tr>
@@ -287,11 +297,7 @@
                                     {{respuestaSeleccionada.respuestas.pregunta8 ? respuestaSeleccionada.respuestas.pregunta8 : "no"}}<br>
                                 </span>
                             </tr>
-                            <tr *ngIf="respuestaSeleccionada.respuestas.pregunta8.toString()=='si'">
-                                <span>
-                                    {{respuestaSeleccionada.respuestas.pregunta8complemento ? respuestaSeleccionada.respuestas.pregunta8complemento : ""}}<br>
-                                </span>
-                            </tr>
+                            
                         </td>
                     </tr>
                     <tr>
@@ -317,8 +323,6 @@
                                     10. LOS RECURSOS DESTINADOS AL PROGRAMA PRESUPUESTARIO SON PRIORITARIOS Y DE INTERÉS PÚBLICO PORQUE ESTÁN DIRIGIDOS A:
                                 </th>
                             </tr>
-                        </td>
-                        <td>
                             <tr>
                                 <span *ngIf="respuestaSeleccionada.respuestas.pregunta10.toString() == 'educacionobligatoria'">
                                     Educación obligatoria<br>
@@ -417,14 +421,14 @@
     aria-labelledby="myLargeModalLabel" aria-hidden="false" style="display: none;" #modalValidacion>
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <!-- <div class="modal-header">
+            <div class="modal-header">
                 <h5 class="modal-title" id="myLargeModalLabel">Respuestas</h5>
             </div>
             <div class="modal-body" id="modal-body">
                 <table class="table table-hover">
                     <tr>
                         <th>Pregunta</th>
-                        <th>Complemento</th>
+                        <th style="width: 10px;">Complemento</th>
                     </tr>
                     <tr>
                         <td>
@@ -571,16 +575,16 @@
                                     5. ¿EL PROGRAMA PRESUPUESTARIO ENTREGA ALGÚN TIPO DE APOYO SOCIAL A LA POBLACIÓN?
                                 </th>
                             </tr>
+                            <tr>
+                                <span>
+                                    {{respuestaSeleccionada.respuestas.pregunta5complemento ? respuestaSeleccionada.respuestas.pregunta5complemento : ""}}<br>
+                                </span>
+                            </tr>
                         </td>
                         <td>
                             <tr>
                                 <span>
                                     {{respuestaSeleccionada.respuestas.pregunta5 ? respuestaSeleccionada.respuestas.pregunta5 : "no"}}<br>
-                                </span>
-                            </tr>
-                            <tr>
-                                <span>
-                                    {{respuestaSeleccionada.respuestas.pregunta5complemento ? respuestaSeleccionada.respuestas.pregunta5complemento : ""}}<br>
                                 </span>
                             </tr>
                         </td>
@@ -624,6 +628,11 @@
                                     8. ¿EL PROGRAMA PRESUPUESTARIO COADYUVA AL CUMPLIMIENTO DE ALGUNO DE LOS OBJETIVOS DE LA POLÍTICA DE DESARROLLO SOCIAL Y HUMANO ESTATAL?
                                 </th>
                             </tr>
+                            <tr *ngIf="respuestaSeleccionada.respuestas.pregunta8.toString()=='si'">
+                                <span>
+                                    {{respuestaSeleccionada.respuestas.pregunta8complemento ? respuestaSeleccionada.respuestas.pregunta8complemento : ""}}<br>
+                                </span>
+                            </tr>
                         </td>
                         <td>
                             <tr>
@@ -631,11 +640,7 @@
                                     {{respuestaSeleccionada.respuestas.pregunta8 ? respuestaSeleccionada.respuestas.pregunta8 : "no"}}<br>
                                 </span>
                             </tr>
-                            <tr *ngIf="respuestaSeleccionada.respuestas.pregunta8.toString()=='si'">
-                                <span>
-                                    {{respuestaSeleccionada.respuestas.pregunta8complemento ? respuestaSeleccionada.respuestas.pregunta8complemento : ""}}<br>
-                                </span>
-                            </tr>
+                            
                         </td>
                     </tr>
                     <tr>
@@ -661,8 +666,6 @@
                                     10. LOS RECURSOS DESTINADOS AL PROGRAMA PRESUPUESTARIO SON PRIORITARIOS Y DE INTERÉS PÚBLICO PORQUE ESTÁN DIRIGIDOS A:
                                 </th>
                             </tr>
-                        </td>
-                        <td>
                             <tr>
                                 <span *ngIf="respuestaSeleccionada.respuestas.pregunta10.toString() == 'educacionobligatoria'">
                                     Educación obligatoria<br>
@@ -743,7 +746,7 @@
                         </td>
                     </tr>
                 </table>
-            </div> -->
+            </div>
             <div class="modal-header">
                 <h5 class="modal-title" id="myLargeModalLabel">Validacion</h5>
             </div>

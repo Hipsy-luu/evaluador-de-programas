@@ -186,9 +186,11 @@ export class ValidationsComponent implements OnInit {
     this.respuestaSeleccionada = new Respuestas();
     this.apiDataService.getRespuestas(this.apiDataService.user.entidad).then((response : ServerMessage)=>{
       this.respuestas = response.data.respuestas;
+      this.apiDataService.showNotification(0,"Respuestas Obtenidas con Exito!",6000);
     }).catch((error)=>{
       console.log("error");
       console.log(error);
+      this.apiDataService.showNotification(1,"Error obteniendo respuestas!",6000);
     })
   }
 
@@ -210,7 +212,7 @@ export class ValidationsComponent implements OnInit {
         this.btnClose.nativeElement.click();
         console.log("cerrando");
         console.log(response);
-
+        this.apiDataService.showNotification(0,"Validaciones guardadas con Exito!",6000);
         this.apiDataService.getRespuestas(this.apiDataService.user.entidad).then((response : ServerMessage)=>{
           this.respuestas = response.data.respuestas;
         }).catch((error)=>{
@@ -220,6 +222,7 @@ export class ValidationsComponent implements OnInit {
       }).catch((error)=>{
         console.log("error");
         console.log(error);
+        this.apiDataService.showNotification(1,"Error guardando validaciones!",6000);
       })
   }
 }
