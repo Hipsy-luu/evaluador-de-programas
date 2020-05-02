@@ -12,7 +12,10 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class ApiDataService {
-  baseURL: string = "http://localhost:3000/";
+  //baseURL: string = "http://localhost:3000/";
+  
+  
+  baseURL: string = "http://eissa.dyndns.org:3001/";
 
   token : String;
   user : User;
