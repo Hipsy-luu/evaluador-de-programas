@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 21-04-2020 a las 16:01:31
+-- Tiempo de generación: 02-05-2020 a las 21:07:57
 -- Versión del servidor: 10.1.38-MariaDB
 -- Versión de PHP: 5.6.40
 
@@ -664,199 +664,14 @@ CREATE TABLE `respuestas` (
 --
 
 INSERT INTO `respuestas` (`idrespuestas`, `pregunta1complemento`, `pregunta2`, `pregunta3`, `pregunta3complemento`, `pregunta4`, `pregunta4complemento`, `pregunta5`, `pregunta6`, `pregunta7`, `pregunta8`, `pregunta8complemento`, `pregunta9`, `pregunta10`, `pregunta10complemento`, `pregunta11`, `pregunta11complemento`, `pregunta12`, `pregunta12complemento`, `dependencia`, `programapresupuestal`, `pregunta5complemento`, `usuario`, `estatus`) VALUES
-(1, NULL, 'no', 'no', NULL, 'entregaayudas', NULL, 'no', '', 'mensual', '', NULL, '', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, 1, NULL, NULL),
-(2, 'Funcionario', 'no', 'no', NULL, 'desarrolloservicios', NULL, 'no', '', 'mensual', '', NULL, 'federal', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(3, NULL, 'no', 'si', 'Somewhat satisfied', 'entregaayudas', NULL, 'no', '', 'unico', '', NULL, 'federal', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(4, 'Prueba', 'no', 'si', 'pobreza', 'entregaayudas', NULL, 'no', '', 'unico', '', NULL, 'municipal', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(5, NULL, 'no', 'no', NULL, 'desarrollocapacidades', 'PRUEBA CAPACIDAD', 'no', '', 'unico', '', NULL, 'estatal', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(6, NULL, 'no', 'no', NULL, 'desarrollocapacidades', 'PRUEBA2', 'no', 'indirectamente', 'unico', '', 2, 'federal', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(7, NULL, 'no', 'no', NULL, 'entregaayudas', NULL, 'si', 'directamente', 'unico', '', NULL, 'federal', 'otro', 'PRUEBA INTERES PUBLICO', 'no', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(8, NULL, 'no', 'no', NULL, 'entregaayudas', NULL, 'si', 'directamente', 'mensual', '', NULL, 'estatal', 'educacionobligatoria', NULL, 'si', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(9, NULL, 'no', 'si', 'pobreza', 'entregaayudas', NULL, 'si', 'directamente', 'unico', '', NULL, 'federal', 'educacionobligatoria', NULL, 'si', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(10, NULL, 'no', 'si', 'pobreza', 'entregaayudas', NULL, 'si', 'directamente', 'unico', '', NULL, 'federal', 'educacionobligatoria', NULL, 'si', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(11, NULL, 'no', 'si', 'pobreza', 'entregaayudas', NULL, 'si', 'directamente', 'unico', '', NULL, 'federal', 'educacionobligatoria', NULL, 'si', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(12, NULL, 'no', 'si', 'pobreza', 'entregaayudas', NULL, 'si', 'directamente', 'unico', '', NULL, 'estatal', 'educacionobligatoria', NULL, 'si', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(13, NULL, 'no', 'si', 'pobreza', 'entregaayudas', NULL, 'si', 'directamente', 'unico', '', NULL, 'estatal', 'educacionobligatoria', NULL, 'si', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(14, NULL, 'no', 'si', 'pobreza', 'entregaayudas', NULL, 'si', 'directamente', 'unico', '', NULL, 'estatal', 'educacionobligatoria', NULL, 'si', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(15, NULL, 'no', 'si', 'pobreza', 'entregaayudas', NULL, 'si', 'directamente', 'unico', '', NULL, 'estatal', 'educacionobligatoria', NULL, 'si', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(16, NULL, 'no', 'si', 'pobreza', 'entregaayudas', NULL, 'si', 'directamente', 'unico', '', NULL, 'estatal', 'educacionobligatoria', NULL, 'si', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(17, NULL, 'no', 'si', 'pobreza', 'entregaayudas', NULL, 'si', 'directamente', 'unico', '', NULL, 'estatal', 'educacionobligatoria', NULL, 'si', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(18, NULL, 'no', 'si', 'pobreza', 'entregaayudas', NULL, 'si', 'directamente', 'unico', '', NULL, 'estatal', 'educacionobligatoria', NULL, 'si', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(19, NULL, 'no', 'si', 'pobreza', 'entregaayudas', NULL, 'si', 'directamente', 'unico', '', NULL, 'estatal', 'educacionobligatoria', NULL, 'si', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(20, NULL, 'no', 'si', 'pobreza', 'entregaayudas', NULL, 'si', 'directamente', 'unico', '', NULL, 'estatal', 'educacionobligatoria', NULL, 'si', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(21, NULL, 'no', 'si', 'pobreza', 'entregaayudas', NULL, 'si', 'directamente', 'unico', '', NULL, 'estatal', 'educacionobligatoria', NULL, 'si', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(22, NULL, 'no', 'si', 'pobreza', 'entregaayudas', NULL, 'si', 'directamente', 'unico', '', NULL, 'estatal', 'educacionobligatoria', NULL, 'si', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(23, NULL, 'no', 'si', 'pobreza', 'entregaayudas', NULL, 'si', 'directamente', 'unico', '', NULL, 'estatal', 'educacionobligatoria', NULL, 'si', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(24, NULL, 'no', 'si', 'pobreza', 'entregaayudas', NULL, 'si', 'directamente', 'unico', '', NULL, 'estatal', 'educacionobligatoria', NULL, 'si', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(25, NULL, 'no', 'si', 'pobreza', 'entregaayudas', NULL, 'si', 'directamente', 'unico', '', NULL, 'estatal', 'educacionobligatoria', NULL, 'si', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(26, NULL, 'no', 'si', 'pobreza', 'entregaayudas', NULL, 'si', 'directamente', 'unico', '', NULL, 'estatal', 'educacionobligatoria', NULL, 'si', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(27, NULL, 'no', 'si', 'pobreza', 'entregaayudas', NULL, 'si', 'directamente', 'unico', '', NULL, 'estatal', 'educacionobligatoria', NULL, 'si', 'liga', 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(28, NULL, 'no', 'si', 'pobreza', 'entregaayudas', NULL, 'si', 'directamente', 'unico', '', NULL, 'estatal', 'educacionobligatoria', NULL, 'si', 'www.chihuahua.gob.mx', 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(29, NULL, 'no', 'no', NULL, 'entregaayudas', NULL, 'no', 'directamente', 'mensual', '', NULL, 'federal', 'educacionobligatoria', NULL, 'si', NULL, 'si', NULL, NULL, NULL, NULL, NULL, NULL),
-(30, NULL, 'no', 'no', NULL, 'entregaayudas', NULL, 'no', 'directamente', 'mensual', '', NULL, 'federal', 'educacionobligatoria', NULL, 'si', 'www.padron.com', 'si', 'www.reglasoperacion.com', NULL, NULL, NULL, NULL, NULL),
-(31, NULL, 'no', 'no', NULL, 'entregaayudas', NULL, 'no', 'directamente', 'mensual', '', NULL, 'federal', 'educacionobligatoria', NULL, 'si', 'www.padron.com', 'si', 'www.reglasoperacion.com', NULL, NULL, NULL, NULL, NULL),
-(32, NULL, 'no', 'no', NULL, 'entregaayudas', NULL, 'no', 'directamente', 'mensual', 'no', NULL, 'federal', 'educacionobligatoria', NULL, 'si', 'www.padron.com', 'si', 'www.reglasoperacion.com', NULL, NULL, NULL, NULL, NULL),
-(33, NULL, '', '', NULL, '', NULL, '', '', '', '', NULL, '', '', NULL, '', NULL, '', NULL, NULL, NULL, NULL, NULL, NULL),
-(34, NULL, 'no', 'no', NULL, 'entregaayudas', NULL, 'no', 'directamente', 'unico', 'no', NULL, 'municipal', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(35, NULL, 'si', 'si', 'pobreza', 'entregaayudas', NULL, 'si', 'directamente', 'unico', 'si', NULL, 'federal', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(36, NULL, 'si', 'si', 'vulnerable', 'entregaayudas', NULL, 'si', 'indirectamente', 'mensual', 'si', NULL, 'estatal', 'otro', 'Cuidado infantil', 'no', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(37, NULL, 'si', 'si', 'pobreza', 'entregaayudas', NULL, 'si', 'directamente', 'unico', 'si', NULL, 'federal', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(38, NULL, 'si', 'no', NULL, 'desarrolloservicios', NULL, 'no', 'indirectamente', 'mensual', 'si', NULL, 'federal', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(39, NULL, 'si', 'no', NULL, 'desarrolloservicios', NULL, 'no', 'indirectamente', 'mensual', 'si', NULL, 'federal', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(40, NULL, 'si', 'no', NULL, 'desarrolloservicios', NULL, 'no', 'indirectamente', 'mensual', 'si', NULL, 'federal', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(41, NULL, 'si', 'no', NULL, 'desarrolloservicios', NULL, 'no', 'indirectamente', 'mensual', 'si', NULL, 'federal', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(42, NULL, 'si', 'no', NULL, 'desarrolloservicios', NULL, 'no', 'indirectamente', 'mensual', 'si', NULL, 'federal', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(43, NULL, 'si', 'no', NULL, 'desarrolloservicios', NULL, 'no', 'indirectamente', 'mensual', 'si', NULL, 'federal', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(44, NULL, 'si', 'si', 'pobreza', 'entregaayudas', NULL, 'si', 'directamente', 'unico', 'si', NULL, 'federal', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(45, NULL, 'si', 'si', 'pobreza', 'entregaayudas', NULL, 'si', 'directamente', 'unico', 'si', NULL, 'federal', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(46, NULL, 'si', 'si', 'pobreza', 'entregaayudas', NULL, 'no', 'indirectamente', 'unico', 'si', NULL, 'estatal', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(47, NULL, 'si', 'si', 'pobreza', 'entregaayudas', NULL, 'no', 'indirectamente', 'unico', 'si', NULL, 'estatal', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(48, NULL, 'si', 'si', 'pobreza', 'entregaayudas', NULL, 'no', 'indirectamente', 'unico', 'si', NULL, 'estatal', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(49, NULL, 'si', 'si', 'pobreza', 'entregaayudas', NULL, 'no', 'indirectamente', 'unico', 'si', NULL, 'estatal', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(50, NULL, 'si', 'si', 'pobreza', 'entregaayudas', NULL, 'no', 'indirectamente', 'unico', 'si', NULL, 'estatal', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(51, NULL, '', '', NULL, '', NULL, '', '', '', '', NULL, '', '', NULL, '', NULL, '', NULL, NULL, NULL, NULL, NULL, NULL),
-(52, NULL, 'si', 'si', 'pobreza', 'entregaayudas', NULL, 'no', 'indirectamente', 'unico', 'si', NULL, 'estatal', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(53, NULL, 'si', 'si', 'pobreza', 'entregaayudas', NULL, 'no', 'indirectamente', 'unico', 'si', NULL, 'estatal', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(54, NULL, 'si', 'si', 'pobreza', 'entregaayudas', NULL, 'no', 'indirectamente', 'unico', 'si', NULL, 'estatal', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(55, NULL, 'si', 'si', 'pobreza', 'entregaayudas', NULL, 'no', 'indirectamente', 'unico', 'si', NULL, 'estatal', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(56, NULL, 'si', 'si', 'pobreza', 'entregaayudas', NULL, 'no', 'indirectamente', 'unico', 'si', NULL, 'estatal', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(57, NULL, 'si', 'si', 'pobreza', 'entregaayudas', NULL, 'no', 'indirectamente', 'unico', 'si', NULL, 'estatal', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(58, NULL, 'si', 'si', 'pobreza', 'entregaayudas', NULL, 'no', 'indirectamente', 'unico', 'si', NULL, 'estatal', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(59, NULL, 'si', 'si', 'pobreza', 'entregaayudas', NULL, 'no', 'indirectamente', 'unico', 'si', NULL, 'estatal', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(60, NULL, 'si', 'si', 'pobreza', 'entregaayudas', NULL, 'no', 'indirectamente', 'unico', 'si', NULL, 'estatal', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(61, NULL, 'si', 'no', NULL, 'entregaayudas', NULL, 'no', 'directamente', 'unico', 'no', NULL, 'estatal', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(62, NULL, 'no', 'no', NULL, 'entregaayudas', NULL, 'no', 'directamente', 'unico', 'no', NULL, 'municipal', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(63, 'Funcionario', 'no', 'no', NULL, 'entregaayudas', NULL, 'no', 'directamente', 'unico', 'no', NULL, 'federal', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(64, 'Funcionario', 'no', 'no', NULL, 'entregaayudas', NULL, 'no', 'directamente', 'unico', 'no', NULL, 'federal', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(65, 'Funcionario', 'no', 'no', NULL, 'entregaayudas', NULL, 'no', 'directamente', 'unico', 'no', NULL, 'federal', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(66, 'Funcionario', 'no', 'no', NULL, 'entregaayudas', NULL, 'no', 'directamente', 'unico', 'no', NULL, 'federal', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(67, 'Funcionario', 'no', 'no', NULL, 'entregaayudas', NULL, 'no', 'directamente', 'unico', 'no', NULL, 'federal', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(68, 'Funcionario', 'no', 'no', NULL, 'entregaayudas', NULL, 'no', 'directamente', 'unico', 'no', NULL, 'federal', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(69, 'Funcionario', 'no', 'no', NULL, 'entregaayudas', NULL, 'no', 'directamente', 'unico', 'no', NULL, 'federal', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(70, 'Funcionario', 'no', 'no', NULL, 'entregaayudas', NULL, 'no', 'directamente', 'unico', 'no', NULL, 'federal', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(71, 'Funcionario', 'no', 'no', NULL, 'entregaayudas', NULL, 'no', 'directamente', 'unico', 'no', NULL, 'federal', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(72, 'Funcionario', 'no', 'no', NULL, 'entregaayudas', NULL, 'no', 'directamente', 'unico', 'no', NULL, 'federal', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(73, 'Funcionario', 'no', 'no', NULL, 'entregaayudas', NULL, 'no', 'directamente', 'unico', 'no', NULL, 'federal', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(74, 'Funcionario', 'no', 'no', NULL, 'entregaayudas', NULL, 'no', 'directamente', 'unico', 'no', NULL, 'federal', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(75, 'Funcionario', 'no', 'no', NULL, 'entregaayudas', NULL, 'no', 'directamente', 'unico', 'no', NULL, 'federal', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(76, 'Funcionario', 'no', 'no', NULL, 'entregaayudas', NULL, 'no', 'directamente', 'unico', 'no', NULL, 'federal', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(77, 'Funcionario', 'no', 'no', NULL, 'entregaayudas', NULL, 'no', 'directamente', 'unico', 'no', NULL, 'federal', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(78, 'Funcionario', 'no', 'no', NULL, 'entregaayudas', NULL, 'no', 'directamente', 'unico', 'no', NULL, 'federal', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(79, 'Funcionario', 'no', 'no', NULL, 'entregaayudas', NULL, 'no', 'directamente', 'unico', 'no', NULL, 'federal', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(80, 'Funcionario', 'no', 'no', NULL, 'entregaayudas', NULL, 'no', 'directamente', 'unico', 'no', NULL, 'federal', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(81, 'Funcionario', 'no', 'no', NULL, 'entregaayudas', NULL, 'no', 'directamente', 'unico', 'no', NULL, 'federal', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(82, 'Funcionario', 'no', 'no', NULL, 'entregaayudas', NULL, 'no', 'directamente', 'unico', 'no', NULL, 'federal', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(83, 'Funcionario', 'no', 'no', NULL, 'entregaayudas', NULL, 'no', 'directamente', 'unico', 'no', NULL, 'federal', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(84, 'Funcionario', 'no', 'no', NULL, 'entregaayudas', NULL, 'no', 'directamente', 'unico', 'no', NULL, 'federal', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(85, 'Funcionario', 'no', 'no', NULL, 'entregaayudas', NULL, 'no', 'directamente', 'unico', 'no', NULL, 'federal', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(86, 'Funcionario', 'no', 'no', NULL, 'entregaayudas', NULL, 'no', 'directamente', 'unico', 'no', NULL, 'federal', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(87, NULL, 'si', 'no', NULL, 'desarrolloservicios', NULL, 'no', 'directamente', 'unico', 'no', NULL, 'estatal', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(88, NULL, 'si', 'no', NULL, 'desarrolloservicios', NULL, 'no', 'directamente', 'unico', 'no', NULL, 'estatal', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(89, NULL, 'si', 'no', NULL, 'desarrolloservicios', NULL, 'no', 'directamente', 'unico', 'no', NULL, 'estatal', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(90, NULL, 'si', 'no', NULL, 'desarrolloservicios', NULL, 'no', 'directamente', 'unico', 'no', NULL, 'estatal', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(91, NULL, 'si', 'no', NULL, 'desarrolloservicios', NULL, 'no', 'directamente', 'unico', 'no', NULL, 'estatal', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(92, NULL, 'si', 'no', NULL, 'desarrolloservicios', NULL, 'no', 'directamente', 'unico', 'no', NULL, 'estatal', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(93, NULL, 'si', 'no', NULL, 'desarrolloservicios', NULL, 'no', 'directamente', 'unico', 'no', NULL, 'estatal', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(94, NULL, 'si', 'no', NULL, 'desarrolloservicios', NULL, 'no', 'directamente', 'unico', 'no', NULL, 'estatal', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(95, NULL, 'si', 'si', 'pobreza', 'desarrollocapacidades', 'No se la respuesta', 'si', 'directamente', 'unico', 'si', NULL, 'federal', 'educacionobligatoria', NULL, 'si', 'www.chihuahua.gob.mx/padron', 'si', 'www.chihuahua.gob.mx/reglas', NULL, NULL, NULL, NULL, NULL),
-(96, NULL, 'si', 'si', 'pobreza', 'desarrollocapacidades', 'No se la respuesta', 'si', 'directamente', 'unico', 'si', NULL, 'federal', 'educacionobligatoria', NULL, 'si', 'www.chihuahua.gob.mx/padron', 'si', 'www.chihuahua.gob.mx/reglas', NULL, NULL, NULL, NULL, NULL),
-(97, NULL, 'si', 'si', 'pobreza', 'desarrollocapacidades', 'No se la respuesta', 'si', 'directamente', 'unico', 'si', NULL, 'federal', 'educacionobligatoria', NULL, 'si', 'www.chihuahua.gob.mx/padron', 'si', 'www.chihuahua.gob.mx/reglas', NULL, NULL, NULL, NULL, NULL),
-(98, NULL, 'si', 'si', 'pobreza', 'desarrollocapacidades', 'No se la respuesta', 'si', 'directamente', 'unico', 'si', NULL, 'federal', 'educacionobligatoria', NULL, 'si', 'www.chihuahua.gob.mx/padron', 'si', 'www.chihuahua.gob.mx/reglas', NULL, NULL, NULL, NULL, NULL),
-(99, NULL, 'si', 'si', 'pobreza', 'desarrollocapacidades', 'No se la respuesta', 'si', 'directamente', 'unico', 'si', NULL, 'federal', 'educacionobligatoria', NULL, 'si', 'www.chihuahua.gob.mx/padron', 'si', 'www.chihuahua.gob.mx/reglas', NULL, NULL, NULL, NULL, NULL),
-(100, NULL, 'si', 'si', 'pobreza', 'desarrollocapacidades', 'No se la respuesta', 'si', 'directamente', 'unico', 'si', NULL, 'federal', 'educacionobligatoria', NULL, 'si', 'www.chihuahua.gob.mx/padron', 'si', 'www.chihuahua.gob.mx/reglas', NULL, NULL, NULL, NULL, NULL),
-(101, NULL, 'si', 'si', 'pobreza', 'desarrollocapacidades', 'No se la respuesta', 'si', 'directamente', 'unico', 'si', NULL, 'federal', 'educacionobligatoria', NULL, 'si', 'www.chihuahua.gob.mx/padron', 'si', 'www.chihuahua.gob.mx/reglas', NULL, NULL, NULL, NULL, NULL),
-(102, NULL, 'si', 'si', 'pobreza', 'desarrollocapacidades', 'No se la respuesta', 'si', 'directamente', 'unico', 'si', NULL, 'federal', 'educacionobligatoria', NULL, 'si', 'www.chihuahua.gob.mx/padron', 'si', 'www.chihuahua.gob.mx/reglas', NULL, NULL, NULL, NULL, NULL),
-(103, NULL, 'no', 'si', 'pobreza', 'entregaayudas', NULL, 'si', 'directamente', 'unico', 'si', NULL, 'federal', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(104, NULL, 'no', 'si', 'pobreza', 'entregaayudas', NULL, 'si', 'directamente', 'unico', 'si', NULL, 'federal', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(105, NULL, 'no', 'si', 'pobreza', 'entregaayudas', NULL, 'si', 'directamente', 'unico', 'si', NULL, 'federal', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(106, NULL, 'no', 'si', 'pobreza', 'entregaayudas', NULL, 'si', 'directamente', 'unico', 'si', NULL, 'federal', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(107, NULL, 'si', 'si', 'pobreza', 'desarrollocapacidades', 'No se la respuesta', 'si', 'directamente', 'unico', 'si', NULL, 'federal', 'educacionobligatoria', NULL, 'si', 'www.chihuahua.gob.mx/padron', 'si', 'www.chihuahua.gob.mx/reglas', NULL, NULL, NULL, NULL, NULL),
-(108, NULL, 'si', 'si', 'pobreza', 'desarrollocapacidades', 'QUIEN SABE', 'si', 'directamente', 'unico', 'si', NULL, 'federal', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(109, NULL, 'si', 'si', 'pobreza', 'desarrollocapacidades', 'QUIEN SABE', 'si', 'directamente', 'unico', 'si', NULL, 'federal', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(110, NULL, 'si', 'si', 'pobreza', 'desarrollocapacidades', 'QUIEN SABE', 'si', 'directamente', 'unico', 'si', NULL, 'federal', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(111, NULL, 'no', 'si', 'pobreza', 'entregaayudas', NULL, 'si', 'directamente', 'unico', 'si', NULL, 'federal', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(112, NULL, 'no', 'no', NULL, 'entregaayudas', NULL, 'si', 'directamente', 'unico', 'no', NULL, 'federal', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, 1, NULL, NULL),
-(113, NULL, 'no', 'no', NULL, 'entregaayudas', NULL, 'si', 'directamente', 'unico', 'no', NULL, 'federal', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, 1, NULL, NULL),
-(114, NULL, 'no', 'no', NULL, 'entregaayudas', NULL, 'si', 'directamente', 'unico', 'no', NULL, 'federal', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, 1, NULL, NULL),
-(115, NULL, 'no', 'no', NULL, 'entregaayudas', NULL, 'si', 'directamente', 'unico', 'no', NULL, 'federal', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, 1, NULL, NULL),
-(116, NULL, 'no', 'no', NULL, 'entregaayudas', NULL, 'si', 'directamente', 'unico', 'no', NULL, 'federal', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, 1, NULL, NULL),
-(117, NULL, 'no', 'no', NULL, 'entregaayudas', NULL, 'si', 'directamente', 'unico', 'no', NULL, 'federal', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, 1, NULL, NULL),
-(118, NULL, 'no', 'no', NULL, 'entregaayudas', NULL, 'si', 'directamente', 'unico', 'no', NULL, 'federal', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, 1, NULL, NULL),
-(119, NULL, 'si', 'si', 'pobreza', 'desarrollocapacidades', 'QUIEN SABE', 'si', 'directamente', 'unico', 'si', NULL, 'federal', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, 1, NULL, NULL),
-(120, NULL, 'si', 'si', 'pobreza', 'desarrollocapacidades', 'QUIEN SABE', 'si', 'directamente', 'unico', 'si', NULL, 'federal', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, 1, NULL, NULL),
-(121, NULL, 'no', 'no', NULL, 'entregaayudas', NULL, 'si', 'directamente', 'unico', 'no', NULL, 'federal', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, 1, NULL, NULL),
-(122, NULL, 'si', 'si', 'pobreza', 'desarrollocapacidades', 'QUIEN SABE', 'si', 'directamente', 'unico', 'si', NULL, 'federal', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(123, NULL, 'no', 'no', NULL, 'entregaayudas', NULL, 'si', 'directamente', 'unico', 'no', NULL, 'federal', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, 1, NULL, NULL),
-(124, NULL, 'si', 'si', 'vulnerable', 'desarrollocapacidades', 'PRUEBA1', 'si', 'directamente', 'unico', 'si', NULL, 'federal', 'educacionobligatoria', NULL, 'si', 'www.chihuahua.gob.mx/padron', 'si', 'www.chihuahua.gob.mx/reglas', NULL, NULL, 1, NULL, NULL),
-(125, NULL, 'si', 'si', 'vulnerable', 'desarrollocapacidades', 'PRUEBA1', 'si', 'directamente', 'unico', 'si', NULL, 'federal', 'educacionobligatoria', NULL, 'si', 'www.chihuahua.gob.mx/padron', 'si', 'www.chihuahua.gob.mx/reglas', NULL, NULL, 1, NULL, NULL),
-(126, NULL, 'si', 'si', 'vulnerable', 'desarrollocapacidades', 'PRUEBA1', 'si', 'directamente', 'unico', 'si', 1, 'federal', 'educacionobligatoria', NULL, 'si', 'www.chihuahua.gob.mx/padron', 'si', 'www.chihuahua.gob.mx/reglas', NULL, NULL, 1, NULL, NULL),
-(127, NULL, 'si', 'si', 'vulnerable', 'desarrollocapacidades', 'PRUEBA1', 'si', 'directamente', 'unico', 'si', 1, 'federal', 'educacionobligatoria', NULL, 'si', 'www.chihuahua.gob.mx/padron', 'si', 'www.chihuahua.gob.mx/reglas', NULL, NULL, 1, NULL, NULL),
-(128, NULL, 'si', 'si', 'vulnerable', 'desarrollocapacidades', 'PRUEBA1', 'si', 'directamente', 'unico', 'si', 1, 'federal', 'educacionobligatoria', NULL, 'si', 'www.chihuahua.gob.mx/padron', 'si', 'www.chihuahua.gob.mx/reglas', NULL, NULL, 1, NULL, NULL),
-(129, NULL, 'si', 'si', 'vulnerable', 'desarrollocapacidades', 'PRUEBA1', 'si', 'directamente', 'unico', 'si', 1, 'federal', 'educacionobligatoria', NULL, 'si', 'www.chihuahua.gob.mx/padron', 'si', 'www.chihuahua.gob.mx/reglas', NULL, NULL, 1, NULL, NULL),
-(130, NULL, 'si', 'si', 'vulnerable', 'desarrollocapacidades', 'PRUEBA1', 'si', 'directamente', 'unico', 'si', 1, 'federal', 'educacionobligatoria', NULL, 'si', 'www.chihuahua.gob.mx/padron', 'si', 'www.chihuahua.gob.mx/reglas', NULL, NULL, 1, NULL, NULL),
-(131, NULL, 'si', 'si', 'vulnerable', 'desarrollocapacidades', 'PRUEBA1', 'si', 'directamente', 'unico', 'si', 1, 'federal', 'educacionobligatoria', NULL, 'si', 'www.chihuahua.gob.mx/padron', 'si', 'www.chihuahua.gob.mx/reglas', NULL, NULL, 1, NULL, NULL),
-(132, NULL, 'si', 'si', 'vulnerable', 'desarrollocapacidades', 'PRUEBA1', 'si', 'directamente', 'unico', 'si', 1, 'federal', 'educacionobligatoria', NULL, 'si', 'www.chihuahua.gob.mx/padron', 'si', 'www.chihuahua.gob.mx/reglas', 'SDS', NULL, 1, 1, 1),
-(133, NULL, 'no', 'no', NULL, 'desarrolloservicios', NULL, 'no', 'indirectamente', 'mensual', 'no', NULL, 'estatal', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(134, NULL, 'no', 'no', NULL, 'desarrolloservicios', NULL, 'no', 'indirectamente', 'mensual', 'no', NULL, 'municipal', 'educacionobligatoria', NULL, 'no', NULL, 'no', NULL, NULL, NULL, NULL, NULL, NULL),
-(135, NULL, 'si', 'si', 'pobreza', 'entregaayudas', NULL, 'si', 'indirectamente', 'bimensual', 'si', 4, 'federal-estatal', 'alimentacion', NULL, 'no', NULL, 'no', NULL, NULL, NULL, 1, NULL, NULL),
-(136, '', '', '', '', '', '', '', '', '', '', 0, '', '', '', '', '', '', '', '', '', 0, 0, 0),
-(137, '', '', '', '', '', '', '', '', '', '', 0, '', '', '', '', '', '', '', '', '', 0, 0, 0),
-(138, '', 'no', 'no', '', 'entregaayudas', NULL, 'no', 'directamente', 'unico', 'no', 0, 'federal', 'educacionobligatoria', '', 'no', '', 'no', '', '105', '41', 0, 14, 0),
-(139, '', 'no', 'no', '', 'entregaayudas', NULL, 'no', 'directamente', 'unico', 'no', 0, 'federal', 'educacionobligatoria', '', 'no', '', 'no', '', '105', '41', 0, 14, 0),
-(140, 'jkjyhkj', 'no', 'no', '', 'entregaayudas', NULL, 'no', 'directamente', 'unico', 'no', 0, 'federal', 'educacionobligatoria', '', 'no', '', 'no', '', '105', '41', 0, 14, 0),
-(141, 'jkjyhkj', 'no', 'si', 'pobrezaextrema', 'entregaayudas', NULL, 'no', 'directamente', 'unico', 'no', 0, 'federal', 'educacionobligatoria', '', 'no', '', 'no', '', '105', '41', 0, 14, 0),
-(142, 'jkjyhkj', 'no', 'no', '', 'entregaayudas', NULL, 'no', 'directamente', 'unico', 'no', 0, 'federal', 'educacionobligatoria', '', 'no', '', 'no', '', '105', '41', 0, 14, 0),
-(143, 'jkjyhkj', 'no', 'no', '', 'entregaayudas', NULL, 'no', 'directamente', 'unico', 'no', 0, 'federal', 'educacionobligatoria', '', 'no', '', 'no', '', '105', '41', 0, 14, 0),
-(144, 'jkjyhkj', 'no', 'si', '', 'entregaayudas', NULL, 'no', 'directamente', 'unico', 'no', 0, 'federal', 'educacionobligatoria', '', 'no', '', 'no', '', '105', '41', 0, 14, 0),
-(145, 'jkjyhkj', 'no', 'si', 'pobreza', 'entregaayudas', NULL, 'no', 'directamente', 'unico', 'no', 0, 'federal', 'educacionobligatoria', '', 'no', '', 'no', '', '105', '41', 0, 14, 0),
-(146, 'jkjyhkj', 'no', 'si', 'pobreza', 'desarrollocapacidades', NULL, 'no', 'directamente', 'unico', 'no', 0, 'federal', 'educacionobligatoria', '', 'no', '', 'no', '', '105', '41', 0, 14, 0),
-(147, 'jkjyhkj', 'no', 'si', 'pobreza', 'desarrollocapacidades', NULL, 'no', 'directamente', 'unico', 'no', 0, 'federal', 'educacionobligatoria', '', 'no', '', 'no', '', '105', '41', 0, 14, 0),
-(148, 'jkjyhkj', 'no', 'si', 'pobreza', 'desarrollocapacidades', 'jkhhjhkhj', 'no', 'directamente', 'unico', 'no', 0, 'federal', 'educacionobligatoria', '', 'no', '', 'no', '', '105', '41', 0, 14, 0),
-(149, 'hnjkmm', 'si', 'no', '', 'entregaayudas', '', 'no', 'directamente', 'unico', 'no', 0, 'federal', 'educacionobligatoria', '', 'no', '', 'no', '', '105', '41', 0, 14, 0),
-(150, 'hnjkmm', 'si', 'no', '', 'entregaayudas', '', 'no', 'directamente', 'unico', 'no', 0, 'federal', 'educacionobligatoria', '', 'no', '', 'no', '', '105', '41', 0, 14, 0),
-(151, 'hnjkmm', 'si', 'no', '', 'entregaayudas', '', 'no', 'directamente', 'unico', 'no', 0, 'federal', 'educacionobligatoria', '', 'no', '', 'no', '', '105', '41', 0, 14, 0),
-(152, 'hnjkmm', 'si', 'no', '', 'entregaayudas', '', 'no', 'directamente', 'unico', 'no', 0, 'federal', 'educacionobligatoria', '', 'no', '', 'no', '', '105', '41', 0, 14, 0),
-(153, 'hnjkmm', 'si', 'no', '', 'entregaayudas', '', 'no', 'directamente', 'unico', 'no', 0, 'federal', 'educacionobligatoria', '', 'no', '', 'no', '', '105', '41', 0, 14, 0),
-(154, 'hnjkmm', 'si', 'no', '', 'entregaayudas', '', 'no', 'directamente', 'unico', 'no', 0, 'federal', 'educacionobligatoria', '', 'no', '', 'no', '', '105', '41', 0, 14, 0),
-(155, 'hnjkmm', 'si', 'no', '', 'entregaayudas', '', 'no', 'directamente', 'unico', 'no', 0, 'federal', 'educacionobligatoria', '', 'no', '', 'no', '', '105', '41', 0, 14, 0),
-(156, 'hnjkmm', 'si', 'no', '', 'entregaayudas', '', 'no', 'directamente', 'unico', 'no', 0, 'federal', 'educacionobligatoria', '', 'no', '', 'no', '', '105', '41', 0, 14, 0),
-(157, 'hnjkmm', 'si', 'no', '', 'entregaayudas', '', 'no', 'directamente', 'unico', 'no', 0, 'federal', 'educacionobligatoria', '', 'no', '', 'no', '', '105', '41', 0, 14, 0),
-(158, '', 'no', 'no', '', 'entregaayudas', '', 'no', 'directamente', 'unico', 'no', 0, 'federal', 'educacionobligatoria', '', 'no', '', 'no', '', '', '41', 0, 0, 0),
-(159, '', 'no', 'no', '', 'entregaayudas', '', 'no', 'directamente', 'unico', 'no', 0, 'federal', 'educacionobligatoria', '', 'no', '', 'no', '', '', '41', 0, 0, 0),
-(160, '', 'no', 'no', '', 'entregaayudas', '', 'no', 'directamente', 'unico', 'no', 0, 'federal', 'educacionobligatoria', '', 'no', '', 'no', '', '', '41', 0, 0, 0),
-(161, '', 'no', 'no', '', 'entregaayudas', '', 'no', 'directamente', 'unico', 'no', 0, 'federal', 'educacionobligatoria', '', 'no', '', 'no', '', '', '41', 0, 0, 0),
-(162, '', 'no', 'no', '', 'entregaayudas', '', 'no', 'directamente', 'unico', 'no', 0, 'federal', 'educacionobligatoria', '', 'no', '', 'no', '', '', '41', 0, 0, 0),
-(163, '', 'no', 'no', '', 'entregaayudas', '', 'no', 'directamente', 'unico', 'no', 0, 'federal', 'educacionobligatoria', '', 'no', '', 'no', '', '', '41', 0, 0, 0),
-(164, '', 'no', 'no', '', 'entregaayudas', '', 'no', 'directamente', 'unico', 'no', 0, 'federal', 'educacionobligatoria', '', 'no', '', 'no', '', '', '41', 0, 0, 0),
-(165, '', 'no', 'no', '', 'entregaayudas', '', 'no', 'directamente', 'unico', 'no', 0, 'federal', 'educacionobligatoria', '', 'no', '', 'no', '', '', '41', 0, 0, 0),
-(166, '', 'no', 'no', '', 'entregaayudas', '', 'no', 'directamente', 'unico', 'no', 0, 'federal', 'educacionobligatoria', '', 'no', '', 'no', '', '', '41', 0, 0, 0),
-(167, '', 'no', 'no', '', 'entregaayudas', '', 'no', 'directamente', 'unico', 'no', 0, 'federal', 'educacionobligatoria', '', 'no', '', 'no', '', '', '41', 0, 0, 0),
-(168, '', 'no', 'no', '', 'entregaayudas', '', 'no', 'directamente', 'unico', 'no', 0, 'federal', 'educacionobligatoria', '', 'no', '', 'no', '', '', '41', 0, 0, 0),
-(169, '', 'no', 'no', '', 'entregaayudas', '', 'no', 'directamente', 'unico', 'no', 0, 'federal', 'educacionobligatoria', '', 'no', '', 'no', '', '', '41', 0, 0, 0),
-(170, '', 'no', 'no', '', 'entregaayudas', '', 'no', 'directamente', 'unico', 'no', 0, 'federal', 'educacionobligatoria', '', 'no', '', 'no', '', '', '41', 0, 0, 0),
-(171, '', 'no', 'no', '', 'entregaayudas', '', 'no', 'directamente', 'unico', 'no', 0, 'federal', 'educacionobligatoria', '', 'no', '', 'no', '', '', '41', 0, 0, 0),
-(172, '', 'no', 'no', '', 'entregaayudas', '', 'no', 'directamente', 'unico', 'no', 0, 'federal', 'educacionobligatoria', '', 'no', '', 'no', '', '', '41', 0, 0, 0),
-(173, '', 'no', 'no', '', 'entregaayudas', '', 'no', 'directamente', 'unico', 'no', 0, 'federal', 'educacionobligatoria', '', 'no', '', 'no', '', '', '41', 0, 0, 0),
-(174, '', 'no', 'no', '', 'entregaayudas', '', 'no', 'directamente', 'unico', 'no', 0, 'federal', 'educacionobligatoria', '', 'no', '', 'no', '', '', '41', 0, 0, 0),
-(175, '', 'no', 'no', '', 'entregaayudas', '', 'no', 'directamente', 'unico', 'no', 0, 'federal', 'educacionobligatoria', '', 'no', '', 'no', '', '', '41', 0, 0, 0),
-(176, '', 'no', 'no', '', 'entregaayudas', '', 'no', 'directamente', 'unico', 'no', 0, 'federal', 'educacionobligatoria', '', 'no', '', 'no', '', '', '41', 0, 0, 0),
-(177, '', 'no', 'no', '', 'entregaayudas', '', 'no', 'directamente', 'unico', 'no', 0, 'federal', 'educacionobligatoria', '', 'no', '', 'no', '', '', '41', 0, 0, 0),
-(178, '', 'no', 'no', '', 'entregaayudas', '', 'no', 'directamente', 'unico', 'no', 0, 'federal', 'educacionobligatoria', '', 'no', '', 'no', '', '', '41', 0, 0, 0),
-(179, '', 'no', 'no', '', 'entregaayudas', '', 'no', 'directamente', 'unico', 'no', 0, 'federal', 'educacionobligatoria', '', 'no', '', 'no', '', '', '41', 0, 0, 0),
-(180, '', 'no', 'no', '', 'entregaayudas', '', 'no', 'directamente', 'unico', 'no', 0, 'federal', 'educacionobligatoria', '', 'no', '', 'no', '', '', '41', 0, 0, 0),
-(181, '', 'no', 'no', '', 'entregaayudas', '', 'no', 'directamente', 'unico', 'no', 0, 'federal', 'educacionobligatoria', '', 'no', '', 'no', '', '', '41', 0, 0, 0),
-(182, '', 'no', 'no', '', 'entregaayudas', '', 'no', 'directamente', 'unico', 'no', 0, 'federal', 'educacionobligatoria', '', 'no', '', 'no', '', '105', '41', 0, 14, 0),
-(183, '', 'no', 'no', '', 'entregaayudas', '', 'no', 'directamente', 'unico', 'no', 0, 'federal', 'educacionobligatoria', '', 'no', '', 'no', '', '105', '41', 0, 14, 0),
-(184, '', 'si', 'no', '', 'entregaayudas', '', 'no', 'directamente', 'unico', 'no', 0, 'federal', 'educacionobligatoria', '', 'no', '', 'no', '', '105', '41', 0, 14, 1),
-(185, '', 'no', 'si', 'pobreza', 'entregaayudas', '', 'no', 'directamente', 'unico', 'no', 0, 'federal', 'educacionobligatoria', '', 'no', '', 'no', '', '105', '41', 0, 14, 0),
-(186, '', 'no', 'no', '', 'desarrolloservicios', '', 'si', 'directamente', 'unico', 'no', 0, 'federal', 'educacionobligatoria', '', 'no', '', 'no', '', '105', '41', 3, 14, 0),
-(187, '', 'no', 'no', '', 'entregaayudas', '', 'no', 'directamente', 'unico', 'si', 4, 'federal', 'educacionobligatoria', '', 'no', '', 'no', '', '105', '41', 0, 14, 1),
 (188, '', 'no', 'no', '', 'entregaayudas', '', 'no', 'directamente', 'unico', 'no', 0, 'federal', 'prevenirviolencia', '', 'si', 'fgdgdgs', 'si', 'jnkkml', '105', '41', 0, 14, 0),
 (189, '', 'no', 'si', 'zonaprioritariaestatal', 'desarrolloservicios', '', 'si', 'directamente', 'unico', 'si', 4, 'estatal', 'prevenirviolencia', '', 'si', 'jnjnjnjnnnj', 'si', 'jhgvbhnjmk,l', '105', '41', 6, 14, 0),
 (190, '', 'no', 'no', '', 'entregaayudas', '', 'no', 'directamente', 'unico', 'no', 0, 'federal', 'educacionobligatoria', '', 'no', '', 'no', '', '105', '41', 0, 14, 1),
-(191, 'sasa', 'no', 'no', '', 'entregaayudas', '', 'no', 'directamente', 'unico', 'no', 0, 'federal', 'educacionobligatoria', '', 'no', '', 'no', '', '105', '43', 0, 14, 0),
-(192, '', 'si', 'no', '', 'entregaayudas', '', 'no', 'directamente', 'unico', 'no', 0, 'federal', 'generacinoempleo', '', 'no', '', 'no', '', '105', '42', 0, 14, 0),
-(193, '', 'no', 'no', '', 'entregaayudas', '', 'no', 'directamente', 'unico', 'no', 0, 'federal', 'educacionobligatoria', '', 'no', '', 'no', '', '105', '41', 0, 11, 1);
+(191, 'sasa', 'no', 'no', '', 'entregaayudas', '', 'no', 'directamente', 'unico', 'no', 0, 'federal', 'educacionobligatoria', '', 'no', '', 'no', '', '105', '43', 0, 14, 1),
+(192, '', 'si', 'no', '', 'entregaayudas', '', 'no', 'directamente', 'unico', 'no', 0, 'federal', 'generacinoempleo', '', 'no', '', 'no', '', '105', '42', 0, 14, 1),
+(193, '', 'no', 'no', '', 'entregaayudas', '', 'no', 'directamente', 'unico', 'no', 0, 'federal', 'educacionobligatoria', '', 'no', '', 'no', '', '105', '41', 0, 11, 1),
+(194, '', 'no', 'no', '', 'entregaayudas', '', 'no', 'directamente', 'unico', 'no', 0, 'federal', 'educacionobligatoria', '', 'no', '', 'no', '', '105', '41', 0, 11, 0),
+(195, 'jjhn', 'si', 'si', 'pobrezaextrema', 'desarrolloinfraestructura', '', 'si', 'directamente', 'unico', 'si', 5, 'municipal', 'prevenirviolencia', '', 'si', 'ccccccccc', 'si', 'zzzzzzzzzzzzzzzzz', '105', '41', 15, 11, 0);
 
 -- --------------------------------------------------------
 
@@ -1193,7 +1008,14 @@ INSERT INTO `respuestasp1` (`id`, `idrespuesta`, `sujeto`) VALUES
 (316, 184, 'sujetodiscapacidad'),
 (317, 184, 'sujetoadultas30a59'),
 (318, 191, 'sujetootro'),
-(319, 192, 'sujetojornaleras');
+(319, 192, 'sujetojornaleras'),
+(320, 195, 'sujetomayores60'),
+(321, 195, 'sujetodiscapacidad'),
+(322, 195, 'sujetoindigenas'),
+(323, 195, 'sujetojornaleras'),
+(324, 195, 'sujetomigrantes'),
+(325, 195, 'sujetoadultas30a59'),
+(326, 195, 'sujetootro');
 
 -- --------------------------------------------------------
 
@@ -1442,7 +1264,13 @@ INSERT INTO `respuestasp2complemento` (`id`, `idrespuesta`, `derecho`) VALUES
 (228, 184, 7),
 (229, 184, 9),
 (230, 184, 10),
-(231, 192, 11);
+(231, 192, 11),
+(232, 195, 3),
+(233, 195, 8),
+(234, 195, 9),
+(235, 195, 10),
+(236, 195, 21),
+(237, 195, 25);
 
 -- --------------------------------------------------------
 
@@ -1519,9 +1347,11 @@ INSERT INTO `validaciones` (`id`, `idrespuesta`, `validacion1`, `validacion1a`, 
 (3, 181, 1, 0, '', 1, 0, '', 1, 0, '', 1, 0, '', 1, 0, '', 1, 0, '', '', 1, 0, '', ''),
 (4, 184, 1, 0, '', 1, 0, '', 1, 0, '', 1, 0, '', 1, 0, '', 1, 0, '', '', 1, 0, '', ''),
 (5, 187, 1, 0, '', 1, 0, '', 1, 0, '', 1, 0, '', 1, 0, '', 1, 0, '', '', 1, 0, '', ''),
-(6, 191, 0, 0, '', 0, 0, '', 0, 0, '', 0, 0, '', 0, 0, '', 0, 0, '', '', 0, 0, '', ''),
-(7, 192, 0, 1, '', 0, 0, '', 0, 0, '', 0, 0, '', 0, 0, '', 0, 0, '', '', 0, 0, '', ''),
-(8, 193, 1, 0, '', 1, 0, '', 1, 0, '', 1, 0, '', 1, 0, '', 1, 0, '', '', 1, 0, '', '');
+(6, 191, 1, 0, '', 1, 0, '', 1, 0, '', 1, 0, '', 1, 0, '', 1, 0, '', '', 1, 0, '', ''),
+(7, 192, 1, 1, 'dsd', 1, 0, '', 1, 0, 'dddd', 1, 0, '', 1, 0, '', 1, 0, '', '', 1, 0, '', ''),
+(8, 193, 1, 0, '', 1, 0, '', 1, 0, '', 1, 0, '', 1, 0, '', 1, 0, '', '', 1, 0, '', ''),
+(9, 194, 0, 0, '', 0, 0, '', 0, 0, '', 0, 0, '', 0, 0, '', 0, 0, '', '', 0, 0, '', ''),
+(10, 195, 0, 1, '', 0, 1, '', 0, 0, '', 0, 0, '', 0, 1, '', 0, 1, '', '', 0, 1, '', '');
 
 --
 -- Índices para tablas volcadas
@@ -1608,19 +1438,19 @@ ALTER TABLE `catprogramas`
 -- AUTO_INCREMENT de la tabla `respuestas`
 --
 ALTER TABLE `respuestas`
-  MODIFY `idrespuestas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=194;
+  MODIFY `idrespuestas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=196;
 
 --
 -- AUTO_INCREMENT de la tabla `respuestasp1`
 --
 ALTER TABLE `respuestasp1`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=320;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=327;
 
 --
 -- AUTO_INCREMENT de la tabla `respuestasp2complemento`
 --
 ALTER TABLE `respuestasp2complemento`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=232;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=238;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
@@ -1632,7 +1462,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `validaciones`
 --
 ALTER TABLE `validaciones`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
