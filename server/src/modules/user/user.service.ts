@@ -86,7 +86,7 @@ export class UserService {
 
   async findOneByUsername(username: string): Promise<User> {
     return await this.userRepository.findOne<User>({
-      attributes: ['idusuarios', 'usuario', 'nombre', 'apellidos', 'password', 'entidad', 'extension', 'rolusuario'],
+      /* attributes: ['idusuarios', 'usuario', 'nombre', 'apellidos', 'password', 'entidad', 'extension', 'rolusuario'], */
       where: { usuario: username }
     });
   }
@@ -269,8 +269,18 @@ export class UserService {
       let validacion5a = newRespuestas.pregunta5.toString() == 'si' ? true : false;
       // 6. El programa está sujeto a Reglas de Operación:
       let validacion6a = newRespuestas.pregunta12.toString() == 'si' ? true : false;
+      let validacion6acomentarios = 
+        validacion6a && 
+        (validacion1a || validacion2a)
+        ? "Deberia contar con ellas" : "";
+
       // 7. El programa cuenta con padrón general de beneficiarios?
       let validacion7a = newRespuestas.pregunta11.toString() == 'si' ? true : false;
+      let validacion7acomentarios = 
+        !validacion7a && 
+        (validacion5a || newRespuestas.pregunta1complemento != 'funcionario')
+        ? "Deberia contar con padron." : "";
+      
       let validaciones = {
         idrespuesta: newRespuestas.idrespuestas,
         validacion1: false,
@@ -290,12 +300,12 @@ export class UserService {
         validacion5justificacion: "",
         validacion6: false,
         validacion6a: validacion6a,
-        validacion6justificacion: "",
+        validacion6justificacion: validacion6acomentarios,
         validacion6comentarios: "",
         validacion7: false,
         validacion7a: validacion7a,
         validacion7justificacion: "",
-        validacion7comentarios: "",
+        validacion7comentarios: validacion7acomentarios,
       };
 
       try {

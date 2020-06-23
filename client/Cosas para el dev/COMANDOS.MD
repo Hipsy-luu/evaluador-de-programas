@@ -14,14 +14,14 @@ Comando para inicializar el proyecto
 
     {
         "hosting": {
-            "site": "evaluador",
+            "site": "evaluadorp",
             "public": "public",
             ...
         }
     }
 Comando para el despliegue en firebase
-
-    >> firebase deploy --only hosting:evaluador
+    >> npm run build
+    >> firebase deploy --only hosting:evaluadorp
 
 Project Console: https://console.firebase.google.com/project/evaluacion-da17e/overview
 Hosting URL: https://evaluador.web.app

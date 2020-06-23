@@ -6,6 +6,7 @@ import { JwtPayload } from './interfaces/jwtPayload.interface';
 import { User } from '../../models/user.entity';
 
 import { ServerMessages } from './../../utils/serverMessages';
+import { log } from 'util';
 
 @Injectable()
 export class AuthService {
@@ -50,7 +51,7 @@ export class AuthService {
                     // If there is a successful match, generate a JWT for the user
                     response = this.createJwtPayload(userToAttempt.usuario);
                     response.user = userToAttempt;
-
+                    //console.log(userToAttempt)
                     resolve(ServerMessages.messageResponse(false, "Inicio Exitoso", response));
                 } else {
                     resolve(ServerMessages.messageResponse(true, "Usuario y/ó contraseña invalidos", new UnauthorizedException()));

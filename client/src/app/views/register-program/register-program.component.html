@@ -109,7 +109,7 @@
                     <div class="col-10">
                         <div class="row" style="text-align: right;">
                                 <div class="col">
-                                    <label style="color: white;padding: 0px 37px;font-size: x-large;">Bienvenido {{apiDataService.user.nombre}}</label>
+                                    <label style="color: white !important;padding: 0px 37px;font-size: x-large;">Bienvenido {{apiDataService.user.nombre}}</label>
                                 </div>
                                 <div class="col">
                                     <button type="button" class="btn btn-light"(click)="apiDataService.logOut()">
@@ -177,7 +177,7 @@
                             <!-- /step -->
                             <div class="step" id="step1">
                                 <h3 class="main_question"><strong>2/13</strong>¿Cuál es el o los sujetos de derecho
-                                    que atiende el programa?</h3>
+                                    que atiende el programa?</h3><h6>*Puede seleccionar varias</h6>
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="form-group radio_input">
@@ -275,8 +275,7 @@
 
                             <!-- /step -->
                             <div class="step" id="step2">
-                                <h3 class="main_question"><strong>3/13</strong>¿El programa prespuestario está
-                                    alineado a algún derecho humano-social?</h3>
+                                <h3 class="main_question"><strong>3/13</strong>¿El programa presupuestario está alineado a algún derecho humano-social?</h3>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="col-md-12">
@@ -292,6 +291,9 @@
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                                <div class="row" *ngIf="pregunta2.value == 'si'">
+                                    <h6>*Puede seleccionar varias</h6>
                                 </div>
                                 <div class="row" id="opciones" *ngIf="pregunta2.value == 'si'">
                                     <div class="col-md-6>">

@@ -8,6 +8,7 @@ export class User{
     extension : string;
     rolusuario : number;
     alreadyLoged : Boolean;
+    email : string;
     token : string;
 
     constructor(){
@@ -18,6 +19,7 @@ export class User{
         this.password = "";
         this.entidad = "";
         this.extension = "";
+        this.email = "";
         this.rolusuario = 0;
         this.alreadyLoged = false;
         this.token = "";

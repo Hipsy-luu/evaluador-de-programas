@@ -1,5 +1,13 @@
-/* You can add global styles to this file, and also import other style files */
+a 
+{
+    color: #886400 !important;
+    text-decoration: none;
+    background-color: transparent;
+    -webkit-text-decoration-skip: objects;
+}
 
+
+/* You can add global styles to this file, and also import other style files */
 .full-centered{
     text-align: center;
 }

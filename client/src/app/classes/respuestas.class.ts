@@ -34,7 +34,7 @@ export class Respuestas{
         validacion7comentarios: ""
     }
     respuestas : {
-        pregunta1complemento : "",
+        pregunta1complemento : string ,
         pregunta2: "no",
         pregunta3: "no",
         pregunta3complemento: "",

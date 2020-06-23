@@ -1,8 +1,8 @@
 <div *ngIf="apiDataService.successMessage" class="alert alert-success notificacion-flotante" role="alert">
-    {{apiDataService.actualMessageServer}} <a href="#" (click)="apiDataService.closeNotification()">X</a>
+    {{apiDataService.actualMessageServer}} <a (click)="apiDataService.closeNotification()">X</a>
 </div>
 <div *ngIf="apiDataService.failMessage" class="alert alert-warning notificacion-flotante" role="alert">
-    {{apiDataService.actualMessageServer}} <a href="#" (click)="apiDataService.closeNotification()">X</a>
+    {{apiDataService.actualMessageServer}} <a (click)="apiDataService.closeNotification()">X</a>
 </div>
 <!-- Es el encargado de que se mueva el contenido -->
 <div class="wrapper" >
@@ -11,12 +11,16 @@
         <button class="btnnu" (click)="reloadData()">
             <img class="boton-flotante" src="/assets/images/reload.png">
              Recargar
-        </button>
+        </button> 
     </span>
     <div class="navbar-custom">
         <div class="row" style="height: -webkit-fill-available;align-items: center;">
             <div class="col">
-            
+                <!-- <button type="button" class="btn btn-secondary " (click)="createPDF()">
+                    <i class=" fa fa-file-excel-o" style="color:gainsboro">
+                        Crear PDF
+                    </i>
+                </button> -->
             </div>
             <div class="col-10" style="max-width: 1050px;">
                 <div class="row" >
@@ -845,10 +849,12 @@
                     <td>El programa está sujeto a Reglas de Operación</td>
                     <td><img *ngIf="respuestaSeleccionada.validaciones.validacion6a" src="assets/images/success.png" width="30" height="30"></td>
                     <td><img *ngIf="!respuestaSeleccionada.validaciones.validacion6a" src="assets/images/disapproval.png" width="30" height="30"></td>
-                    <!-- <td><strong>Deberia contar con ellas.</strong></td> -->
                     <td>
-                        <input *ngIf="!respuestaSeleccionada.estatus" [(ngModel)]="respuestaSeleccionada.validaciones.validacion6comentarios" type="text" class="form-control" placeholder="Escriba su comentario">
-                        <label *ngIf="respuestaSeleccionada.estatus" class="custom-control-label" for="valida1">{{respuestaSeleccionada.validaciones.validacion6comentarios}}</label>
+                        <strong *ngIf="
+                            respuestaSeleccionada.validaciones.validacion6a && 
+                            (respuestaSeleccionada.validaciones.validacion1a || respuestaSeleccionada.validaciones.validacion2a)">
+                            Deberia contar con ellas.
+                        </strong>
                     </td>
                         <td><div class="custom-control custom-checkbox">
                           <input *ngIf="!respuestaSeleccionada.estatus" [(ngModel)]="respuestaSeleccionada.validaciones.validacion6" type="checkbox" class="custom-control-input" id="valida6">
@@ -865,10 +871,12 @@
                     <td>El programa cuenta con padrón general de beneficiarios?</td>
                     <td><img *ngIf="respuestaSeleccionada.validaciones.validacion7a" src="assets/images/success.png" width="30" height="30"></td>
                     <td><img *ngIf="!respuestaSeleccionada.validaciones.validacion7a" src="assets/images/disapproval.png" width="30" height="30"></td>
-                    <!-- <td>-if-<strong>Deberia contar con padron.</strong>-if-</td> -->
                     <td>
-                        <input *ngIf="!respuestaSeleccionada.estatus" [(ngModel)]="respuestaSeleccionada.validaciones.validacion7comentarios" type="text" class="form-control" placeholder="Escriba su comentario">
-                        <label *ngIf="respuestaSeleccionada.estatus" class="custom-control-label" for="valida1">{{respuestaSeleccionada.validaciones.validacion7comentarios}}</label>
+                        <strong *ngIf="
+                            !respuestaSeleccionada.validaciones.validacion7a && 
+                            (respuestaSeleccionada.validaciones.validacion5a || respuestaSeleccionada.respuestas.pregunta1complemento != 'funcionario')">
+                            Deberia contar con padron.{{respuestaSeleccionada.respuestas.pregunta1complemento}}
+                        </strong>
                     </td>
                         <td><div class="custom-control custom-checkbox">
                           <input *ngIf="!respuestaSeleccionada.estatus" [(ngModel)]="respuestaSeleccionada.validaciones.validacion7" type="checkbox" class="custom-control-input" id="valida7">
@@ -900,6 +908,11 @@
                         Guardar Exel
                     </i>
                 </button>
+                <!-- <button type="button" class="btn btn-secondary " (click)="createPDF()">
+                    <i class=" fa fa-file-excel-o" style="color:gainsboro">
+                        Crear PDF
+                    </i>
+                </button> -->
             </div>
         </div>
         <!-- /.modal-content -->

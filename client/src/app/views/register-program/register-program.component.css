@@ -1,0 +1,17 @@
+label
+{
+    color: #000000 !important;
+    padding-left: 10px;
+}
+
+.radio_input label {
+    padding-left: 0;
+    /* margin-right: 15px; */
+    color: #999;
+}
+
+h6 {
+    -webkit-font-smoothing: antialiased;
+    color: #222;
+    font-weight: 300;
+}

@@ -1,0 +1,5 @@
+PassengerBaseURI /
+PassengerAppRoot /home/mqz5sby5d83r/administracion/secretaria/server/dist/
+
+PassengerAppType    node
+PassengerStartupFile main.js
