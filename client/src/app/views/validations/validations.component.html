@@ -172,6 +172,23 @@
                                     3. ¿EL PROGRAMA ATIENDE POBLACIÓN  EN ALGUNA CONDICIÓN DE VULNERABILIDAD?
                                 </th>
                             </tr>
+                            <tr>
+                                <span *ngIf="respuestaSeleccionada.respuestas.pregunta3complemento.includes('pobreza') == true">
+                                    - Personas en condición de pobreza<br>
+                                 </span>
+                                <span *ngIf="respuestaSeleccionada.respuestas.pregunta3complemento.includes('pobrezaextrema')">
+                                    - Persoersonas en condición de pobreza extrema<br>
+                                </span>
+                                <span *ngIf="respuestaSeleccionada.respuestas.pregunta3complemento.includes('vulnerable')">
+                                    - Personas en condición vulnerable<br>
+                                </span>
+                                <span *ngIf="respuestaSeleccionada.respuestas.pregunta3complemento.includes('zonaprioritariaestatal')">
+                                    - Personas habitantes de zonas de atención prioritaria estatales<br>
+                                </span>
+                                <span *ngIf="respuestaSeleccionada.respuestas.pregunta3complemento.includes('zonaprioritariafederal')">
+                                    - Personas habitantes de zonas de atención prioritaria federales<br>
+                                </span>
+                            </tr>
                         </td>
                         <td>
                             <tr>
@@ -180,21 +197,7 @@
                                 </span>
                             </tr>
                             <tr>
-                                <span *ngIf="respuestaSeleccionada.respuestas.pregunta3complemento.toString() == 'pobreza'">
-                                    Personas en condición de pobreza
-                                 </span>
-                                <span *ngIf="respuestaSeleccionada.respuestas.pregunta3complemento.toString() == 'pobrezaextrema'">
-                                    Persoersonas en condición de pobreza extrema
-                                </span>
-                                <span *ngIf="respuestaSeleccionada.respuestas.pregunta3complemento.toString() == 'vulnerable'">
-                                    Personas en condición vulnerable
-                                </span>
-                                <span *ngIf="respuestaSeleccionada.respuestas.pregunta3complemento.toString() == 'zonaprioritariaestatal'">
-                                    Personas habitantes de zonas de atención prioritaria estatales
-                                </span>
-                                <span *ngIf="respuestaSeleccionada.respuestas.pregunta3complemento.toString() == 'zonaprioritariafederal'">
-                                    Personas habitantes de zonas de atención prioritaria federales
-                                </span>
+                                
                             </tr>
                         </td>
                     </tr>
@@ -205,8 +208,6 @@
                                     4. ¿CUÁL ES LA SUBCATEGORÍA DEL PROGRAMA PRESUPUESTARIO?
                                 </th>
                             </tr>
-                        </td>
-                        <td>
                             <tr>
                                 <span *ngIf="respuestaSeleccionada.respuestas.pregunta4.toString() == 'entregaayudas'">
                                     El Programa entrega ayudas y subsidios directamente a la población
@@ -221,7 +222,8 @@
                                     El Programa desarrolla infraestructura social
                                 </span>
                             </tr>
-
+                        </td>
+                        <td>
                             <tr>
                                 <span>
                                     {{respuestaSeleccionada.respuestas.pregunta4complemento ? respuestaSeleccionada.respuestas.pregunta4complemento : ""}}<br>
@@ -515,6 +517,23 @@
                                     3. ¿EL PROGRAMA ATIENDE POBLACIÓN  EN ALGUNA CONDICIÓN DE VULNERABILIDAD?
                                 </th>
                             </tr>
+                            <tr>
+                                <span *ngIf="respuestaSeleccionada.respuestas.pregunta3complemento.includes('pobreza') == true">
+                                    - Personas en condición de pobreza<br>
+                                 </span>
+                                <span *ngIf="respuestaSeleccionada.respuestas.pregunta3complemento.includes('pobrezaextrema')">
+                                    - Persoersonas en condición de pobreza extrema<br>
+                                </span>
+                                <span *ngIf="respuestaSeleccionada.respuestas.pregunta3complemento.includes('vulnerable')">
+                                    - Personas en condición vulnerable<br>
+                                </span>
+                                <span *ngIf="respuestaSeleccionada.respuestas.pregunta3complemento.includes('zonaprioritariaestatal')">
+                                    - Personas habitantes de zonas de atención prioritaria estatales<br>
+                                </span>
+                                <span *ngIf="respuestaSeleccionada.respuestas.pregunta3complemento.includes('zonaprioritariafederal')">
+                                    - Personas habitantes de zonas de atención prioritaria federales<br>
+                                </span>
+                            </tr>
                         </td>
                         <td>
                             <tr>
@@ -523,21 +542,7 @@
                                 </span>
                             </tr>
                             <tr>
-                                <span *ngIf="respuestaSeleccionada.respuestas.pregunta3complemento.toString() == 'pobreza'">
-                                    Personas en condición de pobreza
-                                 </span>
-                                <span *ngIf="respuestaSeleccionada.respuestas.pregunta3complemento.toString() == 'pobrezaextrema'">
-                                    Persoersonas en condición de pobreza extrema
-                                </span>
-                                <span *ngIf="respuestaSeleccionada.respuestas.pregunta3complemento.toString() == 'vulnerable'">
-                                    Personas en condición vulnerable
-                                </span>
-                                <span *ngIf="respuestaSeleccionada.respuestas.pregunta3complemento.toString() == 'zonaprioritariaestatal'">
-                                    Personas habitantes de zonas de atención prioritaria estatales
-                                </span>
-                                <span *ngIf="respuestaSeleccionada.respuestas.pregunta3complemento.toString() == 'zonaprioritariafederal'">
-                                    Personas habitantes de zonas de atención prioritaria federales
-                                </span>
+                                
                             </tr>
                         </td>
                     </tr>
@@ -548,8 +553,6 @@
                                     4. ¿CUÁL ES LA SUBCATEGORÍA DEL PROGRAMA PRESUPUESTARIO?
                                 </th>
                             </tr>
-                        </td>
-                        <td>
                             <tr>
                                 <span *ngIf="respuestaSeleccionada.respuestas.pregunta4.toString() == 'entregaayudas'">
                                     El Programa entrega ayudas y subsidios directamente a la población
@@ -563,6 +566,11 @@
                                 <span *ngIf="respuestaSeleccionada.respuestas.pregunta4.toString() == 'desarrolloinfraestructura'">
                                     El Programa desarrolla infraestructura social
                                 </span>
+                            </tr>
+                        </td>
+                        <td>
+                            <tr>
+
                             </tr>
 
                             <tr>

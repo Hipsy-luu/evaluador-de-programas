@@ -54,6 +54,9 @@ export class RegisterProgramComponent implements OnInit {
     complemento : "" //RESPUESTAS - Esta es la pregunta3complemento
   };
 
+  //Variable de apoyo para el complemento de la variable pregunta3
+  pregunta3Selecciones = [false,false,false,false,false];
+
   pregunta4 = {
     value : 'entregaayudas', //RESPUESTAS - Esta es la pregunta4
     complemento : "" //RESPUESTAS - Esta es la pregunta4complemento
@@ -149,7 +152,7 @@ export class RegisterProgramComponent implements OnInit {
   }
 
   async loadData(){
-    await this.apiDataService.getCatprograms((this.apiDataService.user.entidad=="") ? "105" : this.apiDataService.user.entidad);
+    await this.apiDataService.getCatprograms( (this.apiDataService.user.entidad=="") ? "105" : this.apiDataService.user.entidad );
     await this.apiDataService.awaitTime(2200,async ()=>{
       await this.initData();
       this.show = true;
@@ -165,6 +168,24 @@ export class RegisterProgramComponent implements OnInit {
     let data: any = {};
     data.pregunta1 = this.pregunta1;
     data.pregunta2 = this.pregunta2;
+
+    this.pregunta3.complemento = "";
+
+    if( this.pregunta3Selecciones[0] ){
+      this.pregunta3.complemento = this.pregunta3.complemento + "pobreza";
+    }
+    if( this.pregunta3Selecciones[1] ){
+      this.pregunta3.complemento = this.pregunta3.complemento + ",pobrezaextrema";
+    }
+    if( this.pregunta3Selecciones[2] ){
+      this.pregunta3.complemento = this.pregunta3.complemento + ",vulnerable";
+    }
+    if( this.pregunta3Selecciones[3] ){
+      this.pregunta3.complemento = this.pregunta3.complemento + ",zonaprioritariaestatal";
+    }
+    if( this.pregunta3Selecciones[4] ){
+      this.pregunta3.complemento = this.pregunta3.complemento + ",zonaprioritariafederal";
+    }
     data.pregunta3 = this.pregunta3;
     data.pregunta4 = this.pregunta4;
     data.pregunta5 = this.pregunta5;

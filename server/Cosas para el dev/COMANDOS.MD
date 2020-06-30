@@ -18,4 +18,4 @@ Crea las entidades de las tablas contenidas en una base de datos automaticamente
 
 TODO:
 
-    1. - Hay que cambiar el key del jwt en las estrategias del passtport
+    1. - Hay que cambiar el key del jwt en las estrategias del passtport 

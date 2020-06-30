@@ -168,7 +168,7 @@
                                 <div class="row">
                                     <div id="principal">
                                         <select (change)="selectEventProgram($event)" class="form-control" name="pcderechosocial" id="pcderechosocial">
-                                            <option *ngFor="let program of apiDataService.catPrograms; " [value] = "program.idprograma">{{program.nombre_programa}}</option>
+                                            <option *ngFor="let program of apiDataService.catPrograms; " [value] = "program.idprograma">{{program.clave_presupuestaria}} {{program.nombre_programa}}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -376,22 +376,39 @@
                                     </div>
                                 </div>
                                 <div class="row" id="condicionpobreza" *ngIf="pregunta3.value == 'si'">
+                                    <h6>*Puede seleccionar varias</h6>
                                     <div class="col-md-12">
                                         <div class="form-group radio_input">
-                                            <label><input (change)="pregunta3.complemento = 'pobreza'" type="radio" value="pobreza" name="cpobreza" id="cpobreza" class="icheck required">Personas en condición de pobreza</label>
+                                            <label><input (change)="pregunta3Selecciones[0] = !pregunta3Selecciones[0]" type="checkbox" value="pobreza" name="cpobreza" id="cpobreza" class="icheck required">Personas en condición de pobreza</label>
                                         </div>
                                         <div class="form-group radio_input">
-                                            <label><input (change)="pregunta3.complemento = 'pobrezaextrema'" type="radio" value="pobrezaextrema" name="cpobreza" id="cpobreza" class="icheck required">Personas en condición de pobreza extrema</label>
+                                            <label><input (change)="pregunta3Selecciones[1] = !pregunta3Selecciones[1]" type="checkbox" value="pobrezaextrema" name="cpobreza" id="cpobreza" class="icheck required">Personas en condición de pobreza extrema</label>
                                         </div>
                                         <div class="form-group radio_input">
-                                            <label><input (change)="pregunta3.complemento = 'vulnerable'" type="radio" value="vulnerable" name="cpobreza" id="cpobreza" class="icheck required">Personas en condición vulnerable</label>
+                                            <label><input (change)="pregunta3Selecciones[2] = !pregunta3Selecciones[2]" type="checkbox" value="vulnerable" name="cpobreza" id="cpobreza" class="icheck required">Personas en condición vulnerable</label>
                                         </div>
                                         <div class="form-group radio_input">
-                                            <label><input (change)="pregunta3.complemento = 'zonaprioritariaestatal'" type="radio" value="zonaprioritariaestatal" name="cpobreza" id="cpobreza" class="icheck required">Personas habitantes de zonas de atención prioritaria estatales</label>
+                                            <label><input (change)="pregunta3Selecciones[3] = !pregunta3Selecciones[3]" type="checkbox" value="zonaprioritariaestatal" name="cpobreza" id="cpobreza" class="icheck required">Personas habitantes de zonas de atención prioritaria estatales</label>
                                         	</div>
                                         <div class="form-group radio_input">
-                                            <label><input (change)="pregunta3.complemento = 'zonaprioritariafederal'" type="radio" value="zonaprioritariafederal" name="cpobreza" id="cpobreza" class="icheck required">Personas habitantes de zonas de atención prioritaria federales</label>
+                                            <label><input (change)="pregunta3Selecciones[4] = !pregunta3Selecciones[4]" type="checkbox" value="zonaprioritariafederal" name="cpobreza" id="cpobreza" class="icheck required">Personas habitantes de zonas de atención prioritaria federales</label>
                                         </div>
+
+                                        <!-- <div class="form-group radio_input">
+                                            <label><input (change)="pregunta3.complemento = 'pobreza'" type="checkbox" value="pobreza" name="cpobreza" id="cpobreza" class="icheck required">Personas en condición de pobreza</label>
+                                        </div>
+                                        <div class="form-group radio_input">
+                                            <label><input (change)="pregunta3.complemento = 'pobrezaextrema'" type="checkbox" value="pobrezaextrema" name="cpobreza" id="cpobreza" class="icheck required">Personas en condición de pobreza extrema</label>
+                                        </div>
+                                        <div class="form-group radio_input">
+                                            <label><input (change)="pregunta3.complemento = 'vulnerable'" type="checkbox" value="vulnerable" name="cpobreza" id="cpobreza" class="icheck required">Personas en condición vulnerable</label>
+                                        </div>
+                                        <div class="form-group radio_input">
+                                            <label><input (change)="pregunta3.complemento = 'zonaprioritariaestatal'" type="checkbox" value="zonaprioritariaestatal" name="cpobreza" id="cpobreza" class="icheck required">Personas habitantes de zonas de atención prioritaria estatales</label>
+                                        	</div>
+                                        <div class="form-group radio_input">
+                                            <label><input (change)="pregunta3.complemento = 'zonaprioritariafederal'" type="checkbox" value="zonaprioritariafederal" name="cpobreza" id="cpobreza" class="icheck required">Personas habitantes de zonas de atención prioritaria federales</label>
+                                        </div> -->
                                     </div>
                                 <br><br><br>
                                 </div><br><br>
@@ -399,8 +416,8 @@
                             </div>
                             <!-- /step -->
                             <div class="step">
-                                <h3 class="main_question"><strong>5/13</strong>¿Cuál es la subcategoría del programa
-                                    presupuestario?</h3>
+                                <h3 class="main_question"><strong>5/13</strong><!-- ¿Cuál es la subcategoría del programa
+                                    presupuestario? -->En cual o cuales de las siguientes categorias se clasifican los bienes y/o servicios del programa</h3>
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group radio_input">

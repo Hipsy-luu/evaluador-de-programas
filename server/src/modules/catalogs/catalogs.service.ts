@@ -17,7 +17,8 @@ export class CatalogsService {
             'idprograma', 
             'entidad',
             'departamento',
-            'nombre_programa'
+            'nombre_programa',
+            'clave_presupuestaria'
             //[Sequelize.fn('DISTINCT', Sequelize.col('nombre_programa')) ,'nombre_programa'],
             //[Sequelize.literal('DISTINCT `nombre_programa`'), 'nombre_programa'],
           ],
