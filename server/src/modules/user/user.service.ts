@@ -2,19 +2,17 @@ import { Injectable, Inject } from '@nestjs/common';
 // import { USER_REPOSITORY } from '../utils/constants';
 import { User } from '../../models/user.entity';
 //Normalmente se usa para formatear el objeto que recibimos en el request
-import { CreateUserDto } from './dto/createUser.dto';
-import { validators } from '../../utils/validators'
-import { LoginUserDto } from './dto/loginUser.dto';
+import { CreateEditUserDto } from './dto/createUser.dto';
 import { ServerMessage } from '../../utils/dtos/serverMessages.dto';
 import { Respuestas } from '../../models/respuestas.entity';
 import { Respuestasp1 } from '../../models/respuestasp1.entity';
 import { Respuestasp2complemento } from '../../models/respuestasp2complemento.entity';
-import { async } from 'rxjs/internal/scheduler/async';
 import { Catprogramas } from '../../models/catprogramas.entity';
 import { Catderechos } from '../../models/catderechos.entity';
 import { CatapoyosSociales } from '../../models/catapoyos_sociales.entity';
 import { CatobjetivosPolitica } from '../../models/catobjetivos_politica.entity';
 import { Validaciones } from '../../models/validaciones.entity';
+import { Sequelize } from 'sequelize-typescript';
 
 @Injectable()
 export class UserService {
@@ -100,22 +98,59 @@ export class UserService {
     }
   }
 
-  async createUser(createUser: CreateUserDto): Promise<ServerMessage> {
-    if (!createUser.usuario || !createUser.nombre || !createUser.apellidos || !createUser.password || !createUser.extension
-      || !createUser.entidad || !createUser.rolusuario || !createUser.email) {
-      return new ServerMessage(true, "Peticion incompleta", {});
+  async createEditUser(userData: CreateEditUserDto): Promise<ServerMessage> {
+    if (
+      userData.nombre == undefined ||
+      userData.nombre == null ||
+      userData.apellidos == undefined ||
+      userData.apellidos == null ||
+      userData.email == undefined ||
+      userData.email == null ||
+      userData.entidad == undefined ||
+      userData.entidad == null ||
+      userData.extension == undefined ||
+      userData.extension == null ||
+      userData.rolusuario == undefined ||
+      userData.rolusuario == null ||
+      userData.usuario == undefined ||
+      userData.usuario == null ||
+      userData.password == undefined ||
+      userData.password == null 
+    ) {
+      return new ServerMessage(true, 'Petición incompleta', {});
     }
-    var user = await this.findOneByUsername(createUser.usuario);
+    var user = await this.findOneByUsername(userData.usuario);
 
     if (!user) {
       try {
-        var newUser: User = await this.userRepository.create<User>(createUser, {});
-        return new ServerMessage(false, "Usuario creado con exito", newUser);
+        var newUser: User = await this.userRepository.create<User>(userData, {});
+        return new ServerMessage(false, "Usuario creado con éxito", newUser);
       } catch (error) {
         return new ServerMessage(true, "A ocurrido un error", error);
       }
     } else {
-      return new ServerMessage(true, "Usuario actualmente registrado", {});
+      try {
+        user.apellidos = userData.apellidos;
+        user.email = userData.email;
+        user.entidad = userData.entidad;
+        user.extension = userData.extension;
+        user.nombre = userData.nombre;
+        user.rolusuario = userData.rolusuario;
+
+        var message = "Usuario actualizado con éxito";
+        if(userData.password.length > 0 ){
+          if (userData.password.length < 8) {
+            return new ServerMessage(true,'La contraseña debe contener al menos 8 caracteres.',{});
+          } 
+          user.password = await user.protectPassword(userData.password);
+          message = "Usuario y contraseña actualizada con éxito"
+        }
+
+        var newUserData = await user.save();
+        return new ServerMessage(false, message, newUserData);
+      } catch (error) {
+        return new ServerMessage(true, "A ocurrido un error actualizando el usuario", error);
+      }
     }
   }
 
@@ -126,9 +161,9 @@ export class UserService {
     try {
       dataResponse.respuestas = await this.respuestasRepository.findAll<Respuestas>({
         /* attributes: ['idrespuestas','dependencia','pregunta1complemento','programapresupuestal','usuario','estatus'], */
-        where: {
+        /* where: {
           dependencia: dependencia,
-        },
+        }, */
         order: [
           ['idrespuestas', 'DESC'],
         ],
@@ -212,7 +247,16 @@ export class UserService {
           })
       });
 
-      return new ServerMessage(false, "Respuestas obtenidas con exito", dataResponse);
+      dataResponse.entities = await await this.respuestasRepository.findAll<Respuestas>({
+        attributes: [
+            // specify an array where the first element is the SQL function and the second is the alias
+            [Sequelize.fn('DISTINCT', Sequelize.col('dependencia')) ,'dependencia'],
+        ]
+      }).map((entidad : any) => {
+        return Object.assign(entidad.dependencia)
+      });
+
+      return new ServerMessage(false, "Respuestas obtenidas con éxito", dataResponse);
     } catch (error) {
       //console.log(error)
       return new ServerMessage(true, "Error obteniendo respuestas", error);

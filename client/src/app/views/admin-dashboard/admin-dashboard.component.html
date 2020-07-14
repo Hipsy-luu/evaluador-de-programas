@@ -31,10 +31,10 @@
 <div class="container-fluid">
     <img class="logo-flotante" src="/assets/images/logo-trans.png">
     <div *ngIf="apiDataService.successMessage" class="alert alert-success notificacion-flotante" role="alert">
-        {{apiDataService.actualMessageServer}} <a href="#" (click)="apiDataService.closeNotification()">X</a>
+        {{apiDataService.actualMessageServer}} <button  (click)="apiDataService.closeNotification()">X</button>
     </div>
     <div *ngIf="apiDataService.failMessage" class="alert alert-warning notificacion-flotante" role="alert">
-        {{apiDataService.actualMessageServer}} <a href="#" (click)="apiDataService.closeNotification()">X</a>
+        {{apiDataService.actualMessageServer}} <button (click)="apiDataService.closeNotification()">X</button>
     </div>
     <div class="row fullpage-centered" style="background-image: url(./assets/images/img2.jpg);background-size: cover;">
         <div class="col-sm">
@@ -45,7 +45,7 @@
                 <img class="card-img-top"  style="height: 40px;background-color: #4892a9;    margin: 10px;">
                 <div class="card-body" style="padding: 0px 45px;">
                     <div class="row" style="text-align: -webkit-center;">
-                        <div class="col-sm-4" style="text-align: -webkit-center;">
+                        <div class="col-sm-2" style="text-align: -webkit-center;">
                             <div class="row" style="max-height: 50px;margin-bottom: 15px;">
                                 <div class="col" style="text-align: left;padding: 0px;">
                                     <h4 style="padding-top: 10px;font-weight: 600;font-size: x-large;">MENU</h4>
@@ -74,15 +74,22 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-8" style="text-align: -webkit-center;">
+                        <div class="col-sm-10" style="text-align: -webkit-center;">
                             <div class="row" style="max-height: 50px;margin-bottom: 15px;">
                                 <div class="col" style="text-align: left;padding: 0px;">
                                     <h4 style="padding-top: 10px;font-weight: 600;font-size: x-large;">Usuarios</h4>
                                 </div>
                                 <div class="col"style="text-align: right;padding: 0px;">
                                     <span>
-                                        <button class="btnnu" (click)="reloadData()">
-                                            <img class="img-reload" src="/assets/images/reload.png">
+                                        <button class="btn btn-success" (click)="selectNewUser()" style="margin: 0px 10px;">
+                                            <i class='fas fa-user-plus' style='color:whitesmoke'></i>
+                                            Nuevo Usuario
+                                        </button>
+                                    </span>
+
+                                    <span>
+                                        <button class="btn btn-primary" (click)="reloadData()">
+                                            <i class="fas fa-sync" style='color:whitesmoke'></i>
                                              Recargar
                                         </button>
                                     </span>
@@ -104,10 +111,15 @@
                                         <th>{{user.nombre}} {{user.apellidos}}</th>
                                         <th>{{user.entidad}}</th>
                                         <th>{{user.usuario}}</th>
-                                        <th>{{user.rolusuario}}</th>
+                                        <th>
+                                            <span  *ngIf="user.rolusuario == 0">Administrador</span>
+                                            <span *ngIf="user.rolusuario == 1">Validador</span>
+                                            <span *ngIf="user.rolusuario == 2">Capturador</span>
+                                            <span *ngIf="user.rolusuario == 3">Visualizador</span>
+                                        </th>
                                         <th>{{user.extension}}</th>
                                         <td>
-                                            <button *ngIf="!user.estatus" (click)="selectUser(user)" class='btn btn-danger' data-target='#modalValidacion' data-toggle='modal' data-id=''>Editar</button>
+                                            <button (click)="selectUser(user)" class='btn btn-danger' data-target='#modalValidacion' data-toggle='modal' data-id=''>Editar</button>
                                         </td>
                                     </tr>
                                 </table>
@@ -123,3 +135,103 @@
         </div>
     </div>
 </div>
+<button #OpenEditUser type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" style="display: none;">
+    Launch demo modal
+</button>
+
+
+<!-- Modal for edit user data -->
+<div class="modal fade" id="exampleModal" tabindex="0" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document" style="margin-top: 7%;">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel" *ngIf="isNew == true">Creando Usuario</h5>
+          <h5 class="modal-title" id="exampleModalLabel" *ngIf="isNew == false">Editando usuario #{{selectedUser.idusuarios}}</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="input-group input-group-lg padding-inputs-user">
+                <div class="input-group-prepend" style="width: 40%;">
+                  <span style="width: 100%;" class="input-group-text" id="inputGroup-sizing-lg">Usuario</span>
+                </div>
+                <input *ngIf="isNew == false" disabled [(ngModel)]="selectedUser.usuario" style="width: 60%;" type="text" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm">
+                <input *ngIf="isNew == true" [(ngModel)]="selectedUser.usuario" style="width: 60%;" type="text" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm">
+            </div>
+            <div class="input-group input-group-lg padding-inputs-user">
+                <div class="input-group-prepend" style="width: 40%;">
+                  <span style="width: 100%;" class="input-group-text" id="inputGroup-sizing-lg">Nombre</span>
+                </div>
+                <input placeholder="Ingrese el nombre de la persona" [(ngModel)]="selectedUser.nombre" style="width: 60%;" type="text" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm">
+            </div>
+            <div class="input-group input-group-lg padding-inputs-user">
+                <div class="input-group-prepend" style="width: 40%;">
+                  <span style="width: 100%;" class="input-group-text" id="inputGroup-sizing-lg">Apellidos</span>
+                </div>
+                <input placeholder="Ingrese los apellidos" [(ngModel)]="selectedUser.apellidos" style="width: 60%;" type="text" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm">
+            </div>
+            <div class="input-group input-group-lg padding-inputs-user">
+                <div class="input-group-prepend" style="width: 40%;">
+                  <span style="width: 100%;" class="input-group-text" id="inputGroup-sizing-lg">Email</span>
+                </div>
+                <input placeholder="Ingrese un correo valido" [(ngModel)]="selectedUser.email" style="width: 60%;" type="text" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm">
+            </div>
+            <div class="input-group input-group-lg padding-inputs-user">
+                <div class="input-group-prepend" style="width: 40%;">
+                  <span style="width: 100%;" class="input-group-text" id="inputGroup-sizing-lg">Entidad</span>
+                </div>
+                <input placeholder="Ingrese la entidad" [(ngModel)]="selectedUser.entidad" style="width: 60%;" type="number" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm">
+            </div>
+            <div class="input-group input-group-lg padding-inputs-user">
+                <div class="input-group-prepend" style="width: 40%;">
+                  <span style="width: 100%;" class="input-group-text" id="inputGroup-sizing-lg">Extension</span>
+                </div>
+                <input placeholder="Ingrese el numero de extension" [(ngModel)]="selectedUser.extension" style="width: 60%;" type="number" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm">
+            </div>
+            <div class="input-group input-group-lg padding-inputs-user">
+                <div class="input-group-prepend" style="width: 40%;">
+                  <span class="input-group-text" id="inputGroup-sizing-lg" style="width: 100%;">Tipo de usuario</span>
+                </div>
+                <div class="input-group-append" style="width: 60%;">
+                    <button *ngIf="selectedUser.usuario != 'admin'" style="width: 100%;" class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span  *ngIf="selectedUser.rolusuario == 0">Administrador</span>
+                        <span *ngIf="selectedUser.rolusuario == 1">Validador</span>
+                        <span *ngIf="selectedUser.rolusuario == 2">Capturador</span>
+                        <span *ngIf="selectedUser.rolusuario == 3">Visualizador</span>
+                    </button>
+                    <button disabled *ngIf="selectedUser.usuario == 'admin'" style="width: 100%;" class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span  *ngIf="selectedUser.rolusuario == 0">Administrador</span>
+                    </button>
+                    <div class="dropdown-menu" >
+                      <a class="dropdown-item" (click)="changeTypeUser(0)">Administrador</a>
+                      <a class="dropdown-item" (click)="changeTypeUser(1)">Validador</a>
+                      <a class="dropdown-item" (click)="changeTypeUser(2)">Capturador</a>
+                      <a class="dropdown-item" (click)="changeTypeUser(3)">Visualizador</a>
+                    </div>
+                  </div>
+            </div>
+            <div *ngIf="isNew == false">
+                Cambiar contraseña:
+            </div>
+            <div class="input-group input-group-lg padding-inputs-user">
+                <div class="input-group-prepend" style="width: 50%;">
+                  <span class="input-group-text" id="inputGroup-sizing-lg" style="width: 100%;">Nueva Contraseña</span>
+                </div>
+                <input [(ngModel)]="password" type="password" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm">
+            </div>
+            <div class="input-group input-group-lg padding-inputs-user">
+                <div class="input-group-prepend" style="width: 50%;">
+                  <span class="input-group-text" id="inputGroup-sizing-lg" style="width: 100%;">Confirmar Contraseña</span>
+                </div>
+                <input [(ngModel)]="newPassword"  type="password" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm">
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button #BtnCloseEditModal type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+          <button (click)="updateUser()"  type="button" class="btn btn-success">Guardar Cambios</button>
+        </div>
+      </div>
+    </div>
+  </div>
+

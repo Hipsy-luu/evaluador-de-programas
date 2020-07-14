@@ -13,6 +13,7 @@ import { RegisterProgramComponent } from './views/register-program/register-prog
 import { LoginComponent } from './views/login/login.component';
 import { ValidationsComponent } from './views/validations/validations.component';
 import { AdminDashboardComponent } from './views/admin-dashboard/admin-dashboard.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { AdminDashboardComponent } from './views/admin-dashboard/admin-dashboard
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

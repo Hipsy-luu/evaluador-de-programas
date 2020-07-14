@@ -6,13 +6,6 @@
 </div>
 <!-- Es el encargado de que se mueva el contenido -->
 <div class="wrapper" >
-    <span>
-        
-        <button class="btnnu" (click)="reloadData()">
-            <img class="boton-flotante" src="/assets/images/reload.png">
-             Recargar
-        </button> 
-    </span>
     <div class="navbar-custom">
         <div class="row" style="height: -webkit-fill-available;align-items: center;">
             <div class="col">
@@ -48,30 +41,98 @@
         </div>
     </div>
     <div class="container" style="text-align: -webkit-center;" style="margin-top: 80px;">
-        
-        <table class="table table-hover" style="max-width: 1050px;">
-            <tr >
-                <th>ID Respuesta</th>
-                <th>Dependencia</th>
-                <th>Programa</th>
-                <th>Usuario</th>
-                <th>Estatus</th>
-            </tr>
-            <tr *ngFor="let respuesta of respuestas; ">
-                <td>
-                    <button (click)="selectRespuesta(respuesta)" data-target='#modalRegistro' data-toggle='modal' data-id='' class='btn btn-info' id='verRespuestas'>
-                        {{respuesta.idrespuestas}} Ver respuestas</button>
-                </td>
-                <td>{{respuesta.dependencia}}</td>
-                <td>{{respuesta.programa}}</td>
-                <td>{{respuesta.usuario}}</td>
+        <div class="card ">
+            <div class="card-body">
+                <div class="row" style="justify-content: flex-end;">
 
-                <td>
-                    <button *ngIf="!respuesta.estatus" (click)="selectRespuesta(respuesta)" class='btn btn-danger' data-target='#modalValidacion' data-toggle='modal' data-id=''>No validado</button>
-                    <button *ngIf="respuesta.estatus" (click)="selectRespuesta(respuesta)" data-target='#modalValidacion' data-toggle='modal' data-id='' class='btn btn-info'>Validado</button>
-                </td>
-            </tr>
-        </table>
+                </div>
+
+                <div class="row" style="display: flex;align-items: center;">
+                    <div class="col-3">
+                        <div ngbDropdown class="d-inline-block">
+                            <button class="btn btn-outline-primary"
+                                id="dropdownBasic1" ngbDropdownToggle>No.
+                                Respuestas {{pageSize}}</button>
+                            <div ngbDropdownMenu
+                                aria-labelledby="dropdownBasic1">
+                                <button ngbDropdownItem
+                                    (click)="pageSize = 5">5</button>
+                                <button ngbDropdownItem
+                                    (click)="pageSize = 10">10</button>
+                                <button ngbDropdownItem
+                                    (click)="pageSize = 15">15</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <!-- <input type="text" 
+                            [(ngModel)]="searchValue"
+                            (ngModelChange)="filterByProgramName($event)"
+                            placeholder="Buscar por programa"
+                            class="input-group-text full-width text-left"
+                            style="font-size: x-large;width: 100%;text-transform: capitalize;">
+ -->
+                        <div class="input-group input-group-sm mb-3" style="    margin-bottom: 0rem!important;height: 38px;">
+                            <div class="input-group-prepend" >
+                                <span class="input-group-text" id="inputGroup-sizing-sm">Nombre Programa</span>
+                            </div>
+                            <input style="height: 38px;" [(ngModel)]="searchValue"
+                            (ngModelChange)="filterByProgramName($event)" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="input-group-append" style="width: 60%;">
+                            <button style="width: 100%;z-index: auto;" class="btn dropdown-toggle btn-primary" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span  *ngIf="selectedEntitie == 'Todas'">Todas las Dependencias</span>
+                                <span  *ngIf="selectedEntitie != 'Todas'">{{selectedEntitie}}</span>
+                            </button>
+                            <div class="dropdown-menu" >
+                                <a class="dropdown-item" (click)="changeEntitieSelected(-1)">Todas</a>
+                                <a *ngFor="let entitie of entities" class="dropdown-item" (click)="changeEntitieSelected(entitie)">{{entitie}}</a>
+                            </div>
+                          </div>
+                    </div>
+                    <div class="col-2" style="text-align: right;">
+                        <button class="btn btn-primary" (click)="reloadData()">
+                            <i class="fas fa-sync" style='color:whitesmoke'></i>
+                             Recargar
+                        </button>
+                    </div>
+                </div>
+                <!-- TABLA -->
+                <table class="table table-hover" style="max-width: 1050px; margin-top: 1em;">
+                    <tr >
+                        <th>ID Respuesta</th>
+                        <th>Dependencia</th>
+                        <th>Programa</th>
+                        <th>Usuario</th>
+                        <th>Estatus</th>
+                    </tr>
+                    <tr *ngFor="let respuesta of respuestasFiltered | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
+                        <td>
+                            <button (click)="selectRespuesta(respuesta)" data-target='#modalRegistro' data-toggle='modal' data-id='' class='btn btn-info' id='verRespuestas'>
+                                {{respuesta.idrespuestas}} Ver respuestas</button>
+                        </td>
+                        <td>{{respuesta.dependencia}}</td>
+                        <td>{{respuesta.programa}}</td>
+                        <td>{{respuesta.usuario}}</td>
+        
+                        <td>
+                            <button *ngIf="!respuesta.estatus" (click)="selectRespuesta(respuesta)" class='btn btn-danger' data-target='#modalValidacion' data-toggle='modal' data-id=''>No validado</button>
+                            <button *ngIf="respuesta.estatus" (click)="selectRespuesta(respuesta)" data-target='#modalValidacion' data-toggle='modal' data-id='' class='btn btn-info'>Validado</button>
+                        </td>
+                    </tr>
+                </table>
+                <div class="row">
+                    <div class="col" style="text-align: right;">
+                        <ngb-pagination [(page)]="page" [pageSize]="pageSize"
+                            [collectionSize]="respuestasFiltered.length"
+                            style="width: -webkit-fill-available;text-align: right;">
+                        </ngb-pagination>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </div>
 </div>
@@ -209,17 +270,17 @@
                                 </th>
                             </tr>
                             <tr>
-                                <span *ngIf="respuestaSeleccionada.respuestas.pregunta4.toString() == 'entregaayudas'">
-                                    El Programa entrega ayudas y subsidios directamente a la población
+                                <span *ngIf="respuestaSeleccionada.respuestas.pregunta4.includes('entregaayudas') == true">
+                                    - El Programa entrega ayudas y subsidios directamente a la población<br>
                                  </span>
-                                <span *ngIf="respuestaSeleccionada.respuestas.pregunta4.toString() == 'desarrollocapacidades'">
-                                    El Programa se enfoca al desarrollo de capacidades
+                                <span *ngIf="respuestaSeleccionada.respuestas.pregunta4.includes('desarrollocapacidades') == true">
+                                    - El Programa se enfoca al desarrollo de capacidades<br>
                                 </span>
-                                <span *ngIf="respuestaSeleccionada.respuestas.pregunta4.toString() == 'desarrolloservicios'">
-                                    El Programa se enfoca al desarrollo de servicios públicos
+                                <span *ngIf="respuestaSeleccionada.respuestas.pregunta4.includes('desarrolloservicios') == true">
+                                    - El Programa se enfoca al desarrollo de servicios públicos<br>
                                 </span>
-                                <span *ngIf="respuestaSeleccionada.respuestas.pregunta4.toString() == 'desarrolloinfraestructura'">
-                                    El Programa desarrolla infraestructura social
+                                <span *ngIf="respuestaSeleccionada.respuestas.pregunta4.includes('desarrolloinfraestructura') == true">
+                                    - El Programa desarrolla infraestructura social<br>
                                 </span>
                             </tr>
                         </td>
@@ -228,6 +289,9 @@
                                 <span>
                                     {{respuestaSeleccionada.respuestas.pregunta4complemento ? respuestaSeleccionada.respuestas.pregunta4complemento : ""}}<br>
                                 </span>
+                            </tr>
+                            <tr>
+                                
                             </tr>
                         </td>
                     </tr>
@@ -316,8 +380,20 @@
                         </td>
                         <td>
                             <tr>
-                                <span>
-                                    {{respuestaSeleccionada.respuestas.pregunta9 ? respuestaSeleccionada.respuestas.pregunta9 : "no"}}<br>
+                                <!-- <span>
+                                    {{respuestaSeleccionada.respuestas.pregunta9 == "" ? "" : "No"}}<br>
+                                </span> -->
+                                <span *ngIf="respuestaSeleccionada.respuestas.pregunta9.includes('federal') == true">
+                                    - Federal<br>
+                                 </span>
+                                <span *ngIf="respuestaSeleccionada.respuestas.pregunta9.includes('estatal') == true">
+                                    - Estatal<br>
+                                </span>
+                                <span *ngIf="respuestaSeleccionada.respuestas.pregunta9.includes('municipal') == true">
+                                    - Municipal<br>
+                                </span>
+                                <span *ngIf="respuestaSeleccionada.respuestas.pregunta9.includes('ingresospropios') == true">
+                                    - Ingresos Propios<br>
                                 </span>
                             </tr>
                         </td>
@@ -554,29 +630,28 @@
                                 </th>
                             </tr>
                             <tr>
-                                <span *ngIf="respuestaSeleccionada.respuestas.pregunta4.toString() == 'entregaayudas'">
-                                    El Programa entrega ayudas y subsidios directamente a la población
+                                <span *ngIf="respuestaSeleccionada.respuestas.pregunta4.includes('entregaayudas') == true">
+                                    - El Programa entrega ayudas y subsidios directamente a la población<br>
                                  </span>
-                                <span *ngIf="respuestaSeleccionada.respuestas.pregunta4.toString() == 'desarrollocapacidades'">
-                                    El Programa se enfoca al desarrollo de capacidades
+                                <span *ngIf="respuestaSeleccionada.respuestas.pregunta4.includes('desarrollocapacidades') == true">
+                                    - El Programa se enfoca al desarrollo de capacidades<br>
                                 </span>
-                                <span *ngIf="respuestaSeleccionada.respuestas.pregunta4.toString() == 'desarrolloservicios'">
-                                    El Programa se enfoca al desarrollo de servicios públicos
+                                <span *ngIf="respuestaSeleccionada.respuestas.pregunta4.includes('desarrolloservicios') == true">
+                                    - El Programa se enfoca al desarrollo de servicios públicos<br>
                                 </span>
-                                <span *ngIf="respuestaSeleccionada.respuestas.pregunta4.toString() == 'desarrolloinfraestructura'">
-                                    El Programa desarrolla infraestructura social
+                                <span *ngIf="respuestaSeleccionada.respuestas.pregunta4.includes('desarrolloinfraestructura') == true">
+                                    - El Programa desarrolla infraestructura social<br>
                                 </span>
                             </tr>
                         </td>
                         <td>
                             <tr>
-
-                            </tr>
-
-                            <tr>
                                 <span>
                                     {{respuestaSeleccionada.respuestas.pregunta4complemento ? respuestaSeleccionada.respuestas.pregunta4complemento : ""}}<br>
                                 </span>
+                            </tr>
+                            <tr>
+                                
                             </tr>
                         </td>
                     </tr>
@@ -665,8 +740,20 @@
                         </td>
                         <td>
                             <tr>
-                                <span>
-                                    {{respuestaSeleccionada.respuestas.pregunta9 ? respuestaSeleccionada.respuestas.pregunta9 : "no"}}<br>
+                                <!-- <span>
+                                    {{respuestaSeleccionada.respuestas.pregunta9 == "" ? "" : "No"}}<br>
+                                </span> -->
+                                <span *ngIf="respuestaSeleccionada.respuestas.pregunta9.includes('federal') == true">
+                                    - Federal<br>
+                                 </span>
+                                <span *ngIf="respuestaSeleccionada.respuestas.pregunta9.includes('estatal') == true">
+                                    - Estatal<br>
+                                </span>
+                                <span *ngIf="respuestaSeleccionada.respuestas.pregunta9.includes('municipal') == true">
+                                    - Municipal<br>
+                                </span>
+                                <span *ngIf="respuestaSeleccionada.respuestas.pregunta9.includes('ingresospropios') == true">
+                                    - Ingresos Propios<br>
                                 </span>
                             </tr>
                         </td>

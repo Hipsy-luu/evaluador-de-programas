@@ -1,4 +1,4 @@
-export class Catprogramas{
+export class CatProgramas{
     idprograma : number;
     entidad : number;
     departamento : string;

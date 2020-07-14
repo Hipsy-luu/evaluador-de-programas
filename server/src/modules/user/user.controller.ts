@@ -1,6 +1,5 @@
 import { Controller, Request , Get, Post, Body, UseGuards, Param } from '@nestjs/common';
 import { UserService } from './user.service';
-import { User } from '../../models/user.entity';
 import { AuthGuard } from '@nestjs/passport';
 import { ServerMessage } from './../../utils/dtos/serverMessages.dto';
 
@@ -14,10 +13,10 @@ export class UserController {
     return this.userService.getAllUsers();
   }
 
-  @Post('create')
+  @Post('create-edit-user')
   @UseGuards(AuthGuard())
   public async createUser(@Body() body): Promise<ServerMessage> {
-    return this.userService.createUser(body);
+    return this.userService.createEditUser(body);
   }
 
   @Post('save-respuestas')

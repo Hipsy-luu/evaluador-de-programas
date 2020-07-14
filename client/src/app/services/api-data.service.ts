@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../classes/user.class';
-import { Catprogramas } from '../classes/catprogramas.class';
+import { CatProgramas } from '../classes/catprogramas.class';
 import { ServerMessage } from '../classes/serverMessages.dto';
 import { rejects } from 'assert';
 import { async } from 'rxjs/internal/scheduler/async';
@@ -13,13 +13,13 @@ import { Router } from '@angular/router';
 })
 export class ApiDataService {
   //Url testeo locales
-  baseURL: string = "http://localhost:3000/";
-  //Url produccion
-  //baseURL: string = "https://evaluadorapi.enbibo.com/";
+  //baseURL: string = "http://localhost:3000/";
+  //Url producción
+  baseURL: string = "https://evaluadorapi.enbibo.com/";
 
   token : String;
   user : User;
-  catPrograms : Catprogramas[];
+  catPrograms : CatProgramas[];
 
   actualMessageServer : String = "";
   successMessage : boolean = false;
@@ -42,7 +42,7 @@ export class ApiDataService {
     }
     
 
-    this.catPrograms = new Array<Catprogramas>();
+    this.catPrograms = new Array<CatProgramas>();
    }
 
   checkLogin(succesCallBack,errorCallBack){
@@ -96,7 +96,7 @@ export class ApiDataService {
 
   async getCatprograms(entidad : string) {
     /* const headers = { 'content-type': 'application/json'}   */
-    this.http.get(this.baseURL + 'catalogs/catprogramas/'+entidad,{}).subscribe((response : ServerMessage)=>{
+    this.http.get(this.baseURL + 'catalogs/CatProgramas/'+entidad,{}).subscribe((response : ServerMessage)=>{
       this.catPrograms = response.data;
     });
   }
@@ -120,17 +120,30 @@ export class ApiDataService {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer '+this.user.token
       });
-        console.log("intentando");
+        //console.log("intentando");
         
         this.http.get(this.baseURL + 'user/user-list',{ headers: headers }).subscribe((response : ServerMessage)=>{
-          console.log("coomunico");
+          //console.log("comunico");
           resolve(response);
         },(error)=>{
-          console.log("errorrrrr");
+          //console.log("error");
           reject(error);
         });
       
     });
+  }
+
+  async updateCreateUser(userData : User){
+    return new Promise((resolve,reject)=>{
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer '+this.user.token
+      });
+
+      this.http.post(this.baseURL + 'user/create-edit-user',userData,{ headers: headers }).subscribe((response : ServerMessage)=>{
+        resolve(response);
+      });
+    })
   }
 
   async saveRespuestas(respuestas : any){

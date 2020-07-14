@@ -164,7 +164,7 @@
 
 
                             <div class="step" id="step0">
-                                <h3 class="main_question"><strong>1/13</strong>¿Cuál es el programa Presupuestal?</h3>
+                                <h3 class="main_question"><strong>1/12</strong>¿Cuál es el programa Presupuestal?</h3>
                                 <div class="row">
                                     <div id="principal">
                                         <select (change)="selectEventProgram($event)" class="form-control" name="pcderechosocial" id="pcderechosocial">
@@ -176,7 +176,7 @@
                             </div>
                             <!-- /step -->
                             <div class="step" id="step1">
-                                <h3 class="main_question"><strong>2/13</strong>¿Cuál es el o los sujetos de derecho
+                                <h3 class="main_question"><strong>2/12</strong>¿Cuál es el o los sujetos de derecho
                                     que atiende el programa?</h3><h6>*Puede seleccionar varias</h6>
                                 <div class="row">
                                     <div class="col-md-4">
@@ -275,7 +275,7 @@
 
                             <!-- /step -->
                             <div class="step" id="step2">
-                                <h3 class="main_question"><strong>3/13</strong>¿El programa presupuestario está alineado a algún derecho humano-social?</h3>
+                                <h3 class="main_question"><strong>3/12</strong>¿El programa presupuestario está alineado a algún derecho humano-social?</h3>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="col-md-12">
@@ -359,7 +359,7 @@
                             <!-- /step -->
 
                             <div class="step">
-                                <h3 class="main_question"><strong>4/13</strong>¿El programa atiende población en
+                                <h3 class="main_question"><strong>4/12</strong>¿El programa atiende población en
                                     alguna condición de vulnerabilidad?</h3>
                                 <div class="row">
                                     <div class="col-md-6">
@@ -416,49 +416,93 @@
                             </div>
                             <!-- /step -->
                             <div class="step">
-                                <h3 class="main_question"><strong>5/13</strong><!-- ¿Cuál es la subcategoría del programa
+                                <h3 class="main_question"><strong>5/12</strong><!-- ¿Cuál es la subcategoría del programa
                                     presupuestario? -->En cual o cuales de las siguientes categorias se clasifican los bienes y/o servicios del programa</h3>
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <div class="form-group radio_input">
-                                            <label><input (change)="pregunta4.value = 'entregaayudas';pregunta4.complemento=''" type="radio" value="entregaayudas" name="subcategoriaprograma"
-                                                    id="subcategoriaprograma" class="icheck required" checked>El Programa
+                                        <h6>*Seleccione minimo una opcion. Puede seleccionar varias</h6>
+                                        <div class="form-group checkbox_input">
+                                            <label><input (change)="pregunta4Selecciones[0] = !pregunta4Selecciones[0];
+                                                pregunta5.value == 'si' ? pregunta5.value = ' no' : pregunta5.value = 'si'; 
+                                                pregunta5.complemento == 1 ? pregunta5.complemento = 0 : pregunta5.complemento = 1;" type="checkbox" value="entregaayudas" name="subcategoriaprograma"
+                                                    id="subcategoriaprograma" class="icheck required">El Programa
                                                 entrega ayudas y subsidios
                                                 directamente a la población
                                             </label>
                                         </div>
-                                        <div class="form-group radio_input">
-                                            <label><input (change)="pregunta4.value = 'desarrollocapacidades';pregunta4.complemento=''" type="radio" value="desarrollocapacidades"
+                                        <!-- AQUI ESTA LA PREGUNTA QUE SE ELIMINO Y JUNTO CON LA 5 -->
+                                        <div class="row" style="margin : 0px;">
+                                            <div id="divasociales" *ngIf="pregunta5.value == 'si'">
+                                                <div>
+                                                    Tipo de apoyo social
+                                                </div>
+                                                <select (change)="selectEventP5($event)" class="form-control" id="capoyosocial" name="capoyosocial">
+                                                    <option disabled value="0">Seleccione una opcion...</option>
+                                                    <option value="1">Acciones para el monitoreo, protección, conservación y/o reforestación de recursos naturales (aire, agua, bosques, desiertos, selvas y vida silvestre)</option>
+                                                    <option value="2">Acciones para el suministro y/o supervisión del sistema de agua potable</option>
+                                                    <option value="3">Actividades recreativas y/o culturales</option>
+                                                    <option value="4">Alimentación</option>
+                                                    <option value="5">Apoyo a gestiones administrativas</option>
+                                                    <option value="6">Apoyo para actividades o proyectos de investigación</option>
+                                                    <option value="7">Apoyo para actividades o proyectos sociales</option>
+                                                    <option value="8">Apoyo para adquirir, edificar, terminar, ampliar o modificar la vivienda</option>
+                                                    <option value="9">Apoyo para certificaciones o constancias</option>
+                                                    <option value="10">Apoyo para el desarrollo de proyectos culturales</option>
+                                                    <option value="11">Apoyo para el transporte</option>
+                                                    <option value="12">Apoyo y/o financiamiento para el desarrollo, mejora o consolidación de actividades o proyectos productivos</option>
+                                                    <option value="13">Beca</option>
+                                                    <option value="14">Capacitación, asesoría u orientación</option>
+                                                    <option value="15">Compensación garantizada al ingreso</option>
+                                                    <option value="16">Constucción, mantenimiento, rehabilitación y/o financiamiento de infraestructura y/u obra pública</option>
+                                                    <option value="17">Difusión o promoción</option>
+                                                    <option value="18">Estímulo económico</option>
+                                                    <option value="19">Financiamiento de servicios</option>
+                                                    <option value="20">Insumos o equipo para la producción</option>
+                                                    <option value="21">Legalización de la tenencia de la tierra </option>
+                                                    <option value="22">Libros y/o material didáctico</option>
+                                                    <option value="23">Material para la salud</option>
+                                                    <option value="24">Apoyo para trámites y servicios</option>
+                                                    <option value="25">Fortalecimiento de capacidades y/o habilidades para la vida</option>
+                                                    <option value="26">Servicios públicos</option>
+                                                    <option value="27">Otro (especifique)</option>
+                                                </select>
+                                                <div id="tipoapoyo">
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group checkbox_input">
+                                            <label><input (change)="pregunta4Selecciones[1] = !pregunta4Selecciones[1];pregunta4.complemento=''" type="checkbox" value="desarrollocapacidades"
                                                     name="subcategoriaprograma" id="subcategoriaprograma"
                                                     class="icheck required">El Programa se enfoca al desarrollo de
                                                 capacidades
                                             </label>
                                         </div>
-                                        <div class="form-group radio_input">
-                                            <label><input (change)="pregunta4.value = 'desarrolloservicios';pregunta4.complemento=''" type="radio" value="desarrolloservicios"
+                                        <div id="subprogramacapacidades" *ngIf="pregunta4Selecciones[1] == true">
+                                            <input [(ngModel)]="pregunta4.complemento" type="text" class="form-control" name="especifiquecapacidades" id="especifiquecapacidades" placeholder="Especifique" required>
+                                            <br><br>
+                                        </div>
+                                        <div class="form-group checkbox_input">
+                                            <label><input (change)="pregunta4Selecciones[2] = !pregunta4Selecciones[2];" type="checkbox" value="desarrolloservicios"
                                                     name="subcategoriaprograma" id="subcategoriaprograma"
                                                     class="icheck required">El Programa se enfoca al desarrollo de
                                                 servicios públicos
                                             </label>
                                         </div>
-                                        <div class="form-group radio_input">
-                                            <label><input (change)="pregunta4.value = 'desarrolloinfraestructura';pregunta4.complemento=''" type="radio" value="desarrolloinfraestructura"
+                                        <div class="form-group checkbox_input">
+                                            <label><input (change)="pregunta4Selecciones[3] = !pregunta4Selecciones[3];" type="checkbox" value="desarrolloinfraestructura"
                                                     name="subcategoriaprograma" id="subcategoriaprograma"
                                                     class="icheck required">El Programa desarrolla infraestructura
                                                 social
                                             </label>
-                                        </div>
-                                        <div id="subprogramacapacidades" *ngIf="pregunta4.value == 'desarrollocapacidades'">
-                                            <input [(ngModel)]="pregunta4.complemento" type="text" class="form-control" name="especifiquecapacidades" id="especifiquecapacidades" placeholder="Especifique" required>
-                                            <br><br>
                                         </div>
                                     </div>
                                 </div>
                                 <!-- /row -->
                             </div>
                             <!-- /step -->
-                            <div class="step">
-                                <h3 class="main_question"><strong>6/13</strong> ¿El programa presupuestario entrega
+                            <!-- <div class="step">
+                                <h3 class="main_question"><strong>6/12</strong> ¿El programa presupuestario entrega
                                     algún tipo de apoyo social a la población?</h3>
                                 <div class="row">
                                     <div class="col-md-12">
@@ -508,12 +552,12 @@
                                             
                                         </div>
                                     </div>
-                                </div>
+                                </div>-->
                                 <!-- /row -->
-                            </div>
+                            <!--</div> -->
                             <!-- /step -->
                             <div class="step">
-                                <h3 class="main_question"><strong>7/13</strong>¿El apoyo social se entrega
+                                <h3 class="main_question"><strong>6/12</strong>¿El apoyo social se entrega
                                     directamente o indirectamente a la población?</h3>
                                 <div class="row">
                                     <div class="col-md-12">
@@ -532,7 +576,7 @@
                             </div>
                             <!-- /step -->
                             <div class="step">
-                                <h3 class="main_question"><strong>8/13</strong>¿Con qué frecuencia el programa
+                                <h3 class="main_question"><strong>7/12</strong>¿Con qué frecuencia el programa
                                     entrega el apoyo social a la misma persona beneficiaria?
                                 </h3>
                                 <div class="row">
@@ -564,7 +608,7 @@
                             </div>
                             <!-- /step -->
                             <div class="step">
-                                <h3 class="main_question"><strong>9/13</strong>¿El programa presupuestario coadyuva
+                                <h3 class="main_question"><strong>8/12</strong>¿El programa presupuestario coadyuva
                                     al cumplimiento de alguno de los objetivos de la política de desarrollo social y
                                     humano estatal?</h3>
                                 <div class="row">
@@ -593,36 +637,29 @@
                             </div>
                             <!-- /step -->
                             <div class="step">
-                                <h3 class="main_question"><strong>10/13</strong> ¿Cuál es la procedencia de los
+                                <h3 class="main_question"><strong>9/12</strong> ¿Cuál es la procedencia de los
                                     recursos destinados al programa presupuestario?</h3>
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <div class="form-group radio_input">
-                                            <label><input (change)="pregunta9 = 'federal'" type="radio" value="federal" name="procedenciarecurso"
-                                                    id="procedenciarecurso" class="icheck required" checked>Recurso
+                                        <h6>*Seleccione minimo una opcion. Puede seleccionar varias</h6>
+                                        <div class="form-group checkbox_input">
+                                            <label><input (change)="pregunta9Selecciones[0] = !pregunta9Selecciones[0]" type="checkbox" value="federal" name="procedenciarecurso"
+                                                    id="procedenciarecurso" class="icheck required">Recurso
                                                 Federal</label>
                                         </div>
-                                        <div class="form-group radio_input">
-                                            <label><input (change)="pregunta9 = 'estatal'" type="radio" value="estatal" name="procedenciarecurso"
+                                        <div class="form-group checkbox_input">
+                                            <label><input (change)="pregunta9Selecciones[1] = !pregunta9Selecciones[1]" type="checkbox" value="estatal" name="procedenciarecurso"
                                                     id="procedenciarecurso" class="icheck required">Recurso
                                                 Estatal</label>
                                         </div>
-                                        <div class="form-group radio_input">
-                                            <label><input (change)="pregunta9 = 'municipal'" type="radio" value="municipal" name="procedenciarecurso"
+                                        <div class="form-group checkbox_input">
+                                            <label><input (change)="pregunta9Selecciones[2] = !pregunta9Selecciones[2]" type="checkbox" value="municipal" name="procedenciarecurso"
                                                     id="procedenciarecurso" class="icheck required">Recurso
                                                 Municipal</label>
                                         </div>
-                                        <div class="form-group radio_input">
-                                            <label><input (change)="pregunta9 = 'federal-estatal'" type="radio" value="federal-estatal" name="procedenciarecurso"
-                                                    id="procedenciarecurso" class="icheck required">Recurso en
-                                                coparticipación Federal -
-                                                Estatal</label>
-                                        </div>
-                                        <div class="form-group radio_input">
-                                            <label><input (change)="pregunta9 = 'estatal-municipal'" type="radio" value="estatal-municipal"
-                                                    name="procedenciarecurso" id="procedenciarecurso"
-                                                    class="icheck required">Recurso en coparticipación Estatal -
-                                                Municipal</label>
+                                        <div class="form-group checkbox_input">
+                                            <label><input (change)="pregunta9Selecciones[3] = !pregunta9Selecciones[3]" type="checkbox" value="ingresospropios" name="procedenciarecurso"
+                                                    id="procedenciarecurso" class="icheck required">Ingresos Propios</label>
                                         </div>
                                     </div>
                                 </div>
@@ -630,7 +667,7 @@
                             </div>
                             <!-- /step -->
                             <div class="step">
-                                <h3 class="main_question"><strong>11/13</strong>Los recursos destinados al programa
+                                <h3 class="main_question"><strong>10/12</strong>Los recursos destinados al programa
                                     presupuestario son prioritarios y de interés público porque están dirigidos a:
                                 </h3>
                                 <div class="row">
@@ -703,7 +740,7 @@
                             </div>
                             <!-- /step -->
                             <div class="step">
-                                <h3 class="main_question"><strong>12/13</strong>¿El programa presupuestario cuenta
+                                <h3 class="main_question"><strong>11/12</strong>¿El programa presupuestario cuenta
                                     con padrón de beneficiarios?
                                 </h3>
                                 <div class="row">
@@ -725,7 +762,7 @@
                             </div>
                             <!-- /step -->
                             <div class="step">
-                                <h3 class="main_question"><strong>13/13</strong>¿El programa presupuestario cuenta
+                                <h3 class="main_question"><strong>12/12</strong>¿El programa presupuestario cuenta
                                     con reglas de operación vigentes y/o normatividad aplicable?
                                 </h3>
                                 <div class="row">

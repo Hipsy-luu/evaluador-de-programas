@@ -1,9 +1,9 @@
 
-import { CreateUserDto } from '../modules/user/dto/createUser.dto';
+import { CreateEditUserDto } from '../modules/user/dto/createUser.dto';
 
 export const validators = 
     {
-      validateUser: (newUser : CreateUserDto) => {
+      validateUser: (newUser : CreateEditUserDto) => {
         var errors = [];
 
         if(newUser.password){

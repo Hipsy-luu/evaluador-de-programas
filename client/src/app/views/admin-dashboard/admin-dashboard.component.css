@@ -16,3 +16,7 @@
   .btnnu:hover {
     background-color: RoyalBlue;
   }
+
+  .padding-inputs-user{
+    padding : 10px 0px;
+  }

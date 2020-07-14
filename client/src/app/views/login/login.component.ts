@@ -69,9 +69,9 @@ export class LoginComponent implements OnInit {
           this.apiDataService.token = result.data.token;
           this.apiDataService.user.token = result.data.token;
 
-          console.log(this.apiDataService.user);
+          //console.log(this.apiDataService.user);
           
-          this.apiDataService.awaitTime(2000,()=>{
+          this.apiDataService.awaitTime(0,()=>{
             localStorage.setItem('user', JSON.stringify(this.apiDataService.user));
             switch(result.data.user.rolusuario){
               case 0:

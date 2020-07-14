@@ -62,6 +62,9 @@ export class RegisterProgramComponent implements OnInit {
     complemento : "" //RESPUESTAS - Esta es la pregunta4complemento
   };
 
+  //Variable de apoyo para la variable pregunta4
+  pregunta4Selecciones = [false,false,false,false];
+
   pregunta5 = {
     value : 'no', //RESPUESTAS - Esta es la pregunta5
     complemento : 0 //RESPUESTAS - Esta es la pregunta5complemento
@@ -76,7 +79,9 @@ export class RegisterProgramComponent implements OnInit {
     complemento : 0 //RESPUESTAS - Esta es la pregunta8complemento
   };
 
-  pregunta9 = "federal";
+  pregunta9 = "";
+  //Variable de apoyo para la variable pregunta4
+  pregunta9Selecciones = [false,false,false,false];
 
   pregunta10 = {
     value : 'educacionobligatoria', //RESPUESTAS - Esta es la pregunta10
@@ -187,11 +192,41 @@ export class RegisterProgramComponent implements OnInit {
       this.pregunta3.complemento = this.pregunta3.complemento + ",zonaprioritariafederal";
     }
     data.pregunta3 = this.pregunta3;
+    /////////////////////////////////////////////////////////////////////////////////
+    this.pregunta4.value = "";
+
+    if( this.pregunta4Selecciones[0] ){
+      this.pregunta4.value = this.pregunta4.value + "entregaayudas";
+    }
+    if( this.pregunta4Selecciones[1] ){
+      this.pregunta4.value = this.pregunta4.value + ",desarrollocapacidades";
+    }
+    if( this.pregunta4Selecciones[2] ){
+      this.pregunta4.value = this.pregunta4.value + ",desarrolloservicios";
+    }
+    if( this.pregunta4Selecciones[3] ){
+      this.pregunta4.value = this.pregunta4.value + ",desarrolloinfraestructura";
+    }
     data.pregunta4 = this.pregunta4;
     data.pregunta5 = this.pregunta5;
     data.pregunta6 = this.pregunta6;
     data.pregunta7 = this.pregunta7;
     data.pregunta8 = this.pregunta8;
+    /////////////////////////////////////////////////////////
+    this.pregunta9 = "";
+
+    if( this.pregunta9Selecciones[0] ){
+      this.pregunta9 = this.pregunta9 + "federal";
+    }
+    if( this.pregunta9Selecciones[1] ){
+      this.pregunta9 = this.pregunta9 + ",estatal";
+    }
+    if( this.pregunta9Selecciones[2] ){
+      this.pregunta9 = this.pregunta9 + ",municipal";
+    }
+    if( this.pregunta9Selecciones[3] ){
+      this.pregunta9 = this.pregunta9 + ",ingresospropios";
+    }
     data.pregunta9 = this.pregunta9;
     data.pregunta10 = this.pregunta10;
     data.pregunta11 = this.pregunta11;

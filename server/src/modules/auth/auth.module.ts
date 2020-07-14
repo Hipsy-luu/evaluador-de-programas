@@ -13,7 +13,7 @@ import { userProviders } from '../../models/repositoriesModels/user.providers';
     JwtModule.register({
       secretOrPrivateKey: 'enbiboKey',
       signOptions: {
-        expiresIn: 3600
+        expiresIn: 60 * 60 * 24 * 365
       }
     }),
     UserModule

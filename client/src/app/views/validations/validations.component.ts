@@ -25,6 +25,7 @@ declare let Email: any;
 export class ValidationsComponent implements OnInit {
 
   respuestas: Respuestas[];
+  respuestasFiltered: Respuestas[];
   respuestaSeleccionada: Respuestas;
 
   data: any = [{
@@ -41,15 +42,23 @@ export class ValidationsComponent implements OnInit {
     esal: 3000
   }];
 
+  searchValue: String = "";
+  page = 1;
+  pageSize = 10;
+  entities : [] = [];
+  selectedEntitie = "Todas";
+
   @ViewChild('btnClose') btnClose: ElementRef
 
   constructor(public apiDataService: ApiDataService, private route: Router) {
     this.respuestas = new Array<Respuestas>();
+    this.respuestasFiltered = Array.from(this.respuestas);
     this.respuestaSeleccionada = new Respuestas();
   }
 
   ngOnInit(): void {
     this.respuestas = [];
+    this.respuestasFiltered = Array.from(this.respuestas);
     this.respuestaSeleccionada = new Respuestas();
 
     this.apiDataService.checkLogin(async (success) => {
@@ -79,6 +88,18 @@ export class ValidationsComponent implements OnInit {
     })
   }
 
+  filterByProgramName(event) {
+    let searchValueTemp = event.charAt(0).toLowerCase() + event.slice(1);
+
+    if (this.searchValue == "") {
+      this.respuestasFiltered = Array.from(this.respuestas);
+    } else {
+      this.respuestasFiltered = this.respuestas.filter(function (respuesta) {
+        let fixed = respuesta.programa.charAt(0).toUpperCase() + event.slice(1);
+        return respuesta.programa.toLowerCase().includes(searchValueTemp);
+      });
+    }
+  }
   //Funciones para exportar a exel
   exportAsXLSX(): void {
 
@@ -195,12 +216,37 @@ export class ValidationsComponent implements OnInit {
     this.respuestaSeleccionada = new Respuestas();
     this.apiDataService.getRespuestas(this.apiDataService.user.entidad).then((response: ServerMessage) => {
       this.respuestas = response.data.respuestas;
+      console.log(response.data);
+      this.entities = response.data.entities;
+      this.selectedEntitie = "Todas";
+      this.respuestasFiltered = Array.from(this.respuestas);
       //this.apiDataService.showNotification(0, "Respuestas Obtenidas con Exito!", 6000);
     }).catch((error) => {
       console.log("error");
       console.log(error);
       this.apiDataService.showNotification(1, "Error obteniendo respuestas!", 6000);
     })
+  }
+
+  changeEntitieSelected(opc : number){
+    let searchValueTemp = opc.toString().charAt(0).toLowerCase() + opc.toString().slice(1);
+
+
+    switch (opc) {
+      case -1:
+        this.selectedEntitie = "Todas";
+        this.respuestasFiltered = Array.from(this.respuestas);
+        break;
+    
+      default:
+        this.selectedEntitie = opc.toString();
+
+        this.respuestasFiltered = this.respuestas.filter(function (respuesta) {
+          let fixed = respuesta.dependencia.charAt(0).toUpperCase() + opc.toString().slice(1);
+          return respuesta.dependencia.toLowerCase().includes(searchValueTemp);
+        });
+        break;
+    }
   }
 
   selectRespuesta(respuesta: Respuestas) {

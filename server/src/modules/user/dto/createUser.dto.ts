@@ -1,4 +1,5 @@
-export class CreateUserDto {
+export class CreateEditUserDto {
+  idusuarios : number;
   usuario: string;
   nombre: string;
   apellidos : string;
