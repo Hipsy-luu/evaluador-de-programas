@@ -16,6 +16,7 @@ import { respuestasp2complementoProviders } from '../../models/repositoriesModel
 import { catprogramasProviders } from '../../models/repositoriesModels/catprogramas.providers';
 import { catderechosProviders } from '../../models/repositoriesModels/catderechos.providers';
 import { validacionesProviders } from '../../models/repositoriesModels/validaciones.providers';
+import { validacionesManualesProviders } from '../../models/repositoriesModels/validacionesManuales.providers';
 /* import { bandProviders } from '../../models/repositoriesModels/band.providers'; */
 
 @Module({
@@ -33,7 +34,8 @@ import { validacionesProviders } from '../../models/repositoriesModels/validacio
     ...respuestasp2complementoProviders,
     ...catprogramasProviders,
     ...catderechosProviders,
-    ...validacionesProviders
+    ...validacionesProviders,
+    ...validacionesManualesProviders
     /* ...bandProviders */
   ],
 })

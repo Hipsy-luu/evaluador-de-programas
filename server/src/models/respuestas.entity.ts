@@ -22,6 +22,7 @@ import { Catprogramas } from './catprogramas.entity';
 import { CatapoyosSociales } from './catapoyos_sociales.entity';
 import { CatobjetivosPolitica } from './catobjetivos_politica.entity';
 import { Validaciones } from './validaciones.entity';
+import { ValidacionesManuales } from './validacionesManuales.entity';
 
 @Table({
   tableName: 'respuestas',
@@ -46,6 +47,9 @@ export class Respuestas extends Model<Respuestas> {
 
   @HasOne(() => Validaciones, 'idrespuesta')
   validaciones: Validaciones;
+
+  @HasOne(() => ValidacionesManuales, 'idrespuesta')
+  validacionesManuales: ValidacionesManuales;
 
   @Column({
     type: DataType.STRING(75),

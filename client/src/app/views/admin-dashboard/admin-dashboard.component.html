@@ -68,16 +68,57 @@
                                                   <a routerLink="/validations" routerLinkActive="active">Validador</a></li></h4>
                                             </a>
                                         </li>
-                                        
                                       </ul>
-                                    
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-10" style="text-align: -webkit-center;">
                             <div class="row" style="max-height: 50px;margin-bottom: 15px;">
-                                <div class="col" style="text-align: left;padding: 0px;">
+                                <div class="col-1" style="text-align: left;padding: 0px;">
                                     <h4 style="padding-top: 10px;font-weight: 600;font-size: x-large;">Usuarios</h4>
+                                </div>
+                                <div class="col-2">
+                                    <div ngbDropdown class="d-inline-block">
+                                        <button class="btn btn-outline-primary"
+                                            id="dropdownBasic1" ngbDropdownToggle>No.
+                                            Usuarios {{pageSize}}</button>
+                                        <div ngbDropdownMenu
+                                            aria-labelledby="dropdownBasic1">
+                                            <button ngbDropdownItem
+                                                (click)="pageSize = 5">5</button>
+                                            <button ngbDropdownItem
+                                                (click)="pageSize = 10">10</button>
+                                            <button ngbDropdownItem
+                                                (click)="pageSize = 15">15</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div class="col-2" style="text-align: right;">
+                                    <ngb-pagination [(page)]="page" [pageSize]="pageSize"
+                                        [collectionSize]="userList.length"
+                                        style="width: -webkit-fill-available;text-align: right;">
+                                    </ngb-pagination>
+                                </div> -->
+                                <div class="col-2">
+                                    <div class="input-group input-group-sm mb-3" style="    margin-bottom: 0rem!important;height: 38px;">
+                                        <div class="input-group-prepend" >
+                                            <span class="input-group-text" id="inputGroup-sizing-sm">Email</span>
+                                        </div>
+                                        <input style="height: 38px;" [(ngModel)]="searchValue"
+                                        (ngModelChange)="filterByPEmail($event)" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="input-group-append" style="width: 60%;">
+                                        <button style="width: 100%;z-index: auto;" class="btn dropdown-toggle btn-primary" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <span  *ngIf="selectedEntitie == 'Todas'">Todas las Entidades</span>
+                                            <span  *ngIf="selectedEntitie != 'Todas'">{{selectedEntitie}}</span>
+                                        </button>
+                                        <div class="dropdown-menu" >
+                                            <a class="dropdown-item" (click)="changeEntitieSelected(-1)">Todas</a>
+                                            <a *ngFor="let entitie of entities" class="dropdown-item" (click)="changeEntitieSelected(entitie)">{{entitie}}</a>
+                                        </div>
+                                      </div>
                                 </div>
                                 <div class="col"style="text-align: right;padding: 0px;">
                                     <span>
@@ -106,7 +147,7 @@
                                         <th>extension</th>
                                         <th>Accion</th>
                                     </tr>
-                                    <tr *ngFor="let user of userList; ">
+                                    <tr *ngFor="let user of userListFiltered  | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize ">
                                         <th>{{user.idusuarios}}</th>
                                         <th>{{user.nombre}} {{user.apellidos}}</th>
                                         <th>{{user.entidad}}</th>
@@ -123,6 +164,12 @@
                                         </td>
                                     </tr>
                                 </table>
+                            </div>
+                            <div class="row">
+                                <ngb-pagination [(page)]="page" [pageSize]="pageSize"
+                                        [collectionSize]="userList.length"
+                                        style="width: -webkit-fill-available;text-align: right;">
+                                    </ngb-pagination>
                             </div>
                         </div>
                     </div>

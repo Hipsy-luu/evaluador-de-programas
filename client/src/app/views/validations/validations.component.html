@@ -861,14 +861,28 @@
                     <tr>
                 <tr>
                     <td>El Programa Presupuestario es de enfoque social</td>
-                    <td><img *ngIf="respuestaSeleccionada.validaciones.validacion1a" src="assets/images/success.png" width="30" height="30"></td>
-                    <td><img *ngIf="!respuestaSeleccionada.validaciones.validacion1a" src="assets/images/disapproval.png" width="30" height="30"></td>
+                    <td>
+                        <img *ngIf="respuestaSeleccionada.validaciones.validacion1a && respuestaSeleccionada.estatus == true" src="assets/images/success.png" width="30" height="30">
+                        
+                        <button *ngIf="respuestaSeleccionada.validaciones.validacion1a && respuestaSeleccionada.estatus == false" 
+                            (click)="respuestaSeleccionada.validaciones.validacion1a = !respuestaSeleccionada.validaciones.validacion1a">
+                            <img src="assets/images/success.png" width="30" height="30">
+                        </button>
+                        </td>
+                    <td>
+                        <img *ngIf="!respuestaSeleccionada.validaciones.validacion1a && respuestaSeleccionada.estatus == true" src="assets/images/disapproval.png" width="30" height="30">
+                        
+                        <button *ngIf="!respuestaSeleccionada.validaciones.validacion1a && respuestaSeleccionada.estatus == false" 
+                            (click)="respuestaSeleccionada.validaciones.validacion1a = !respuestaSeleccionada.validaciones.validacion1a">
+                            <img src="assets/images/disapproval.png" width="30" height="30">
+                        </button>
+                    </td>
                     <td></td>
                     <td>
                         <div class="custom-control custom-checkbox">
                             <input *ngIf="!respuestaSeleccionada.estatus" [(ngModel)]="respuestaSeleccionada.validaciones.validacion1" type="checkbox" class="custom-control-input" id="valida1">
                             <input *ngIf="respuestaSeleccionada.estatus" checked disabled type="checkbox" class="custom-control-input" id="valida1">
-                            <label class="custom-control-label" for="valida1">Correcto</label>
+                            <label class="custom-control-label" for="valida1"></label>
                         </div>
                     </td>
                     <td>
@@ -878,13 +892,25 @@
                 </tr>
                 <tr>
                     <td>El Programa Presupuestario coadyuva en el desarrollo social de las personas</td>
-                    <td><img *ngIf="respuestaSeleccionada.validaciones.validacion2a" src="assets/images/success.png" width="30" height="30"></td>
-                    <td><img *ngIf="!respuestaSeleccionada.validaciones.validacion2a" src="assets/images/disapproval.png" width="30" height="30"></td>
+                    <td>
+                        <img *ngIf="respuestaSeleccionada.validaciones.validacion2a && respuestaSeleccionada.estatus == true" src="assets/images/success.png" width="30" height="30">
+                        <button *ngIf="respuestaSeleccionada.validaciones.validacion2a && respuestaSeleccionada.estatus == false" 
+                            (click)="respuestaSeleccionada.validaciones.validacion2a = !respuestaSeleccionada.validaciones.validacion2a">
+                            <img src="assets/images/success.png" width="30" height="30">
+                        </button>
+                    </td>
+                    <td>
+                        <img *ngIf="!respuestaSeleccionada.validaciones.validacion2a && respuestaSeleccionada.estatus == true" src="assets/images/disapproval.png" width="30" height="30">
+                        <button *ngIf="!respuestaSeleccionada.validaciones.validacion2a && respuestaSeleccionada.estatus == false"
+                            (click)="respuestaSeleccionada.validaciones.validacion2a = !respuestaSeleccionada.validaciones.validacion2a">
+                            <img src="assets/images/disapproval.png" width="30" height="30">
+                        </button>
+                    </td>
                     <td></td>
                     <td><div class="custom-control custom-checkbox">
                           <input *ngIf="!respuestaSeleccionada.estatus" [(ngModel)]="respuestaSeleccionada.validaciones.validacion2" type="checkbox" class="custom-control-input" id="valida2">
                           <input *ngIf="respuestaSeleccionada.estatus" checked disabled type="checkbox" class="custom-control-input" id="valida1">
-                          <label class="custom-control-label" for="valida2">Correcto</label>
+                          <label class="custom-control-label" for="valida2"></label>
                         </div>
                     </td>
                     <td>
@@ -894,13 +920,25 @@
                 </tr>
                 <tr>
                     <td>El programa va dirigido a sujetos de derecho prioritarios</td>
-                    <td><img *ngIf="respuestaSeleccionada.validaciones.validacion3a" src="assets/images/success.png" width="30" height="30"></td>
-                    <td><img *ngIf="!respuestaSeleccionada.validaciones.validacion3a" src="assets/images/disapproval.png" width="30" height="30"></td>
+                    <td>
+                        <img *ngIf="respuestaSeleccionada.validaciones.validacion3a && respuestaSeleccionada.estatus == true" src="assets/images/success.png" width="30" height="30">
+                        <button *ngIf="respuestaSeleccionada.validaciones.validacion3a && respuestaSeleccionada.estatus == false" 
+                            (click)="respuestaSeleccionada.validaciones.validacion3a = !respuestaSeleccionada.validaciones.validacion3a">
+                            <img src="assets/images/success.png" width="30" height="30">
+                        </button>
+                    </td>
+                    <td>
+                        <img *ngIf="!respuestaSeleccionada.validaciones.validacion3a && respuestaSeleccionada.estatus == true" src="assets/images/disapproval.png" width="30" height="30">
+                        <button *ngIf="!respuestaSeleccionada.validaciones.validacion3a && respuestaSeleccionada.estatus == false"
+                            (click)="respuestaSeleccionada.validaciones.validacion3a = !respuestaSeleccionada.validaciones.validacion3a" >
+                            <img src="assets/images/disapproval.png" width="30" height="30">
+                        </button>
+                    </td>
                     <td></td>
                     <td><div class="custom-control custom-checkbox">
                           <input *ngIf="!respuestaSeleccionada.estatus"  [(ngModel)]="respuestaSeleccionada.validaciones.validacion3" type="checkbox" class="custom-control-input" id="valida3">
                           <input *ngIf="respuestaSeleccionada.estatus" checked disabled type="checkbox" class="custom-control-input" id="valida1">
-                          <label class="custom-control-label" for="valida3">Correcto</label>
+                          <label class="custom-control-label" for="valida3"></label>
                         </div>
                     </td>
                     <td>
@@ -910,13 +948,25 @@
                 </tr>
                 <tr>
                     <td>El Programa Presupuestario se enfoca al desarrollo de capacidades en la población beneficiaria</td>
-                    <td><img *ngIf="respuestaSeleccionada.validaciones.validacion4a" src="assets/images/success.png" width="30" height="30"></td>
-                    <td><img *ngIf="!respuestaSeleccionada.validaciones.validacion4a" src="assets/images/disapproval.png" width="30" height="30"></td>
+                    <td>
+                        <img *ngIf="respuestaSeleccionada.validaciones.validacion4a && respuestaSeleccionada.estatus == true" src="assets/images/success.png" width="30" height="30">
+                        <button *ngIf="respuestaSeleccionada.validaciones.validacion4a && respuestaSeleccionada.estatus == false"
+                            (click)="respuestaSeleccionada.validaciones.validacion4a = !respuestaSeleccionada.validaciones.validacion4a">
+                            <img src="assets/images/success.png" width="30" height="30">
+                        </button>
+                    </td>
+                    <td>
+                        <img *ngIf="!respuestaSeleccionada.validaciones.validacion4a && respuestaSeleccionada.estatus == true" src="assets/images/disapproval.png" width="30" height="30">
+                        <button *ngIf="!respuestaSeleccionada.validaciones.validacion4a && respuestaSeleccionada.estatus == false"
+                            (click)="respuestaSeleccionada.validaciones.validacion4a = !respuestaSeleccionada.validaciones.validacion4a">
+                            <img  src="assets/images/disapproval.png" width="30" height="30">
+                        </button>
+                    </td>
                     <td></td>
                     <td><div class="custom-control custom-checkbox">
                           <input *ngIf="!respuestaSeleccionada.estatus" [(ngModel)]="respuestaSeleccionada.validaciones.validacion4" type="checkbox" class="custom-control-input" id="valida4">
                           <input *ngIf="respuestaSeleccionada.estatus" checked disabled type="checkbox" class="custom-control-input" id="valida1">
-                          <label class="custom-control-label" for="valida4">Correcto</label>
+                          <label class="custom-control-label" for="valida4"></label>
                         </div>
                     </td>
                     <td>
@@ -926,13 +976,25 @@
                 </tr>
                 <tr>
                     <td>El programa otorga algún tipo de apoyo</td>
-                    <td><img *ngIf="respuestaSeleccionada.validaciones.validacion5a" src="assets/images/success.png" width="30" height="30"></td>
-                    <td><img *ngIf="!respuestaSeleccionada.validaciones.validacion5a" src="assets/images/disapproval.png" width="30" height="30"></td>
+                    <td>
+                        <img *ngIf="respuestaSeleccionada.validaciones.validacion5a && respuestaSeleccionada.estatus == true" src="assets/images/success.png" width="30" height="30">
+                        <button *ngIf="respuestaSeleccionada.validaciones.validacion5a && respuestaSeleccionada.estatus == false"
+                            (click)="respuestaSeleccionada.validaciones.validacion5a = !respuestaSeleccionada.validaciones.validacion5a">
+                            <img src="assets/images/success.png" width="30" height="30">
+                        </button>
+                    </td>
+                    <td>
+                        <img *ngIf="!respuestaSeleccionada.validaciones.validacion5a && respuestaSeleccionada.estatus == true" src="assets/images/disapproval.png" width="30" height="30">
+                        <button *ngIf="!respuestaSeleccionada.validaciones.validacion5a && respuestaSeleccionada.estatus == false"
+                            (click)="respuestaSeleccionada.validaciones.validacion5a = !respuestaSeleccionada.validaciones.validacion5a">
+                            <img  src="assets/images/disapproval.png" width="30" height="30">
+                        </button>
+                    </td>
                     <td></td>
                     <td><div class="custom-control custom-checkbox">
                           <input *ngIf="!respuestaSeleccionada.estatus" [(ngModel)]="respuestaSeleccionada.validaciones.validacion5" type="checkbox" class="custom-control-input" id="valida5">
                           <input *ngIf="respuestaSeleccionada.estatus" checked disabled type="checkbox" class="custom-control-input" id="valida1">
-                          <label class="custom-control-label" for="valida5">Correcto</label>
+                          <label class="custom-control-label" for="valida5"></label>
                         </div>
                     </td>
                     <td>
@@ -942,19 +1004,32 @@
                 </tr>
                 <tr>
                     <td>El programa está sujeto a Reglas de Operación</td>
-                    <td><img *ngIf="respuestaSeleccionada.validaciones.validacion6a" src="assets/images/success.png" width="30" height="30"></td>
-                    <td><img *ngIf="!respuestaSeleccionada.validaciones.validacion6a" src="assets/images/disapproval.png" width="30" height="30"></td>
+                    <td>
+                        <img *ngIf="respuestaSeleccionada.validaciones.validacion6a && respuestaSeleccionada.estatus == true" src="assets/images/success.png" width="30" height="30">
+                        <button *ngIf="respuestaSeleccionada.validaciones.validacion6a && respuestaSeleccionada.estatus == false"
+                            (click)="respuestaSeleccionada.validaciones.validacion6a = !respuestaSeleccionada.validaciones.validacion6a">
+                            <img src="assets/images/success.png" width="30" height="30">
+                        </button>
+                    </td>
+                    <td>
+                        <img *ngIf="!respuestaSeleccionada.validaciones.validacion6a && respuestaSeleccionada.estatus == true" src="assets/images/disapproval.png" width="30" height="30">
+                        <button *ngIf="!respuestaSeleccionada.validaciones.validacion6a && respuestaSeleccionada.estatus == false"
+                            (click)="respuestaSeleccionada.validaciones.validacion6a = !respuestaSeleccionada.validaciones.validacion6a">
+                            <img src="assets/images/disapproval.png" width="30" height="30">
+                        </button>
+                    </td>
+                    
                     <td>
                         <strong *ngIf="
-                            respuestaSeleccionada.validaciones.validacion6a && 
-                            (respuestaSeleccionada.validaciones.validacion1a || respuestaSeleccionada.validaciones.validacion2a)">
+                            respuestaSeleccionada.validaciones.validacion6a == false && 
+                            (respuestaSeleccionada.validaciones.validacion1a == true || respuestaSeleccionada.validaciones.validacion2a == true)">
                             Deberia contar con ellas.
                         </strong>
                     </td>
                         <td><div class="custom-control custom-checkbox">
                           <input *ngIf="!respuestaSeleccionada.estatus" [(ngModel)]="respuestaSeleccionada.validaciones.validacion6" type="checkbox" class="custom-control-input" id="valida6">
                           <input *ngIf="respuestaSeleccionada.estatus" checked disabled type="checkbox" class="custom-control-input" id="valida1">
-                          <label class="custom-control-label" for="valida6">Correcto</label>
+                          <label class="custom-control-label" for="valida6"></label>
                         </div>
                     </td>
                     <td>
@@ -964,8 +1039,20 @@
                 </tr>
                 <tr>
                     <td>El programa cuenta con padrón general de beneficiarios?</td>
-                    <td><img *ngIf="respuestaSeleccionada.validaciones.validacion7a" src="assets/images/success.png" width="30" height="30"></td>
-                    <td><img *ngIf="!respuestaSeleccionada.validaciones.validacion7a" src="assets/images/disapproval.png" width="30" height="30"></td>
+                    <td>
+                        <img *ngIf="respuestaSeleccionada.validaciones.validacion7a && respuestaSeleccionada.estatus == true" src="assets/images/success.png" width="30" height="30">
+                        <button *ngIf="respuestaSeleccionada.validaciones.validacion7a && respuestaSeleccionada.estatus == false"
+                            (click)="respuestaSeleccionada.validaciones.validacion7a = !respuestaSeleccionada.validaciones.validacion7a" >
+                            <img src="assets/images/success.png" width="30" height="30">
+                        </button>
+                    </td>
+                    <td>
+                        <img *ngIf="!respuestaSeleccionada.validaciones.validacion7a && respuestaSeleccionada.estatus == true" src="assets/images/disapproval.png" width="30" height="30">
+                        <button *ngIf="!respuestaSeleccionada.validaciones.validacion7a && respuestaSeleccionada.estatus == false"
+                            (click)="respuestaSeleccionada.validaciones.validacion7a = !respuestaSeleccionada.validaciones.validacion7a">
+                            <img src="assets/images/disapproval.png" width="30" height="30">
+                        </button>
+                    </td>
                     <td>
                         <strong *ngIf="
                             !respuestaSeleccionada.validaciones.validacion7a && 
@@ -976,7 +1063,7 @@
                         <td><div class="custom-control custom-checkbox">
                           <input *ngIf="!respuestaSeleccionada.estatus" [(ngModel)]="respuestaSeleccionada.validaciones.validacion7" type="checkbox" class="custom-control-input" id="valida7">
                           <input *ngIf="respuestaSeleccionada.estatus" checked disabled type="checkbox" class="custom-control-input" id="valida1">
-                          <label class="custom-control-label" for="valida7">Correcto</label>
+                          <label class="custom-control-label" for="valida7"></label>
                         </div>
                     </td>
                     <td>

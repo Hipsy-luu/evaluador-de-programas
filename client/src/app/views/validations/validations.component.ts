@@ -255,12 +255,17 @@ export class ValidationsComponent implements OnInit {
       let dataFix = new Respuestas();
       this.respuestaSeleccionada.validaciones = JSON.parse(JSON.stringify(dataFix.validaciones));
       this.respuestaSeleccionada.validaciones.idrespuesta = respuesta.idrespuestas;
+    }else{
+      if( this.respuestaSeleccionada.estatus == true){
+        this.respuestaSeleccionada.validaciones = JSON.parse(JSON.stringify(this.respuestaSeleccionada.validacionesManuales));
+      }
     }
-    //console.log(this.respuestaSeleccionada);
+    console.log(this.respuestaSeleccionada);
   }
 
   sendResponse() {
-    //console.log(this.apiDataService.user);
+    //console.log(this.apiDataService.user);}
+    //this.createPDF();
     this.apiDataService.saveValidations(this.respuestaSeleccionada.validaciones, this.respuestaSeleccionada.idrespuestas)
       .then((response: ServerMessage) => {   
         //console.log("cerrando");
@@ -314,7 +319,20 @@ export class ValidationsComponent implements OnInit {
       propPrograma:this.respuestaSeleccionada.program.descipcion_objetivo //n
     }
 
+    let validacion1texto = "";
+    let validacion2texto = "";
 
+    if(this.respuestaSeleccionada.validaciones.validacion1a == true){
+      validacion1texto = "Se a validado que el programa es de enfoque social";
+    }else{
+      validacion1texto = "El Programa Presupuestario no es de enfoque social";
+    }
+
+    if(this.respuestaSeleccionada.validaciones.validacion2a == true){
+      validacion2texto = "Se valido que el programa coadyuva en el desarrollo social de las personas";
+    }else{
+      validacion2texto = "El Programa Presupuestario no coadyuva en el desarrollo social de las personas";
+    }
 
     //a)      Nombre del Reporte (Clasificador de Programas con Enfoque Social) - OK
     //b)      Clave y nombre de la dependencia o entidad. - OK
@@ -374,7 +392,11 @@ export class ValidationsComponent implements OnInit {
             ['', '', '', '', '', '', '', '', '', '', '', '', { text: data.presupuestoAuth, alignment: 'center', fontSize: 7, rowSpan: 3, colSpan: 6, }, '', '', '', '', ''],
             [{ text: data.sujetoSocial, fontSize: 6, rowSpan: 2, colSpan: 12, alignment: 'center' }, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
             ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
+            
+            [{ text: validacion1texto, fontSize: 6, rowSpan: 1, colSpan: 18 }, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
+            [{ text: validacion2texto, fontSize: 6, rowSpan: 1, colSpan: 18 }, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
             [{ text: '', fontSize: 6, rowSpan: 1, colSpan: 18, alignment: 'center', border: [false, false, false, false] }, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
+            
             [{ text: 'Proposito del programa', fontSize: 6, rowSpan: 1, colSpan: 18, alignment: 'center', fillColor: '#e5e5e5' }, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
             [{ text: data.propPrograma, fontSize: 6, rowSpan: 1, colSpan: 18 }, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
             [{ text: 'Fin del programa', fontSize: 6, rowSpan: 1, colSpan: 18, alignment: 'center', fillColor: '#e5e5e5' }, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
@@ -433,18 +455,20 @@ export class ValidationsComponent implements OnInit {
         alignment: 'justify'
       }
     };
-    
+    //pdfMake.createPdf(documentDefinition).open(); 
     const pdfDocGenerator = pdfMake.createPdf(documentDefinition);
     pdfDocGenerator.getBase64((pdfBase64) => {
       //alert(data);
       Email.send({
         Host: 'smtp.elasticemail.com',
         Port: 2525,
-        Username: 'luismi.luu@gmail.com',
-        Password: 'CD71EF3F18D61EAC4DD8F549D65FF2E49ABE',
+        //Username: 'luismi.luu@gmail.com',
+        //Password: 'CD71EF3F18D61EAC4DD8F549D65FF2E49ABE',
+        Username: 'clasificador@chihuahua.gob.mx',
+        Password: '8544CC6047C188E711D10459A5748FAB87E4',
         To: [this.apiDataService.user.email],
         Cc : /* 'luismi.luu@gmail.com' */'alberto.cortes@chihuahua.gob.mx',
-        From: 'luismi.luu@gmail.com',
+        From: 'clasificador@chihuahua.gob.mx',
         Subject: "Reporte de validacion de respuestas : " + data.noRespuestas,
         Body:
           '<strong>Comprobante de la Validacion.</strong>',

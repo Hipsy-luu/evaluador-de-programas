@@ -11,15 +11,23 @@ import { ServerMessage } from '../../classes/serverMessages.dto';
 export class AdminDashboardComponent implements OnInit {
   selectedUser : User;
   userList : User[];
+  userListFiltered : User[];
   isNew : boolean;
   password : string;
   newPassword : string;
+
+  searchValue: String = "";
+  page = 1;
+  pageSize = 10;
+  entities : any[] = [];
+  selectedEntitie = "Todas";
 
   @ViewChild('OpenEditUser') openEditUser : ElementRef;
   @ViewChild('BtnCloseEditModal') btnCloseEditModal : ElementRef;
   
   constructor(public apiDataService : ApiDataService,) { 
     this.userList = new Array<User>();
+    this.userListFiltered = new Array<User>();
     this.selectedUser = new User();
     this.password = "";
     this.newPassword = "";
@@ -51,11 +59,14 @@ export class AdminDashboardComponent implements OnInit {
 
   reloadData(){
     this.userList = [];
+    this.userListFiltered = Array.from(this.userList);
     this.selectedUser = new User();
     this.apiDataService.getUsers().then((response : ServerMessage)=>{
       //console.log(response);
       //this.apiDataService.showNotification(0,response.message,6000);
       this.userList = response.data;
+      this.userListFiltered = Array.from(this.userList);
+      this.entities = [... new Set(this.userList.map(data => data.entidad))];
     }).catch((error)=>{
       console.log("error");
       this.apiDataService.showNotification(0,error.message,6000);
@@ -98,6 +109,40 @@ export class AdminDashboardComponent implements OnInit {
           console.log(error);
         });
       }
+    }
+  }
+
+  filterByPEmail(event) {
+    let searchValueTemp = event.charAt(0).toLowerCase() + event.slice(1);
+
+    if (this.searchValue == "") {
+      this.userListFiltered = Array.from(this.userList);
+    } else {
+      this.userListFiltered = this.userList.filter(function (user) {
+        let fixed = user.email.charAt(0).toUpperCase() + event.slice(1);
+        return user.email.toLowerCase().includes(searchValueTemp);
+      });
+    }
+  }
+
+  changeEntitieSelected(opc : number){
+    let searchValueTemp = opc.toString().charAt(0).toLowerCase() + opc.toString().slice(1);
+
+
+    switch (opc) {
+      case -1:
+        this.selectedEntitie = "Todas";
+        this.userListFiltered = Array.from(this.userList);
+        break;
+    
+      default:
+        this.selectedEntitie = opc.toString();
+
+        this.userListFiltered = this.userList.filter(function (user) {
+          let fixed = user.entidad.charAt(0).toUpperCase() + opc.toString().slice(1);
+          return user.entidad.toLowerCase().includes(searchValueTemp);
+        });
+        break;
     }
   }
 }

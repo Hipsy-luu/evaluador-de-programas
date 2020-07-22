@@ -3,10 +3,37 @@ export class Respuestas{
     dependencia : string;
     programa : string;
     usuario : string;
-    estatus : string;
+    estatus : boolean;
     respuestasp1 : any[];
     respuestasp2 : any[];
     validaciones : any = {
+        id: 0,
+        idrespuesta: 0,
+        validacion1: false,
+        validacion1a: false,
+        validacion1justificacion: "",
+        validacion2: false,
+        validacion2a: false,
+        validacion2justificacion: "",
+        validacion3: false,
+        validacion3a: false,
+        validacion3justificacion: "",
+        validacion4: false,
+        validacion4a: false,
+        validacion4justificacion: "",
+        validacion5: false,
+        validacion5a: false,
+        validacion5justificacion: "",
+        validacion6: false,
+        validacion6a: false,
+        validacion6justificacion: "",
+        validacion6comentarios: "",
+        validacion7: false,
+        validacion7a: false,
+        validacion7justificacion: "",
+        validacion7comentarios: ""
+    }
+    validacionesManuales : any = {
         id: 0,
         idrespuesta: 0,
         validacion1: false,
@@ -89,7 +116,7 @@ export class Respuestas{
         this.dependencia = "";
         this.programa = "";
         this.usuario = "";
-        this.estatus = "";
+        this.estatus = false;
         this.respuestasp1 = [];
         this.respuestasp2 = [];
 

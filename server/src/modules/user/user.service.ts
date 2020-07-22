@@ -1,3 +1,4 @@
+import { ValidacionesManuales } from './../../models/validacionesManuales.entity';
 import { Injectable, Inject } from '@nestjs/common';
 // import { USER_REPOSITORY } from '../utils/constants';
 import { User } from '../../models/user.entity';
@@ -21,6 +22,7 @@ export class UserService {
     @Inject('UserRepository') private readonly userRepository: typeof User,
     @Inject('RespuestasRepository') private readonly respuestasRepository: typeof Respuestas,
     @Inject('ValidacionesRepository') private readonly validacionesRepository: typeof Validaciones,
+    @Inject('ValidacionesManualesRepository') private readonly validacionesManualesRepository: typeof ValidacionesManuales,
     @Inject('Respuestasp1Repository') private readonly respuestasp1Repository: typeof Respuestasp1,
     @Inject('Respuestasp2complementoRepository') private readonly respuestasp2complementoRepository: typeof Respuestasp2complemento,
     @Inject('CatprogramasRepository') private readonly catprogramasRepository: typeof Catprogramas,
@@ -175,8 +177,9 @@ export class UserService {
           attributes: ['politica'],
         }, {
           model: Validaciones,
-        },
-        ]
+        }, {
+          model: ValidacionesManuales,
+        }]
       }).map(async (respuesta: Respuestas) => {
         let respuestasp1 = await this.respuestasp1Repository.findAll<Respuestasp1>({
           attributes: ['sujeto'],
@@ -221,6 +224,7 @@ export class UserService {
             respuestasp1: respuestasp1 ? respuestasp1 : [],
             respuestasp2: respuestasp2,
             validaciones: respuesta.validaciones,
+            validacionesManuales: respuesta.validacionesManuales,
             //Respuestas
             respuestas: {
               pregunta1complemento: respuesta.pregunta1complemento ? respuesta.pregunta1complemento : "",
@@ -354,6 +358,7 @@ export class UserService {
 
       try {
         var newValidaciones: Validaciones = await this.validacionesRepository.create<Validaciones>(validaciones, {});
+        var newValidacionesManuales: ValidacionesManuales = await this.validacionesManualesRepository.create<ValidacionesManuales>(validaciones, {});
         try {
           //Guardado de las respuestas de la pregunta 2
           for (var key in data.pregunta1) {
@@ -392,20 +397,20 @@ export class UserService {
 
   async upCreateValidations(data, idrespuesta): Promise<ServerMessage> {
     try {
-      let validations = await this.validacionesRepository.findOne({
+      let validacionesManuales = await this.validacionesManualesRepository.findOne({
         where: { idrespuesta: idrespuesta }
       });
       // update
-      if (validations != null && validations != undefined){
+      if (validacionesManuales != null && validacionesManuales != undefined){
         try {
-          let updatedValidations = await validations.update(data);
+          let updatedValidations = await validacionesManuales.update(data);
 
           let respuestas = await this.respuestasRepository.findOne({
             where: { idrespuestas: idrespuesta }
           });
           respuestas.estatus = 1;
           respuestas.save();
-          return new ServerMessage(false, "Validaciones actualizadas con exito", updatedValidations)
+          return new ServerMessage(false, "Validaciones finales actualizadas con exito", updatedValidations)
         } catch (error) {
           return new ServerMessage(true, "Error actualizando validaciones", error);
         }

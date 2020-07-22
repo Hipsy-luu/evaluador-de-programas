@@ -1,3 +1,4 @@
+import { ValidacionesManuales } from './../models/validacionesManuales.entity';
 import { Sequelize } from 'sequelize-typescript';
 
 /**
@@ -48,7 +49,8 @@ export const databaseProviders = [
         Catderechos,
         CatapoyosSociales,
         CatobjetivosPolitica,
-        Validaciones
+        Validaciones,
+        ValidacionesManuales
       ]);
 
       await sequelize.sync();
