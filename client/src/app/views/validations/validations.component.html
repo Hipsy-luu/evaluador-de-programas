@@ -6,51 +6,32 @@
 </div>
 <!-- Es el encargado de que se mueva el contenido -->
 <div class="wrapper" >
-    <div class="navbar-custom">
-        <div class="row" style="height: -webkit-fill-available;align-items: center;">
-            <div class="col">
-                <!-- <button type="button" class="btn btn-secondary " (click)="createPDF()">
-                    <i class=" fa fa-file-excel-o" style="color:gainsboro">
-                        Crear PDF
-                    </i>
-                </button> -->
-            </div>
-            <div class="col-10" style="max-width: 1050px;">
-                <div class="row" >
-                    <div class="col-2" style="color: aliceblue;">
-                        <img src="/assets/images/logo-trans.png" style="height: 40px;">
-                    </div>
-                    <div class="col-10">
-                        <div class="row" style="text-align: right;">
-                                <div class="col">
-                                    <label style="color: white;padding: 0px 37px;font-size: x-large;">Bienvenido {{apiDataService.user.nombre}}</label>
-                                </div>
-                                <div class="col">
-                                    <button type="button" class="btn btn-light"(click)="apiDataService.logOut()">
-                                        Cerrar sesión
-                                        <img style="height: 30px;" src="/assets/images/icon-logout.png">
-                                    </button>
-                                </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-            
-            </div>
-        </div>
+  <div class="navbar-custom">
+    <div class="navbar-box" style="height: -webkit-fill-available;align-items: center;">
+      <div class="" style="color: aliceblue;">
+          <img src="/assets/images/logo-trans.png" style="height: 40px;">
+      </div>
+      <div class="">
+          <label style="color: white;padding: 0px 37px;font-size: x-large;">Bienvenido {{apiDataService.user.nombre}}</label>
+      </div>
+      <div class="">
+          <button type="button" class="log-out-btn" (click)="apiDataService.logOut()">
+              Cerrar sesión
+              <i class="fas fa-door-open"></i>
+          </button>
+      </div>
     </div>
-    <div class="container" style="text-align: -webkit-center;" style="margin-top: 80px;">
+    <div class="card-box" style="text-align: -webkit-center;">
         <div class="card ">
             <div class="card-body">
                 <div class="row" style="justify-content: flex-end;">
 
                 </div>
 
-                <div class="row" style="display: flex;align-items: center;">
+                <div class="row" style="display: flex;align-items: center; text-align: start;">
                     <div class="col-3">
                         <div ngbDropdown class="d-inline-block">
-                            <button class="btn btn-outline-primary"
+                            <button class="outline-btn"
                                 id="dropdownBasic1" ngbDropdownToggle>No.
                                 Respuestas {{pageSize}}</button>
                             <div ngbDropdownMenu
@@ -65,7 +46,7 @@
                         </div>
                     </div>
                     <div class="col-3">
-                        <!-- <input type="text" 
+                        <!-- <input type="text"
                             [(ngModel)]="searchValue"
                             (ngModelChange)="filterByProgramName($event)"
                             placeholder="Buscar por programa"
@@ -82,7 +63,7 @@
                     </div>
                     <div class="col-4">
                         <div class="input-group-append" style="width: 60%;">
-                            <button style="width: 100%;z-index: auto;" class="btn dropdown-toggle btn-primary" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <button style="width: 100%;z-index: auto;" class="dropdown-toggle blu-btn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span  *ngIf="selectedEntitie == 'Todas'">Todas las Dependencias</span>
                                 <span  *ngIf="selectedEntitie != 'Todas'">{{selectedEntitie}}</span>
                             </button>
@@ -93,14 +74,14 @@
                           </div>
                     </div>
                     <div class="col-2" style="text-align: right;">
-                        <button class="btn btn-primary" (click)="reloadData()">
+                        <button class="reload-btn" (click)="reloadData()">
                             <i class="fas fa-sync" style='color:whitesmoke'></i>
                              Recargar
                         </button>
                     </div>
                 </div>
                 <!-- TABLA -->
-                <table class="table table-hover" style="max-width: 1050px; margin-top: 1em;">
+                <table class="table table-hover" style="max-width: 1440px; width:100%; margin-top: 1em;">
                     <tr >
                         <th>ID Respuesta</th>
                         <th>Dependencia</th>
@@ -116,7 +97,7 @@
                         <td>{{respuesta.dependencia}}</td>
                         <td>{{respuesta.programa}}</td>
                         <td>{{respuesta.usuario}}</td>
-        
+
                         <td>
                             <button *ngIf="!respuesta.estatus" (click)="selectRespuesta(respuesta)" class='btn btn-danger' data-target='#modalValidacion' data-toggle='modal' data-id=''>No validado</button>
                             <button *ngIf="respuesta.estatus" (click)="selectRespuesta(respuesta)" data-target='#modalValidacion' data-toggle='modal' data-id='' class='btn btn-info'>Validado</button>
@@ -127,7 +108,7 @@
                     <div class="col" style="text-align: right;">
                         <ngb-pagination [(page)]="page" [pageSize]="pageSize"
                             [collectionSize]="respuestasFiltered.length"
-                            style="width: -webkit-fill-available;text-align: right;">
+                            style="width: -webkit-fill-available;text-align: right;" class="justify-end">
                         </ngb-pagination>
                     </div>
                 </div>
@@ -258,7 +239,7 @@
                                 </span>
                             </tr>
                             <tr>
-                                
+
                             </tr>
                         </td>
                     </tr>
@@ -291,7 +272,7 @@
                                 </span>
                             </tr>
                             <tr>
-                                
+
                             </tr>
                         </td>
                     </tr>
@@ -367,7 +348,7 @@
                                     {{respuestaSeleccionada.respuestas.pregunta8 ? respuestaSeleccionada.respuestas.pregunta8 : "no"}}<br>
                                 </span>
                             </tr>
-                            
+
                         </td>
                     </tr>
                     <tr>
@@ -618,7 +599,7 @@
                                 </span>
                             </tr>
                             <tr>
-                                
+
                             </tr>
                         </td>
                     </tr>
@@ -651,7 +632,7 @@
                                 </span>
                             </tr>
                             <tr>
-                                
+
                             </tr>
                         </td>
                     </tr>
@@ -727,7 +708,7 @@
                                     {{respuestaSeleccionada.respuestas.pregunta8 ? respuestaSeleccionada.respuestas.pregunta8 : "no"}}<br>
                                 </span>
                             </tr>
-                            
+
                         </td>
                     </tr>
                     <tr>
@@ -863,16 +844,16 @@
                     <td>El Programa Presupuestario es de enfoque social</td>
                     <td>
                         <img *ngIf="respuestaSeleccionada.validaciones.validacion1a && respuestaSeleccionada.estatus == true" src="assets/images/success.png" width="30" height="30">
-                        
-                        <button *ngIf="respuestaSeleccionada.validaciones.validacion1a && respuestaSeleccionada.estatus == false" 
+
+                        <button *ngIf="respuestaSeleccionada.validaciones.validacion1a && respuestaSeleccionada.estatus == false"
                             (click)="respuestaSeleccionada.validaciones.validacion1a = !respuestaSeleccionada.validaciones.validacion1a">
                             <img src="assets/images/success.png" width="30" height="30">
                         </button>
                         </td>
                     <td>
                         <img *ngIf="!respuestaSeleccionada.validaciones.validacion1a && respuestaSeleccionada.estatus == true" src="assets/images/disapproval.png" width="30" height="30">
-                        
-                        <button *ngIf="!respuestaSeleccionada.validaciones.validacion1a && respuestaSeleccionada.estatus == false" 
+
+                        <button *ngIf="!respuestaSeleccionada.validaciones.validacion1a && respuestaSeleccionada.estatus == false"
                             (click)="respuestaSeleccionada.validaciones.validacion1a = !respuestaSeleccionada.validaciones.validacion1a">
                             <img src="assets/images/disapproval.png" width="30" height="30">
                         </button>
@@ -894,7 +875,7 @@
                     <td>El Programa Presupuestario coadyuva en el desarrollo social de las personas</td>
                     <td>
                         <img *ngIf="respuestaSeleccionada.validaciones.validacion2a && respuestaSeleccionada.estatus == true" src="assets/images/success.png" width="30" height="30">
-                        <button *ngIf="respuestaSeleccionada.validaciones.validacion2a && respuestaSeleccionada.estatus == false" 
+                        <button *ngIf="respuestaSeleccionada.validaciones.validacion2a && respuestaSeleccionada.estatus == false"
                             (click)="respuestaSeleccionada.validaciones.validacion2a = !respuestaSeleccionada.validaciones.validacion2a">
                             <img src="assets/images/success.png" width="30" height="30">
                         </button>
@@ -922,7 +903,7 @@
                     <td>El programa va dirigido a sujetos de derecho prioritarios</td>
                     <td>
                         <img *ngIf="respuestaSeleccionada.validaciones.validacion3a && respuestaSeleccionada.estatus == true" src="assets/images/success.png" width="30" height="30">
-                        <button *ngIf="respuestaSeleccionada.validaciones.validacion3a && respuestaSeleccionada.estatus == false" 
+                        <button *ngIf="respuestaSeleccionada.validaciones.validacion3a && respuestaSeleccionada.estatus == false"
                             (click)="respuestaSeleccionada.validaciones.validacion3a = !respuestaSeleccionada.validaciones.validacion3a">
                             <img src="assets/images/success.png" width="30" height="30">
                         </button>
@@ -1018,10 +999,10 @@
                             <img src="assets/images/disapproval.png" width="30" height="30">
                         </button>
                     </td>
-                    
+
                     <td>
                         <strong *ngIf="
-                            respuestaSeleccionada.validaciones.validacion6a == false && 
+                            respuestaSeleccionada.validaciones.validacion6a == false &&
                             (respuestaSeleccionada.validaciones.validacion1a == true || respuestaSeleccionada.validaciones.validacion2a == true)">
                             Deberia contar con ellas.
                         </strong>
@@ -1055,7 +1036,7 @@
                     </td>
                     <td>
                         <strong *ngIf="
-                            !respuestaSeleccionada.validaciones.validacion7a && 
+                            !respuestaSeleccionada.validaciones.validacion7a &&
                             (respuestaSeleccionada.validaciones.validacion5a || respuestaSeleccionada.respuestas.pregunta1complemento != 'funcionario')">
                             Deberia contar con padron.{{respuestaSeleccionada.respuestas.pregunta1complemento}}
                         </strong>
@@ -1074,14 +1055,14 @@
                 </table>
             </div>
             <div class="modal-footer">
-                <button *ngIf="respuestaSeleccionada.validaciones.validacion1 
+                <button *ngIf="respuestaSeleccionada.validaciones.validacion1
                                 && respuestaSeleccionada.validaciones.validacion2
                                 && respuestaSeleccionada.validaciones.validacion3
                                 && respuestaSeleccionada.validaciones.validacion4
                                 && respuestaSeleccionada.validaciones.validacion5
                                 && respuestaSeleccionada.validaciones.validacion6
                                 && respuestaSeleccionada.validaciones.validacion7
-                                && !respuestaSeleccionada.estatus" 
+                                && !respuestaSeleccionada.estatus"
                     type="button" (click)="sendResponse()" class='btn btn-success'>Validar</button>
                 <!-- <button type="button" (click)="sendResponse()" class='btn btn-success'>Validar</button> -->
                 <button #btnClose type="button" class="btn btn-secondary text-left" data-dismiss="modal">Cerrar</button>

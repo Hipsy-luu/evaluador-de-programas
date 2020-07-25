@@ -10,4 +10,24 @@
     right: 19px;
     height: 79px;
 }
-
+.disp-flex-aljs-center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.card-box .card{
+  box-shadow: 13px 12px 47px 0px rgba(84,84,84,.5);
+}
+.justify-center{
+  justify-content: center;
+}
+input{
+  transition: .3s ease-in-out;
+}
+input:focus{
+  outline: none;
+  border-bottom: 1px solid #939393;
+}
+.login-btn{
+  border-color: transparent !important;
+}

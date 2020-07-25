@@ -15,7 +15,7 @@
   position: relative;
   -webkit-transform: scale(1.1);
       -ms-transform: scale(1.1);
-          transform: scale(1.1); 
+          transform: scale(1.1);
 }
 .sk-folding-cube .sk-cube:before {
   content: '';
@@ -49,7 +49,7 @@
 }
 .sk-folding-cube .sk-cube3:before {
   -webkit-animation-delay: 0.6s;
-          animation-delay: 0.6s; 
+          animation-delay: 0.6s;
 }
 .sk-folding-cube .sk-cube4:before {
   -webkit-animation-delay: 0.9s;
@@ -59,73 +59,57 @@
   0%, 10% {
     -webkit-transform: perspective(140px) rotateX(-180deg);
             transform: perspective(140px) rotateX(-180deg);
-    opacity: 0; 
+    opacity: 0;
   } 25%, 75% {
     -webkit-transform: perspective(140px) rotateX(0deg);
             transform: perspective(140px) rotateX(0deg);
-    opacity: 1; 
+    opacity: 1;
   } 90%, 100% {
     -webkit-transform: perspective(140px) rotateY(180deg);
             transform: perspective(140px) rotateY(180deg);
-    opacity: 0; 
-  } 
+    opacity: 0;
+  }
 }
 
 @keyframes sk-foldCubeAngle {
   0%, 10% {
     -webkit-transform: perspective(140px) rotateX(-180deg);
             transform: perspective(140px) rotateX(-180deg);
-    opacity: 0; 
+    opacity: 0;
   } 25%, 75% {
     -webkit-transform: perspective(140px) rotateX(0deg);
             transform: perspective(140px) rotateX(0deg);
-    opacity: 1; 
+    opacity: 1;
   } 90%, 100% {
     -webkit-transform: perspective(140px) rotateY(180deg);
             transform: perspective(140px) rotateY(180deg);
-    opacity: 0; 
+    opacity: 0;
   }
 }
 </style>
 <main>
-
-    <div id="preloader" *ngIf="!show">
-        <div data-loader="circle-side"></div>
-    </div><!-- /Preload -->
-
-    <div id="loader_form" *ngIf="!show">
-        <div data-loader="circle-side-2"></div>
+  <div id="preloader" *ngIf="!show">
+      <div data-loader="circle-side"></div>
+  </div><!-- /Preload -->
+  <div id="loader_form" *ngIf="!show">
+      <div data-loader="circle-side-2"></div>
+  </div>
+  <div class="navbar-custom">
+    <div class="navbar-box" style="height: -webkit-fill-available;align-items: center;">
+      <div class="" style="color: aliceblue;">
+          <img src="/assets/images/logo-trans.png" style="height: 40px;">
+      </div>
+      <div class="">
+          <label style="color: white !important;padding: 0px 37px;font-size: x-large;">Bienvenido {{apiDataService.user.nombre}}</label>
+      </div>
+      <div class="">
+          <button type="button" class="log-out-btn" (click)="apiDataService.logOut()">
+              Cerrar sesión
+              <i class="fas fa-door-open"></i>
+          </button>
+      </div>
     </div>
-    <div class="navbar-custom">
-        <div class="row" style="height: -webkit-fill-available;align-items: center;">
-            <div class="col">
-            
-            </div>
-            <div class="col-10" style="max-width: 1050px;">
-                <div class="row" >
-                    <div class="col-2" style="color: aliceblue;">
-                        <img src="/assets/images/logo-trans.png" style="height: 40px;">
-                    </div>
-                    <div class="col-10">
-                        <div class="row" style="text-align: right;">
-                                <div class="col">
-                                    <label style="color: white !important;padding: 0px 37px;font-size: x-large;">Bienvenido {{apiDataService.user.nombre}}</label>
-                                </div>
-                                <div class="col">
-                                    <button type="button" class="btn btn-light"(click)="apiDataService.logOut()">
-                                        Cerrar sesión
-                                        <img style="height: 30px;" src="/assets/images/icon-logout.png">
-                                    </button>
-                                </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-            
-            </div>
-        </div>
-    </div>
+  </div>
     <div id="form_container" >
         <div class="row" *ngIf="!showModal">
             <div class="col-lg-5">
@@ -423,7 +407,7 @@
                                         <h6>*Seleccione minimo una opcion. Puede seleccionar varias</h6>
                                         <div class="form-group checkbox_input">
                                             <label><input (change)="pregunta4Selecciones[0] = !pregunta4Selecciones[0];
-                                                pregunta5.value == 'si' ? pregunta5.value = ' no' : pregunta5.value = 'si'; 
+                                                pregunta5.value == 'si' ? pregunta5.value = ' no' : pregunta5.value = 'si';
                                                 pregunta5.complemento == 1 ? pregunta5.complemento = 0 : pregunta5.complemento = 1;" type="checkbox" value="entregaayudas" name="subcategoriaprograma"
                                                     id="subcategoriaprograma" class="icheck required">El Programa
                                                 entrega ayudas y subsidios
@@ -467,7 +451,7 @@
                                                     <option value="27">Otro (especifique)</option>
                                                 </select>
                                                 <div id="tipoapoyo">
-                                                    
+
                                                 </div>
                                             </div>
                                         </div>
@@ -549,7 +533,7 @@
                                             <option value="27">Otro (especifique)</option>
                                         </select>
                                         <div id="tipoapoyo">
-                                            
+
                                         </div>
                                     </div>
                                 </div>-->
@@ -880,7 +864,7 @@
             <img src="assets/images/success.png" style="height: 50px;"><br>
             Guardado Con Exito!
         </div>
-      </div><!-- 
+      </div><!--
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
       </div> -->

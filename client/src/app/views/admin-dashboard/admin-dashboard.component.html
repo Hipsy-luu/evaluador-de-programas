@@ -1,34 +1,21 @@
-<div class="navbar-custom">
-    <div class="row" style="height: -webkit-fill-available;align-items: center;">
-        <div class="col">
-        
-        </div>
-        <div class="col-10" style="max-width: 1050px;">
-            <div class="row" >
-                <div class="col-2" style="color: aliceblue;">
-                    <img src="/assets/images/logo-trans.png" style="height: 40px;">
-                </div>
-                <div class="col-10">
-                    <div class="row" style="text-align: right;">
-                            <div class="col">
-                                <label style="color: white;padding: 0px 37px;font-size: x-large;">Bienvenido {{apiDataService.user.nombre}}</label>
-                            </div>
-                            <div class="col">
-                                <button type="button" class="btn btn-light"(click)="apiDataService.logOut()">
-                                    Cerrar sesión
-                                    <img style="height: 30px;" src="/assets/images/icon-logout.png">
-                                </button>
-                            </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-        
-        </div>
+<div class="body-div">
+  <div class="navbar-custom">
+    <div class="navbar-box" style="height: -webkit-fill-available;align-items: center;">
+      <div class="" style="color: aliceblue;">
+          <img src="/assets/images/logo-trans.png" style="height: 40px;">
+      </div>
+      <div class="">
+          <label style="color: white;padding: 0px 37px;font-size: x-large;">Bienvenido {{apiDataService.user.nombre}}</label>
+      </div>
+      <div class="">
+          <button type="button" class="log-out-btn" (click)="apiDataService.logOut()">
+              Cerrar sesión
+              <i class="fas fa-door-open"></i>
+          </button>
+      </div>
     </div>
 </div>
-<div class="container-fluid">
+<div class="container-fluid" style="">
     <img class="logo-flotante" src="/assets/images/logo-trans.png">
     <div *ngIf="apiDataService.successMessage" class="alert alert-success notificacion-flotante" role="alert">
         {{apiDataService.actualMessageServer}} <button  (click)="apiDataService.closeNotification()">X</button>
@@ -36,62 +23,53 @@
     <div *ngIf="apiDataService.failMessage" class="alert alert-warning notificacion-flotante" role="alert">
         {{apiDataService.actualMessageServer}} <button (click)="apiDataService.closeNotification()">X</button>
     </div>
-    <div class="row fullpage-centered" style="background-image: url(./assets/images/img2.jpg);background-size: cover;">
-        <div class="col-sm">
-
-        </div>
-        <div class="col-sm-10" style="text-align: -webkit-center;">
-            <div class="card" style="width: 90%;min-height: 460px;">
+    <div class="card-box">
+        <div class="" style="text-align: -webkit-center;">
+            <div class="card" style="width: 100%;min-height: 460px;">
                 <img class="card-img-top"  style="height: 40px;background-color: #4892a9;    margin: 10px;">
-                <div class="card-body" style="padding: 0px 45px;">
+                <div class="card-body-fixed">
                     <div class="row" style="text-align: -webkit-center;">
-                        <div class="col-sm-2" style="text-align: -webkit-center;">
-                            <div class="row" style="max-height: 50px;margin-bottom: 15px;">
-                                <div class="col" style="text-align: left;padding: 0px;">
-                                    <h4 style="padding-top: 10px;font-weight: 600;font-size: x-large;">MENU</h4>
+                        <div class="col-sm-2 menu-sidebar" style="text-align: -webkit-center; padding: 0px 45px;">
+                            <div class="" style="max-height: 50px;margin-bottom: 15px;">
+                                <div class="" style="text-align: left;padding: 0px;">
+                                    <h4 style="padding-top: 10px;font-weight: 700;font-size: x-large;">MENU</h4>
                                 </div>
                             </div>
-                            <div class="row" style="max-height: 50px;margin-bottom: 15px;">
-                                <div class="col" style="text-align: left;padding: 0px;">
-                                    <h4 style="padding-top: 2px;font-weight: 400;font-size: large;">Validador</h4>
-                                </div>
-                            </div>
-                            <div class="row" style="max-height: 50px;margin-bottom: 15px;">
-                                <div class="col" style="text-align: left;padding: 0px;">
-                                    <ul>
-                                        <li><a routerLink="/register-program" routerLinkActive="active">
-                                            <h4 style="padding-top: 2px;font-weight: 400;font-size: large;">Capturador</h4>
-                                        </a></li>
-                                        <li><a routerLink="/first-component" routerLinkActive="active">
-                                            <h4 style="padding-top: 2px;font-weight: 400;font-size: large;">
-                                                <li>
-                                                  <a routerLink="/validations" routerLinkActive="active">Validador</a></li></h4>
-                                            </a>
-                                        </li>
-                                      </ul>
+                            <div class="" style="max-height: 50px;margin-bottom: 15px;">
+                                <div class="" style="text-align: left;padding: 0px;">
+                                  <div class="p-b-10">
+                                    <a class="link-menu" routerLink="/register-program" routerLinkActive="active">
+                                      Capturador
+                                    </a>
+                                  </div>
+                                  <div class="p-b-10">
+                                    <a class="link-menu" routerLink="/validations" routerLinkActive="active">
+                                      Validador
+                                    </a>
+                                  </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-10" style="text-align: -webkit-center;">
-                            <div class="row" style="max-height: 50px;margin-bottom: 15px;">
-                                <div class="col-1" style="text-align: left;padding: 0px;">
+                        <div class="col-sm-10" style="text-align: -webkit-center; padding: 0px 45px;">
+                            <div class="row" style="max-height: 50px;margin-bottom: 15px; align-items: center;">
+                                <div class="col-3 disp-flex-jsal-center" style="text-align: left;padding: 0px;">
+                                  <div>
                                     <h4 style="padding-top: 10px;font-weight: 600;font-size: x-large;">Usuarios</h4>
-                                </div>
-                                <div class="col-2">
-                                    <div ngbDropdown class="d-inline-block">
-                                        <button class="btn btn-outline-primary"
-                                            id="dropdownBasic1" ngbDropdownToggle>No.
-                                            Usuarios {{pageSize}}</button>
-                                        <div ngbDropdownMenu
-                                            aria-labelledby="dropdownBasic1">
-                                            <button ngbDropdownItem
-                                                (click)="pageSize = 5">5</button>
-                                            <button ngbDropdownItem
-                                                (click)="pageSize = 10">10</button>
-                                            <button ngbDropdownItem
-                                                (click)="pageSize = 15">15</button>
-                                        </div>
+                                  </div>
+                                  <div ngbDropdown class="d-inline-block">
+                                    <button class="outline-btn"
+                                        id="dropdownBasic1" ngbDropdownToggle>No.
+                                        Usuarios {{pageSize}}</button>
+                                    <div ngbDropdownMenu
+                                        aria-labelledby="dropdownBasic1">
+                                        <button ngbDropdownItem
+                                            (click)="pageSize = 5">5</button>
+                                        <button ngbDropdownItem
+                                            (click)="pageSize = 10">10</button>
+                                        <button ngbDropdownItem
+                                            (click)="pageSize = 15">15</button>
                                     </div>
+                                  </div>
                                 </div>
                                 <!-- <div class="col-2" style="text-align: right;">
                                     <ngb-pagination [(page)]="page" [pageSize]="pageSize"
@@ -108,9 +86,9 @@
                                         (ngModelChange)="filterByPEmail($event)" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
                                     </div>
                                 </div>
-                                <div class="col">
-                                    <div class="input-group-append" style="width: 60%;">
-                                        <button style="width: 100%;z-index: auto;" class="btn dropdown-toggle btn-primary" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <div class="col-3">
+                                    <div class="input-group-append" style="width: 100%;">
+                                        <button style="width: 100%;z-index: auto;" class="dropdown-toggle blu-btn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <span  *ngIf="selectedEntitie == 'Todas'">Todas las Entidades</span>
                                             <span  *ngIf="selectedEntitie != 'Todas'">{{selectedEntitie}}</span>
                                         </button>
@@ -120,7 +98,7 @@
                                         </div>
                                       </div>
                                 </div>
-                                <div class="col"style="text-align: right;padding: 0px;">
+                                <div class="col-4"style="text-align: right;padding: 0px;">
                                     <span>
                                         <button class="btn btn-success" (click)="selectNewUser()" style="margin: 0px 10px;">
                                             <i class='fas fa-user-plus' style='color:whitesmoke'></i>
@@ -129,7 +107,7 @@
                                     </span>
 
                                     <span>
-                                        <button class="btn btn-primary" (click)="reloadData()">
+                                        <button class="reload-btn" (click)="reloadData()">
                                             <i class="fas fa-sync" style='color:whitesmoke'></i>
                                              Recargar
                                         </button>
@@ -137,7 +115,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <table class="table table-hover" style="max-width: 1050px;">
+                                <table class="table table-hover">
                                     <tr >
                                         <th>ID</th>
                                         <th>Nombre</th>
@@ -165,10 +143,10 @@
                                     </tr>
                                 </table>
                             </div>
-                            <div class="row">
+                            <div class="row p-b-30">
                                 <ngb-pagination [(page)]="page" [pageSize]="pageSize"
                                         [collectionSize]="userList.length"
-                                        style="width: -webkit-fill-available;text-align: right;">
+                                        style="width: -webkit-fill-available;text-align: right;" class="justify-end">
                                     </ngb-pagination>
                             </div>
                         </div>
@@ -176,9 +154,6 @@
 
                 </div>
             </div>
-        </div>
-        <div class="col-sm">
-
         </div>
     </div>
 </div>
@@ -281,4 +256,6 @@
       </div>
     </div>
   </div>
+</div>
+
 

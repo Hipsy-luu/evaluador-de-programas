@@ -1,6 +1,6 @@
-a 
+a
 {
-    color: #886400 !important;
+    color: #000000 !important;
     text-decoration: none;
     background-color: transparent;
     -webkit-text-decoration-skip: objects;
@@ -19,7 +19,10 @@ a
 .text-left{
     text-align: left;
 }
-
+.justify-end{
+  display: flex;
+  justify-content: flex-end;
+}
 .notificacion-flotante{
     position: fixed;
     top: 80px;
@@ -51,4 +54,99 @@ a
     bottom: 19px;
     right: 19px;
     height: 79px;
+}
+.page-item.active .page-link{
+  color: white !important;
+  background-color: #4892a9 !important;
+  border-color:  #4892a9 !important;
+}
+.card-body-fixed{
+  padding: 1.25rem;
+}
+
+.navbar-custom{
+  z-index: 2000;
+}
+.navbar-box{
+  max-width: 1440px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30px;
+}
+.card-box{
+  max-width: 1440px;
+  margin: auto;
+  padding: 80px 30px 120px 30px;
+}
+/*BOTONES*/
+.log-out-btn{
+  color: white;
+  background: transparent;
+  border: transparent;
+  outline: none;
+  opacity: .8;
+  transition: .3s ease-in-out;
+}
+.log-out-btn:hover{
+  opacity: 1;
+}
+.outline-btn{
+  background-color: transparent;
+  padding: 6px 12px;
+  border-color: #4892a9;
+  border-radius: .25rem;
+  font-weight: 400;
+  color: #4892a9;
+  font-size: 1rem;
+  border: solid 2px;
+  transition: .2s ease-in-out;
+}
+.outline-btn:focus{
+  outline: none;
+}
+.outline-btn:hover{
+  background-color: #4892a9;
+  color: white;
+}
+.blu-btn{
+  background-color: #4892a9;
+  color: white;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  border-radius: .25rem;
+  font-weight: 400;
+  border: solid 1px transparent;
+  transition: .2s ease-in-out;
+}
+.blu-btn:focus{
+  outline: none;
+}
+.blu-btn:hover{
+  background-color: #3E7C8F;
+}
+.reload-btn{
+  background-color: #282e38;
+  font-weight: 400;
+  border: 1px solid transparent;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: .25rem;
+  color: white;
+  transition: .2s ease-in-out;
+}
+.reload-btn:focus{
+  outline: none;
+}
+.reload-btn:hover{
+  background-color: #111419;
+}
+/*Paddings*/
+.p-b-30{
+  padding-bottom: 30px;
+}
+.p-b-10{
+  padding-bottom: 10px;
 }

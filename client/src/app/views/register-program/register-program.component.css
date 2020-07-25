@@ -15,3 +15,6 @@ h6 {
     color: #222;
     font-weight: 300;
 }
+label input{
+  margin-right: 10px;
+}

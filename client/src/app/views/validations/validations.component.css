@@ -1,5 +1,5 @@
 .boton-flotante{
-    
+
     height: 79px;
 }
 
@@ -14,8 +14,12 @@
     font-size: 16px; /* Set a font size */
     cursor: pointer; /* Mouse pointer on hover */
   }
-  
+
   /* Darker background on mouse-over */
   .btnnu:hover {
     background-color: RoyalBlue;
   }
+.wrapper{
+  background-color: #e4edf2;
+  height: 100vh;
+}
