@@ -51,33 +51,36 @@
                             </div>
                         </div>
                         <div class="col-sm-10" style="text-align: -webkit-center; padding: 0px 45px;">
-                            <div class="row" style="max-height: 50px;margin-bottom: 15px; align-items: center;">
-                                <div class="col-3 disp-flex-jsal-center" style="text-align: left;padding: 0px;">
+                            <div class="row" style="max-height: 50px;margin-bottom: 15px; align-items: center; justify-content: space-between; align-items: center;">
+                                <div class=" disp-flex-jsal-center" style="text-align: left;padding: 0px;">
                                   <div>
                                     <h4 style="padding-top: 10px;font-weight: 600;font-size: x-large;">Usuarios</h4>
                                   </div>
-                                  <div ngbDropdown class="d-inline-block">
-                                    <button class="outline-btn"
-                                        id="dropdownBasic1" ngbDropdownToggle>No.
-                                        Usuarios {{pageSize}}</button>
-                                    <div ngbDropdownMenu
-                                        aria-labelledby="dropdownBasic1">
-                                        <button ngbDropdownItem
-                                            (click)="pageSize = 5">5</button>
-                                        <button ngbDropdownItem
-                                            (click)="pageSize = 10">10</button>
-                                        <button ngbDropdownItem
-                                            (click)="pageSize = 15">15</button>
-                                    </div>
-                                  </div>
                                 </div>
+                                <div class="p-l-10">
+                                    <div ngbDropdown class="d-inline-block">
+                                        <button class="outline-btn"
+                                            id="dropdownBasic1" ngbDropdownToggle>No.
+                                            Usuarios {{pageSize}}</button>
+                                        <div ngbDropdownMenu
+                                            aria-labelledby="dropdownBasic1">
+                                            <button ngbDropdownItem
+                                                (click)="pageSize = 5">5</button>
+                                            <button ngbDropdownItem
+                                                (click)="pageSize = 10">10</button>
+                                            <button ngbDropdownItem
+                                                (click)="pageSize = 15">15</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                  
                                 <!-- <div class="col-2" style="text-align: right;">
                                     <ngb-pagination [(page)]="page" [pageSize]="pageSize"
                                         [collectionSize]="userList.length"
                                         style="width: -webkit-fill-available;text-align: right;">
                                     </ngb-pagination>
                                 </div> -->
-                                <div class="col-2">
+                                <div class="p-l-10">
                                     <div class="input-group input-group-sm mb-3" style="    margin-bottom: 0rem!important;height: 38px;">
                                         <div class="input-group-prepend" >
                                             <span class="input-group-text" id="inputGroup-sizing-sm">Email</span>
@@ -86,7 +89,7 @@
                                         (ngModelChange)="filterByPEmail($event)" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
                                     </div>
                                 </div>
-                                <div class="col-3">
+                                <div class=" p-l-10">
                                     <div class="input-group-append" style="width: 100%;">
                                         <button style="width: 100%;z-index: auto;" class="dropdown-toggle blu-btn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <span  *ngIf="selectedEntitie == 'Todas'">Todas las Entidades</span>
@@ -98,7 +101,7 @@
                                         </div>
                                       </div>
                                 </div>
-                                <div class="col-4"style="text-align: right;padding: 0px;">
+                                <div class="p-l-10"style="text-align: right;padding: 0px;">
                                     <span>
                                         <button class="btn btn-success" (click)="selectNewUser()" style="margin: 0px 10px;">
                                             <i class='fas fa-user-plus' style='color:whitesmoke'></i>

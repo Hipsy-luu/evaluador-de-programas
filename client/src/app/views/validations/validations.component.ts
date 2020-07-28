@@ -8,6 +8,7 @@ import * as XLSX from 'xlsx';
 
 import * as pdfMake from 'pdfmake/build/pdfmake';
 import * as pdfFonts from 'pdfmake/build/vfs_fonts';
+import { email } from './emails/email';
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
@@ -270,11 +271,11 @@ export class ValidationsComponent implements OnInit {
       .then((response: ServerMessage) => {   
         //console.log("cerrando");
         //console.log(response);
-        this.createPDF();
         this.apiDataService.showNotification(0, "Validaciones guardadas con Exito!", 6000);
         this.apiDataService.getRespuestas(this.apiDataService.user.entidad).then((response: ServerMessage) => {
           this.respuestas = response.data.respuestas;
           this.btnClose.nativeElement.click();
+          this.createPDF();
         }).catch((error) => {
           console.log("error");
           console.log(error);
@@ -469,9 +470,8 @@ export class ValidationsComponent implements OnInit {
         To: [this.apiDataService.user.email],
         Cc : /* 'luismi.luu@gmail.com' */'alberto.cortes@chihuahua.gob.mx',
         From: 'clasificador@chihuahua.gob.mx',
-        Subject: "Reporte de validacion de respuestas : " + data.noRespuestas,
-        Body:
-          '<strong>Comprobante de la Validacion.</strong>',
+        Subject: "Reporte de validacion del programa presupuestario : " + data.noRespuestas,
+        Body: email,
         Attachments : [{
           name : 'acuse-'+this.respuestaSeleccionada.idrespuestas+'.pdf',
           data :  pdfBase64
