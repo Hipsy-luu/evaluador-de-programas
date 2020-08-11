@@ -148,7 +148,7 @@
 
 
                             <div class="step" id="step0">
-                                <h3 class="main_question"><strong>1/12</strong>¿Cuál es el programa Presupuestal?</h3>
+                                <h3 class="main_question"><strong>1/12</strong>Seleccione clave y nombre del Programa presupuestario.</h3>
                                 <div class="row">
                                     <div id="principal">
                                         <select (change)="selectEventProgram($event)" class="form-control" name="pcderechosocial" id="pcderechosocial">
@@ -250,6 +250,13 @@
                                             <div id="sujetoespecifico" *ngIf="pregunta1.sujetootro">
                                                 <input [(ngModel)]="pregunta1.sujetoOtroText" type="text" class="form-control" name="definasujeto" id="definasujeto" placeholder="Especifique" required>
                                             </div>
+                                        </div>
+                                        <div class="form-group radio_input">
+                                            <label>
+                                                <input [(ngModel)]="pregunta1.noaplica" type="checkbox"
+                                                    value="noaplica" name="noaplica"
+                                                    id="noaplica" class="icheck">No aplica
+                                            </label>
                                         </div>
                                         <br>
                                     </div>
@@ -373,9 +380,13 @@
                                         </div>
                                         <div class="form-group radio_input">
                                             <label><input (change)="pregunta3Selecciones[3] = !pregunta3Selecciones[3]" type="checkbox" value="zonaprioritariaestatal" name="cpobreza" id="cpobreza" class="icheck required">Personas habitantes de zonas de atención prioritaria estatales</label>
-                                        	</div>
+                                        </div>
                                         <div class="form-group radio_input">
                                             <label><input (change)="pregunta3Selecciones[4] = !pregunta3Selecciones[4]" type="checkbox" value="zonaprioritariafederal" name="cpobreza" id="cpobreza" class="icheck required">Personas habitantes de zonas de atención prioritaria federales</label>
+                                        </div>
+                                        <div class="form-group radio_input">
+                                            <label><input (change)="pregunta3Selecciones[5] = !pregunta3Selecciones[5];pregunta3SeleccionOtro = '';" type="checkbox" value="otro" name="cpobreza" id="cpobreza" class="icheck required">Otro</label>
+                                            <label *ngIf="pregunta3Selecciones[5] == true" ><input [(ngModel)]="pregunta3SeleccionOtro" placeholder="Especifique" maxlength="300" type="text" value="otro" name="cpobreza" id="cpobreza"></label>
                                         </div>
 
                                         <!-- <div class="form-group radio_input">
@@ -401,10 +412,10 @@
                             <!-- /step -->
                             <div class="step">
                                 <h3 class="main_question"><strong>5/12</strong><!-- ¿Cuál es la subcategoría del programa
-                                    presupuestario? -->En cual o cuales de las siguientes categorias se clasifican los bienes y/o servicios del programa</h3>
+                                    presupuestario? -->En cual o cuales de las siguientes categorías se clasifican los bienes y/o servicios del programa presupuestario.</h3>
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <h6>*Seleccione minimo una opcion. Puede seleccionar varias</h6>
+                                        <h6>*Seleccione mínimo una opción. Puede seleccionar varias</h6>
                                         <div class="form-group checkbox_input">
                                             <label><input (change)="pregunta4Selecciones[0] = !pregunta4Selecciones[0];
                                                 pregunta5.value == 'si' ? pregunta5.value = ' no' : pregunta5.value = 'si';
@@ -560,7 +571,7 @@
                             </div>
                             <!-- /step -->
                             <div class="step">
-                                <h3 class="main_question"><strong>7/12</strong>¿Con qué frecuencia el programa
+                                <h3 class="main_question"><strong>7/12</strong>¿Con qué frecuencia el programa presupuestario
                                     entrega el apoyo social a la misma persona beneficiaria?
                                 </h3>
                                 <div class="row">
@@ -572,7 +583,7 @@
                                             <label><input (change)="pregunta7 = 'mensual'" type="radio" value="mensual" name="frecuenciaentrega" id="frecuenciaentrega" class="icheck required">Mensual</label>
                                         </div>
                                         <div class="form-group radio_input">
-                                            <label><input (change)="pregunta7 = 'bimensual'" type="radio" value="bimensual" name="frecuenciaentrega" id="frecuenciaentrega" class="icheck required">Bimensual</label>
+                                            <label><input (change)="pregunta7 = 'bimensual'" type="radio" value="bimensual" name="frecuenciaentrega" id="frecuenciaentrega" class="icheck required">Bimestral</label>
                                         </div>
                                         <div class="form-group radio_input">
                                             <label><input (change)="pregunta7 = 'trimestral'" type="radio" value="trimestral" name="frecuenciaentrega" id="frecuenciaentrega" class="icheck required">Trimestral</label>
@@ -625,7 +636,7 @@
                                     recursos destinados al programa presupuestario?</h3>
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <h6>*Seleccione minimo una opcion. Puede seleccionar varias</h6>
+                                        <h6>*Seleccione mínimo una opción. Puede seleccionar varias</h6>
                                         <div class="form-group checkbox_input">
                                             <label><input (change)="pregunta9Selecciones[0] = !pregunta9Selecciones[0]" type="checkbox" value="federal" name="procedenciarecurso"
                                                     id="procedenciarecurso" class="icheck required">Recurso
@@ -644,6 +655,13 @@
                                         <div class="form-group checkbox_input">
                                             <label><input (change)="pregunta9Selecciones[3] = !pregunta9Selecciones[3]" type="checkbox" value="ingresospropios" name="procedenciarecurso"
                                                     id="procedenciarecurso" class="icheck required">Ingresos Propios</label>
+                                        </div>
+                                        <div class="form-group checkbox_input">
+                                            <label><input (change)="pregunta9Selecciones[4] = !pregunta9Selecciones[4];pregunta9SeleccionOtro = '';" type="checkbox" value="otro" name="procedenciarecurso"
+                                                id="procedenciarecurso" class="icheck required">Otro</label>
+                                            <label *ngIf="pregunta9Selecciones[4]==true"><input [(ngModel)]="pregunta9SeleccionOtro" type="text" value="otro" name="procedenciarecurso"
+                                                id="procedenciarecurso" class="" placeholder="Especifique"></label>
+                                                    
                                         </div>
                                     </div>
                                 </div>

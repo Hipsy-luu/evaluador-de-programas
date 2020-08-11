@@ -89,6 +89,10 @@ export class ValidationsComponent implements OnInit {
     })
   }
 
+  subStrPregunta3(texto){
+    return texto.slice( ( texto.indexOf("otro") ) + 5, texto.length);
+  }
+
   filterByProgramName(event) {
     let searchValueTemp = event.charAt(0).toLowerCase() + event.slice(1);
 

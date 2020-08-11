@@ -32,6 +32,7 @@ export class RegisterProgramComponent implements OnInit {
     sujetofamilias: false,
     sujetosociedadcivil: false,
     sujetootro: false,
+    noaplica: false,
     sujetoOtroText: '', //RESPUESTAS - Este es el complemento de la pregunta 1
   };
 
@@ -55,7 +56,8 @@ export class RegisterProgramComponent implements OnInit {
   };
 
   //Variable de apoyo para el complemento de la variable pregunta3
-  pregunta3Selecciones = [false,false,false,false,false];
+  pregunta3Selecciones = [false,false,false,false,false,false];
+  pregunta3SeleccionOtro = "";
 
   pregunta4 = {
     value : 'entregaayudas', //RESPUESTAS - Esta es la pregunta4
@@ -81,7 +83,8 @@ export class RegisterProgramComponent implements OnInit {
 
   pregunta9 = "";
   //Variable de apoyo para la variable pregunta4
-  pregunta9Selecciones = [false,false,false,false];
+  pregunta9Selecciones = [false,false,false,false,false];
+  pregunta9SeleccionOtro = "";
 
   pregunta10 = {
     value : 'educacionobligatoria', //RESPUESTAS - Esta es la pregunta10
@@ -191,6 +194,9 @@ export class RegisterProgramComponent implements OnInit {
     if( this.pregunta3Selecciones[4] ){
       this.pregunta3.complemento = this.pregunta3.complemento + ",zonaprioritariafederal";
     }
+    if( this.pregunta3Selecciones[5] ){
+      this.pregunta3.complemento = this.pregunta3.complemento + ",otro,"+this.pregunta3SeleccionOtro;
+    }
     data.pregunta3 = this.pregunta3;
     /////////////////////////////////////////////////////////////////////////////////
     this.pregunta4.value = "";
@@ -226,6 +232,9 @@ export class RegisterProgramComponent implements OnInit {
     }
     if( this.pregunta9Selecciones[3] ){
       this.pregunta9 = this.pregunta9 + ",ingresospropios";
+    }
+    if( this.pregunta9Selecciones[4] ){
+      this.pregunta9 = this.pregunta9 + ",otro,"+this.pregunta9SeleccionOtro;
     }
     data.pregunta9 = this.pregunta9;
     data.pregunta10 = this.pregunta10;
@@ -329,6 +338,7 @@ export class RegisterProgramComponent implements OnInit {
       sujetofamilias: false,
       sujetosociedadcivil: false,
       sujetootro: false,
+      noaplica: false,
       sujetoOtroText: ""
     };
 

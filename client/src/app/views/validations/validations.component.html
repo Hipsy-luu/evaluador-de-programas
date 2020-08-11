@@ -176,6 +176,9 @@
                                     <span *ngIf="respuesta == 'sujetosociedadcivil'">
                                         - Organizaciones d ela sociedad civil <br>
                                     </span>
+                                    <span *ngIf="respuesta == 'noaplica'">
+                                        - No aplica <br>
+                                    </span>
                                     <span *ngIf="respuesta == 'sujetootro'">
                                         - Otro <br>
                                     </span>
@@ -229,6 +232,9 @@
                                 </span>
                                 <span *ngIf="respuestaSeleccionada.respuestas.pregunta3complemento.includes('zonaprioritariafederal')">
                                     - Personas habitantes de zonas de atención prioritaria federales<br>
+                                </span>
+                                <span *ngIf="respuestaSeleccionada.respuestas.pregunta3complemento.includes('otro')">
+                                    - Otro : {{subStrPregunta3(respuestaSeleccionada.respuestas.pregunta3complemento)}}<br>
                                 </span>
                             </tr>
                         </td>
@@ -375,6 +381,9 @@
                                 </span>
                                 <span *ngIf="respuestaSeleccionada.respuestas.pregunta9.includes('ingresospropios') == true">
                                     - Ingresos Propios<br>
+                                </span>
+                                <span *ngIf="respuestaSeleccionada.respuestas.pregunta9.includes('otro')">
+                                    - Otro : {{subStrPregunta3(respuestaSeleccionada.respuestas.pregunta9)}}<br>
                                 </span>
                             </tr>
                         </td>
@@ -536,6 +545,9 @@
                                     <span *ngIf="respuesta == 'sujetosociedadcivil'">
                                         - Organizaciones d ela sociedad civil <br>
                                     </span>
+                                    <span *ngIf="respuesta == 'noaplica'">
+                                        - No aplica <br>
+                                    </span>
                                     <span *ngIf="respuesta == 'sujetootro'">
                                         - Otro <br>
                                     </span>
@@ -589,6 +601,9 @@
                                 </span>
                                 <span *ngIf="respuestaSeleccionada.respuestas.pregunta3complemento.includes('zonaprioritariafederal')">
                                     - Personas habitantes de zonas de atención prioritaria federales<br>
+                                </span>
+                                <span *ngIf="respuestaSeleccionada.respuestas.pregunta3complemento.includes('otro')">
+                                    - Otro : {{subStrPregunta3(respuestaSeleccionada.respuestas.pregunta3complemento)}}<br>
                                 </span>
                             </tr>
                         </td>
@@ -735,6 +750,9 @@
                                 </span>
                                 <span *ngIf="respuestaSeleccionada.respuestas.pregunta9.includes('ingresospropios') == true">
                                     - Ingresos Propios<br>
+                                </span>
+                                <span *ngIf="respuestaSeleccionada.respuestas.pregunta9.includes('otro')">
+                                    - Otro : {{subStrPregunta3(respuestaSeleccionada.respuestas.pregunta9)}}<br>
                                 </span>
                             </tr>
                         </td>

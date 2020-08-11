@@ -70,7 +70,7 @@ export class Respuestas extends Model<Respuestas> {
   public pregunta3 : string;
 
   @Column({
-    type: DataType.STRING(100),
+    type: DataType.STRING(500),
     allowNull: true,
   })
   public pregunta3complemento : string;
@@ -121,7 +121,7 @@ export class Respuestas extends Model<Respuestas> {
   pregunta8complementoFix: CatobjetivosPolitica;
 
   @Column({
-    type: DataType.STRING(45),
+    type: DataType.STRING(350),
     allowNull: false,
   })
   public pregunta9 : string;
