@@ -16,6 +16,7 @@ import { Catderechos } from '../models/catderechos.entity';
 import { CatapoyosSociales } from '../models/catapoyos_sociales.entity';
 import { CatobjetivosPolitica } from '../models/catobjetivos_politica.entity';
 import { Validaciones } from '../models/validaciones.entity';
+import { CatDependencias } from '../models/catdependencias.entity';
 
 export const databaseProviders = [
   {
@@ -50,7 +51,8 @@ export const databaseProviders = [
         CatapoyosSociales,
         CatobjetivosPolitica,
         Validaciones,
-        ValidacionesManuales
+        ValidacionesManuales,
+        CatDependencias
       ]);
 
       await sequelize.sync();

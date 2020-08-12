@@ -14,6 +14,7 @@ import { CatapoyosSociales } from '../../models/catapoyos_sociales.entity';
 import { CatobjetivosPolitica } from '../../models/catobjetivos_politica.entity';
 import { Validaciones } from '../../models/validaciones.entity';
 import { Sequelize } from 'sequelize-typescript';
+import { CatDependencias } from '../../models/catdependencias.entity';
 
 @Injectable()
 export class UserService {
@@ -26,6 +27,7 @@ export class UserService {
     @Inject('Respuestasp1Repository') private readonly respuestasp1Repository: typeof Respuestasp1,
     @Inject('Respuestasp2complementoRepository') private readonly respuestasp2complementoRepository: typeof Respuestasp2complemento,
     @Inject('CatprogramasRepository') private readonly catprogramasRepository: typeof Catprogramas,
+    @Inject('CatDependenciasRepository') private readonly catDependenciasRepository: typeof CatDependencias,
     /* @Inject('BandRepository') private readonly bandRepository: typeof Band, */
   ) { }
 
@@ -155,7 +157,7 @@ export class UserService {
       }
     }
   }
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
   async getAllRespuestas( dependencia ): Promise<ServerMessage> {
     let dataResponse: any = {
       respuestas: [Respuestas]
@@ -214,12 +216,18 @@ export class UserService {
           where: { idusuarios: respuesta.usuario }
         });
 
+        let titular = await this.catDependenciasRepository.findOne<CatDependencias>({
+          //attributes: ['titular'],
+          where: { clavedependencia: respuesta.dependencia }
+        });
+
         return Object.assign(
           {
             idrespuestas: respuesta.idrespuestas,
             dependencia: respuesta.dependencia ? respuesta.dependencia : 'Sin Dependencia',
             programa: programa ? programa.nombre_programa : "Sin Programa",
-            usuario: user ? user.nombre + ' ' + user.apellidos : 'Sin Usuario',
+            usuario: user ? user.nombre.toLocaleUpperCase() + ' ' + user.apellidos.toLocaleUpperCase() : 'Sin Usuario',
+            titular: titular.titular,
             estatus: respuesta.estatus ? respuesta.estatus : false,
             respuestasp1: respuestasp1 ? respuestasp1 : [],
             respuestasp2: respuestasp2,

@@ -17,6 +17,7 @@ import { catprogramasProviders } from '../../models/repositoriesModels/catprogra
 import { catderechosProviders } from '../../models/repositoriesModels/catderechos.providers';
 import { validacionesProviders } from '../../models/repositoriesModels/validaciones.providers';
 import { validacionesManualesProviders } from '../../models/repositoriesModels/validacionesManuales.providers';
+import { catDependenciasProviders } from '../../models/repositoriesModels/catdependencias.providers';
 /* import { bandProviders } from '../../models/repositoriesModels/band.providers'; */
 
 @Module({
@@ -35,7 +36,8 @@ import { validacionesManualesProviders } from '../../models/repositoriesModels/v
     ...catprogramasProviders,
     ...catderechosProviders,
     ...validacionesProviders,
-    ...validacionesManualesProviders
+    ...validacionesManualesProviders,
+    ...catDependenciasProviders
     /* ...bandProviders */
   ],
 })
