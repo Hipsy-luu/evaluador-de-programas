@@ -212,7 +212,7 @@ export class UserService {
         });
 
         let user = await this.userRepository.findOne<User>({
-          attributes: ['nombre', 'apellidos'],
+          attributes: ['nombre', 'apellidos','email'],
           where: { idusuarios: respuesta.usuario }
         });
 
@@ -227,6 +227,7 @@ export class UserService {
             dependencia: respuesta.dependencia ? respuesta.dependencia : 'Sin Dependencia',
             programa: programa ? programa.nombre_programa : "Sin Programa",
             usuario: user ? user.nombre.toLocaleUpperCase() + ' ' + user.apellidos.toLocaleUpperCase() : 'Sin Usuario',
+            usuarioEmail: user.email,
             titular: titular ? titular.titular : 'Sin Titular',
             estatus: respuesta.estatus ? respuesta.estatus : false,
             respuestasp1: respuestasp1 ? respuestasp1 : [],

@@ -13,9 +13,9 @@ import { Router } from '@angular/router';
 })
 export class ApiDataService {
   //Url testeo locales
-  //baseURL: string = "http://localhost:3000/";
+  baseURL: string = "http://localhost:3000/";
   //Url producción
-  baseURL: string = "https://evaluadorapi.enbibo.com/";
+  //baseURL: string = "https://evaluadorapi.enbibo.com/";
 
   token : String;
   user : User;

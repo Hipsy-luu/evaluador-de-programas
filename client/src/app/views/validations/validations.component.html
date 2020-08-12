@@ -61,8 +61,8 @@
                             (ngModelChange)="filterByProgramName($event)" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
                         </div>
                     </div>
-                    <div class="col-4">
-                        <div class="input-group-append" style="width: 60%;">
+                    <div class="col-2">
+                        <div class="input-group-append" style="width: 100%;">
                             <button style="width: 100%;z-index: auto;" class="dropdown-toggle blu-btn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span  *ngIf="selectedEntitie == 'Todas'">Todas las Dependencias</span>
                                 <span  *ngIf="selectedEntitie != 'Todas'">{{selectedEntitie}}</span>
@@ -70,6 +70,24 @@
                             <div class="dropdown-menu" >
                                 <a class="dropdown-item" (click)="changeEntitieSelected(-1)">Todas</a>
                                 <a *ngFor="let entitie of entities" class="dropdown-item" (click)="changeEntitieSelected(entitie)">{{entitie}}</a>
+                            </div>
+                          </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="input-group-append" style="width: 100%;">
+                            <span style="width: 100%;z-index: auto;" 
+                                class="dropdown-toggle " 
+                                type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class='btn btn-info'  *ngIf="statusSelected == true">Validado</span>
+                                <span class='btn btn-danger'  *ngIf="statusSelected == false">No Validado</span>
+                            </span>
+                            <div class="dropdown-menu" >
+                                <a class="dropdown-item" (click)="changeStateSelected(true)">
+                                    <span>Validado</span>
+                                </a>
+                                <a class="dropdown-item" (click)="changeStateSelected(false)">
+                                    <span>No Validado</span>
+                                </a>
                             </div>
                           </div>
                     </div>

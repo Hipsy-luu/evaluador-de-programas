@@ -81,6 +81,7 @@ export const email =
             '</div>'+
             '<div class="body">'+
                 '<h2 style="padding-top: 20px;">Acuse de validaciones</h1>'+
+                '<p style="padding-top: 40px;">Por medio del presente se le hace entrega de los resultados del clasificador de programas sociales correspondiente a su programa presupuestal para su impresion y entrega a la Secretaria de Hacienda</p>'+
                 '<p style="padding-top: 40px;">Este correo tiene como fin informar acerca del comprobante de validación, para acceder a esta información favor de descargar el archivo que se encuentra anexado a este correo</p>'+
                 '<img class="descriptive-img" style="padding-top: 60px;" src="https://evaluadorp.web.app/assets/emails/images/files.svg">'+
             '</div>'+

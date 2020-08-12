@@ -3,6 +3,7 @@ export class Respuestas{
     dependencia : string;
     programa : string;
     usuario : string;
+    usuarioEmail: string;
     titular : string;
     estatus : boolean;
     respuestasp1 : any[];
@@ -117,6 +118,7 @@ export class Respuestas{
         this.dependencia = "";
         this.programa = "";
         this.usuario = "";
+        this.usuarioEmail = "";
         this.titular = "";
         this.estatus = false;
         this.respuestasp1 = [];

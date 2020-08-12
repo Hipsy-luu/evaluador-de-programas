@@ -28,6 +28,7 @@ export class ValidationsComponent implements OnInit {
   respuestas: Respuestas[];
   respuestasFiltered: Respuestas[];
   respuestaSeleccionada: Respuestas;
+  statusSelected : boolean = false;
 
   data: any = [{
     eid: 'e101',
@@ -226,6 +227,7 @@ export class ValidationsComponent implements OnInit {
       this.entities = response.data.entities;
       this.selectedEntitie = "Todas";
       this.respuestasFiltered = Array.from(this.respuestas);
+      this.changeStateSelected(false);
       //this.apiDataService.showNotification(0, "Respuestas Obtenidas con Exito!", 6000);
     }).catch((error) => {
       console.log("error");
@@ -253,6 +255,13 @@ export class ValidationsComponent implements OnInit {
         });
         break;
     }
+  }
+
+  changeStateSelected(opc : boolean){
+    this.statusSelected = opc;
+      this.respuestasFiltered = this.respuestas.filter((respuesta) => {
+        return respuesta.estatus == this.statusSelected ;
+      });
   }
 
   selectRespuesta(respuesta: Respuestas) {
@@ -419,7 +428,7 @@ export class ValidationsComponent implements OnInit {
             [{ text: '', fontSize: 6, rowSpan: 1, colSpan: 18, alignment: 'center', border: [false, false, false, false] }, '', '','', '', '','', '', '','', '', '','', '', '','', '', ''],
             [{ text: '', fontSize: 6, rowSpan: 1, colSpan: 2, alignment: 'center', border: [false, false, false, false] }, '', { text: '', fontSize: 6, rowSpan: 1, colSpan: 6, alignment: 'center', border: [false, false, false, true] },'', '', '','', '', { text: '', fontSize: 6, rowSpan: 1, colSpan: 2, alignment: 'center', border: [false, false, false, false] },'', { text: '', fontSize: 6, rowSpan: 1, colSpan: 6, alignment: 'center', border: [false, false, false, true] }, '','', '', '','',{ text: '', fontSize: 6, rowSpan: 1, colSpan: 2, alignment: 'center', border: [false, false, false, false] }, ''],
             [{ text: '', fontSize: 6, rowSpan: 1, colSpan: 2, alignment: 'center', border: [false, false, false, false] }, '', { text: 'FIRMA DEL TITULAR DE LA DEPENDENCIA', fontSize: 5, rowSpan: 1, colSpan: 6, alignment: 'center', border: [false, false, false, false] },'', '', '','', '', { text: '', fontSize: 5, rowSpan: 1, colSpan: 2, alignment: 'center', border: [false, false, false, false] },'', { text: 'FIRMA DE QUIEN RESPONDE EL CLASIFICADOR', fontSize: 6, rowSpan: 1, colSpan: 6, alignment: 'center', border: [false, false, false, false] }, '','', '', '','',{ text: '', fontSize: 6, rowSpan: 1, colSpan: 2, alignment: 'center', border: [false, false, false, false] }, ''],
-            [{ text: '', fontSize: 6, rowSpan: 1, colSpan: 2, alignment: 'center', border: [false, false, false, false] }, '', { text: this.respuestaSeleccionada.usuario, fontSize: 6, rowSpan: 1, colSpan: 6, alignment: 'center', border: [false, false, false, false] },'', '', '','', '', { text: '', fontSize: 6, rowSpan: 1, colSpan: 2, alignment: 'center', border: [false, false, false, false] },'', { text: this.respuestaSeleccionada.titular, fontSize: 6, rowSpan: 1, colSpan: 6, alignment: 'center', border: [false, false, false, false] }, '','', '', '','',{ text: '', fontSize: 6, rowSpan: 1, colSpan: 2, alignment: 'center', border: [false, false, false, false] }, ''],
+            [{ text: '', fontSize: 6, rowSpan: 1, colSpan: 2, alignment: 'center', border: [false, false, false, false] }, '', { text: this.respuestaSeleccionada.titular, fontSize: 6, rowSpan: 1, colSpan: 6, alignment: 'center', border: [false, false, false, false] },'', '', '','', '', { text: '', fontSize: 6, rowSpan: 1, colSpan: 2, alignment: 'center', border: [false, false, false, false] },'', { text: this.respuestaSeleccionada.usuario, fontSize: 6, rowSpan: 1, colSpan: 6, alignment: 'center', border: [false, false, false, false] }, '','', '', '','',{ text: '', fontSize: 6, rowSpan: 1, colSpan: 2, alignment: 'center', border: [false, false, false, false] }, ''],
             /*['', '', '','', '', '','', '', '','', '', '','', '', '','', '', ''],
             ['', '', '','', '', '','', '', '','', '', '','', '', '','', '', ''],
             ['', '', '','', '', '','', '', '','', '', '','', '', '','', '', ''],
@@ -480,7 +489,7 @@ export class ValidationsComponent implements OnInit {
         //Password: 'CD71EF3F18D61EAC4DD8F549D65FF2E49ABE',
         Username: 'clasificador@chihuahua.gob.mx',
         Password: '8544CC6047C188E711D10459A5748FAB87E4',
-        To: [this.apiDataService.user.email],
+        To: [this.apiDataService.user.email,this.respuestaSeleccionada.usuarioEmail],
         Cc : /* 'luismi.luu@gmail.com' */'alberto.cortes@chihuahua.gob.mx',
         From: 'clasificador@chihuahua.gob.mx',
         Subject: "Reporte de validacion del programa presupuestario : " + data.noRespuestas,
