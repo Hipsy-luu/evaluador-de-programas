@@ -218,7 +218,7 @@ export class UserService {
 
         let titular = await this.catDependenciasRepository.findOne<CatDependencias>({
           //attributes: ['titular'],
-          where: { clavedependencia: respuesta.dependencia }
+          where: { clavedependencia: Number(respuesta.dependencia) }
         });
 
         return Object.assign(
@@ -227,7 +227,7 @@ export class UserService {
             dependencia: respuesta.dependencia ? respuesta.dependencia : 'Sin Dependencia',
             programa: programa ? programa.nombre_programa : "Sin Programa",
             usuario: user ? user.nombre.toLocaleUpperCase() + ' ' + user.apellidos.toLocaleUpperCase() : 'Sin Usuario',
-            titular: titular.titular,
+            titular: titular ? titular.titular : 'Sin Titular',
             estatus: respuesta.estatus ? respuesta.estatus : false,
             respuestasp1: respuestasp1 ? respuestasp1 : [],
             respuestasp2: respuestasp2,
