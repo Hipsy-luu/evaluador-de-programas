@@ -29,7 +29,7 @@
                 </div>
 
                 <div class="row" style="display: flex;align-items: center; text-align: start;">
-                    <div class="col-3">
+                    <div class="col-2">
                         <div ngbDropdown class="d-inline-block">
                             <button class="outline-btn"
                                 id="dropdownBasic1" ngbDropdownToggle>No.
@@ -73,7 +73,7 @@
                             </div>
                           </div>
                     </div>
-                    <div class="col-2">
+                    <div class="col-1">
                         <div class="input-group-append" style="width: 100%;">
                             <span style="width: 100%;z-index: auto;" 
                                 class="dropdown-toggle " 
@@ -90,6 +90,12 @@
                                 </a>
                             </div>
                           </div>
+                    </div>
+                    <div class="col-2" style="text-align: right;">
+                        <button type="button" class=" btn btn-secondary" (click)="exportAllAnswers()">
+                            <i class=" fa fa-file-excel-o" style="color:whitesmoke"></i>
+                                Guardar Reporte
+                        </button>
                     </div>
                     <div class="col-2" style="text-align: right;">
                         <button class="reload-btn" (click)="reloadData()">
@@ -287,6 +293,9 @@
                                 <span *ngIf="respuestaSeleccionada.respuestas.pregunta4.includes('desarrolloinfraestructura') == true">
                                     - El Programa desarrolla infraestructura social<br>
                                 </span>
+                                <span *ngIf="respuestaSeleccionada.respuestas.pregunta4.includes('ninguno') == true">
+                                    - Ninguno<br>
+                                </span>
                             </tr>
                         </td>
                         <td>
@@ -489,6 +498,23 @@
                                 <span>
                                     {{respuestaSeleccionada.respuestas.pregunta12complemento ? respuestaSeleccionada.respuestas.pregunta12complemento : ""}}<br>
                                 </span>
+                            </tr>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <tr>
+                                <th >
+                                    Observaciones o aclaraciones de la Dependencia o Entidad
+                                </th>
+                            </tr>
+                            <tr>
+                                <label *ngIf="respuestaSeleccionada.respuestas.aclaraciones.length > 0">
+                                    {{respuestaSeleccionada.respuestas.aclaraciones}}<br>
+                                </label>
+                                <label *ngIf="respuestaSeleccionada.respuestas.aclaraciones.length == 0">
+                                    Ninguno<br>
+                                </label>
                             </tr>
                         </td>
                     </tr>
@@ -656,6 +682,9 @@
                                 <span *ngIf="respuestaSeleccionada.respuestas.pregunta4.includes('desarrolloinfraestructura') == true">
                                     - El Programa desarrolla infraestructura social<br>
                                 </span>
+                                <span *ngIf="respuestaSeleccionada.respuestas.pregunta4.includes('ninguno') == true">
+                                    - Ninguno<br>
+                                </span>
                             </tr>
                         </td>
                         <td>
@@ -858,6 +887,23 @@
                                 <span>
                                     {{respuestaSeleccionada.respuestas.pregunta12complemento ? respuestaSeleccionada.respuestas.pregunta12complemento : ""}}<br>
                                 </span>
+                            </tr>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <tr>
+                                <th >
+                                    Observaciones o aclaraciones de la Dependencia o Entidad
+                                </th>
+                            </tr>
+                            <tr>
+                                <label *ngIf="respuestaSeleccionada.respuestas.aclaraciones.length > 0">
+                                    {{respuestaSeleccionada.respuestas.aclaraciones}}<br>
+                                </label>
+                                <label *ngIf="respuestaSeleccionada.respuestas.aclaraciones.length == 0">
+                                    Ninguno<br>
+                                </label>
                             </tr>
                         </td>
                     </tr>

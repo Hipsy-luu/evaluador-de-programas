@@ -1,0 +1,301 @@
+<div
+  *ngIf="apiDataService.successMessage"
+  class="alert alert-success notificacion-flotante"
+  role="alert"
+>
+  {{ apiDataService.actualMessageServer }}
+  <a (click)="apiDataService.closeNotification()">X</a>
+</div>
+<div
+  *ngIf="apiDataService.failMessage"
+  class="alert alert-warning notificacion-flotante"
+  role="alert"
+>
+  {{ apiDataService.actualMessageServer }}
+  <a (click)="apiDataService.closeNotification()">X</a>
+</div>
+<!-- Es el encargado de que se mueva el contenido -->
+<div class="wrapper">
+  <div class="navbar-custom">
+    <div
+      class="navbar-box"
+      style="height: -webkit-fill-available; align-items: center;"
+    >
+      <div class="" style="color: aliceblue;">
+        <img src="/assets/images/logo-trans.png" style="height: 40px;" />
+      </div>
+      <div class="">
+        <label style="color: white; padding: 0px 37px; font-size: x-large;"
+          >Bienvenido {{ apiDataService.user.nombre }}</label
+        >
+      </div>
+      <div class="">
+        <button
+          type="button"
+          class="log-out-btn"
+          (click)="apiDataService.logOut()"
+        >
+          Cerrar sesión
+          <i class="fas fa-door-open"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="card-box" style="text-align: -webkit-center;">
+        <div class="card">
+            <div class="card-body">
+              <div class="row full-centered no-margin pd-15 title-table">
+                GLOSARIO DE TÉRMINOS
+              </div>
+              <div class="row full-left no-margin pd-15 description-table">
+                <strong>
+                  Para efectos del presente Clasificador de Programas
+                  Presupuestarios con Enfoque Social, se definen los siguientes
+                  conceptos:
+                </strong>
+              </div>
+              <div class="row no-margin">
+                <div class="col-3 full-left pd-15 description-table">
+                  <strong>
+                    Apoyos sociales
+                  </strong>
+                </div>
+                <div class="col-9 full-left pd-15 concept-table">
+                  Asignaciones tangibles o intangibles (servicios) que los Entes
+                  Públicos otorgan a personas, instituciones y diversos sectores de
+                  la población para propósitos sociales.
+                </div>
+              </div>
+              <div class="row no-margin">
+                <div class="col-3 full-left pd-15 description-table">
+                  <strong>
+                    Beneficiario/a
+                  </strong>
+                </div>
+                <div class="col-9 full-left pd-15 concept-table">
+                  Persona de la población atendida que reúne los requisitos de
+                  acuerdo con la normatividad correspondiente y que recibe un bien
+                  de forma directa o indirecta, a través de una ayuda y/o subsidio
+                  del presupuesto público.
+                </div>
+              </div>
+              <div class="row no-margin">
+                <div class="col-3 full-left pd-15 description-table">
+                  <strong>
+                    Desarrollo de Capacidades
+                  </strong>
+                </div>
+                <div class="col-9 full-left pd-15 concept-table">
+                  El desarrollo de capacidades se refiere a las transformaciones que
+                  empoderan a las personas, los líderes, las organizaciones y las
+                  sociedades. Es el proceso a través del cual los individuos,
+                  organizaciones y sociedades obtienen, fortalecen o mantienen las
+                  capacidades para establecer y lograr sus propios objetivos de
+                  desarrollo a lo largo del tiempo (UNDP, 2009).
+                </div>
+              </div>
+              <div class="row no-margin">
+                <div class="col-3 full-left pd-15 description-table">
+                  <strong>
+                    Derechos Sociales
+                  </strong>
+                </div>
+                <div class="col-9 full-left pd-15 concept-table">
+                  Aquellos que se estipulan en el Artículo 6 de la Ley de Desarrollo
+                  Social y Humano para el Estado de Chihuahua.
+                </div>
+              </div>
+              <div class="row no-margin">
+                <div class="col-3 full-left pd-15 description-table">
+                  <strong>
+                    Entes Públicos
+                  </strong>
+                </div>
+                <div class="col-9 full-left pd-15 concept-table">
+                  Se refiere a los Poderes Ejecutivo, Legislativo y Judicial;
+                  Organismos Autónomos por disposición constitucional y Entidades de
+                  la Administración Pública Paraestatal del Poder Ejecutivo Estatal.
+                </div>
+              </div>
+              <div class="row no-margin">
+                <div class="col-3 full-left pd-15 description-table">
+                  <strong>
+                    Infraestructura social básica
+                  </strong>
+                </div>
+                <div class="col-9 full-left pd-15 concept-table">
+                  Aquellas obras de infraestructura social que son necesarias para
+                  asegurar el disfrute y ejercicio de los Derechos Sociales , por
+                  ejemplo, infraestructura para agua potable, alcantarillado,
+                  drenaje y letrinas, urbanización, electrificación rural y de
+                  colonias pobres, infraestructura básica del sector salud y
+                  educativo, mejoramiento de vivienda, comedores, así como
+                  mantenimiento de infraestructura. Se considera como
+                  Infraestructura Social Básica ya que a través de su desarrollo, se
+                  consigue contribuir al avance en el cumplimiento de algunos de los
+                  indicadores de la pobreza: • Rezago educativo • Acceso a los
+                  servicios de salud • Calidad y espacios en la vivienda • Acceso a
+                  los servicios básicos en vivienda • Acceso a la alimentación •
+                  Grado de accesibilidad a carretera pavimentada.
+                </div>
+              </div>
+              <div class="row no-margin">
+                <div class="col-3 full-left pd-15 description-table">
+                  <strong>
+                    Política Pública
+                  </strong>
+                </div>
+                <div class="col-9 full-left pd-15 concept-table">
+                  Corresponde a una solución específica de cómo manejar los asuntos
+                  públicos, es un factor común de la política y de las decisiones
+                  del gobierno y de la oposición.
+                </div>
+              </div>
+              <div class="row no-margin">
+                <div class="col-3 full-left pd-15 description-table">
+                  <strong>
+                    Padrón de Beneficiarios(as)
+                  </strong>
+                </div>
+                <div class="col-9 full-left pd-15 concept-table">
+                  Relación de beneficiarios que incluye a las personas atendidas por
+                  los programas federales, estatales y especiales, cuyos criterios
+                  de selección y perfil socioeconómico se establece en las reglas de
+                  operación de los programas presupuestarios.
+                </div>
+              </div>
+              <div class="row no-margin">
+                <div class="col-3 full-left pd-15 description-table">
+                  <strong>
+                    Reglas de Operación
+                  </strong>
+                </div>
+                <div class="col-9 full-left pd-15 concept-table">
+                  Son un conjunto de disposiciones que precisan la forma de operar
+                  un programa, con el propósito de lograr los niveles esperados de
+                  eficacia, eficiencia, equidad y transparencia.
+                </div>
+              </div>
+              <div class="row no-margin">
+                <div class="col-3 full-left pd-15 description-table">
+                  <strong>
+                    Perspectiva de Género
+                  </strong>
+                </div>
+                <div class="col-9 full-left pd-15 concept-table">
+                  Concepto que se refiere a la metodología y los mecanismos que
+                  facilitan identificar, cuestionar y valorar la discriminación, la
+                  desigualdad y la exclusión de las mujeres o de los hombres, que se
+                  pretende justificar con base en las diferencias biológicas entre
+                  mujeres y hombres, así como las acciones que deben emprenderse
+                  para crear las condiciones de cambio que permitan avanzar en la
+                  construcción de la equidad de género;
+                </div>
+              </div>
+              <div class="row no-margin">
+                <div class="col-3 full-left pd-15 description-table">
+                  <strong>
+                    Población Objetivo
+                  </strong>
+                </div>
+                <div class="col-9 full-left pd-15 concept-table">
+                  Población que el Programa Presupuestario, tiene planeado o
+                  programado atender con los recursos disponibles, y que cumple con
+                  los criterios de elegibilidad establecidos en su normatividad.
+                </div>
+              </div>
+              <div class="row no-margin">
+                <div class="col-3 full-left pd-15 description-table">
+                  <strong>
+                    Población Potencial
+                  </strong>
+                </div>
+                <div class="col-9 full-left pd-15 concept-table">
+                  Población total que presenta la necesidad y/o problema que
+                  justifica la existencia del Programa Presupuestario y que por lo
+                  tanto pudiera ser elegible para su atención.
+                </div>
+              </div>
+              <div class="row no-margin">
+                <div class="col-3 full-left pd-15 description-table">
+                  <strong>
+                    Población Atendida
+                  </strong>
+                </div>
+                <div class="col-9 full-left pd-15 concept-table">
+                  Población beneficiada por el Programa Presupuestario en un
+                  ejercicio fiscal.
+                </div>
+              </div>
+              <div class="row no-margin">
+                <div class="col-3 full-left pd-15 description-table">
+                  <strong>
+                    Programa Presupuestario
+                  </strong>
+                </div>
+                <div class="col-9 full-left pd-15 concept-table">
+                  Oferta de solución a un problema que padece una población
+                  específica; es una unidad de asignación de recursos que se
+                  identifique financiera y contablemente, así como una "unidad
+                  básica de gerencia y control de resultados" .
+                </div>
+              </div>
+              <div class="row no-margin">
+                <div class="col-3 full-left pd-15 description-table">
+                  <strong>
+                    Subsidios
+                  </strong>
+                </div>
+                <div class="col-9 full-left pd-15 concept-table">
+                  Las asignaciones de recursos previstos en los presupuestos de los
+                  Entes Públicos, que se otorgan a los diferentes sectores de la
+                  sociedad para fomentar el desarrollo de actividades sociales o
+                  económicas prioritarias de interés general.
+                </div>
+              </div>
+              <div class="row no-margin">
+                <div class="col-3 full-left pd-15 description-table">
+                  <strong>
+                    Vulnerabilidad
+                  </strong>
+                </div>
+                <div class="col-9 full-left pd-15 concept-table">
+                  Aquellas poblaciones consideradas como vulnerables por carencias
+                  sociales, que se define como la población que presenta una o más
+                  carencias sociales, pero cuyo ingreso es superior a la línea de
+                  bienestar.
+                </div>
+              </div>
+              <div class="row no-margin">
+                <div class="col-12 full-left pd-15">
+                  <strong>
+                    <sup>1</sup> Ley General de Desarrollo Social, Art. 31, numeral
+                    4; Ley de Desarrollo Social y Humano para el Estado de
+                    Chihuahua, Art. 35, fracción IV.
+                  </strong>
+                </div>
+              </div>
+              <div class="row no-margin">
+                <div class="col-12 full-left pd-15">
+                  <strong>
+                    <sup>2</sup>
+                    Presupuesto de Egresos del Estado de Chihuahua.
+                  </strong>
+                </div>
+              </div>
+              <!-- <div class="row no-margin ">
+                        <div class="col-3 full-left pd-15 description-table">
+                            <strong>
+                                
+                            </strong>
+                        </div>
+                        <div class="col-9 full-left pd-15 concept-table">
+                            
+                        </div>
+                    </div> -->
+            </div>
+          </div>
+    </div>
+  </div>
+</div>

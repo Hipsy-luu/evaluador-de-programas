@@ -1,0 +1,624 @@
+<div
+  *ngIf="apiDataService.successMessage"
+  class="alert alert-success notificacion-flotante"
+  role="alert"
+>
+  {{ apiDataService.actualMessageServer }}
+  <a (click)="apiDataService.closeNotification()">X</a>
+</div>
+<div
+  *ngIf="apiDataService.failMessage"
+  class="alert alert-warning notificacion-flotante"
+  role="alert"
+>
+  {{ apiDataService.actualMessageServer }}
+  <a (click)="apiDataService.closeNotification()">X</a>
+</div>
+<!-- Es el encargado de que se mueva el contenido -->
+<div class="wrapper">
+  <div class="navbar-custom">
+    <div
+      class="navbar-box"
+      style="height: -webkit-fill-available; align-items: center;"
+    >
+      <div class="" style="color: aliceblue;">
+        <img src="/assets/images/logo-trans.png" style="height: 40px;" />
+      </div>
+      <div class="">
+        <label style="color: white; padding: 0px 37px; font-size: x-large;"
+          >Bienvenido {{ apiDataService.user.nombre }}</label
+        >
+      </div>
+      <div class="">
+        <button
+          type="button"
+          class="log-out-btn"
+          (click)="apiDataService.logOut()"
+        >
+          Cerrar sesión
+          <i class="fas fa-door-open"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="card-box" style="text-align: -webkit-center;">
+        <div class="card ">
+            <div class="card-body">
+                <div class="row full-centered no-margin  pd-15 title-table">
+                    FUNDAMENTO JURÍDICO DEL CLASIFICADOR DE PROGRAMAS PRESUPUESTARIOS CON
+                    ENFOQUE SOCIAL
+                </div>
+                <div class="row no-margin ">
+                    <div class="col-3 full-left pd-15 description-table">
+                        <strong>
+                            Documento jurídico
+                        </strong>
+                    </div>
+                    <div class="col-2 full-left pd-15 description-table">
+                        <strong>
+                            Artículo(s)
+                        </strong>
+                    </div>
+                    <div class="col-7 full-left pd-15 description-table">
+                        <strong>
+                            Que a la letra dice...
+                        </strong>
+                    </div>
+                </div>
+                <div class="row no-margin ">
+                    <div class="col-3 full-left pd-15 concept-table">
+                        Ley General de
+                        Desarrollo Social
+                    </div>
+                    <div class="col-2 full-left pd-15 concept-table">
+                        Artículo 6
+                    </div>
+                    <div class="col-7 full-left pd-15 concept-table">
+                        Son derechos para el desarrollo social la educación, la salud, la
+                        alimentación, la vivienda, el disfrute de un medio ambiente sano, el
+                        trabajo y la seguridad social y los relativos a la no discriminación
+                        en los términos de la Constitución Política de los Estados Unidos
+                        Mexicanos.
+                    </div>
+                </div>
+                <div class="row no-margin ">
+                    <div class="col-3 full-left pd-15 concept-table">
+                        Ley de Desarrollo Social
+                        y Humano para el Estado
+                        de Chihuahua
+                    </div>
+                    <div class="col-2 full-left pd-15 concept-table">
+                        Artículo 6;
+                        Fracciones
+                        I a la XI
+                    </div>
+                    <div class="col-7 full-left pd-15 concept-table">
+                        En el Estado de Chihuahua se reconocen y consideran, sin
+                        perjuicio de lo que señalen otras disposiciones legales, los
+                        siguientes derechos sociales:
+                        A la salud y deporte;
+                        II. A la seguridad social;
+                        III. Al trabajo;
+                        IV. A la alimentación y nutrición;
+                        V. A la Educación;
+                        VI. A una vida libre de violencia de género;
+                        VII. A la vivienda;
+                        VIII. Al medio ambiente sano;
+                        IX. A la no discriminación en los términos de la Constitución
+                        Política de los Estados Unidos
+                        Mexicanos, la particular del Estado, la presente ley y demás
+                        disposiciones aplicables;
+                        X. A la infraestructura social básica; y
+                        XI. A la participación en los procesos de desarrollo social y
+                        humano.
+                    </div>
+                </div>
+                <div class="row no-margin ">
+                    <div class="col-3 full-left pd-15 concept-table">
+                        Ley de Igualdad entre
+                        Mujeres y Hombres del
+                        Estado de Chihuahua
+                    </div>
+                    <div class="col-2 full-left pd-15 concept-table">
+                        Artículo 1
+                    </div>
+                    <div class="col-7 full-left pd-15 concept-table">
+                        La presente Ley es de orden público, de interés social y de
+                        observancia general en el Estado de Chihuahua, y tiene por objeto
+                        regular, proteger y garantizar el cumplimiento de las obligaciones
+                        en materia de igualdad entre el hombre y la mujer, mediante la
+                        eliminación de todas las formas de discriminación contra la mujer
+                        en los ámbitos público y privado, así como el establecimiento de
+                        acciones afirmativas a favor de las mujeres y de mecanismos
+                        institucionales que establezcan criterios y orienten a
+                        las autoridades competentes del Estado de Chihuahua en el
+                        cumplimiento de esta Ley.
+                    </div>
+                </div>
+                <div class="row no-margin ">
+                    <div class="col-3 full-left pd-15 concept-table">
+                        Ley de Igualdad entre
+                        Mujeres y Hombres del
+                        Estado de Chihuahua
+                    </div>
+                    <div class="col-2 full-left pd-15 concept-table">
+                        Artículo 3
+                    </div>
+                    <div class="col-7 full-left pd-15 concept-table">
+                        Son sujetos de los derechos que establece esta Ley, las mujeres y
+                        los hombres que se encuentren en territorio estatal, que por razón
+                        de su sexo, independientemente de su edad, estado civil,
+                        profesión, cultura, origen étnico o nacional, condición social, salud,
+                        religión, opinión o capacidades diferentes, se encuentren con
+                        algún tipo de desventaja ante la violación del principio de igualdad
+                        que esta Ley tutela.
+                    </div>
+                </div>
+                <div class="row no-margin ">
+                    <div class="col-3 full-left pd-15 concept-table">
+                        Ley de Desarrollo Social
+                        y Humano para el Estado
+                        de Chihuahua
+                    </div>
+                    <div class="col-2 full-left pd-15 concept-table">
+                        Artículo 17;
+                        Fracciones
+                        I a la VI
+                    </div>
+                    <div class="col-7 full-left pd-15 concept-table">
+                        Los objetivos de la política estatal son:
+                        I. Garantizar las condiciones que aseguren el disfrute de los
+                        derechos sociales.
+                        II. Promover un desarrollo económico con sentido social que
+                        propicie las condiciones para conservar el empleo, elevar el nivel
+                        de ingreso y mejorar su distribución.
+                        III. Promover y fortalecer el desarrollo armónico regional y
+                        municipal.
+                        IV. Superar las condiciones de pobreza, desigualdad, marginación,
+                        vulnerabilidad, discriminación y exclusión presentes en la
+                        sociedad.
+                        V. Propiciar las condiciones para la participación consciente,
+                        organizada y activa de la sociedad en la formulación, ejecución,
+                        evaluación y control de los programas y proyectos, en los términos
+                        de la presente ley; tratándose de pueblos y comunidades
+                        indígenas, se estará a las modalidades previstas en la ley de la
+                        materia.
+                        VI. Promover el desarrollo social y humano.
+                    </div>
+                </div>
+                <div class="row no-margin ">
+                    <div class="col-3 full-left pd-15 concept-table">
+                        Ley General de
+                        Desarrollo Social
+                    </div>
+                    <div class="col-2 full-left pd-15 concept-table">
+                        Artículo 18
+                    </div>
+                    <div class="col-7 full-left pd-15 concept-table">
+                        Los programas, fondos y recursos destinados al desarrollo social
+                        son prioritarios y de interés público, por lo cual serán objeto de
+                        seguimiento y evaluación de acuerdo con esta Ley; y no podrán
+                        sufrir disminuciones en sus montos presupuestales, excepto en los
+                        casos y términos que establezca la Cámara de Diputados al
+                        aprobar el Presupuesto de Egresos de la Federación.
+                    </div>
+                </div>
+                <div class="row no-margin ">
+                    <div class="col-3 full-left pd-15 concept-table">
+                        Ley General de
+                        Desarrollo Social
+                    </div>
+                    <div class="col-2 full-left pd-15 concept-table">
+                        Artículo 19
+                    </div>
+                    <div class="col-7 full-left pd-15 concept-table">
+                        Son prioritarios y de interés público:
+                        I. Los programas de educación obligatoria;
+                        II. Las campañas de prevención y control de enfermedades
+                        transmisibles y los programas de atención médica;
+                        III. Los programas dirigidos a las personas en condiciones de
+                        pobreza, marginación o en situación de vulnerabilidad;
+                        IV. Los programas dirigidos a zonas de atención prioritaria;
+                        V. Los programas y acciones públicas para asegurar la
+                        alimentación nutritiva y de calidad y nutrición materno-infantil;
+                        VI. Los programas de abasto social de productos básicos;
+                        VII. Los programas de vivienda;
+                        VIII. Los programas y fondos públicos destinados a la generación y
+                        conservación del empleo, a las actividades productivas sociales y a
+                        las empresas del sector social de la economía, y
+                        IX. Los programas y obras de infraestructura para agua potable,
+                        drenaje, electrificación, caminos y otras vías de comunicación,
+                        saneamiento ambiental y equipamiento urbano.
+                    </div>
+                </div>
+                <div class="row no-margin ">
+                    <div class="col-3 full-left pd-15 concept-table">
+                        Ley de Desarrollo Social
+                        y Humano para el Estado
+                        de Chihuahua
+                    </div>
+                    <div class="col-2 full-left pd-15 concept-table">
+                        Artículo 24;
+                        Fracciones
+                        I a la XI
+                    </div>
+                    <div class="col-7 full-left pd-15 concept-table">
+                        Los recursos destinados a programas y proyectos para el
+desarrollo social y humano son prioritarios y de interés público, por
+lo que serán objeto de seguimiento y evaluación de acuerdo con
+esta ley y demás disposiciones aplicables, especialmente los
+dirigidos a:
+I. Educación obligatoria;
+II. Promoción de la salud, prevención y control de enfermedades
+transmisibles y atención médica;
+III. Personas en condiciones de pobreza, desigualdad,
+marginación, discriminación, exclusión o en situación de
+vulnerabilidad;
+IV. Prevenir, atender y erradicar la violencia de género;
+V. Zonas de atención prioritaria;
+VI. Alimentación y nutrición;
+VII. Abasto social de productos básicos;
+VIII. Vivienda;
+IX. Generación y conservación del empleo, actividades
+productivas y empresas del sector social de la economía;
+X. Obras de infraestructura para agua potable, drenaje,
+electrificación, caminos y otras vías de comunicación, saneamiento
+ambiental y equipamiento urbano; y
+XI. Atención de personas y grupos vulnerables, víctimas de
+desastres naturales, catástrofes o situaciones de emergencia. 
+                    </div>
+                </div>
+                <div class="row no-margin ">
+                    <div class="col-3 full-left pd-15 concept-table">
+                        Ley de Desarrollo Social
+                        y Humano para el Estado
+                        de Chihuahua
+                    </div>
+                    <div class="col-2 full-left pd-15 concept-table">
+                        Artículo 31
+                    </div>
+                    <div class="col-7 full-left pd-15 concept-table">
+                        El Ejecutivo del Estado y los ayuntamientos deberán elaborar y
+                        publicar en el Periódico Oficial, las reglas de operación de los
+                        programas en la materia, incluidos en el presupuesto de egresos,
+                        así como la metodología, normatividad, calendarización y las
+                        asignaciones correspondientes a las diversas regiones y
+                        municipios de la entidad, sin perjuicio de transparentar de oficio la
+                        información pública establecida en la correspondiente ley.
+                    </div>
+                </div>
+                <div class="row no-margin ">
+                    <div class="col-3 full-left pd-15 concept-table">
+                        Ley de Disciplina
+                        Financiera de las
+                        Entidades Federativas y
+                        los Municipios
+                    </div>
+                    <div class="col-2 full-left pd-15 concept-table">
+                        Artículo 13,
+                        fracción VII
+                    </div>
+                    <div class="col-7 full-left pd-15 concept-table">
+                        Una vez aprobado el Presupuesto de Egresos, para el ejercicio del
+                        gasto, las Entidades Federativas deberán observar las
+                        disposiciones siguientes:
+                        VII.- En materia de subsidios se deberá identificar la población
+                        objetivo, el propósito o destino principal y la temporalidad de su
+                        otorgamiento. Los mecanismos de distribución, operación y
+                        administración de los subsidios deberán garantizar que los
+                        recursos se entreguen a la población objetivo y reduzcan los
+                        gastos administrativos del programa correspondiente.
+                        La información señalada en el párrafo anterior deberá hacerse
+                        pública a través de las páginas oficiales de Internet de las
+                        secretarías de finanzas o sus equivalentes de los gobiernos
+                        locales, y
+                    </div>
+                </div>
+                <div class="row no-margin ">
+                    <div class="col-3 full-left pd-15 concept-table">
+                        Ley General de
+                        Desarrollo Social
+                    </div>
+                    <div class="col-2 full-left pd-15 concept-table">
+                        Artículo 10,
+                        fracción II
+                    </div>
+                    <div class="col-7 full-left pd-15 concept-table">
+                        Los beneficiarios de los programas de desarrollo social tienen los
+                        siguientes derechos y obligaciones:
+                        II) Acceder a la información necesaria de dichos programas, sus
+                        reglas de operación, recursos y cobertura.
+                    </div>
+                </div>
+                <div class="row no-margin ">
+                    <div class="col-3 full-left pd-15 concept-table">
+                        Ley General de
+                        Transparencia y Acceso
+                        a la Información
+                    </div>
+                    <div class="col-2 full-left pd-15 concept-table">
+                        Artículo 77,
+                        fracción
+                        XV, inciso
+                        o)
+                    </div>
+                    <div class="col-7 full-left pd-15 concept-table">
+                        En la Ley Federal y de las Entidades Federativas se contemplará
+                        que los sujetos obligados pongan a disposición del público y
+                        mantengan actualizada, en los respectivos medios electrónicos,
+                        de acuerdo con sus facultades, atribuciones, funciones u objeto
+                        social, según corresponda,
+                        la información, por lo menos, de los temas, documentos y políticas
+                        que a continuación se señalan:
+                        XV. La información de los programas de subsidios, estímulos y
+                        apoyos, en el que se deberá informar respecto de los programas
+                        de transferencia, de servicios, de infraestructura social y de
+                        subsidio, en los que se deberá contener lo siguiente:
+                        o) Vínculo a las reglas de operación o Documento equivalente;
+                    </div>
+                </div>
+                <div class="row no-margin ">
+                    <div class="col-3 full-left pd-15 concept-table">
+                        Ley de Presupuesto de
+                        Egresos, Contabilidad
+                        Gubernamental y Gasto
+                        Público del Estado de
+                        Chihuahua
+                    </div>
+                    <div class="col-2 full-left pd-15 concept-table">
+                        Artículo
+                        136
+                    </div>
+                    <div class="col-7 full-left pd-15 concept-table">
+                        Los entes públicos y los municipios publicarán en Internet la
+                        información sobre los montos pagados durante el periodo por
+                        concepto de ayudas y subsidios a los sectores económicos y
+                        sociales, identificando el nombre del beneficiario, y en lo posible la
+                        Clave Única de Registro de Población cuando el beneficiario sea
+                        persona física, o el Registro Federal de Contribuyentes con Homo
+                        clave cuando sea persona moral o persona física con actividad
+                        empresarial y profesional, y el monto recibido.
+                    </div>
+                </div>
+                <div class="row no-margin ">
+                    <div class="col-3 full-left pd-15 concept-table">
+                        Ley General de
+                        Desarrollo Social
+                    </div>
+                    <div class="col-2 full-left pd-15 concept-table">
+                        Artículo 27
+                    </div>
+                    <div class="col-7 full-left pd-15 concept-table">
+                        Con el propósito de asegurar la equidad y eficacia de los
+                        programas de desarrollo social, el Gobierno Federal, por conducto
+                        de la Secretaría y los gobiernos de las entidades federativas y de
+                        los municipios, en el ámbito de sus respectivas competencias,
+                        integrarán el Padrón.
+                    </div>
+                </div>
+                <div class="row no-margin ">
+                    <div class="col-3 full-left pd-15 concept-table">
+                        Ley General de
+                        Transparencia y Acceso
+                        a la Información
+                    </div>
+                    <div class="col-2 full-left pd-15 concept-table">
+                        Artículo 70,
+                        fracción
+                        XV, inciso
+                        o)
+                    </div>
+                    <div class="col-7 full-left pd-15 concept-table">
+                        En la Ley Federal y de las Entidades Federativas se contemplará
+                        que los sujetos obligados pongan a disposición del público y
+                        mantengan actualizada, en los respectivos medios electrónicos,
+                        de acuerdo con sus facultades, atribuciones, funciones u objeto
+                        social, según corresponda,
+                        la información, por lo menos, de los temas, documentos y políticas
+                        que a continuación se señalan:
+                        XV. La información de los programas de subsidios, estímulos y
+                        apoyos, en el que se deberá informar respecto de los programas
+                        de transferencia, de servicios, de infraestructura social y de
+                        subsidio, en los que se deberá contener lo siguiente:
+                        q) Padrón de beneficiarios mismo que deberá contener los
+                        siguientes datos: nombre de la persona física o denominación
+                        social de las personas morales beneficiarias, el monto, recurso,
+                        beneficio o apoyo otorgado para cada una de ellas, unidad
+                        territorial, en su caso, edad y sexo;
+                    </div>
+                </div>
+                <!-- <div class="row no-margin ">
+                    <div class="col-3 full-left pd-15 description-table">
+                        <strong>
+                            
+                        </strong>
+                    </div>
+                    <div class="col-9 full-left pd-15 concept-table">
+                        
+                    </div>
+                </div> -->
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <div class="row full-centered no-margin pd-15 title-table">
+                    DERECHOS SOCIALES
+                </div>
+                <div class="row full-centered no-margin pd-15 description-table">
+                    <strong>
+                        DESCRIPCIÓN DE LOS DERECHOS SOCIALES
+                    </strong>
+                </div>
+                <div class="row no-margin ">
+                    <div class="col-3 full-left pd-15 description-table">
+                        <strong>
+                            ALIMENTACIÓN Y
+NUTRICIÓN
+                        </strong>
+                    </div>
+                    <div class="col-9 full-left pd-15 concept-table">
+                        Toda persona tiene derecho a una nutrición adecuada, a no padecer de malnutrición
+y hambre a fin de poder desarrollarse plenamente y conservar sus capacidades
+físicas y mentales.
+                    </div>
+                </div> 
+                <div class="row no-margin ">
+                    <div class="col-3 full-left pd-15 description-table">
+                        <strong>
+                            NO
+DISCRIMINACIÓN
+                        </strong>
+                    </div>
+                    <div class="col-9 full-left pd-15 concept-table">
+                        Todas las personas son iguales ante la ley y tiene derecho a la aplicación de
+medidas destinadas a proteger la salud y el bienestar de las personas; y a que se
+establezcan y mantengan las condiciones adecuadas para alcanzar un estado
+óptimo de bienestar físico, mental y social.
+                    </div>
+                </div>
+                <div class="row no-margin ">
+                    <div class="col-3 full-left pd-15 description-table">
+                        <strong>
+                            EDUCACIÓN
+                        </strong>
+                    </div>
+                    <div class="col-9 full-left pd-15 concept-table">
+                        Toda persona tiene derecho a la educación para el pleno desarrollo de la
+personalidad humana y el fortalecimiento de las libertades fundamentales; favorecerá
+la comprensión, la tolerancia y la amistad entre todas las naciones y todos los grupos
+étnicos o religiosos.
+                    </div>
+                </div>
+                <div class="row no-margin ">
+                    <div class="col-3 full-left pd-15 description-table">
+                        <strong>
+                            MEDIO AMBIENTE
+SANO
+                        </strong>
+                    </div>
+                    <div class="col-9 full-left pd-15 concept-table">
+                        Toda persona tiene derecho a la protección y mejora del medio ambiente para
+preservar el entorno propicio para la existencia y desarrollo de la vida humana.
+                    </div>
+                </div>
+                <div class="row no-margin ">
+                    <div class="col-3 full-left pd-15 description-table">
+                        <strong>
+                            SALUD Y DEPORTE
+                        </strong>
+                    </div>
+                    <div class="col-9 full-left pd-15 concept-table">
+                        Toda persona tiene derecho a la aplicación de medidas destinadas a proteger la
+salud y el bienestar de las personas; y a que se establezcan y mantengan las
+condiciones adecuadas para alcanzar un estado óptimo de bienestar físico, mental y
+social.
+                    </div>
+                </div>
+                <div class="row no-margin ">
+                    <div class="col-3 full-left pd-15 description-table">
+                        <strong>
+                            SEGURIDAD
+                            SOCIAL 
+                        </strong>
+                    </div>
+                    <div class="col-9 full-left pd-15 concept-table">
+                        Toda persona tiene derecho a la seguridad social y a obtener, mediante el esfuerzo
+nacional y la cooperación internacional, habida cuenta de la organización y los
+recursos de cada Estado, la satisfacción de los derechos económicos, sociales y
+culturales, indispensables a su dignidad y al libre desarrollo de su personalidad.
+                    </div>
+                </div>
+                <div class="row no-margin ">
+                    <div class="col-3 full-left pd-15 description-table">
+                        <strong>
+                            TRABAJO
+                        </strong>
+                    </div>
+                    <div class="col-9 full-left pd-15 concept-table">
+                        Toda persona tiene derecho al trabajo, a la libre elección de su trabajo, a la
+protección contra el desempleo, a una remuneración equitativa y satisfactoria, a
+fundar sindicatos y a sindicarse para la defensa de sus intereses, que le asegure, así
+como a su familia, una existencia conforme a la dignidad humana.
+                    </div>
+                </div>
+                <div class="row no-margin ">
+                    <div class="col-3 full-left pd-15 description-table">
+                        <strong>
+                            VIVIENDA
+                        </strong>
+                    </div>
+                    <div class="col-9 full-left pd-15 concept-table">
+                        Toda persona tiene derecho a un nivel de vida adecuado que le asegure, así como a
+su familia, la provisión de una vivienda para mejora continua de las condiciones de
+existencia en particular a las personas de ingresos reducidos y las familias
+numerosas tanto en las zonas rurales como en las urbanas.
+                    </div>
+                </div>
+                <div class="row no-margin ">
+                    <div class="col-3 full-left pd-15 description-table">
+                        <strong>
+                            VIDA LIBRE DE
+VIOLENCIA DE
+GÉNERO
+                        </strong>
+                    </div>
+                    <div class="col-9 full-left pd-15 concept-table">
+                        Favorece su desarrollo y bienestar conforme a los principios de igualdad y de no
+discriminación, así como garantizar la democracia, el desarrollo integral y sustentable
+que fortalezca la soberanía y el régimen democrático establecidos en la Constitución
+Política de los Estados Unidos Mexicanos.
+                    </div>
+                </div>
+                <div class="row no-margin ">
+                    <div class="col-3 full-left pd-15 description-table">
+                        <strong>
+                            PARTICIPACIÓN
+SOCIAL
+                        </strong>
+                    </div>
+                    <div class="col-9 full-left pd-15 concept-table">
+                        Derecho de las personas y organizaciones a intervenir e integrarse, individual o
+colectivamente, en la formulación, ejecución y evaluación de las políticas, programas
+y proyectos del desarrollo social y humano.
+                    </div>
+                </div>
+                <div class="row no-margin ">
+                    <div class="col-3 full-left pd-15 description-table">
+                        <strong>
+                            INFRAESTRUCTURA
+SOCIAL BÁSICA
+                        </strong>
+                    </div>
+                    <div class="col-9 full-left pd-15 concept-table">
+                        Aquellas obras de infraestructura social que son necesarias para asegurar el disfrute
+y ejercicio de los Derechos Sociales , por ejemplo, infraestructura para agua potable,
+alcantarillado, drenaje y letrinas, urbanización, electrificación rural y de colonias
+pobres, infraestructura básica del sector salud y educativo, mejoramiento de
+vivienda, comedores, así como mantenimiento de infraestructura.
+Se considera como Infraestructura Social Básica ya que a través de su desarrollo, se
+consigue contribuir al avance en el cumplimiento de algunos de los indicadores de la
+pobreza:
+• Rezago educativo
+• Acceso a los servicios de salud
+• Calidad y espacios en la vivienda
+• Acceso a los servicios básicos en vivienda
+• Acceso a la alimentación
+• Grado de accesibilidad a carretera pavimentada
+                    </div>
+                </div>
+                
+              <!-- <div class="row no-margin ">
+                        <div class="col-3 full-left pd-15 description-table">
+                            <strong>
+                                
+                            </strong>
+                        </div>
+                        <div class="col-9 full-left pd-15 concept-table">
+                            
+                        </div>
+                    </div> -->
+            </div>
+          </div>
+  </div>
+</div>

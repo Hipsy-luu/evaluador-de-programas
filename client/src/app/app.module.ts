@@ -4,16 +4,20 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-//Enable Biding
+//Habilitando Biding
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
-//Importacion de las vistas/componentes
+//Importación de Bootstrap
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
+//Importación de las vistas/componentes
 import { RegisterProgramComponent } from './views/register-program/register-program.component';
 import { LoginComponent } from './views/login/login.component';
 import { ValidationsComponent } from './views/validations/validations.component';
 import { AdminDashboardComponent } from './views/admin-dashboard/admin-dashboard.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { GlosaryComponent } from './views/glosary/glosary.component';
+import { ConceptsBasisRightsComponent } from './views/concepts-basis-rights/concepts-basis-rights.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +26,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     LoginComponent,
     ValidationsComponent,
     AdminDashboardComponent,
+    GlosaryComponent,
+    ConceptsBasisRightsComponent,
   ],
   imports: [
     BrowserModule,

@@ -157,7 +157,7 @@ export class UserService {
       }
     }
   }
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
   async getAllRespuestas( dependencia ): Promise<ServerMessage> {
     let dataResponse: any = {
       respuestas: [Respuestas]
@@ -255,6 +255,7 @@ export class UserService {
               pregunta11complemento: respuesta.pregunta11complemento ? respuesta.pregunta11complemento : "",
               pregunta12: respuesta.pregunta12 ? respuesta.pregunta12 : "no",
               pregunta12complemento: respuesta.pregunta12complemento ? respuesta.pregunta12complemento : "",
+              aclaraciones : respuesta.aclaraciones
             },
             program : programa
           })
@@ -302,6 +303,7 @@ export class UserService {
       pregunta5complemento: data.pregunta5.complemento ? data.pregunta5.complemento : 0,
       usuario: data.usuario ? data.usuario : 0,
       estatus: data.estatus ? data.estatus : 0,
+      aclaraciones: data.aclaraciones ? data.aclaraciones : ""
     };
     try {
       var newRespuestas: Respuestas = await this.respuestasRepository.create<Respuestas>(respuestas, {});

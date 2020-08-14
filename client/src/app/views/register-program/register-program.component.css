@@ -18,3 +18,7 @@ h6 {
 label input{
   margin-right: 10px;
 }
+
+.no-margin{
+    margin: 0px;
+}

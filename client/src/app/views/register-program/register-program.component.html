@@ -130,8 +130,20 @@
                         realiza un inventario estatal de los Programas Presupuestarios a través del Clasificador de
                         Programas Presupuestarios con enfoque social 2020.
                     </p>
-                    <a href="#0" id="more_info" data-toggle="modal" data-target="#more-info"><i
-                            class="pe-7s-info"></i></a>
+                    <div class="row">
+                        <div class="col-2 no-margin">
+                            <a id="more_info" data-toggle="modal" data-target="#more-info"><i
+                                class="pe-7s-info" style="color: whitesmoke;cursor: pointer;"></i></a>
+                        </div>
+                        <div class="col-10 no-margin">
+                            <div class="row " >
+                                <a routerLink="/glosary" target="_blank" style="color: whitesmoke !important;">Glosario de Términos</a>
+                            </div>
+                            <div class="row ">
+                                <a routerLink="/concepts-basis-rights" target="_blank" style="color: whitesmoke !important;">Fundamento Jurídico, y Derechos Sociales</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="col-lg-7">
@@ -491,6 +503,12 @@
                                                 social
                                             </label>
                                         </div>
+                                        <div class="form-group checkbox_input">
+                                            <label><input (change)="pregunta4Selecciones[4] = !pregunta4Selecciones[4];" type="checkbox" value="desarrolloinfraestructura"
+                                                    name="subcategoriaprograma" id="subcategoriaprograma"
+                                                    class="icheck required">Ninguno
+                                            </label>
+                                        </div>
                                     </div>
                                 </div>
                                 <!-- /row -->
@@ -811,6 +829,14 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label style="text-transform: capitalize;">Extension : {{apiDataService.user.extension}}</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h3 class="main_question">Observaciones o aclaraciones de la Dependencia o Entidad:</h3>
+                                        <div class="form-group">
+                                            <textarea [(ngModel)]="aclaraciones" maxlength="1000" placeholder="Escriba las aclaraciones que considere necesarias" name="textarea" rows="10" cols="50" style="width: 100%;"></textarea>
                                         </div>
                                     </div>
                                 </div>

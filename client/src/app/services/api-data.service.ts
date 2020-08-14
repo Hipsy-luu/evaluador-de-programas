@@ -1,11 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
 import { User } from '../classes/user.class';
 import { CatProgramas } from '../classes/catprogramas.class';
 import { ServerMessage } from '../classes/serverMessages.dto';
-import { rejects } from 'assert';
-import { async } from 'rxjs/internal/scheduler/async';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -13,9 +10,9 @@ import { Router } from '@angular/router';
 })
 export class ApiDataService {
   //Url testeo locales
-  baseURL: string = "http://localhost:3000/";
+  //baseURL: string = "http://localhost:3000/";
   //Url producción
-  //baseURL: string = "https://evaluadorapi.enbibo.com/";
+  baseURL: string = "https://evaluadorapi.enbibo.com/";
 
   token : String;
   user : User;

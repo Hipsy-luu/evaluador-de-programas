@@ -135,6 +135,7 @@ export class ValidationsComponent implements OnInit {
       pregunta11: this.respuestaSeleccionada.respuestas.pregunta11,
       pregunta11complemento: this.respuestaSeleccionada.respuestas.pregunta11complemento,
       pregunta12: this.respuestaSeleccionada.respuestas.pregunta12,
+
       validacion1: this.respuestaSeleccionada.validaciones.validacion1 ? "Validado" : "Sin Validar",
       validacion1a: this.respuestaSeleccionada.validaciones.validacion1a ? "Validado" : "Sin Validar",
       validacion1justificacion: this.respuestaSeleccionada.validaciones.validacion1justificacion,
@@ -205,24 +206,77 @@ export class ValidationsComponent implements OnInit {
     });
     this.exportAsExcelFile(data, 'Respuestas_' + this.respuestaSeleccionada.idrespuestas);
   }
+
+  exportAllAnswers(){
+    //console.log(this.respuestas);
+    let data = [];
+
+    for (let index = 0; index < this.respuestas.length; index++) {
+      let pregunta1Fix = "";
+      this.respuestas[index].respuestasp1.forEach(element => {
+        pregunta1Fix = pregunta1Fix + "," +element;
+      });
+
+      let pregunta2Fix = "";
+      this.respuestas[index].respuestasp2.forEach(element => {
+        pregunta2Fix = pregunta2Fix + "," +element;
+      });
+      const element = {
+        IdRespuestas : this.respuestas[index].idrespuestas,
+        Estatus : this.respuestas[index].estatus == true ? "Validado" : "No validado", 
+        IdPrograma : this.respuestas[index].program.idprograma,
+        NombrePrograma : this.respuestas[index].programa,
+        ClavePresupuestaria : this.respuestas[index].program.clave_presupuestaria,
+        Entidad : this.respuestas[index].dependencia,
+        nombreUsuario: this.respuestas[index].usuario,
+        pregunta1: pregunta1Fix,
+        pregunta1complemento: this.respuestas[index].respuestas.pregunta1complemento,
+        pregunta2: this.respuestas[index].respuestas.pregunta2,
+        pregunta2complemento: pregunta2Fix,
+        pregunta3: this.respuestas[index].respuestas.pregunta3,
+        pregunta3complemento: this.respuestas[index].respuestas.pregunta3complemento,
+        pregunta4: this.respuestas[index].respuestas.pregunta4,
+        pregunta4complemento: this.respuestas[index].respuestas.pregunta4complemento,
+        pregunta5: this.respuestas[index].respuestas.pregunta5,
+        pregunta5complemento: this.respuestas[index].respuestas.pregunta5complemento,
+        pregunta6: this.respuestas[index].respuestas.pregunta6,
+        pregunta7: this.respuestas[index].respuestas.pregunta7,
+        pregunta8: this.respuestas[index].respuestas.pregunta8,
+        pregunta8complemento: this.respuestas[index].respuestas.pregunta8complemento,
+        pregunta9: this.respuestas[index].respuestas.pregunta9,
+        pregunta10: this.respuestas[index].respuestas.pregunta10,
+        pregunta10complemento: this.respuestas[index].respuestas.pregunta10complemento,
+        pregunta11: this.respuestas[index].respuestas.pregunta11,
+        pregunta11complemento: this.respuestas[index].respuestas.pregunta11complemento,
+        pregunta12: this.respuestas[index].respuestas.pregunta12,
+        aclaraciones: this.respuestas[index].respuestas.aclaraciones,
+      }
+      
+      data.push(element);
+    }
+    this.exportAsExcelFile(data, 'Reporte Programas Presupuestarios ' + new Date().toUTCString());
+  }
+
   public exportAsExcelFile(json: any[], excelFileName: string): void {
     const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(json);
     const workbook: XLSX.WorkBook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
     const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
     this.saveAsExcelFile(excelBuffer, excelFileName);
   }
+
   private saveAsExcelFile(buffer: any, fileName: string): void {
     const data: Blob = new Blob([buffer], { type: EXCEL_TYPE });
     let dateFix = "" + new Date().getDate() + "_" + new Date().getMonth() + "_" + new Date().getFullYear() + "_"
     FileSaver.saveAs(data, fileName + '_fecha_' + dateFix + EXCEL_EXTENSION);
   }
+
   //Fin de las funciones para exportar a exel
   reloadData() {
     this.respuestas = [];
     this.respuestaSeleccionada = new Respuestas();
-    console.log("intentando")
+    //console.log("intentando")
     this.apiDataService.getRespuestas(this.apiDataService.user.entidad).then((response: ServerMessage) => {
-      console.log(response);
+      //console.log(response.data.respuestas);
       this.respuestas = response.data.respuestas;
       this.entities = response.data.entities;
       this.selectedEntitie = "Todas";
@@ -275,12 +329,14 @@ export class ValidationsComponent implements OnInit {
         this.respuestaSeleccionada.validaciones = JSON.parse(JSON.stringify(this.respuestaSeleccionada.validacionesManuales));
       }
     }
-    console.log(this.respuestaSeleccionada);
+    //console.log(this.respuestaSeleccionada);
   }
 
   sendResponse() {
     //console.log(this.apiDataService.user);}
     //this.createPDF();
+    //console.log(this.respuestaSeleccionada.validaciones);
+    
     this.apiDataService.saveValidations(this.respuestaSeleccionada.validaciones, this.respuestaSeleccionada.idrespuestas)
       .then((response: ServerMessage) => {   
         //console.log("cerrando");
@@ -336,6 +392,8 @@ export class ValidationsComponent implements OnInit {
 
     let validacion1texto = "";
     let validacion2texto = "";
+    let validacion6texto = "";
+    let validacion7texto = "";
 
     if(this.respuestaSeleccionada.validaciones.validacion1a == true){
       validacion1texto = "Se a validado que el programa es de enfoque social";
@@ -347,6 +405,18 @@ export class ValidationsComponent implements OnInit {
       validacion2texto = "Se valido que el programa coadyuva en el desarrollo social de las personas";
     }else{
       validacion2texto = "El Programa Presupuestario no coadyuva en el desarrollo social de las personas";
+    }
+
+    if(this.respuestaSeleccionada.validaciones.validacion6a == true){
+      validacion6texto = "Se a validado que el programa esta sujeto a reglas de operación";
+    }else{
+      validacion6texto = "El Programa Presupuestario no esta sujeto a reglas de operación";
+    }
+
+    if(this.respuestaSeleccionada.validaciones.validacion7a == true){
+      validacion7texto = "Se valido que el programa cuenta con padrón general de beneficiarios";
+    }else{
+      validacion7texto = "El Programa no cuenta con padrón general de beneficiarios";
     }
 
     //a)      Nombre del Reporte (Clasificador de Programas con Enfoque Social) - OK
@@ -371,7 +441,7 @@ export class ValidationsComponent implements OnInit {
       pageOrientation: 'landscape',
 
       // [left, top, right, bottom] or [horizontal, vertical] or just a number for equal margins
-      pageMargins: [10, 40, 10, 20],
+      pageMargins: [10, 10, 10, 10],
       content: [{
         style: 'tableExample',
         table: {
@@ -410,8 +480,9 @@ export class ValidationsComponent implements OnInit {
             
             [{ text: validacion1texto, fontSize: 6, rowSpan: 1, colSpan: 18 }, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
             [{ text: validacion2texto, fontSize: 6, rowSpan: 1, colSpan: 18 }, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
+            [{ text: validacion6texto, fontSize: 6, rowSpan: 1, colSpan: 18 }, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
+            [{ text: validacion7texto, fontSize: 6, rowSpan: 1, colSpan: 18 }, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
             [{ text: '', fontSize: 6, rowSpan: 1, colSpan: 18, alignment: 'center', border: [false, false, false, false] }, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
-            
             [{ text: 'Proposito del programa', fontSize: 6, rowSpan: 1, colSpan: 18, alignment: 'center', fillColor: '#e5e5e5' }, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
             [{ text: data.propPrograma, fontSize: 6, rowSpan: 1, colSpan: 18 }, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
             [{ text: 'Fin del programa', fontSize: 6, rowSpan: 1, colSpan: 18, alignment: 'center', fillColor: '#e5e5e5' }, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],

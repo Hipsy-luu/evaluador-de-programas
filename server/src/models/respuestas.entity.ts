@@ -196,5 +196,10 @@ export class Respuestas extends Model<Respuestas> {
   })
   public estatus : number;
 
-
+  @Column({
+    type:  DataType.STRING(1000),
+    allowNull: true,
+    defaultValue: "",
+  })
+  public aclaraciones : number;
 }

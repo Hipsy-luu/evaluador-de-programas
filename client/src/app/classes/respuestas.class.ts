@@ -81,7 +81,8 @@ export class Respuestas{
         pregunta11: "no",
         pregunta11complemento: "",
         pregunta12: "no",
-        pregunta12complemento: ""
+        pregunta12complemento: "",
+        aclaraciones: ""
     };
 
     program : {
@@ -143,7 +144,8 @@ export class Respuestas{
             pregunta11: "no",
             pregunta11complemento: "",
             pregunta12: "no",
-            pregunta12complemento: ""
+            pregunta12complemento: "",
+            aclaraciones: ""
         }
 
         this.validaciones = {

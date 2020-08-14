@@ -65,7 +65,7 @@ export class RegisterProgramComponent implements OnInit {
   };
 
   //Variable de apoyo para la variable pregunta4
-  pregunta4Selecciones = [false,false,false,false];
+  pregunta4Selecciones = [false,false,false,false,false];
 
   pregunta5 = {
     value : 'no', //RESPUESTAS - Esta es la pregunta5
@@ -104,6 +104,8 @@ export class RegisterProgramComponent implements OnInit {
   dependencia = "";
 
   programapresupuestal = 0;
+
+  aclaraciones : string = "";
 
 
   constructor(@Inject(DOCUMENT) private dom, public apiDataService : ApiDataService, private route: Router,) {
@@ -213,6 +215,9 @@ export class RegisterProgramComponent implements OnInit {
     if( this.pregunta4Selecciones[3] ){
       this.pregunta4.value = this.pregunta4.value + ",desarrolloinfraestructura";
     }
+    if( this.pregunta4Selecciones[4] ){
+      this.pregunta4.value = this.pregunta4.value + ",ninguno";
+    }
     data.pregunta4 = this.pregunta4;
     data.pregunta5 = this.pregunta5;
     data.pregunta6 = this.pregunta6;
@@ -244,8 +249,9 @@ export class RegisterProgramComponent implements OnInit {
     data.programapresupuestal = this.programapresupuestal;
     data.usuario = this.apiDataService.user.idusuarios;
     data.estatus = 0;
-    console.log("data enviada");
-    console.log(data);
+    data.aclaraciones = this.aclaraciones;
+    //console.log("data enviada");
+    //console.log(data);
     this.apiDataService.saveRespuestas(data).then((response : ServerMessage)=>{
       console.log("simonki");
       console.log(response);
