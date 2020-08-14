@@ -195,7 +195,7 @@ export class UserService {
         let respuestasp2 = [];
 
         try {
-          let respuestasp2Temp = await this.respuestasp2complementoRepository.findAll<Respuestasp2complemento>({
+          let respuestasp2Temp : any[] = await this.respuestasp2complementoRepository.findAll<Respuestasp2complemento>({
             where: {
               idrespuesta: respuesta.idrespuestas,
             },
@@ -208,7 +208,7 @@ export class UserService {
           }); */
 
           for (let index = 0; index < respuestasp2Temp.length; index++) {
-            respuestasp2.push(respuestasp2Temp[index].respuesta.derecho);
+            respuestasp2.push(respuestasp2Temp[index].respuesta);
           }
         } catch (error) {
           respuestasp2 = error;
