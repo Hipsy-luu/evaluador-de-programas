@@ -204,7 +204,7 @@ export class UserService {
               attributes: ['derecho'],
             }]
           }).map((respuestas2: any) => {
-            return Object.assign(respuestas2.respuesta.derecho)
+            return Object.assign(respuestas2.respuesta.derecho.toString())
           });
         } catch (error) {
           respuestasp2 = error;
