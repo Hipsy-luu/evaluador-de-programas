@@ -192,7 +192,7 @@ export class UserService {
           return Object.assign(respuesta1.sujeto)
         }); */
 
-        /* let respuestasp2 = await this.respuestasp2complementoRepository.findAll<Respuestasp2complemento>({
+        let respuestasp2 = await this.respuestasp2complementoRepository.findAll<Respuestasp2complemento>({
           where: {
             idrespuesta: respuesta.idrespuestas,
           },
@@ -202,7 +202,7 @@ export class UserService {
           }]
         }).map((respuestas2: any) => {
           return Object.assign(respuestas2.respuesta.derecho)
-        }); */
+        });
 
         let programa: any = await this.catprogramasRepository.findOne<Catprogramas>({
           // attributes: ['nombre_programa'], 
@@ -231,7 +231,7 @@ export class UserService {
             //titular: titular ? titular.titular : 'Sin Titular',
             estatus: respuesta.estatus ? respuesta.estatus : false,
             //respuestasp1: respuestasp1 ? respuestasp1 : [],
-            //respuestasp2: respuestasp2,
+            respuestasp2: respuestasp2,
             validaciones: respuesta.validaciones,
             validacionesManuales: respuesta.validacionesManuales,
             //Respuestas
