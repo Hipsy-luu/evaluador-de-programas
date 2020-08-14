@@ -276,7 +276,7 @@ export class ValidationsComponent implements OnInit {
     this.respuestaSeleccionada = new Respuestas();
     //console.log("intentando")
     this.apiDataService.getRespuestas(this.apiDataService.user.entidad).then((response: ServerMessage) => {
-      //console.log(response.data.respuestas);
+      console.log(response);
       this.respuestas = response.data.respuestas;
       this.entities = response.data.entities;
       this.selectedEntitie = "Todas";

@@ -113,7 +113,7 @@
     <div id="form_container" >
         <div class="row" *ngIf="!showModal">
             <div class="col-lg-5">
-                <div id="left_form">
+                <div id="left_form" style="height: 100%;">
                     <figure><img src="/assets/cuestionary-files/img/logosds.png" width="300px" alt=""></figure>
                     <h2>Clasificacion programatica</h2>
                     <p>En virtud de que los recursos destinados a programas y proyectos para el desarrollo social y
@@ -570,10 +570,10 @@
                             <!--</div> -->
                             <!-- /step -->
                             <div class="step">
-                                <h3 class="main_question"><strong>6/12</strong>¿El apoyo social se entrega
+                                <h3 class="main_question"><strong>6/12</strong>¿El apoyo se entrega
                                     directamente o indirectamente a la población?</h3>
                                 <div class="row">
-                                    <div class="col-md-12">
+                                    <div *ngIf="pregunta4Selecciones[4] == false"  class="col-md-12">
                                         <div class="form-group radio_input">
                                             <label><input (change)="pregunta6 = 'directamente'" type="radio" value="directamente" name="tipoentrega"
                                                     id="tipoentrega" class="icheck required" checked>Directamente
@@ -584,16 +584,22 @@
                                             </label> </div>
 
                                     </div>
+                                    <div *ngIf="pregunta4Selecciones[4] == true"  class="col-md-12">
+                                        <div class="form-group radio_input">
+                                            <label><input disabled (change)="pregunta6 = 'directamente'" type="radio" value="directamente" name="tipoentrega"
+                                                    id="tipoentrega" class="icheck required" checked>No Aplica
+                                            </label> </div>
+                                    </div>
                                 </div>
                                 <!-- /row -->
                             </div>
                             <!-- /step -->
-                            <div class="step">
+                            <div  class="step">
                                 <h3 class="main_question"><strong>7/12</strong>¿Con qué frecuencia el programa presupuestario
                                     entrega el apoyo social a la misma persona beneficiaria?
                                 </h3>
                                 <div class="row">
-                                    <div class="col-md-12">
+                                    <div *ngIf="pregunta4Selecciones[4] == false" class="col-md-12">
                                         <div class="form-group radio_input">
                                             <label><input (change)="pregunta7 = 'unico'" type="radio" value="unico" name="frecuenciaentrega" id="frecuenciaentrega" class="icheck required" checked>Única vez</label>
                                         </div>
@@ -614,6 +620,11 @@
                                         </div>
                                         <div class="form-group radio_input">
                                             <label><input (change)="pregunta7 = 'otro'" type="radio" value="otro" name="frecuenciaentrega" id="frecuenciaentrega" class="icheck required">Otro</label>
+                                        </div>
+                                    </div>
+                                    <div *ngIf="pregunta4Selecciones[4] == true" class="col-md-12">
+                                        <div class="form-group radio_input">
+                                            <label><input disabled (change)="pregunta7 = 'unico'" type="radio" value="unico" name="frecuenciaentrega" id="frecuenciaentrega" class="icheck required" checked>No aplica</label>
                                         </div>
                                     </div>
                                 </div>

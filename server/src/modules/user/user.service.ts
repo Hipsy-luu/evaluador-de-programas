@@ -243,7 +243,7 @@ export class UserService {
               pregunta4: respuesta.pregunta4 ? respuesta.pregunta4 : "no",
               pregunta4complemento: respuesta.pregunta4complemento ? respuesta.pregunta4complemento : "",
               pregunta5: respuesta.pregunta5 ? respuesta.pregunta5 : "no",
-              pregunta5otro: respuesta.pregunta5otro ? respuesta.pregunta5otro : "",
+              pregunta5otro: respuesta.pregunta5otro,
               pregunta5complemento: respuesta.pregunta5complementoFix ? respuesta.pregunta5complementoFix.apoyo_social : "",
               pregunta6: respuesta.pregunta6 ? respuesta.pregunta6 : "no",
               pregunta7: respuesta.pregunta7 ? respuesta.pregunta7 : "no",

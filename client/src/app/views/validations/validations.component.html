@@ -277,7 +277,7 @@
                         <td>
                             <tr>
                                 <th >
-                                    4. ¿CUÁL ES LA SUBCATEGORÍA DEL PROGRAMA PRESUPUESTARIO?
+                                    4. ¿EN CUÁL O CUÁLES DE LAS SIGUIENTES CATEGORÍAS SE CLASIFICAN LOS BIENES Y/O SERVICIOS DEL PROGRAMA PRESUPUESTARIO?
                                 </th>
                             </tr>
                             <tr>
@@ -316,7 +316,7 @@
                                     5. ¿EL PROGRAMA PRESUPUESTARIO ENTREGA ALGÚN TIPO DE APOYO SOCIAL A LA POBLACIÓN?
                                 </th>
                             </tr>
-                            <tr>
+                            <tr *ngIf="respuestaSeleccionada.respuestas.pregunta4.includes('ninguno') == false">
                                 <span>
                                     {{respuestaSeleccionada.respuestas.pregunta5complemento ? respuestaSeleccionada.respuestas.pregunta5complemento : ""}}<br>
                                 </span>
@@ -328,9 +328,14 @@
                             </tr>
                         </td>
                         <td>
-                            <tr>
+                            <tr *ngIf="respuestaSeleccionada.respuestas.pregunta4.includes('ninguno') == false">
                                 <span>
                                     {{respuestaSeleccionada.respuestas.pregunta5 ? respuestaSeleccionada.respuestas.pregunta5 : "No"}}<br>
+                                </span>
+                            </tr>
+                            <tr *ngIf="respuestaSeleccionada.respuestas.pregunta4.includes('ninguno') == true">
+                                <span>
+                                    No aplica<br>
                                 </span>
                             </tr>
                         </td>
@@ -345,8 +350,11 @@
                         </td>
                         <td>
                             <tr>
-                                <span>
+                                <span *ngIf="respuestaSeleccionada.respuestas.pregunta4.includes('ninguno') == false">
                                     {{respuestaSeleccionada.respuestas.pregunta6 ? respuestaSeleccionada.respuestas.pregunta6 : "No"}}<br>
+                                </span>
+                                <span *ngIf="respuestaSeleccionada.respuestas.pregunta4.includes('ninguno') == true">
+                                    No Aplica<br>
                                 </span>
                             </tr>
                         </td>
@@ -671,7 +679,7 @@
                         <td>
                             <tr>
                                 <th >
-                                    4. ¿CUÁL ES LA SUBCATEGORÍA DEL PROGRAMA PRESUPUESTARIO?
+                                    4. ¿EN CUÁL O CUÁLES DE LAS SIGUIENTES CATEGORÍAS SE CLASIFICAN LOS BIENES Y/O SERVICIOS DEL PROGRAMA PRESUPUESTARIO?
                                 </th>
                             </tr>
                             <tr>
@@ -710,7 +718,7 @@
                                     5. ¿EL PROGRAMA PRESUPUESTARIO ENTREGA ALGÚN TIPO DE APOYO SOCIAL A LA POBLACIÓN?
                                 </th>
                             </tr>
-                            <tr>
+                            <tr *ngIf="respuestaSeleccionada.respuestas.pregunta4.includes('ninguno') == false">
                                 <span>
                                     {{respuestaSeleccionada.respuestas.pregunta5complemento ? respuestaSeleccionada.respuestas.pregunta5complemento : ""}}<br>
                                 </span>
@@ -722,9 +730,14 @@
                             </tr>
                         </td>
                         <td>
-                            <tr>
+                            <tr *ngIf="respuestaSeleccionada.respuestas.pregunta4.includes('ninguno') == false">
                                 <span>
                                     {{respuestaSeleccionada.respuestas.pregunta5 ? respuestaSeleccionada.respuestas.pregunta5 : "No"}}<br>
+                                </span>
+                            </tr>
+                            <tr *ngIf="respuestaSeleccionada.respuestas.pregunta4.includes('ninguno') == true">
+                                <span>
+                                    No aplica<br>
                                 </span>
                             </tr>
                         </td>
@@ -739,8 +752,11 @@
                         </td>
                         <td>
                             <tr>
-                                <span>
+                                <span *ngIf="respuestaSeleccionada.respuestas.pregunta4.includes('ninguno') == false">
                                     {{respuestaSeleccionada.respuestas.pregunta6 ? respuestaSeleccionada.respuestas.pregunta6 : "No"}}<br>
+                                </span>
+                                <span *ngIf="respuestaSeleccionada.respuestas.pregunta4.includes('ninguno') == true">
+                                    No Aplica<br>
                                 </span>
                             </tr>
                         </td>
