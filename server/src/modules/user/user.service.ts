@@ -192,10 +192,10 @@ export class UserService {
           return Object.assign(respuesta1.sujeto)
         });
         //Dio ERRIR
-        let respuestasp2;
+        let respuestasp2 = [];
 
         try {
-          respuestasp2 = await this.respuestasp2complementoRepository.findAll<Respuestasp2complemento>({
+          let respuestasp2Temp = await this.respuestasp2complementoRepository.findAll<Respuestasp2complemento>({
             where: {
               idrespuesta: respuesta.idrespuestas,
             },
@@ -206,6 +206,10 @@ export class UserService {
           })/* .map((respuestas2: any) => {
             return Object.assign(respuestas2.respuesta.derecho)
           }); */
+
+          for (let index = 0; index < respuestasp2Temp.length; index++) {
+            respuestasp2.push(respuestasp2Temp[index].respuesta.derecho);
+          }
         } catch (error) {
           respuestasp2 = error;
         }
