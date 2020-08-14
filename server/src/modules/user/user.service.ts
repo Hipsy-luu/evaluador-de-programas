@@ -183,14 +183,14 @@ export class UserService {
           model: ValidacionesManuales,
         }]
       }).map(async (respuesta: Respuestas) => {
-        /* let respuestasp1 = await this.respuestasp1Repository.findAll<Respuestasp1>({
+        let respuestasp1 = await this.respuestasp1Repository.findAll<Respuestasp1>({
           attributes: ['sujeto'],
           where: {
             idrespuesta: respuesta.idrespuestas,
           }
         }).map((respuesta1: any) => {
           return Object.assign(respuesta1.sujeto)
-        }); */
+        });
 
         /* ERROR let respuestasp2 = await this.respuestasp2complementoRepository.findAll<Respuestasp2complemento>({
           where: {
@@ -230,7 +230,7 @@ export class UserService {
             usuarioEmail: user.email,
             titular: titular ? titular.titular : 'Sin Titular',
             estatus: respuesta.estatus ? respuesta.estatus : false,
-            //respuestasp1: respuestasp1 ? respuestasp1 : [],
+            respuestasp1: respuestasp1 ? respuestasp1 : [],
             //respuestasp2: respuestasp2, //DIO ERROR
             validaciones: respuesta.validaciones,
             validacionesManuales: respuesta.validacionesManuales,
