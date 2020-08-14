@@ -192,7 +192,7 @@ export class UserService {
           return Object.assign(respuesta1.sujeto)
         }); */
 
-        let respuestasp2 = await this.respuestasp2complementoRepository.findAll<Respuestasp2complemento>({
+        /* ERROR let respuestasp2 = await this.respuestasp2complementoRepository.findAll<Respuestasp2complemento>({
           where: {
             idrespuesta: respuesta.idrespuestas,
           },
@@ -202,7 +202,7 @@ export class UserService {
           }]
         }).map((respuestas2: any) => {
           return Object.assign(respuestas2.respuesta.derecho)
-        });
+        }); */
 
         let programa: any = await this.catprogramasRepository.findOne<Catprogramas>({
           // attributes: ['nombre_programa'], 
@@ -211,10 +211,10 @@ export class UserService {
           }
         });
 
-        /* let user = await this.userRepository.findOne<User>({
+        let user = await this.userRepository.findOne<User>({
           attributes: ['nombre', 'apellidos','email'],
           where: { idusuarios: respuesta.usuario }
-        }); */
+        });
 
         /* let titular = await this.catDependenciasRepository.findOne<CatDependencias>({
           //attributes: ['titular'],
@@ -225,13 +225,13 @@ export class UserService {
           {
             idrespuestas: respuesta.idrespuestas,
             dependencia: respuesta.dependencia ? respuesta.dependencia : 'Sin Dependencia',
-            //programa: programa ? programa.nombre_programa : "Sin Programa",
-            //usuario: user ? user.nombre.toLocaleUpperCase() + ' ' + user.apellidos.toLocaleUpperCase() : 'Sin Usuario',
-            //usuarioEmail: user.email,
+            programa: programa ? programa.nombre_programa : "Sin Programa",
+            usuario: user ? user.nombre.toLocaleUpperCase() + ' ' + user.apellidos.toLocaleUpperCase() : 'Sin Usuario',
+            usuarioEmail: user.email,
             //titular: titular ? titular.titular : 'Sin Titular',
             estatus: respuesta.estatus ? respuesta.estatus : false,
             //respuestasp1: respuestasp1 ? respuestasp1 : [],
-            respuestasp2: respuestasp2,
+            //respuestasp2: respuestasp2, //DIO ERROR
             validaciones: respuesta.validaciones,
             validacionesManuales: respuesta.validacionesManuales,
             //Respuestas
