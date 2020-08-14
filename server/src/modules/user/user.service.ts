@@ -207,15 +207,17 @@ export class UserService {
           })/* .map((respuestas2: any) => {
             return Object.assign(respuestas2.respuesta.derecho)
           }); */
-          let respuestasp2Fix : any[] = [];
+          //let respuestasp2Fix : any[] = [];
 
           for (let index = 0; index < respuestasp2Temp.length; index++) {
-            respuestasp2Fix.push(respuestasp2Temp[index].respuesta);
+            let fix : any = respuestasp2Temp[index].respuesta;
+            
+            respuestasp2.push(fix.derecho ? fix.derecho : "nope");
           }
 
-          for (let index = 0; index < respuestasp2Fix.length; index++) {
+          /* for (let index = 0; index < respuestasp2Fix.length; index++) {
             respuestasp2.push(respuestasp2Fix[index].derecho);
-          }
+          } */
         } catch (error) {
           respuestasp2 = error;
         }
