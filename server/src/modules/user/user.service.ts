@@ -1,3 +1,4 @@
+import { respuestasp1Providers } from './../../models/repositoriesModels/respuestasp1.providers';
 import { ValidacionesManuales } from './../../models/validacionesManuales.entity';
 import { Injectable, Inject } from '@nestjs/common';
 // import { USER_REPOSITORY } from '../utils/constants';
@@ -192,10 +193,10 @@ export class UserService {
           return Object.assign(respuesta1.sujeto)
         });
         //Dio ERRIR
-        let respuestasp2 : any[] = [];
+        let respuestasp2 = [];
 
         try {
-          respuestasp2 = await this.respuestasp2complementoRepository.findAll<Respuestasp2complemento>({
+          let respuestasp2Temp : any[] = await this.respuestasp2complementoRepository.findAll<Respuestasp2complemento>({
             where: {
               idrespuesta: respuesta.idrespuestas,
             },
@@ -203,13 +204,18 @@ export class UserService {
               model: Catderechos,
               attributes: ['derecho'],
             }]
-          }).map((respuestas2: any) => {
-            return Object.assign(respuestas2.respuesta)
-          });
+          })/* .map((respuestas2: any) => {
+            return Object.assign(respuestas2.respuesta.derecho)
+          }); */
+          let respuestasp2Fix : any[] = [];
 
-          /* for (let index = 0; index < respuestasp2Temp.length; index++) {
-            respuestasp2.push(respuestasp2Temp[index].respuesta);
-          } */
+          for (let index = 0; index < respuestasp2Temp.length; index++) {
+            respuestasp2Fix.push(respuestasp2Temp[index].respuesta);
+          }
+
+          for (let index = 0; index < respuestasp2Fix.length; index++) {
+            respuestasp2.push(respuestasp2Fix[index].derecho);
+          }
         } catch (error) {
           respuestasp2 = error;
         }
