@@ -182,7 +182,7 @@ export class UserService {
         }, {
           model: ValidacionesManuales,
         }]
-      }).map(async (respuesta: Respuestas) => {
+      })/* .map(async (respuesta: Respuestas) => {
         let respuestasp1 = await this.respuestasp1Repository.findAll<Respuestasp1>({
           attributes: ['sujeto'],
           where: {
@@ -205,7 +205,7 @@ export class UserService {
         });
 
         let programa: any = await this.catprogramasRepository.findOne<Catprogramas>({
-          /* attributes: ['nombre_programa'], */
+          // attributes: ['nombre_programa'], 
           where: {
             idprograma: respuesta.programapresupuestal,
           }
@@ -260,7 +260,7 @@ export class UserService {
             },
             program : programa
           })
-      });
+      }); */
 
       dataResponse.entities = await await this.respuestasRepository.findAll<Respuestas>({
         attributes: [
@@ -274,7 +274,7 @@ export class UserService {
       return new ServerMessage(false, "Respuestas obtenidas con éxito", dataResponse);
     } catch (error) {
       //console.log(error)
-      return new ServerMessage(true, "Error obteniendo respuestas 2", error);
+      return new ServerMessage(true, "Error obteniendo respuestas", error);
     }
   }
 
