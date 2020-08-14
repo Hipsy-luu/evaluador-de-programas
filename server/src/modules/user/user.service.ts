@@ -210,9 +210,7 @@ export class UserService {
           //let respuestasp2Fix : any[] = [];
 
           for (let index = 0; index < respuestasp2Temp.length; index++) {
-            let fix : any = respuestasp2Temp[index].respuesta;
-            
-            respuestasp2.push(fix.derecho ? fix.derecho : "nope");
+            respuestasp2.push(respuestasp2Temp[index].respuesta);
           }
 
           /* for (let index = 0; index < respuestasp2Fix.length; index++) {
