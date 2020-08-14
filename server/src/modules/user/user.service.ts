@@ -274,7 +274,7 @@ export class UserService {
       return new ServerMessage(false, "Respuestas obtenidas con éxito", dataResponse);
     } catch (error) {
       //console.log(error)
-      return new ServerMessage(true, "Error obteniendo respuestas", error);
+      return new ServerMessage(true, "Error obteniendo respuestas 2", error);
     }
   }
 
