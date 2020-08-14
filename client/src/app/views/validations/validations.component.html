@@ -21,125 +21,128 @@
           </button>
       </div>
     </div>
-    <div class="card-box" style="text-align: -webkit-center;">
-        <div class="card ">
-            <div class="card-body">
-                <div class="row" style="justify-content: flex-end;">
-
-                </div>
-
-                <div class="row" style="display: flex;align-items: center; text-align: start;">
-                    <div class="col-2">
-                        <div ngbDropdown class="d-inline-block">
-                            <button class="outline-btn"
-                                id="dropdownBasic1" ngbDropdownToggle>No.
-                                Respuestas {{pageSize}}</button>
-                            <div ngbDropdownMenu
-                                aria-labelledby="dropdownBasic1">
-                                <button ngbDropdownItem
-                                    (click)="pageSize = 5">5</button>
-                                <button ngbDropdownItem
-                                    (click)="pageSize = 10">10</button>
-                                <button ngbDropdownItem
-                                    (click)="pageSize = 15">15</button>
+    <div>
+        <div class="card-box" style="text-align: -webkit-center;">
+            <div class="card ">
+                <div class="card-body">
+                    <div class="row" style="justify-content: flex-end;">
+    
+                    </div>
+    
+                    <div class="row" style="display: flex;align-items: center; text-align: start;">
+                        <div class="col-2">
+                            <div ngbDropdown class="d-inline-block">
+                                <button class="outline-btn"
+                                    id="dropdownBasic1" ngbDropdownToggle>No.
+                                    Respuestas {{pageSize}}</button>
+                                <div ngbDropdownMenu
+                                    aria-labelledby="dropdownBasic1">
+                                    <button ngbDropdownItem
+                                        (click)="pageSize = 5">5</button>
+                                    <button ngbDropdownItem
+                                        (click)="pageSize = 10">10</button>
+                                    <button ngbDropdownItem
+                                        (click)="pageSize = 15">15</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-3">
-                        <!-- <input type="text"
-                            [(ngModel)]="searchValue"
-                            (ngModelChange)="filterByProgramName($event)"
-                            placeholder="Buscar por programa"
-                            class="input-group-text full-width text-left"
-                            style="font-size: x-large;width: 100%;text-transform: capitalize;">
- -->
-                        <div class="input-group input-group-sm mb-3" style="    margin-bottom: 0rem!important;height: 38px;">
-                            <div class="input-group-prepend" >
-                                <span class="input-group-text" id="inputGroup-sizing-sm">Nombre Programa</span>
+                        <div class="col-3">
+                            <!-- <input type="text"
+                                [(ngModel)]="searchValue"
+                                (ngModelChange)="filterByProgramName($event)"
+                                placeholder="Buscar por programa"
+                                class="input-group-text full-width text-left"
+                                style="font-size: x-large;width: 100%;text-transform: capitalize;">
+     -->
+                            <div class="input-group input-group-sm mb-3" style="    margin-bottom: 0rem!important;height: 38px;">
+                                <div class="input-group-prepend" >
+                                    <span class="input-group-text" id="inputGroup-sizing-sm">Nombre Programa</span>
+                                </div>
+                                <input style="height: 38px;" [(ngModel)]="searchValue"
+                                (ngModelChange)="filterByProgramName($event)" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
                             </div>
-                            <input style="height: 38px;" [(ngModel)]="searchValue"
-                            (ngModelChange)="filterByProgramName($event)" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
                         </div>
-                    </div>
-                    <div class="col-2">
-                        <div class="input-group-append" style="width: 100%;">
-                            <button style="width: 100%;z-index: auto;" class="dropdown-toggle blu-btn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span  *ngIf="selectedEntitie == 'Todas'">Todas las Dependencias</span>
-                                <span  *ngIf="selectedEntitie != 'Todas'">{{selectedEntitie}}</span>
+                        <div class="col-2">
+                            <div class="input-group-append" style="width: 100%;">
+                                <button style="width: 100%;z-index: auto;" class="dropdown-toggle blu-btn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span  *ngIf="selectedEntitie == 'Todas'">Todas las Dependencias</span>
+                                    <span  *ngIf="selectedEntitie != 'Todas'">{{selectedEntitie}}</span>
+                                </button>
+                                <div class="dropdown-menu" >
+                                    <a class="dropdown-item" (click)="changeEntitieSelected(-1)">Todas</a>
+                                    <a *ngFor="let entitie of entities" class="dropdown-item" (click)="changeEntitieSelected(entitie)">{{entitie}}</a>
+                                </div>
+                              </div>
+                        </div>
+                        <div class="col-1">
+                            <div class="input-group-append" style="width: 100%;">
+                                <span style="width: 100%;z-index: auto;" 
+                                    class="dropdown-toggle " 
+                                    type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class='btn btn-info'  *ngIf="statusSelected == true">Validado</span>
+                                    <span class='btn btn-danger'  *ngIf="statusSelected == false">No Validado</span>
+                                </span>
+                                <div class="dropdown-menu" >
+                                    <a class="dropdown-item" (click)="changeStateSelected(true)">
+                                        <span>Validado</span>
+                                    </a>
+                                    <a class="dropdown-item" (click)="changeStateSelected(false)">
+                                        <span>No Validado</span>
+                                    </a>
+                                </div>
+                              </div>
+                        </div>
+                        <div class="col-2" style="text-align: right;">
+                            <button type="button" class=" btn btn-secondary" (click)="exportAllAnswers()">
+                                <i class=" fa fa-file-excel-o" style="color:whitesmoke"></i>
+                                    Guardar Reporte
                             </button>
-                            <div class="dropdown-menu" >
-                                <a class="dropdown-item" (click)="changeEntitieSelected(-1)">Todas</a>
-                                <a *ngFor="let entitie of entities" class="dropdown-item" (click)="changeEntitieSelected(entitie)">{{entitie}}</a>
-                            </div>
-                          </div>
+                        </div>
+                        <div class="col-2" style="text-align: right;">
+                            <button class="reload-btn" (click)="reloadData()">
+                                <i class="fas fa-sync" style='color:whitesmoke'></i>
+                                 Recargar
+                            </button>
+                        </div>
                     </div>
-                    <div class="col-1">
-                        <div class="input-group-append" style="width: 100%;">
-                            <span style="width: 100%;z-index: auto;" 
-                                class="dropdown-toggle " 
-                                type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class='btn btn-info'  *ngIf="statusSelected == true">Validado</span>
-                                <span class='btn btn-danger'  *ngIf="statusSelected == false">No Validado</span>
-                            </span>
-                            <div class="dropdown-menu" >
-                                <a class="dropdown-item" (click)="changeStateSelected(true)">
-                                    <span>Validado</span>
-                                </a>
-                                <a class="dropdown-item" (click)="changeStateSelected(false)">
-                                    <span>No Validado</span>
-                                </a>
-                            </div>
-                          </div>
-                    </div>
-                    <div class="col-2" style="text-align: right;">
-                        <button type="button" class=" btn btn-secondary" (click)="exportAllAnswers()">
-                            <i class=" fa fa-file-excel-o" style="color:whitesmoke"></i>
-                                Guardar Reporte
-                        </button>
-                    </div>
-                    <div class="col-2" style="text-align: right;">
-                        <button class="reload-btn" (click)="reloadData()">
-                            <i class="fas fa-sync" style='color:whitesmoke'></i>
-                             Recargar
-                        </button>
-                    </div>
-                </div>
-                <!-- TABLA -->
-                <table class="table table-hover" style="max-width: 1440px; width:100%; margin-top: 1em;">
-                    <tr >
-                        <th>ID Respuesta</th>
-                        <th>Dependencia</th>
-                        <th>Programa</th>
-                        <th>Usuario</th>
-                        <th>Estatus</th>
-                    </tr>
-                    <tr *ngFor="let respuesta of respuestasFiltered | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
-                        <td>
-                            <button (click)="selectRespuesta(respuesta)" data-target='#modalRegistro' data-toggle='modal' data-id='' class='btn btn-info' id='verRespuestas'>
-                                {{respuesta.idrespuestas}} Ver respuestas</button>
-                        </td>
-                        <td>{{respuesta.dependencia}}</td>
-                        <td>{{respuesta.programa}}</td>
-                        <td>{{respuesta.usuario}}</td>
-
-                        <td>
-                            <button *ngIf="!respuesta.estatus" (click)="selectRespuesta(respuesta)" class='btn btn-danger' data-target='#modalValidacion' data-toggle='modal' data-id=''>No validado</button>
-                            <button *ngIf="respuesta.estatus" (click)="selectRespuesta(respuesta)" data-target='#modalValidacion' data-toggle='modal' data-id='' class='btn btn-info'>Validado</button>
-                        </td>
-                    </tr>
-                </table>
-                <div class="row">
-                    <div class="col" style="text-align: right;">
-                        <ngb-pagination [(page)]="page" [pageSize]="pageSize"
-                            [collectionSize]="respuestasFiltered.length"
-                            style="width: -webkit-fill-available;text-align: right;" class="justify-end">
-                        </ngb-pagination>
+                    <!-- TABLA -->
+                    <table class="table table-hover" style="max-width: 1440px; width:100%; margin-top: 1em;">
+                        <tr >
+                            <th>ID Respuesta</th>
+                            <th>Dependencia</th>
+                            <th>Programa</th>
+                            <th>Usuario</th>
+                            <th>Estatus</th>
+                        </tr>
+                        <tr *ngFor="let respuesta of respuestasFiltered | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
+                            <td>
+                                <button (click)="selectRespuesta(respuesta)" data-target='#modalRegistro' data-toggle='modal' data-id='' class='btn btn-info' id='verRespuestas'>
+                                    {{respuesta.idrespuestas}} Ver respuestas</button>
+                            </td>
+                            <td>{{respuesta.dependencia}}</td>
+                            <td>{{respuesta.programa}}</td>
+                            <td>{{respuesta.usuario}}</td>
+    
+                            <td>
+                                <button *ngIf="!respuesta.estatus" (click)="selectRespuesta(respuesta)" class='btn btn-danger' data-target='#modalValidacion' data-toggle='modal' data-id=''>No validado</button>
+                                <button *ngIf="respuesta.estatus" (click)="selectRespuesta(respuesta)" data-target='#modalValidacion' data-toggle='modal' data-id='' class='btn btn-info'>Validado</button>
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="row">
+                        <div class="col" style="text-align: right;">
+                            <ngb-pagination [(page)]="page" [pageSize]="pageSize"
+                                [collectionSize]="respuestasFiltered.length"
+                                style="width: -webkit-fill-available;text-align: right;" class="justify-end">
+                            </ngb-pagination>
+                        </div>
                     </div>
                 </div>
             </div>
+    
         </div>
-
     </div>
+    
 </div>
 <!-- VER RESPUESTAS MODAL -->
 

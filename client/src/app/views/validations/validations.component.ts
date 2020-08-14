@@ -275,9 +275,27 @@ export class ValidationsComponent implements OnInit {
     this.respuestas = [];
     this.respuestaSeleccionada = new Respuestas();
     console.log("intentando")
-    this.apiDataService.getRespuestas(this.apiDataService.user.entidad).then((response: ServerMessage) => {
-      console.log(response);
+    this.apiDataService.getRespuestas(this.apiDataService.user.entidad).then(async (response: ServerMessage) => {
+      //console.log(response);
       this.respuestas = response.data.respuestas;
+
+      for (let index = 0; index < this.respuestas.length; index++) {
+        const element = this.respuestas[index];
+        let arrFix : {derecho : string}[]= Array.from(this.respuestas[index].respuestasp2);
+         
+        this.respuestas[index].respuestasp2 = [];
+
+        arrFix.forEach(element => {
+          if(element){
+            this.respuestas[index].respuestasp2.push(element.derecho);
+            //console.log(element.derecho)
+          }else{
+            //console.log("EEEEEEEEEE");
+            //console.log(arrFix);
+          }
+        });
+      }
+      //console.log(this.respuestas);
       this.entities = response.data.entities;
       this.selectedEntitie = "Todas";
       this.respuestasFiltered = Array.from(this.respuestas);

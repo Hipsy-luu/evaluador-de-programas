@@ -7,7 +7,7 @@ export class Respuestas{
     titular : string;
     estatus : boolean;
     respuestasp1 : any[];
-    respuestasp2 : any[];
+    respuestasp2 : /* {derecho : string} */any[];
     validaciones : any = {
         id: 0,
         idrespuesta: 0,
