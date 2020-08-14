@@ -182,17 +182,17 @@ export class UserService {
         }, {
           model: ValidacionesManuales,
         }]
-      })/* .map(async (respuesta: Respuestas) => {
-        let respuestasp1 = await this.respuestasp1Repository.findAll<Respuestasp1>({
+      }).map(async (respuesta: Respuestas) => {
+        /* let respuestasp1 = await this.respuestasp1Repository.findAll<Respuestasp1>({
           attributes: ['sujeto'],
           where: {
             idrespuesta: respuesta.idrespuestas,
           }
         }).map((respuesta1: any) => {
           return Object.assign(respuesta1.sujeto)
-        });
+        }); */
 
-        let respuestasp2 = await this.respuestasp2complementoRepository.findAll<Respuestasp2complemento>({
+        /* let respuestasp2 = await this.respuestasp2complementoRepository.findAll<Respuestasp2complemento>({
           where: {
             idrespuesta: respuesta.idrespuestas,
           },
@@ -202,36 +202,36 @@ export class UserService {
           }]
         }).map((respuestas2: any) => {
           return Object.assign(respuestas2.respuesta.derecho)
-        });
+        }); */
 
-        let programa: any = await this.catprogramasRepository.findOne<Catprogramas>({
+        /* let programa: any = await this.catprogramasRepository.findOne<Catprogramas>({
           // attributes: ['nombre_programa'], 
           where: {
             idprograma: respuesta.programapresupuestal,
           }
-        });
+        }); */
 
-        let user = await this.userRepository.findOne<User>({
+        /* let user = await this.userRepository.findOne<User>({
           attributes: ['nombre', 'apellidos','email'],
           where: { idusuarios: respuesta.usuario }
-        });
+        }); */
 
-        let titular = await this.catDependenciasRepository.findOne<CatDependencias>({
+        /* let titular = await this.catDependenciasRepository.findOne<CatDependencias>({
           //attributes: ['titular'],
           where: { clavedependencia: Number(respuesta.dependencia) }
-        });
+        }); */
 
         return Object.assign(
           {
             idrespuestas: respuesta.idrespuestas,
             dependencia: respuesta.dependencia ? respuesta.dependencia : 'Sin Dependencia',
-            programa: programa ? programa.nombre_programa : "Sin Programa",
-            usuario: user ? user.nombre.toLocaleUpperCase() + ' ' + user.apellidos.toLocaleUpperCase() : 'Sin Usuario',
-            usuarioEmail: user.email,
-            titular: titular ? titular.titular : 'Sin Titular',
+            //programa: programa ? programa.nombre_programa : "Sin Programa",
+            //usuario: user ? user.nombre.toLocaleUpperCase() + ' ' + user.apellidos.toLocaleUpperCase() : 'Sin Usuario',
+            //usuarioEmail: user.email,
+            //titular: titular ? titular.titular : 'Sin Titular',
             estatus: respuesta.estatus ? respuesta.estatus : false,
-            respuestasp1: respuestasp1 ? respuestasp1 : [],
-            respuestasp2: respuestasp2,
+            //respuestasp1: respuestasp1 ? respuestasp1 : [],
+            //respuestasp2: respuestasp2,
             validaciones: respuesta.validaciones,
             validacionesManuales: respuesta.validacionesManuales,
             //Respuestas
@@ -258,9 +258,9 @@ export class UserService {
               pregunta12complemento: respuesta.pregunta12complemento ? respuesta.pregunta12complemento : "",
               aclaraciones : respuesta.aclaraciones
             },
-            program : programa
+            //program : programa
           })
-      }); */
+      });
 
       dataResponse.entities = await await this.respuestasRepository.findAll<Respuestas>({
         attributes: [
