@@ -230,7 +230,7 @@
                         </td>
                         <td>
                             <span >
-                                {{respuestaSeleccionada.respuestas.pregunta2 ? respuestaSeleccionada.respuestas.pregunta2 : "no"}} <br>
+                                {{respuestaSeleccionada.respuestas.pregunta2 ? respuestaSeleccionada.respuestas.pregunta2 : "No"}} <br>
                             </span>
                         </td>
                     </tr>
@@ -265,7 +265,7 @@
                         <td>
                             <tr>
                                 <span>
-                                    {{respuestaSeleccionada.respuestas.pregunta3 ? respuestaSeleccionada.respuestas.pregunta3 : "no"}}<br>
+                                    {{respuestaSeleccionada.respuestas.pregunta3 ? respuestaSeleccionada.respuestas.pregunta3 : "No"}}<br>
                                 </span>
                             </tr>
                             <tr>
@@ -321,11 +321,16 @@
                                     {{respuestaSeleccionada.respuestas.pregunta5complemento ? respuestaSeleccionada.respuestas.pregunta5complemento : ""}}<br>
                                 </span>
                             </tr>
+                            <tr *ngIf='respuestaSeleccionada.respuestas.pregunta5complemento.toString() == "Otro"'>
+                                <span>
+                                    {{respuestaSeleccionada.respuestas.pregunta5otro ? respuestaSeleccionada.respuestas.pregunta5otro : "Sin Indicar"}}<br>
+                                </span>
+                            </tr>
                         </td>
                         <td>
                             <tr>
                                 <span>
-                                    {{respuestaSeleccionada.respuestas.pregunta5 ? respuestaSeleccionada.respuestas.pregunta5 : "no"}}<br>
+                                    {{respuestaSeleccionada.respuestas.pregunta5 ? respuestaSeleccionada.respuestas.pregunta5 : "No"}}<br>
                                 </span>
                             </tr>
                         </td>
@@ -341,7 +346,7 @@
                         <td>
                             <tr>
                                 <span>
-                                    {{respuestaSeleccionada.respuestas.pregunta6 ? respuestaSeleccionada.respuestas.pregunta6 : "no"}}<br>
+                                    {{respuestaSeleccionada.respuestas.pregunta6 ? respuestaSeleccionada.respuestas.pregunta6 : "No"}}<br>
                                 </span>
                             </tr>
                         </td>
@@ -357,7 +362,7 @@
                         <td>
                             <tr>
                                 <span>
-                                    {{respuestaSeleccionada.respuestas.pregunta7 ? respuestaSeleccionada.respuestas.pregunta7 : "no"}}<br>
+                                    {{respuestaSeleccionada.respuestas.pregunta7 ? respuestaSeleccionada.respuestas.pregunta7 : "No"}}<br>
                                 </span>
                             </tr>
                         </td>
@@ -378,7 +383,7 @@
                         <td>
                             <tr>
                                 <span>
-                                    {{respuestaSeleccionada.respuestas.pregunta8 ? respuestaSeleccionada.respuestas.pregunta8 : "no"}}<br>
+                                    {{respuestaSeleccionada.respuestas.pregunta8 ? respuestaSeleccionada.respuestas.pregunta8 : "No"}}<br>
                                 </span>
                             </tr>
 
@@ -470,7 +475,7 @@
                         <td>
                             <tr>
                                 <span>
-                                    {{respuestaSeleccionada.respuestas.pregunta11 ? respuestaSeleccionada.respuestas.pregunta11 : "no"}}<br>
+                                    {{respuestaSeleccionada.respuestas.pregunta11 ? respuestaSeleccionada.respuestas.pregunta11 : "No"}}<br>
                                 </span>
                             </tr>
                             <tr *ngIf="respuestaSeleccionada.respuestas.pregunta11.toString()=='si'">
@@ -491,7 +496,7 @@
                         <td>
                             <tr>
                                 <span>
-                                    {{respuestaSeleccionada.respuestas.pregunta12 ? respuestaSeleccionada.respuestas.pregunta12 : "no"}}<br>
+                                    {{respuestaSeleccionada.respuestas.pregunta12 ? respuestaSeleccionada.respuestas.pregunta12 : "No"}}<br>
                                 </span>
                             </tr>
                             <tr>
@@ -619,7 +624,7 @@
                         </td>
                         <td>
                             <span >
-                                {{respuestaSeleccionada.respuestas.pregunta2 ? respuestaSeleccionada.respuestas.pregunta2 : "no"}} <br>
+                                {{respuestaSeleccionada.respuestas.pregunta2 ? respuestaSeleccionada.respuestas.pregunta2 : "No"}} <br>
                             </span>
                         </td>
                     </tr>
@@ -654,7 +659,7 @@
                         <td>
                             <tr>
                                 <span>
-                                    {{respuestaSeleccionada.respuestas.pregunta3 ? respuestaSeleccionada.respuestas.pregunta3 : "no"}}<br>
+                                    {{respuestaSeleccionada.respuestas.pregunta3 ? respuestaSeleccionada.respuestas.pregunta3 : "No"}}<br>
                                 </span>
                             </tr>
                             <tr>
@@ -710,11 +715,16 @@
                                     {{respuestaSeleccionada.respuestas.pregunta5complemento ? respuestaSeleccionada.respuestas.pregunta5complemento : ""}}<br>
                                 </span>
                             </tr>
+                            <tr *ngIf='respuestaSeleccionada.respuestas.pregunta5complemento.toString() == "Otro"'>
+                                <span>
+                                    {{respuestaSeleccionada.respuestas.pregunta5otro ? respuestaSeleccionada.respuestas.pregunta5otro : "Sin Indicar"}}<br>
+                                </span>
+                            </tr>
                         </td>
                         <td>
                             <tr>
                                 <span>
-                                    {{respuestaSeleccionada.respuestas.pregunta5 ? respuestaSeleccionada.respuestas.pregunta5 : "no"}}<br>
+                                    {{respuestaSeleccionada.respuestas.pregunta5 ? respuestaSeleccionada.respuestas.pregunta5 : "No"}}<br>
                                 </span>
                             </tr>
                         </td>
@@ -730,7 +740,7 @@
                         <td>
                             <tr>
                                 <span>
-                                    {{respuestaSeleccionada.respuestas.pregunta6 ? respuestaSeleccionada.respuestas.pregunta6 : "no"}}<br>
+                                    {{respuestaSeleccionada.respuestas.pregunta6 ? respuestaSeleccionada.respuestas.pregunta6 : "No"}}<br>
                                 </span>
                             </tr>
                         </td>
@@ -746,7 +756,7 @@
                         <td>
                             <tr>
                                 <span>
-                                    {{respuestaSeleccionada.respuestas.pregunta7 ? respuestaSeleccionada.respuestas.pregunta7 : "no"}}<br>
+                                    {{respuestaSeleccionada.respuestas.pregunta7 ? respuestaSeleccionada.respuestas.pregunta7 : "No"}}<br>
                                 </span>
                             </tr>
                         </td>
@@ -767,7 +777,7 @@
                         <td>
                             <tr>
                                 <span>
-                                    {{respuestaSeleccionada.respuestas.pregunta8 ? respuestaSeleccionada.respuestas.pregunta8 : "no"}}<br>
+                                    {{respuestaSeleccionada.respuestas.pregunta8 ? respuestaSeleccionada.respuestas.pregunta8 : "No"}}<br>
                                 </span>
                             </tr>
 
@@ -859,7 +869,7 @@
                         <td>
                             <tr>
                                 <span>
-                                    {{respuestaSeleccionada.respuestas.pregunta11 ? respuestaSeleccionada.respuestas.pregunta11 : "no"}}<br>
+                                    {{respuestaSeleccionada.respuestas.pregunta11 ? respuestaSeleccionada.respuestas.pregunta11 : "No"}}<br>
                                 </span>
                             </tr>
                             <tr *ngIf="respuestaSeleccionada.respuestas.pregunta11.toString()=='si'">
@@ -880,7 +890,7 @@
                         <td>
                             <tr>
                                 <span>
-                                    {{respuestaSeleccionada.respuestas.pregunta12 ? respuestaSeleccionada.respuestas.pregunta12 : "no"}}<br>
+                                    {{respuestaSeleccionada.respuestas.pregunta12 ? respuestaSeleccionada.respuestas.pregunta12 : "No"}}<br>
                                 </span>
                             </tr>
                             <tr>

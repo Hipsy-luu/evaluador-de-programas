@@ -424,7 +424,7 @@
                             <!-- /step -->
                             <div class="step">
                                 <h3 class="main_question"><strong>5/12</strong><!-- ¿Cuál es la subcategoría del programa
-                                    presupuestario? -->En cual o cuales de las siguientes categorías se clasifican los bienes y/o servicios del programa presupuestario.</h3>
+                                    presupuestario? -->¿En cuál o cuáles de las siguientes categorías se clasifican los bienes y/o servicios del programa presupuestario?</h3>
                                 <div class="row">
                                     <div class="col-md-12">
                                         <h6>*Seleccione mínimo una opción. Puede seleccionar varias</h6>
@@ -433,8 +433,7 @@
                                                 pregunta5.value == 'si' ? pregunta5.value = ' no' : pregunta5.value = 'si';
                                                 pregunta5.complemento == 1 ? pregunta5.complemento = 0 : pregunta5.complemento = 1;" type="checkbox" value="entregaayudas" name="subcategoriaprograma"
                                                     id="subcategoriaprograma" class="icheck required">El Programa
-                                                entrega ayudas y subsidios
-                                                directamente a la población
+                                                entrega ayudas a la población
                                             </label>
                                         </div>
                                         <!-- AQUI ESTA LA PREGUNTA QUE SE ELIMINO Y JUNTO CON LA 5 -->
@@ -473,8 +472,9 @@
                                                     <option value="26">Servicios públicos</option>
                                                     <option value="27">Otro (especifique)</option>
                                                 </select>
-                                                <div id="tipoapoyo">
-
+                                                <div id="tipoapoyo" *ngIf="pregunta5.complemento == 27">
+                                                    <input [(ngModel)]="pregunta5otro" maxlength="500" type="text" class="form-control" name="especifiquecapacidades" id="especifiquecapacidades" placeholder="Especifique" required>
+                                                    <br><br>
                                                 </div>
                                             </div>
                                         </div>

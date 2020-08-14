@@ -94,6 +94,13 @@ export class Respuestas extends Model<Respuestas> {
   public pregunta5 : string;
 
   @Column({
+    type: DataType.STRING(500),
+    allowNull: false,
+    defaultValue: "",
+  })
+  public pregunta5otro : string;
+
+  @Column({
     type: DataType.STRING(45),
     allowNull: false,
   })

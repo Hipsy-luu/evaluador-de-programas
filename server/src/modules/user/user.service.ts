@@ -243,6 +243,7 @@ export class UserService {
               pregunta4: respuesta.pregunta4 ? respuesta.pregunta4 : "no",
               pregunta4complemento: respuesta.pregunta4complemento ? respuesta.pregunta4complemento : "",
               pregunta5: respuesta.pregunta5 ? respuesta.pregunta5 : "no",
+              pregunta5otro: respuesta.pregunta5otro ? respuesta.pregunta5otro : "",
               pregunta5complemento: respuesta.pregunta5complementoFix ? respuesta.pregunta5complementoFix.apoyo_social : "",
               pregunta6: respuesta.pregunta6 ? respuesta.pregunta6 : "no",
               pregunta7: respuesta.pregunta7 ? respuesta.pregunta7 : "no",
@@ -303,7 +304,8 @@ export class UserService {
       pregunta5complemento: data.pregunta5.complemento ? data.pregunta5.complemento : 0,
       usuario: data.usuario ? data.usuario : 0,
       estatus: data.estatus ? data.estatus : 0,
-      aclaraciones: data.aclaraciones ? data.aclaraciones : ""
+      aclaraciones: data.aclaraciones ? data.aclaraciones : "",
+      pregunta5otro : data.pregunta5otro ? data.pregunta5otro : ""
     };
     try {
       var newRespuestas: Respuestas = await this.respuestasRepository.create<Respuestas>(respuestas, {});

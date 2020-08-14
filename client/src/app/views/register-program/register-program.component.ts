@@ -72,6 +72,8 @@ export class RegisterProgramComponent implements OnInit {
     complemento : 0 //RESPUESTAS - Esta es la pregunta5complemento
   };
 
+  pregunta5otro = "";
+
   pregunta6 = "directamente";
 
   pregunta7 = "unico";
@@ -220,6 +222,7 @@ export class RegisterProgramComponent implements OnInit {
     }
     data.pregunta4 = this.pregunta4;
     data.pregunta5 = this.pregunta5;
+    data.pregunta5otro = this.pregunta5otro;
     data.pregunta6 = this.pregunta6;
     data.pregunta7 = this.pregunta7;
     data.pregunta8 = this.pregunta8;
@@ -300,6 +303,7 @@ export class RegisterProgramComponent implements OnInit {
   
   selectEventP5(e){
     this.pregunta5.complemento = e.target.value;
+    this.pregunta5otro = "";
   }
 
   selectEventP8(e){
@@ -368,6 +372,8 @@ export class RegisterProgramComponent implements OnInit {
       value : 'no', //RESPUESTAS - Esta es la pregunta5
       complemento : 0 //RESPUESTAS - Esta es la pregunta5complemento
     };
+
+    this.pregunta5otro = "";
   
     this.pregunta6 = "directamente";
   
