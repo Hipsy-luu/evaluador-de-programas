@@ -34,7 +34,7 @@ export class Catderechos extends Model<Catderechos> {
     type: DataType.STRING(450),
     allowNull: false,
   })
-  public derecho : number;
+  public derecho : string;
   
 
   /* @BelongsTo(() => Respuestasp2complemento, 'idrespuesta')

@@ -203,9 +203,9 @@ export class UserService {
               model: Catderechos,
               attributes: ['derecho'],
             }]
-          }).map((respuestas2: any) => {
-            return Object.assign(respuestas2.respuesta.derecho.toString())
-          });
+          })/* .map((respuestas2: any) => {
+            return Object.assign(respuestas2.respuesta.derecho)
+          }); */
         } catch (error) {
           respuestasp2 = error;
         }
