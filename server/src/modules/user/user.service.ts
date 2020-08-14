@@ -192,17 +192,24 @@ export class UserService {
           return Object.assign(respuesta1.sujeto)
         });
         //Dio ERRIR
-        let respuestasp2 = await this.respuestasp2complementoRepository.findAll<Respuestasp2complemento>({
-          where: {
-            idrespuesta: respuesta.idrespuestas,
-          },
-          include: [{
-            model: Catderechos,
-            attributes: ['derecho'],
-          }]
-        }).map((respuestas2: any) => {
-          return Object.assign(respuestas2.respuesta.derecho)
-        });
+        let respuestasp2;
+
+        try {
+          respuestasp2 = await this.respuestasp2complementoRepository.findAll<Respuestasp2complemento>({
+            where: {
+              idrespuesta: respuesta.idrespuestas,
+            },
+            include: [{
+              model: Catderechos,
+              attributes: ['derecho'],
+            }]
+          }).map((respuestas2: any) => {
+            return Object.assign(respuestas2.respuesta.derecho)
+          });
+        } catch (error) {
+          respuestasp2 = error;
+        }
+        
 
         let programa: any = await this.catprogramasRepository.findOne<Catprogramas>({
           // attributes: ['nombre_programa'], 
