@@ -204,12 +204,12 @@ export class UserService {
           return Object.assign(respuestas2.respuesta.derecho)
         }); */
 
-        /* let programa: any = await this.catprogramasRepository.findOne<Catprogramas>({
+        let programa: any = await this.catprogramasRepository.findOne<Catprogramas>({
           // attributes: ['nombre_programa'], 
           where: {
             idprograma: respuesta.programapresupuestal,
           }
-        }); */
+        });
 
         /* let user = await this.userRepository.findOne<User>({
           attributes: ['nombre', 'apellidos','email'],
@@ -258,7 +258,7 @@ export class UserService {
               pregunta12complemento: respuesta.pregunta12complemento ? respuesta.pregunta12complemento : "",
               aclaraciones : respuesta.aclaraciones
             },
-            //program : programa
+            program : programa
           })
       });
 
