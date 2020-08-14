@@ -192,10 +192,10 @@ export class UserService {
           return Object.assign(respuesta1.sujeto)
         });
         //Dio ERRIR
-        let respuestasp2 = [];
+        let respuestasp2 : any[] = [];
 
         try {
-          let respuestasp2Temp : any[] = await this.respuestasp2complementoRepository.findAll<Respuestasp2complemento>({
+          respuestasp2 = await this.respuestasp2complementoRepository.findAll<Respuestasp2complemento>({
             where: {
               idrespuesta: respuesta.idrespuestas,
             },
@@ -203,13 +203,13 @@ export class UserService {
               model: Catderechos,
               attributes: ['derecho'],
             }]
-          })/* .map((respuestas2: any) => {
-            return Object.assign(respuestas2.respuesta.derecho)
-          }); */
+          }).map((respuestas2: any) => {
+            return Object.assign(respuestas2.respuesta)
+          });
 
-          for (let index = 0; index < respuestasp2Temp.length; index++) {
+          /* for (let index = 0; index < respuestasp2Temp.length; index++) {
             respuestasp2.push(respuestasp2Temp[index].respuesta);
-          }
+          } */
         } catch (error) {
           respuestasp2 = error;
         }
