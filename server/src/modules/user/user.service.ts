@@ -216,10 +216,10 @@ export class UserService {
           where: { idusuarios: respuesta.usuario }
         });
 
-        /* let titular = await this.catDependenciasRepository.findOne<CatDependencias>({
+        let titular = await this.catDependenciasRepository.findOne<CatDependencias>({
           //attributes: ['titular'],
           where: { clavedependencia: Number(respuesta.dependencia) }
-        }); */
+        });
 
         return Object.assign(
           {
@@ -228,7 +228,7 @@ export class UserService {
             programa: programa ? programa.nombre_programa : "Sin Programa",
             usuario: user ? user.nombre.toLocaleUpperCase() + ' ' + user.apellidos.toLocaleUpperCase() : 'Sin Usuario',
             usuarioEmail: user.email,
-            //titular: titular ? titular.titular : 'Sin Titular',
+            titular: titular ? titular.titular : 'Sin Titular',
             estatus: respuesta.estatus ? respuesta.estatus : false,
             //respuestasp1: respuestasp1 ? respuestasp1 : [],
             //respuestasp2: respuestasp2, //DIO ERROR
