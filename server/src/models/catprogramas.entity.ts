@@ -95,6 +95,12 @@ export class Catprogramas extends Model<Catprogramas> {
   public cantidad_mujeres : string;
 
   @Column({
+    type: DataType.STRING(30),
+    allowNull: false,
+  })
+  public cantidad : string;
+
+  @Column({
     type: DataType.STRING(150),
     allowNull: false,
   })

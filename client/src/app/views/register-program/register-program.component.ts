@@ -77,6 +77,7 @@ export class RegisterProgramComponent implements OnInit {
   pregunta6 = "directamente";
 
   pregunta7 = "unico";
+  pregunta7Otro = "";
 
   pregunta8 = {
     value : 'no', //RESPUESTAS - Esta es la pregunta8
@@ -224,7 +225,12 @@ export class RegisterProgramComponent implements OnInit {
     data.pregunta5 = this.pregunta5;
     data.pregunta5otro = this.pregunta5otro;
     data.pregunta6 = this.pregunta6;
-    data.pregunta7 = this.pregunta7;
+    if( this.pregunta7 == 'otro' ){
+      data.pregunta7 = 'Otro :'+this.pregunta7Otro;
+    }else{
+      data.pregunta7 = this.pregunta7;
+    }
+    
     data.pregunta8 = this.pregunta8;
     /////////////////////////////////////////////////////////
     this.pregunta9 = "";

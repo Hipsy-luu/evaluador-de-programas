@@ -115,20 +115,20 @@
             <div class="col-lg-5">
                 <div id="left_form" style="height: 100%;">
                     <figure><img src="/assets/cuestionary-files/img/logosds.png" width="300px" alt=""></figure>
-                    <h2>Clasificacion programatica</h2>
+                    <h2>Clasificación programática</h2>
                     <p>En virtud de que los recursos destinados a programas y proyectos para el desarrollo social y
                         humano son prioritarios y de interés público; y con el propósito de coadyuvar al pleno
                         ejercicio de los derechos y el acceso al desarrollo social; es necesario determinar cuáles
-                        de los Programas Presupuestarios cuentan con enfoque social, partiendo de la atención a un
-                        derecho; y cuales tienen por fin el desarrollo social de las personas, atendiendo a la
+                        de los Programas presupuestarios cuentan con enfoque social, partiendo de la atención a un
+                        derecho; y cuáles tienen por fin el desarrollo social, atendiendo a la
                         situación de vulnerabilidad que les coloca en desventaja. Esta clasificación y distinción
                         servirá de herramienta de consulta y análisis de información para contribuir a la
-                        transparencia y a la rendición de cuentas, y a su vez dará a conocer sus reglas de
-                        operación, su padrón de beneficiarios y la normatividad aplicable.
+                        transparencia y a la rendición de cuentas, y a su vez omo instrumento a fin de determinar que Programas presupuestarios deben contar conReglas de
+                        Operación y/o Padrón Beneficiarios.
 
-                        Para ello, la Secretaría de Hacienda en coordinación con la Secretaría de Desarrollo Social,
-                        realiza un inventario estatal de los Programas Presupuestarios a través del Clasificador de
-                        Programas Presupuestarios con enfoque social 2020.
+                        Para ello, la Secretaría de Desarrollo Social en coordinacion con la Secretaria de Hacienda,
+                        realiza un inventario estatal de los Programas presupuestarios a través del Clasificador de
+                        Programas Presupuestarios con Enfoque Social 2021.
                     </p>
                     <div class="row">
                         <div class="col-2 no-margin">
@@ -173,7 +173,7 @@
                             <!-- /step -->
                             <div class="step" id="step1">
                                 <h3 class="main_question"><strong>2/12</strong>¿Cuál es el o los sujetos de derecho
-                                    que atiende el programa?</h3><h6>*Puede seleccionar varias</h6>
+                                    que atiende el Programa presupuestario?</h3><h6>*Puede seleccionar varias</h6>
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="form-group radio_input">
@@ -251,7 +251,7 @@
                                             <label><input [(ngModel)]="pregunta1.sujetosociedadcivil" type="checkbox"
                                                     value="sujetosociedadcivil" name="sujetosociedadcivil"
                                                     id="sujetosociedadcivil" class="icheck">Organizaciones de la
-                                                sociedad civil
+                                                Sociedad Civil
                                             </label>
                                         </div>
                                         <div class="form-group radio_input">
@@ -278,7 +278,7 @@
 
                             <!-- /step -->
                             <div class="step" id="step2">
-                                <h3 class="main_question"><strong>3/12</strong>¿El programa presupuestario está alineado a algún derecho humano-social?</h3>
+                                <h3 class="main_question"><strong>3/12</strong>¿El Programa presupuestario está alineado a algún derecho humano-social?</h3>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="col-md-12">
@@ -424,7 +424,7 @@
                             <!-- /step -->
                             <div class="step">
                                 <h3 class="main_question"><strong>5/12</strong><!-- ¿Cuál es la subcategoría del programa
-                                    presupuestario? -->¿En cuál o cuáles de las siguientes categorías se clasifican los bienes y/o servicios del programa presupuestario?</h3>
+                                    presupuestario? -->¿En cuál o cuáles de las siguientes categorías se clasifican los bienes y/o servicios del Programa presupuestario?</h3>
                                 <div class="row">
                                     <div class="col-md-12">
                                         <h6>*Seleccione mínimo una opción. Puede seleccionar varias</h6>
@@ -575,12 +575,16 @@
                                 <div class="row">
                                     <div *ngIf="pregunta4Selecciones[4] == false"  class="col-md-12">
                                         <div class="form-group radio_input">
-                                            <label><input (change)="pregunta6 = 'directamente'" type="radio" value="directamente" name="tipoentrega"
+                                            <label><input (change)="pregunta6 = 'Directamente'" type="radio" value="directamente" name="tipoentrega"
                                                     id="tipoentrega" class="icheck required" checked>Directamente
                                             </label> </div>
                                         <div class="form-group radio_input">
-                                            <label><input (change)="pregunta6 = 'indirectamente'" type="radio" value="indirectamente" name="tipoentrega"
+                                            <label><input (change)="pregunta6 = 'Indirectamente'" type="radio" value="indirectamente" name="tipoentrega"
                                                     id="tipoentrega" class="icheck required">Indirectamente
+                                            </label> </div>
+                                        <div class="form-group radio_input">
+                                            <label><input (change)="pregunta6 = 'Directamente e indirectamente'" type="radio" value="indirectamente" name="tipoentrega"
+                                                    id="tipoentrega" class="icheck required">Directamente e Indirectamente
                                             </label> </div>
 
                                     </div>
@@ -595,31 +599,32 @@
                             </div>
                             <!-- /step -->
                             <div  class="step">
-                                <h3 class="main_question"><strong>7/12</strong>¿Con qué frecuencia el programa presupuestario
+                                <h3 class="main_question"><strong>7/12</strong>¿Con qué frecuencia el Programa presupuestario
                                     entrega el apoyo social a la misma persona beneficiaria?
                                 </h3>
                                 <div class="row">
                                     <div *ngIf="pregunta4Selecciones[4] == false" class="col-md-12">
                                         <div class="form-group radio_input">
-                                            <label><input (change)="pregunta7 = 'unico'" type="radio" value="unico" name="frecuenciaentrega" id="frecuenciaentrega" class="icheck required" checked>Única vez</label>
+                                            <label><input (change)="pregunta7 = 'unico';pregunta7Otro=''" type="radio" value="unico" name="frecuenciaentrega" id="frecuenciaentrega" class="icheck required" checked>Única vez</label>
                                         </div>
                                         <div class="form-group radio_input">
-                                            <label><input (change)="pregunta7 = 'mensual'" type="radio" value="mensual" name="frecuenciaentrega" id="frecuenciaentrega" class="icheck required">Mensual</label>
+                                            <label><input (change)="pregunta7 = 'mensual';pregunta7Otro=''" type="radio" value="mensual" name="frecuenciaentrega" id="frecuenciaentrega" class="icheck required">Mensual</label>
                                         </div>
                                         <div class="form-group radio_input">
-                                            <label><input (change)="pregunta7 = 'bimensual'" type="radio" value="bimensual" name="frecuenciaentrega" id="frecuenciaentrega" class="icheck required">Bimestral</label>
+                                            <label><input (change)="pregunta7 = 'bimensual';pregunta7Otro=''" type="radio" value="bimensual" name="frecuenciaentrega" id="frecuenciaentrega" class="icheck required">Bimestral</label>
                                         </div>
                                         <div class="form-group radio_input">
-                                            <label><input (change)="pregunta7 = 'trimestral'" type="radio" value="trimestral" name="frecuenciaentrega" id="frecuenciaentrega" class="icheck required">Trimestral</label>
+                                            <label><input (change)="pregunta7 = 'trimestral';pregunta7Otro=''" type="radio" value="trimestral" name="frecuenciaentrega" id="frecuenciaentrega" class="icheck required">Trimestral</label>
                                         </div>
                                         <div class="form-group radio_input">
-                                            <label><input (change)="pregunta7 = 'semestral'" type="radio" value="semestral" name="frecuenciaentrega"  id="frecuenciaentrega" class="icheck required">Semestral</label>
+                                            <label><input (change)="pregunta7 = 'semestral';pregunta7Otro=''" type="radio" value="semestral" name="frecuenciaentrega"  id="frecuenciaentrega" class="icheck required">Semestral</label>
                                         </div>
                                         <div class="form-group radio_input">
-                                            <label><input (change)="pregunta7 = 'anual'" type="radio" value="anual" name="frecuenciaentrega"  id="frecuenciaentrega" class="icheck required">Anual</label>
+                                            <label><input (change)="pregunta7 = 'anual';pregunta7Otro=''" type="radio" value="anual" name="frecuenciaentrega"  id="frecuenciaentrega" class="icheck required">Anual</label>
                                         </div>
                                         <div class="form-group radio_input">
-                                            <label><input (change)="pregunta7 = 'otro'" type="radio" value="otro" name="frecuenciaentrega" id="frecuenciaentrega" class="icheck required">Otro</label>
+                                            <label><input (change)="pregunta7 = 'otro';pregunta7Otro=''" type="radio" value="otro" name="frecuenciaentrega" id="frecuenciaentrega" class="icheck required">Otro</label>
+                                            <input *ngIf="pregunta7 == 'otro'" [(ngModel)]="pregunta7Otro" placeholder='Especifique' type="text" class="">
                                         </div>
                                     </div>
                                     <div *ngIf="pregunta4Selecciones[4] == true" class="col-md-12">
@@ -632,7 +637,7 @@
                             </div>
                             <!-- /step -->
                             <div class="step">
-                                <h3 class="main_question"><strong>8/12</strong>¿El programa presupuestario coadyuva
+                                <h3 class="main_question"><strong>8/12</strong>¿El Programa presupuestario coadyuva
                                     al cumplimiento de alguno de los objetivos de la política de desarrollo social y
                                     humano estatal?</h3>
                                 <div class="row">
@@ -662,7 +667,7 @@
                             <!-- /step -->
                             <div class="step">
                                 <h3 class="main_question"><strong>9/12</strong> ¿Cuál es la procedencia de los
-                                    recursos destinados al programa presupuestario?</h3>
+                                    recursos destinados al Programa presupuestario?</h3>
                                 <div class="row">
                                     <div class="col-md-12">
                                         <h6>*Seleccione mínimo una opción. Puede seleccionar varias</h6>
@@ -698,7 +703,7 @@
                             </div>
                             <!-- /step -->
                             <div class="step">
-                                <h3 class="main_question"><strong>10/12</strong>Los recursos destinados al programa
+                                <h3 class="main_question"><strong>10/12</strong>Los recursos destinados al Programa
                                     presupuestario son prioritarios y de interés público porque están dirigidos a:
                                 </h3>
                                 <div class="row">
@@ -752,7 +757,7 @@
                                             <label><input (change)="pregunta10.value = 'desarrollopueblos'; pregunta10.complemento = ''" type="radio" value="desarrollopueblos" name="interespublico"
                                                     id="interespublico" class="icheck required">Fomentar el desarrollo
                                                 de los pueblos y
-                                                las comunidades Indígenas en el estado</label>
+                                                las comunidades indígenas en el estado</label>
                                         </div>
                                         <div class="form-group radio_input">
                                             <label><input (change)="pregunta10.value = 'ninguno'; pregunta10.complemento = ''" type="radio" value="ninguno" name="interespublico"
@@ -771,7 +776,7 @@
                             </div>
                             <!-- /step -->
                             <div class="step">
-                                <h3 class="main_question"><strong>11/12</strong>¿El programa presupuestario cuenta
+                                <h3 class="main_question"><strong>11/12</strong>¿El Programa presupuestario cuenta
                                     con padrón de beneficiarios?
                                 </h3>
                                 <div class="row">
@@ -793,7 +798,7 @@
                             </div>
                             <!-- /step -->
                             <div class="step">
-                                <h3 class="main_question"><strong>12/12</strong>¿El programa presupuestario cuenta
+                                <h3 class="main_question"><strong>12/12</strong>¿El Programa presupuestario cuenta
                                     con reglas de operación vigentes y/o normatividad aplicable?
                                 </h3>
                                 <div class="row">
@@ -839,7 +844,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label style="text-transform: capitalize;">Extension : {{apiDataService.user.extension}}</label>
+                                            <label style="text-transform: capitalize;">Extensión : {{apiDataService.user.extension}}</label>
                                         </div>
                                     </div>
                                 </div>

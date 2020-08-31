@@ -6,17 +6,12 @@ import { Router } from '@angular/router';
 import * as FileSaver from 'file-saver';
 import * as XLSX from 'xlsx';
 
-import * as pdfMake from 'pdfmake/build/pdfmake';
-import * as pdfFonts from 'pdfmake/build/vfs_fonts';
-import { email } from './emails/email';
-
-pdfMake.vfs = pdfFonts.pdfMake.vfs;
-
 const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
 const EXCEL_EXTENSION = '.xlsx';
 
-import '../../../assets/js/smtp'; //file path may change → 
-declare let Email: any;
+
+import { PdfServiceService } from '../../services/pdfService/pdf-service.service';
+
 
 @Component({
   selector: 'app-validations',
@@ -52,7 +47,7 @@ export class ValidationsComponent implements OnInit {
 
   @ViewChild('btnClose') btnClose: ElementRef
 
-  constructor(public apiDataService: ApiDataService, private route: Router) {
+  constructor(public apiDataService: ApiDataService, private route: Router,public pdfServiceService : PdfServiceService) {
     this.respuestas = new Array<Respuestas>();
     this.respuestasFiltered = Array.from(this.respuestas);
     this.respuestaSeleccionada = new Respuestas();
@@ -274,7 +269,7 @@ export class ValidationsComponent implements OnInit {
   reloadData() {
     this.respuestas = [];
     this.respuestaSeleccionada = new Respuestas();
-    console.log("intentando")
+    //console.log("intentando")
     this.apiDataService.getRespuestas(this.apiDataService.user.entidad).then(async (response: ServerMessage) => {
       //console.log(response);
       this.respuestas = response.data.respuestas;
@@ -299,7 +294,7 @@ export class ValidationsComponent implements OnInit {
       this.entities = response.data.entities;
       this.selectedEntitie = "Todas";
       this.respuestasFiltered = Array.from(this.respuestas);
-      this.changeStateSelected(false);
+      this.changeStateSelected(true);//////////////////////////////////////////////////////////////////////
       //this.apiDataService.showNotification(0, "Respuestas Obtenidas con Exito!", 6000);
     }).catch((error) => {
       console.log("error");
@@ -347,7 +342,7 @@ export class ValidationsComponent implements OnInit {
         this.respuestaSeleccionada.validaciones = JSON.parse(JSON.stringify(this.respuestaSeleccionada.validacionesManuales));
       }
     }
-    //console.log(this.respuestaSeleccionada);
+    console.log(this.respuestaSeleccionada);
   }
 
   sendResponse() {
@@ -363,7 +358,7 @@ export class ValidationsComponent implements OnInit {
         this.apiDataService.getRespuestas(this.apiDataService.user.entidad).then((response: ServerMessage) => {
           this.respuestas = response.data.respuestas;
           this.btnClose.nativeElement.click();
-          this.createPDF();
+          //this.pdfServiceService.createPDF(this.respuestaSeleccionada);
         }).catch((error) => {
           console.log("error");
           console.log(error);
@@ -375,236 +370,11 @@ export class ValidationsComponent implements OnInit {
       })
   }
 
-  createPDF() {
-    //console.log(this.respuestaSeleccionada);
-    //console.log(this.apiDataService.user);
-    let fixMont = new Date().getUTCMonth().toString().length == 1 ? "0" + new Date().getUTCMonth() : new Date().getUTCMonth();
-    let fixDay = new Date().getDate().toString().length == 1 ? "0" + new Date().getDate() : new Date().getDate();
-    let fixDate = "" + new Date().getFullYear() + "-" + fixMont + "-" + fixDay;
+  createPDF(){
+    this.pdfServiceService.createPDF(this.respuestaSeleccionada,false);
+  }
 
-    let data = {
-      noRespuestas: this.respuestaSeleccionada.idrespuestas,
-      nomReporte: 'Clasificador de Programas con Enfoque Social',//a
-      claveDep: this.respuestaSeleccionada.program.entidad,//b
-      nomEntidad: this.respuestaSeleccionada.program.departamento,//b
-      clavePrograma: this.respuestaSeleccionada.program.clave_presupuestaria,//c
-      ejePrograma: "predguntar",//c
-      nombrePrograma: this.respuestaSeleccionada.program.nombre_programa,//c
-      clasiPragmatica: this.respuestaSeleccionada.program.cla_programatica,//c
-      defPrograma: this.respuestaSeleccionada.program.definicion_programa,//d
-      numMujeres: this.respuestaSeleccionada.program.cantidad_mujeres,//f
-      numHombres: this.respuestaSeleccionada.program.cantidad_hombres,//f
-      total: this.respuestaSeleccionada.program.cantidad_mujeres + this.respuestaSeleccionada.program.cantidad_hombres,//f
-      sujetoSocial: this.respuestaSeleccionada.program.sujeto_social,//g
-
-      claveAlineacionPED: this.respuestaSeleccionada.program.alineacion_ped_2017_2021,//h
-      descripcionAlineacionPED: this.respuestaSeleccionada.program.descripcion_alineacion_ped,//h
-
-      claveAlineacionODS: this.respuestaSeleccionada.program.alineacion_ods_meta,//j
-      descripcionAlineacionODS: this.respuestaSeleccionada.program.descripcion_alineacion_ods_meta,//j
-
-      presupuestoAuth: new Intl.NumberFormat("es-MX").format(20545),//k
-      finPrograma: this.respuestaSeleccionada.program.descipcion_fin,//m
-      propPrograma:this.respuestaSeleccionada.program.descipcion_objetivo //n
-    }
-
-    let validacion1texto = "";
-    let validacion2texto = "";
-    let validacion6texto = "";
-    let validacion7texto = "";
-
-    if(this.respuestaSeleccionada.validaciones.validacion1a == true){
-      validacion1texto = "Se a validado que el programa es de enfoque social";
-    }else{
-      validacion1texto = "El Programa Presupuestario no es de enfoque social";
-    }
-
-    if(this.respuestaSeleccionada.validaciones.validacion2a == true){
-      validacion2texto = "Se valido que el programa coadyuva en el desarrollo social de las personas";
-    }else{
-      validacion2texto = "El Programa Presupuestario no coadyuva en el desarrollo social de las personas";
-    }
-
-    if(this.respuestaSeleccionada.validaciones.validacion6a == true){
-      validacion6texto = "Se a validado que el programa esta sujeto a reglas de operación";
-    }else{
-      validacion6texto = "El Programa Presupuestario no esta sujeto a reglas de operación";
-    }
-
-    if(this.respuestaSeleccionada.validaciones.validacion7a == true){
-      validacion7texto = "Se valido que el programa cuenta con padrón general de beneficiarios";
-    }else{
-      validacion7texto = "El Programa no cuenta con padrón general de beneficiarios";
-    }
-
-    //a)      Nombre del Reporte (Clasificador de Programas con Enfoque Social) - OK
-    //b)      Clave y nombre de la dependencia o entidad. - OK
-    //c)      Clave, eje, y nombre del programa. - OK
-    //d)      Clasificación programática. - OK
-    //e)      Definición del Programa. - OK
-    //f)       Población Objetivo (total y desagregada en hombres y mujeres) - OK
-    //g)      Sujetos sociales. - OK
-    //h)      Alineación al PED  - OK
-    //i)      Alineación al Programa Sectorial
-    //j)      Alineación a los ODS. - OK
-    //k)      Presupuesto Autorizado. - OK
-    //l)      Fuentes de financiamiento.
-    //m)      Fin del Programa  - OK
-    //n)      Propósito del Programa. - OK
-    const documentDefinition = {
-      // a string or { width: number, height: number }
-      pageSize: 'A5',
-
-      // by default we use portrait, you can change it to landscape if you wish
-      pageOrientation: 'landscape',
-
-      // [left, top, right, bottom] or [horizontal, vertical] or just a number for equal margins
-      pageMargins: [10, 10, 10, 10],
-      content: [{
-        style: 'tableExample',
-        table: {
-          widths: ['*', 'auto', '*'],
-          body: [
-            [{ text: '', rowSpan: 3, colSpan: 1, border: [false, false, false, false], }, { text: 'GOBIERNO DEL ESTADO DE CHIHUAHUA', border: [false, false, false, false] }, { text: 'Fecha Validacion ' + fixDate, alignment: 'right', fontSize: 7, border: [false, false, false, false] }],
-            ['', { text: data.nomReporte, alignment: 'center', fontSize: 7, border: [false, false, false, false] }, { text: 'No :' + data.noRespuestas, rowSpan: 2, colSpan: 1, border: [false, false, false, false], alignment: 'right', fontSize: 7 }],
-            ['', { text: 'AUTORIZADO ' + (new Date().getFullYear()), alignment: 'center', border: [false, false, false, false] }, ''],
-          ]
-        }
-      }, {
-        style: 'tableExample',
-        table: {
-          widths: ['*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*'],
-          body: [
-            [{ text: '', alignment: 'center', rowSpan: 1, colSpan: 18, border: [false, false, false, false] }, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
-            [{ text: data.claveDep + ' - ' + data.nomEntidad, alignment: 'center', fontSize: 7, rowSpan: 1, colSpan: 18, fillColor: '#e5e5e5' }, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
-            [{ text: '', alignment: 'center', rowSpan: 1, colSpan: 18, border: [false, false, false, false] }, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
-            [{ text: data.clavePrograma + ' - ' + data.ejePrograma + ' - ' + data.nombrePrograma + ' / ' + data.clasiPragmatica, alignment: 'center', fontSize: 7, rowSpan: 1, colSpan: 18, fillColor: '#e5e5e5' }, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
-            [{ text: 'Definición del Programa', margin: [0, 5, 0, 0], alignment: 'center', fontSize: 8, rowSpan: 2, colSpan: 12, fillColor: '#e5e5e5' }, '', '', '', '', '', '', '', '', '', '', '', { text: 'Beneficiarios', alignment: 'center', fontSize: 7, rowSpan: 1, colSpan: 6, fillColor: '#e5e5e5' }, '', '', '', '', ''],
-            ['', '', '', '', '', '', '', '', '', '', '', '', { text: 'Mujeres', alignment: 'center', fontSize: 6, rowSpan: 1, colSpan: 2, fillColor: '#e5e5e5' }, '', { text: 'Hombres', alignment: 'center', fontSize: 6, rowSpan: 1, colSpan: 2, fillColor: '#e5e5e5' }, '', { text: 'Total', alignment: 'center', fontSize: 6, rowSpan: 1, colSpan: 2, fillColor: '#e5e5e5' }, ''],
-            [{ text: data.defPrograma, fontSize: 7, rowSpan: 10, colSpan: 12, }, '', '', '', '', '', '', '', '', '', '', '', { text: data.numMujeres, alignment: 'center', fontSize: 6, rowSpan: 9, colSpan: 2, }, '', { text: data.numHombres, alignment: 'center', fontSize: 6, rowSpan: 9, colSpan: 2, }, '', { text: data.total, alignment: 'center', fontSize: 6, rowSpan: 9, colSpan: 2 }, ''],
-            ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
-            ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
-            ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
-            ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
-            ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
-            ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
-            ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
-            ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
-            ['', '', '', '', '', '', '', '', '', '', '', '', { text: "Recursos del programa", alignment: 'center', fontSize: 6, rowSpan: 1, colSpan: 6, fillColor: '#e5e5e5' }, '', '', '', '', ''],
-            [{ text: 'Sujeto Social', fontSize: 8, rowSpan: 2, colSpan: 12, alignment: 'center', fillColor: '#e5e5e5' }, '', '', '', '', '', '', '', '', '', '', '', { text: "Autorizado", alignment: 'center', fontSize: 6, rowSpan: 1, colSpan: 6, fillColor: '#e5e5e5' }, '', '', '', '', ''],
-            ['', '', '', '', '', '', '', '', '', '', '', '', { text: data.presupuestoAuth, alignment: 'center', fontSize: 7, rowSpan: 3, colSpan: 6, }, '', '', '', '', ''],
-            [{ text: data.sujetoSocial, fontSize: 6, rowSpan: 2, colSpan: 12, alignment: 'center' }, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
-            ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
-            
-            [{ text: validacion1texto, fontSize: 6, rowSpan: 1, colSpan: 18 }, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
-            [{ text: validacion2texto, fontSize: 6, rowSpan: 1, colSpan: 18 }, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
-            [{ text: validacion6texto, fontSize: 6, rowSpan: 1, colSpan: 18 }, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
-            [{ text: validacion7texto, fontSize: 6, rowSpan: 1, colSpan: 18 }, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
-            [{ text: '', fontSize: 6, rowSpan: 1, colSpan: 18, alignment: 'center', border: [false, false, false, false] }, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
-            [{ text: 'Proposito del programa', fontSize: 6, rowSpan: 1, colSpan: 18, alignment: 'center', fillColor: '#e5e5e5' }, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
-            [{ text: data.propPrograma, fontSize: 6, rowSpan: 1, colSpan: 18 }, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
-            [{ text: 'Fin del programa', fontSize: 6, rowSpan: 1, colSpan: 18, alignment: 'center', fillColor: '#e5e5e5' }, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
-            [{ text: data.finPrograma, fontSize: 6, rowSpan: 1, colSpan: 18 }, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
-            [{ text: ' ', fontSize: 6, rowSpan: 1, colSpan: 18, alignment: 'center', border: [false, false, false, false] }, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
-            [{ text: 'ALINEACION', fontSize: 6, rowSpan: 2, colSpan: 18, alignment: 'center', fillColor: '#e5e5e5' }, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
-            ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
-            [{ text: 'PED', fontSize: 6, rowSpan: 1, colSpan: 3, alignment: 'center' }, '', '', { text: data.claveAlineacionPED, fontSize: 6, rowSpan: 1, colSpan: 2, alignment: 'center' }, '', { text: data.descripcionAlineacionPED, fontSize: 6, rowSpan: 1, colSpan: 13 }, '', '', '', '', '', '', '', '', '', '', '', ''],
-            [{ text: 'ODS', fontSize: 6, rowSpan: 1, colSpan: 3, alignment: 'center' }, '', '', { text: data.claveAlineacionODS, fontSize: 6, rowSpan: 1, colSpan: 2, alignment: 'center' }, '', { text: data.descripcionAlineacionODS, fontSize: 6, rowSpan: 1, colSpan: 13 }, '', '', '', '', '', '', '', '', '', '', '', ''],
-            
-
-            [{ text: '', fontSize: 6, rowSpan: 1, colSpan: 18, alignment: 'center', border: [false, false, false, false] }, '', '','', '', '','', '', '','', '', '','', '', '','', '', ''],
-            [{ text: '', fontSize: 6, rowSpan: 1, colSpan: 18, alignment: 'center', border: [false, false, false, false] }, '', '','', '', '','', '', '','', '', '','', '', '','', '', ''],
-            [{ text: '', fontSize: 6, rowSpan: 1, colSpan: 18, alignment: 'center', border: [false, false, false, false] }, '', '','', '', '','', '', '','', '', '','', '', '','', '', ''],
-            [{ text: '', fontSize: 6, rowSpan: 1, colSpan: 2, alignment: 'center', border: [false, false, false, false] }, '', { text: '', fontSize: 6, rowSpan: 1, colSpan: 6, alignment: 'center', border: [false, false, false, true] },'', '', '','', '', { text: '', fontSize: 6, rowSpan: 1, colSpan: 2, alignment: 'center', border: [false, false, false, false] },'', { text: '', fontSize: 6, rowSpan: 1, colSpan: 6, alignment: 'center', border: [false, false, false, true] }, '','', '', '','',{ text: '', fontSize: 6, rowSpan: 1, colSpan: 2, alignment: 'center', border: [false, false, false, false] }, ''],
-            [{ text: '', fontSize: 6, rowSpan: 1, colSpan: 2, alignment: 'center', border: [false, false, false, false] }, '', { text: 'FIRMA DEL TITULAR DE LA DEPENDENCIA', fontSize: 5, rowSpan: 1, colSpan: 6, alignment: 'center', border: [false, false, false, false] },'', '', '','', '', { text: '', fontSize: 5, rowSpan: 1, colSpan: 2, alignment: 'center', border: [false, false, false, false] },'', { text: 'FIRMA DE QUIEN RESPONDE EL CLASIFICADOR', fontSize: 6, rowSpan: 1, colSpan: 6, alignment: 'center', border: [false, false, false, false] }, '','', '', '','',{ text: '', fontSize: 6, rowSpan: 1, colSpan: 2, alignment: 'center', border: [false, false, false, false] }, ''],
-            [{ text: '', fontSize: 6, rowSpan: 1, colSpan: 2, alignment: 'center', border: [false, false, false, false] }, '', { text: this.respuestaSeleccionada.titular, fontSize: 6, rowSpan: 1, colSpan: 6, alignment: 'center', border: [false, false, false, false] },'', '', '','', '', { text: '', fontSize: 6, rowSpan: 1, colSpan: 2, alignment: 'center', border: [false, false, false, false] },'', { text: this.respuestaSeleccionada.usuario, fontSize: 6, rowSpan: 1, colSpan: 6, alignment: 'center', border: [false, false, false, false] }, '','', '', '','',{ text: '', fontSize: 6, rowSpan: 1, colSpan: 2, alignment: 'center', border: [false, false, false, false] }, ''],
-            /*['', '', '','', '', '','', '', '','', '', '','', '', '','', '', ''],
-            ['', '', '','', '', '','', '', '','', '', '','', '', '','', '', ''],
-            ['', '', '','', '', '','', '', '','', '', '','', '', '','', '', ''],
-            ['', '', '','', '', '','', '', '','', '', '','', '', '','', '', ''],
-            ['', '', '','', '', '','', '', '','', '', '','', '', '','', '', ''],
-            ['', '', '','', '', '','', '', '','', '', '','', '', '','', '', ''],
-            ['', '', '','', '', '','', '', '','', '', '','', '', '','', '', ''],
-            ['', '', '','', '', '','', '', '','', '', '','', '', '','', '', ''],
-            ['', '', '','', '', '','', '', '','', '', '','', '', '','', '', ''],
-            ['', '', '','', '', '','', '', '','', '', '','', '', '','', '', ''],
-            ['', '', '','', '', '','', '', '','', '', '','', '', '','', '', ''],*/
-          ]
-        },
-        layout: {
-          hLineWidth: function (i, node) {
-            return .5;
-          },
-          vLineWidth: function (i, node) {
-            return .5;
-          },
-        }
-      }
-      ],
-      styles: {
-        header: {
-          fontSize: 18,
-          bold: true,
-          margin: [0, 0, 0, 10]
-        },
-        subheader: {
-          fontSize: 16,
-          bold: true,
-          margin: [0, 10, 0, 5]
-        },
-        tableExample: {
-          margin: [0, 0, 0, 0],
-          fontSize: 9,
-          color: 'black'
-        },
-        tableHeader: {
-          bold: true,
-          fontSize: 13,
-          color: 'black'
-        }
-      },
-      defaultStyle: {
-        alignment: 'justify'
-      }
-    };
-    //pdfMake.createPdf(documentDefinition).open(); 
-    const pdfDocGenerator = pdfMake.createPdf(documentDefinition);
-    pdfDocGenerator.getBase64((pdfBase64) => {
-      //alert(data);
-      Email.send({
-        Host: 'smtp.elasticemail.com',
-        Port: 2525,
-        //Username: 'luismi.luu@gmail.com',
-        //Password: 'CD71EF3F18D61EAC4DD8F549D65FF2E49ABE',
-        Username: 'clasificador@chihuahua.gob.mx',
-        Password: '8544CC6047C188E711D10459A5748FAB87E4',
-        To: [this.apiDataService.user.email,this.respuestaSeleccionada.usuarioEmail],
-        Cc : /* 'luismi.luu@gmail.com' */'alberto.cortes@chihuahua.gob.mx',
-        From: 'clasificador@chihuahua.gob.mx',
-        Subject: "Reporte de validacion del programa presupuestario : " + data.noRespuestas,
-        Body: email,
-        Attachments : [{
-          name : 'acuse-'+this.respuestaSeleccionada.idrespuestas+'.pdf',
-          data :  pdfBase64
-        }],
-      }).then(message => { 
-        if (message == "OK") {
-          //alert(message); 
-          alert("Se a mandado un correo con el reporte a su email");
-          //Abre el pdf en una ventana
-          pdfMake.createPdf(documentDefinition).open(); 
-          console.log("exito mandando correo");
-        }else{
-          console.log("error enviando correo");
-          alert(message);
-        }
-         
-        //console.log(message);
-      },(error)=>{
-        console.log("error enviando correo");
-        console.log(error);
-        
-      });
-    });
+  sendPDFByEmail(){
+    this.pdfServiceService.createPDF(this.respuestaSeleccionada,true);
   }
 }
