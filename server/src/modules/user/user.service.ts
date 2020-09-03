@@ -1,7 +1,7 @@
 import { respuestasp1Providers } from './../../models/repositoriesModels/respuestasp1.providers';
 import { ValidacionesManuales } from './../../models/validacionesManuales.entity';
 import { Injectable, Inject } from '@nestjs/common';
-import { MailerService } from '@nestjs-modules/mailer';
+//import { MailerService } from '@nestjs-modules/mailer';
 
 // import { USER_REPOSITORY } from '../utils/constants';
 import { User } from '../../models/user.entity';
@@ -25,7 +25,7 @@ import { async } from 'rxjs/internal/scheduler/async';
 @Injectable()
 export class UserService {
   constructor(
-    private readonly mailerService: MailerService,
+    //private readonly mailerService: MailerService,
     //Es una manera de dar de alta el repositorio de la tabla de usuarios
     @Inject('UserRepository') private readonly userRepository: typeof User,
     @Inject('RespuestasRepository') private readonly respuestasRepository: typeof Respuestas,
@@ -609,28 +609,30 @@ export class UserService {
       try {
         //console.log(data);
         
-        this.mailerService.sendMail({
-          to: 'clasificador@chihuahua.gob.mx,'+data.toEmails, // list of receivers string separado por comas
-          from: 'clasificador@chihuahua.gob.mx', // sender address
-          subject: "✔ Reporte de validacion del programa presupuestario : "+ data.idRespuestas ,// Subject line
-          //text: 'welcome', // plaintext body
-          html: email, // HTML body content,
-          // encoded string as an attachment
-          attachments: [
-            {   
-              // encoded string as an attachment
-              filename: 'acuse-' + data.idRespuestas + '.pdf',
-              path: 'data:application/pdf;base64,'+data.pdfBase64
-            },
-          ]
-        })
-        .then((success) => {
-          resolve( new ServerMessage(false, "Email enviado con éxito", success) ); 
-        })
-        .catch((error) => {
-          console.log(error);
-          reject ( new ServerMessage(true, "Error enviando correo", error) );
-        });
+        //this.mailerService.sendMail({
+        //  to: 'clasificador@chihuahua.gob.mx,'+data.toEmails, // list of receivers string separado por comas
+        //  from: 'clasificador@chihuahua.gob.mx', // sender address
+        //  subject: "✔ Reporte de validacion del programa presupuestario : "+ data.idRespuestas ,// Subject line
+        //  //text: 'welcome', // plaintext body
+        //  html: email, // HTML body content,
+        //  // encoded string as an attachment
+        //  attachments: [
+        //    {   
+        //      // encoded string as an attachment
+        //      filename: 'acuse-' + data.idRespuestas + '.pdf',
+        //      path: 'data:application/pdf;base64,'+data.pdfBase64
+        //    },
+        //  ]
+        //})
+        //.then((success) => {
+        //  resolve( new ServerMessage(false, "Email enviado con éxito", success) ); 
+        //})
+        //.catch((error) => {
+        //  console.log(error);
+        //  reject ( new ServerMessage(true, "Error enviando correo", error) );
+        //});
+
+        resolve( new ServerMessage(false, "Email no se envio", {}) ); 
       } catch (error) {
         reject( new ServerMessage(true, "Error 2 enviando correo", error) ) ;
       }

@@ -34,7 +34,8 @@ export class UserAcuseComponent implements OnInit {
 
           break;
         case 2: //Usuario que registra los programas
-          this.route.navigateByUrl('/register-program')
+          //this.route.navigateByUrl('/register-program')
+          this.reloadData();
           break;
         case 3:
           this.reloadData();
