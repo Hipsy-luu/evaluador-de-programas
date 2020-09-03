@@ -1,0 +1,95 @@
+<div *ngIf="apiDataService.successMessage" class="alert alert-success notificacion-flotante" role="alert">
+    {{apiDataService.actualMessageServer}} <a (click)="apiDataService.closeNotification()">X</a>
+</div>
+<div *ngIf="apiDataService.failMessage" class="alert alert-warning notificacion-flotante" role="alert">
+    {{apiDataService.actualMessageServer}} <a (click)="apiDataService.closeNotification()">X</a>
+</div>
+<!-- Es el encargado de que se mueva el contenido -->
+<div class="wrapper" >
+  <div class="navbar-custom">
+    <div class="navbar-box" style="height: -webkit-fill-available;align-items: center;">
+      <div class="" style="color: aliceblue;">
+          <img src="/assets/images/logo-trans.png" style="height: 40px;">
+      </div>
+      <div class="">
+          <label style="color: white;padding: 0px 37px;font-size: x-large;">Bienvenido {{apiDataService.user.nombre}}</label>
+      </div>
+      <div class="">
+          <button type="button" class="log-out-btn" (click)="apiDataService.logOut()">
+              Cerrar sesión
+              <i class="fas fa-door-open"></i>
+          </button>
+      </div>
+    </div>
+    <div>
+        <div class="card-box" style="text-align: -webkit-center;">
+            <div class="card ">
+                <div class="card-body">
+                    <div class="row" style="display: flex;align-items: center; text-align: start;">
+                        <!-- <div class="col-2">
+                            <button routerLink="/register-program" type="button" name="acuses" class="btn blu-btn">Regresar </button>
+                        </div> -->
+                        <div class="col-10" style="text-align: center;display: flex;">
+                            <h2 style="margin: 0px;">
+                                Descarga de acuses
+                                <i class="fas fa-cloud-download-alt" style='color: black'></i>
+                            </h2>
+                            <i class="fa-cloud-download-alt" style='color: black'></i>
+                        </div>
+                        <div class="col-2" style="text-align: right;">
+                            <button class="reload-btn" (click)="reloadData()">
+                                <i class="fas fa-sync" style='color:whitesmoke'></i>
+                                 Recargar
+                            </button>
+                        </div>
+                    </div>
+                    <!-- TABLA -->
+                    <table class="table table-hover" style="max-width: 1440px; width:100%; margin-top: 1em;">
+                        <tr class="row">
+                            <th class="full-centered col-2">ID Respuesta</th>
+                            <th class="full-centered col-2">Dependencia</th>
+                            <th class=" col-4">Programa</th>
+                            <th class="full-centered col-2">Estatus</th>
+                            <th class="full-centered col-2">Acciones</th>
+                        </tr>
+                        <tr class="row" *ngFor="let respuesta of respuestas">
+                            <td class="full-centered col-2">
+                                <label class="full-centered">
+                                    {{respuesta.idrespuestas}}
+                                </label>
+                                <!-- <button (click)="selectRespuesta(respuesta)" data-target='#modalRegistro' data-toggle='modal' data-id='' class='btn btn-info' id='verRespuestas'>
+                                    {{respuesta.idrespuestas}} Ver respuestas</button> -->
+                            </td>
+                            <td class="full-centered col-2">{{respuesta.dependencia}}</td>
+                            <td class="col-4">{{respuesta.programa}}</td>
+                            <td class="col-2 full-centered">
+                                <label class="full-centered" *ngIf="!respuesta.estatus">Sin Validar</label>
+                                <label class="full-centered" *ngIf="respuesta.estatus" >Validado</label>
+                            </td>
+                            <td class="full-centered col-2">
+                                <label *ngIf="!respuesta.estatus" class='btn blu-btn' >
+                                    <i class="fas fa-times-circle" style='color:whitesmoke'></i>
+                                    Sin Autorizar
+                                </label>
+                                <button *ngIf="respuesta.estatus" class='btn blu-btn' (click)="createPDF(respuesta)">
+                                    <i class="fas fa-download" style='color:whitesmoke'></i>
+                                    Descargar
+                                </button>
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="row">
+                        <!-- <div class="col" style="text-align: right;">
+                            <ngb-pagination [(page)]="page" [pageSize]="pageSize"
+                                [collectionSize]="respuestasFiltered.length"
+                                style="width: -webkit-fill-available;text-align: right;" class="justify-end">
+                            </ngb-pagination>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+    
+        </div>
+    </div>
+    
+</div>

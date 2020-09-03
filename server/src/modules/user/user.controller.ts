@@ -31,11 +31,25 @@ export class UserController {
     return this.userService.getAllRespuestas(req.user.dataValues.entidad);
   }
 
+  @Get('user-responses')
+  @UseGuards(AuthGuard())
+  public async getUserResponses(@Request() req): Promise<ServerMessage> {
+    return this.userService.getUserResponses(req.user.dataValues.idusuarios);
+  }
+
   @Post('update-validaciones/:idrespuestas')
   @UseGuards(AuthGuard())
   async updateCreateValidation(@Param('idrespuestas') idrespuesta : number,@Body() validaciones): Promise<ServerMessage>{
       return await this.userService.upCreateValidations(validaciones,idrespuesta);
   }
+
+  @Post('enviar-validacion')
+  @UseGuards(AuthGuard())
+  async sendPdfEmail(@Body() body): Promise<ServerMessage>{
+      return await this.userService.sendEmailValidations(body);
+  }
+
+  
 
   /* @Post('testuserband')
   testUserWithBand( @Body() body : any){

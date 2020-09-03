@@ -6,6 +6,7 @@ import * as pdfFonts from 'pdfmake/build/vfs_fonts';
 import { email } from './../../views/validations/emails/email';
 
 import '../../../assets/js/smtp'; //file path may change → 
+import { ServerMessage } from '../../classes/serverMessages.dto';
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 declare let Email: any;
@@ -17,7 +18,7 @@ export class PdfServiceService {
 
   constructor(public apiDataService: ApiDataService,) { }
 
-  createPDF(respuestaSeleccionada: Respuestas,sendEmail : boolean) {
+  createPDF(respuestaSeleccionada: Respuestas, sendEmail: boolean) {
     //console.log(this.respuestaSeleccionada);
     //console.log(this.apiDataService.user);
     let fixMont = new Date().getUTCMonth().toString().length == 1 ? "0" + new Date().getUTCMonth() : new Date().getUTCMonth();
@@ -33,11 +34,11 @@ export class PdfServiceService {
       ejePrograma: "",//c
       nombrePrograma: respuestaSeleccionada.program.nombre_programa,//c
       clasiPragmatica: respuestaSeleccionada.program.cla_programatica,//c
-      beneficiarios : "",
+      beneficiarios: "",
       defPrograma: respuestaSeleccionada.program.definicion_programa,//d
       numMujeres: respuestaSeleccionada.program.cantidad_mujeres,//f
       numHombres: respuestaSeleccionada.program.cantidad_hombres,//f
-      
+
       total: Number.parseInt(respuestaSeleccionada.program.cantidad_mujeres) + Number.parseInt(respuestaSeleccionada.program.cantidad_hombres),//f
       sujetoSocial: respuestaSeleccionada.program.sujeto_social,//g
 
@@ -49,7 +50,7 @@ export class PdfServiceService {
 
       presupuestoAuth: new Intl.NumberFormat("es-MX").format(20545),//k
       finPrograma: respuestaSeleccionada.program.descipcion_fin,//m
-      propPrograma:respuestaSeleccionada.program.descipcion_objetivo //n
+      propPrograma: respuestaSeleccionada.program.descipcion_objetivo //n
     }
 
     /* for (let index = 0; index < respuestaSeleccionada.respuestasp1.length; index++) {
@@ -86,86 +87,86 @@ export class PdfServiceService {
     } */
 
     data.beneficiarios = respuestaSeleccionada.program.poblacion_objetivo;
-/* 
-    let validacion1texto = "";
-    let validacion2texto = "";
-    let validacion6texto = "";
-    let validacion7texto = "";
-
-    if(respuestaSeleccionada.validaciones.validacion1a == true){
-      validacion1texto = "SI";
-    }else{
-      validacion1texto = "NO";
-    }
-
-    if(respuestaSeleccionada.validaciones.validacion2a == true){
-      validacion2texto = "SI";
-    }else{
-      validacion2texto = "NO";
-    }
-
-    if(respuestaSeleccionada.validaciones.validacion6a == true){
-      validacion6texto = "SI";
-    }else{
-      validacion6texto = "NO";
-    }
-
-    if(respuestaSeleccionada.validaciones.validacion7a == true){
-      validacion7texto = "SI";
-    }else{
-      validacion7texto = "NO";
-    } */
+    /* 
+        let validacion1texto = "";
+        let validacion2texto = "";
+        let validacion6texto = "";
+        let validacion7texto = "";
+    
+        if(respuestaSeleccionada.validaciones.validacion1a == true){
+          validacion1texto = "SI";
+        }else{
+          validacion1texto = "NO";
+        }
+    
+        if(respuestaSeleccionada.validaciones.validacion2a == true){
+          validacion2texto = "SI";
+        }else{
+          validacion2texto = "NO";
+        }
+    
+        if(respuestaSeleccionada.validaciones.validacion6a == true){
+          validacion6texto = "SI";
+        }else{
+          validacion6texto = "NO";
+        }
+    
+        if(respuestaSeleccionada.validaciones.validacion7a == true){
+          validacion7texto = "SI";
+        }else{
+          validacion7texto = "NO";
+        } */
 
     let dataRespuestas = {
-      pregunta1 : respuestaSeleccionada.program.clave_presupuestaria + " " +respuestaSeleccionada.programa,//ok
-      pregunta2 : "",//ok
-      pregunta3 : "",//ok
-      pregunta4 : "",//ok
-      pregunta5 : "",//ok
-      pregunta6 : "",//ok
-      pregunta7 : "",//ok
-      pregunta8 : "",
-      pregunta9 : "",
-      pregunta10 : "",
-      pregunta11 : "",
-      pregunta12 : ""
+      pregunta1: respuestaSeleccionada.program.clave_presupuestaria + " " + respuestaSeleccionada.programa,//ok
+      pregunta2: "",//ok
+      pregunta3: "",//ok
+      pregunta4: "",//ok
+      pregunta5: "",//ok
+      pregunta6: "",//ok
+      pregunta7: "",//ok
+      pregunta8: "",
+      pregunta9: "",
+      pregunta10: "",
+      pregunta11: "",
+      pregunta12: ""
     };
 
     dataRespuestas.pregunta2 = respuestaSeleccionada.respuestas.pregunta1complemento + " :";
-    respuestaSeleccionada.respuestasp1.forEach(respuesta =>{
-      if(respuesta == 'sujetoninasninos'){
-        dataRespuestas.pregunta2 =  dataRespuestas.pregunta2 + "- Niñas y niños de 0 a 11 años";
-      }else if(respuesta == 'sujetoadolescentes'){
-        dataRespuestas.pregunta2 =  dataRespuestas.pregunta2 + "- Adolescentes de 12 a 17 años ";
-      }else if(respuesta == 'sujetojovenes'){
-        dataRespuestas.pregunta2 =  dataRespuestas.pregunta2 + "- Adolescentes de 18 a 29 años";
-      }else if(respuesta == 'mujeres'){
-        dataRespuestas.pregunta2 =  dataRespuestas.pregunta2 + "- Mujeres";
-      }else if(respuesta == 'sujetomayores60'){
-        dataRespuestas.pregunta2 =  dataRespuestas.pregunta2 + "- Personas mayores de 60 a más";
-      }else if(respuesta == 'sujetodiscapacidad'){
-        dataRespuestas.pregunta2 =  dataRespuestas.pregunta2 + "- Personas con discapacidad";
-      }else if(respuesta == 'sujetoindigenas'){
-        dataRespuestas.pregunta2 =  dataRespuestas.pregunta2 + "- Personas indígenas";
-      }else if(respuesta == 'sujetojornaleras'){
-        dataRespuestas.pregunta2 =  dataRespuestas.pregunta2 + "- Personas jornaleras";
-      }else if(respuesta == 'sujetomigrantes'){
-        dataRespuestas.pregunta2 =  dataRespuestas.pregunta2 + "- Personas migrantes";
-      }else if(respuesta == 'sujetoadultas30a59'){
-        dataRespuestas.pregunta2 =  dataRespuestas.pregunta2 + "- Personas adultas de 30 a 59";
-      }else if(respuesta == 'sujetofamilias'){
-        dataRespuestas.pregunta2 =  dataRespuestas.pregunta2 + "- Familias o comunidades";
-      }else if(respuesta == 'sujetosociedadcivil'){
-        dataRespuestas.pregunta2 =  dataRespuestas.pregunta2 + "- Organizaciones d ela sociedad civil";
-      }else if(respuesta == 'noaplica'){
-        dataRespuestas.pregunta2 =  dataRespuestas.pregunta2 + "- No aplica";
-      }else if(respuesta == 'sujetootro'){
-        dataRespuestas.pregunta2 =  dataRespuestas.pregunta2 + "- Otro";
+    respuestaSeleccionada.respuestasp1.forEach(respuesta => {
+      if (respuesta == 'sujetoninasninos') {
+        dataRespuestas.pregunta2 = dataRespuestas.pregunta2 + "- Niñas y niños de 0 a 11 años";
+      } else if (respuesta == 'sujetoadolescentes') {
+        dataRespuestas.pregunta2 = dataRespuestas.pregunta2 + "- Adolescentes de 12 a 17 años ";
+      } else if (respuesta == 'sujetojovenes') {
+        dataRespuestas.pregunta2 = dataRespuestas.pregunta2 + "- Adolescentes de 18 a 29 años";
+      } else if (respuesta == 'mujeres') {
+        dataRespuestas.pregunta2 = dataRespuestas.pregunta2 + "- Mujeres";
+      } else if (respuesta == 'sujetomayores60') {
+        dataRespuestas.pregunta2 = dataRespuestas.pregunta2 + "- Personas mayores de 60 a más";
+      } else if (respuesta == 'sujetodiscapacidad') {
+        dataRespuestas.pregunta2 = dataRespuestas.pregunta2 + "- Personas con discapacidad";
+      } else if (respuesta == 'sujetoindigenas') {
+        dataRespuestas.pregunta2 = dataRespuestas.pregunta2 + "- Personas indígenas";
+      } else if (respuesta == 'sujetojornaleras') {
+        dataRespuestas.pregunta2 = dataRespuestas.pregunta2 + "- Personas jornaleras";
+      } else if (respuesta == 'sujetomigrantes') {
+        dataRespuestas.pregunta2 = dataRespuestas.pregunta2 + "- Personas migrantes";
+      } else if (respuesta == 'sujetoadultas30a59') {
+        dataRespuestas.pregunta2 = dataRespuestas.pregunta2 + "- Personas adultas de 30 a 59";
+      } else if (respuesta == 'sujetofamilias') {
+        dataRespuestas.pregunta2 = dataRespuestas.pregunta2 + "- Familias o comunidades";
+      } else if (respuesta == 'sujetosociedadcivil') {
+        dataRespuestas.pregunta2 = dataRespuestas.pregunta2 + "- Organizaciones d ela sociedad civil";
+      } else if (respuesta == 'noaplica') {
+        dataRespuestas.pregunta2 = dataRespuestas.pregunta2 + "- No aplica";
+      } else if (respuesta == 'sujetootro') {
+        dataRespuestas.pregunta2 = dataRespuestas.pregunta2 + "- Otro";
       }
     });
 
-    dataRespuestas.pregunta3  = respuestaSeleccionada.respuestas.pregunta2 ? respuestaSeleccionada.respuestas.pregunta2+" :" : "No ";
-    respuestaSeleccionada.respuestasp2.forEach(element=>{
+    dataRespuestas.pregunta3 = respuestaSeleccionada.respuestas.pregunta2 ? respuestaSeleccionada.respuestas.pregunta2 + " :" : "No ";
+    respuestaSeleccionada.respuestasp2.forEach(element => {
       dataRespuestas.pregunta3 = dataRespuestas.pregunta3 + ", " + element;
     });
     dataRespuestas.pregunta4 = respuestaSeleccionada.respuestas.pregunta3 ? respuestaSeleccionada.respuestas.pregunta3 : "No ";
@@ -173,116 +174,120 @@ export class PdfServiceService {
       dataRespuestas.pregunta4 = dataRespuestas.pregunta4 + "- Personas en condición de pobreza";
     } else if (respuestaSeleccionada.respuestas.pregunta3complemento.includes('pobrezaextrema') == true) {
       dataRespuestas.pregunta4 = dataRespuestas.pregunta4 + "- Personas en condición de pobreza extrema";
-    }else if (respuestaSeleccionada.respuestas.pregunta3complemento.includes('vulnerable') == true) {
+    } else if (respuestaSeleccionada.respuestas.pregunta3complemento.includes('vulnerable') == true) {
       dataRespuestas.pregunta4 = dataRespuestas.pregunta4 + "- Personas en condición vulnerable";
-    }else if (respuestaSeleccionada.respuestas.pregunta3complemento.includes('zonaprioritariaestatal') == true) {
+    } else if (respuestaSeleccionada.respuestas.pregunta3complemento.includes('zonaprioritariaestatal') == true) {
       dataRespuestas.pregunta4 = dataRespuestas.pregunta4 + "- Personas habitantes de zonas de atención prioritaria estatales";
-    }else if (respuestaSeleccionada.respuestas.pregunta3complemento.includes('zonaprioritariafederal') == true) {
+    } else if (respuestaSeleccionada.respuestas.pregunta3complemento.includes('zonaprioritariafederal') == true) {
       dataRespuestas.pregunta4 = dataRespuestas.pregunta4 + "-  Personas habitantes de zonas de atención prioritaria federales";
-    }else if (respuestaSeleccionada.respuestas.pregunta3complemento.includes('potroobreza') == true) {
-      dataRespuestas.pregunta4 = dataRespuestas.pregunta4 + "- Otro : " + respuestaSeleccionada.respuestas.pregunta3complemento.slice( ( respuestaSeleccionada.respuestas.pregunta3complemento.indexOf("otro") ) + 5, respuestaSeleccionada.respuestas.pregunta3complemento.length);
+    } else if (respuestaSeleccionada.respuestas.pregunta3complemento.includes('potroobreza') == true) {
+      dataRespuestas.pregunta4 = dataRespuestas.pregunta4 + "- Otro : " + respuestaSeleccionada.respuestas.pregunta3complemento.slice((respuestaSeleccionada.respuestas.pregunta3complemento.indexOf("otro")) + 5, respuestaSeleccionada.respuestas.pregunta3complemento.length);
     }
 
     dataRespuestas.pregunta5 = respuestaSeleccionada.respuestas.pregunta4complemento ? respuestaSeleccionada.respuestas.pregunta4complemento : " ";
     if (respuestaSeleccionada.respuestas.pregunta4.includes('entregaayudas') == true) {
       dataRespuestas.pregunta5 = dataRespuestas.pregunta5 + " - El Programa entrega ayudas y subsidios directamente a la población";
-    } 
+    }
     if (respuestaSeleccionada.respuestas.pregunta4.includes('ninguno') == false) {
-      dataRespuestas.pregunta5 = dataRespuestas.pregunta5 + " - "+ respuestaSeleccionada.respuestas.pregunta5complemento ? respuestaSeleccionada.respuestas.pregunta5complemento : "";
-    } 
+      dataRespuestas.pregunta5 = dataRespuestas.pregunta5 + " - " + respuestaSeleccionada.respuestas.pregunta5complemento ? respuestaSeleccionada.respuestas.pregunta5complemento : "";
+    }
     if (respuestaSeleccionada.respuestas.pregunta5complemento.toString() == "Otro") {
-      dataRespuestas.pregunta5 = dataRespuestas.pregunta5 + " - "+ respuestaSeleccionada.respuestas.pregunta5otro ? respuestaSeleccionada.respuestas.pregunta5otro : "Sin Indicar";
-    } 
+      dataRespuestas.pregunta5 = dataRespuestas.pregunta5 + " - " + respuestaSeleccionada.respuestas.pregunta5otro ? respuestaSeleccionada.respuestas.pregunta5otro : "Sin Indicar";
+    }
     if (respuestaSeleccionada.respuestas.pregunta4.includes('ninguno') == false) {
-      dataRespuestas.pregunta5 = dataRespuestas.pregunta5 + " - "+ respuestaSeleccionada.respuestas.pregunta5 ? respuestaSeleccionada.respuestas.pregunta5 : "No";
-    } 
+      dataRespuestas.pregunta5 = dataRespuestas.pregunta5 + " - " + respuestaSeleccionada.respuestas.pregunta5 ? respuestaSeleccionada.respuestas.pregunta5 : "No";
+    }
     if (respuestaSeleccionada.respuestas.pregunta4.includes('ninguno') == true) {
-      dataRespuestas.pregunta5 = dataRespuestas.pregunta5 + " - "+ "No aplica";
-    } 
+      dataRespuestas.pregunta5 = dataRespuestas.pregunta5 + " - " + "No aplica";
+    }
     if (respuestaSeleccionada.respuestas.pregunta4.includes('desarrollocapacidades') == true) {
       dataRespuestas.pregunta5 = dataRespuestas.pregunta5 + " - El Programa se enfoca al desarrollo de capacidades";
-    } 
+    }
     if (respuestaSeleccionada.respuestas.pregunta4.includes('desarrolloservicios') == true) {
       dataRespuestas.pregunta5 = dataRespuestas.pregunta5 + " - El Programa desarrolla infraestructura social";
-    } 
+    }
     if (respuestaSeleccionada.respuestas.pregunta4.includes('ninguno') == true) {
       dataRespuestas.pregunta5 = dataRespuestas.pregunta5 + " - Ninguno";
     }
 
     if (respuestaSeleccionada.respuestas.pregunta4.includes('ninguno') == false) {
       dataRespuestas.pregunta6 = respuestaSeleccionada.respuestas.pregunta6 ? respuestaSeleccionada.respuestas.pregunta6 : "No"
-    }else{
+    } else {
       dataRespuestas.pregunta6 = "No Aplica";
     }
 
     dataRespuestas.pregunta7 = respuestaSeleccionada.respuestas.pregunta7 ? respuestaSeleccionada.respuestas.pregunta7 : "No";
 
-    dataRespuestas.pregunta8 = respuestaSeleccionada.respuestas.pregunta8 ? respuestaSeleccionada.respuestas.pregunta8 + " " : "No ";    
-    if (respuestaSeleccionada.respuestas.pregunta8.toString()=='si') {
+    dataRespuestas.pregunta8 = respuestaSeleccionada.respuestas.pregunta8 ? respuestaSeleccionada.respuestas.pregunta8 + " " : "No ";
+    if (respuestaSeleccionada.respuestas.pregunta8.toString() == 'si') {
       dataRespuestas.pregunta8 = dataRespuestas.pregunta8 + respuestaSeleccionada.respuestas.pregunta8complemento ? respuestaSeleccionada.respuestas.pregunta8complemento : "";
     }
 
     if (respuestaSeleccionada.respuestas.pregunta9.includes('federal') == true) {
-      dataRespuestas.pregunta9 = "Federal";
-    }else if (respuestaSeleccionada.respuestas.pregunta9.includes('estatal') == true) {
-      dataRespuestas.pregunta9 = "Estatal";
-    }else if (respuestaSeleccionada.respuestas.pregunta9.includes('municipal') == true) {
-      dataRespuestas.pregunta9 = "Municipal";
-    }else if (respuestaSeleccionada.respuestas.pregunta9.includes('ingresospropios') == true) {
-      dataRespuestas.pregunta9 = "Ingresos Propios";
-    }else if (respuestaSeleccionada.respuestas.pregunta9.includes('otro') == true) {
-      dataRespuestas.pregunta9 = "Otro : " + respuestaSeleccionada.respuestas.pregunta9.slice( ( respuestaSeleccionada.respuestas.pregunta9.indexOf("otro") ) + 5, respuestaSeleccionada.respuestas.pregunta9.length);;
+      dataRespuestas.pregunta9 = dataRespuestas.pregunta9 + ", Federal";
+    } 
+    if (respuestaSeleccionada.respuestas.pregunta9.includes('estatal') == true) {
+      dataRespuestas.pregunta9 = dataRespuestas.pregunta9 + ", Estatal";
+    } 
+    if (respuestaSeleccionada.respuestas.pregunta9.includes('municipal') == true) {
+      dataRespuestas.pregunta9 = dataRespuestas.pregunta9 + ", Municipal";
+    } 
+    if (respuestaSeleccionada.respuestas.pregunta9.includes('ingresospropios') == true) {
+      dataRespuestas.pregunta9 = dataRespuestas.pregunta9 + ", Ingresos Propios";
+    } 
+    if (respuestaSeleccionada.respuestas.pregunta9.includes('otro') == true) {
+      dataRespuestas.pregunta9 = dataRespuestas.pregunta9 + ", Otro : " + respuestaSeleccionada.respuestas.pregunta9.slice((respuestaSeleccionada.respuestas.pregunta9.indexOf("otro")) + 5, respuestaSeleccionada.respuestas.pregunta9.length);;
     }
 
-    if(respuestaSeleccionada.respuestas.pregunta10.toString() == 'educacionobligatoria'){
+    if (respuestaSeleccionada.respuestas.pregunta10.toString() == 'educacionobligatoria') {
       dataRespuestas.pregunta10 = "Educación obligatoria";
-    }else if(respuestaSeleccionada.respuestas.pregunta10.toString() == 'promocionsalud'){
+    } else if (respuestaSeleccionada.respuestas.pregunta10.toString() == 'promocionsalud') {
       dataRespuestas.pregunta10 = "Promoción de la salud, prevención y control de enfermedades transmisibles y atención médica";
-    }else if(respuestaSeleccionada.respuestas.pregunta10.toString() == 'prevenirviolencia'){
+    } else if (respuestaSeleccionada.respuestas.pregunta10.toString() == 'prevenirviolencia') {
       dataRespuestas.pregunta10 = "Prevenir, atender y erradicar la violencia de género";
-    }else if(respuestaSeleccionada.respuestas.pregunta10.toString() == 'alimentacion'){
+    } else if (respuestaSeleccionada.respuestas.pregunta10.toString() == 'alimentacion') {
       dataRespuestas.pregunta10 = "Alimentación y nutrición";
-    }else if(respuestaSeleccionada.respuestas.pregunta10.toString() == 'productosbasicos'){
+    } else if (respuestaSeleccionada.respuestas.pregunta10.toString() == 'productosbasicos') {
       dataRespuestas.pregunta10 = "Abasto social de productos básicos";
-    }else if(respuestaSeleccionada.respuestas.pregunta10.toString() == 'vivienda'){
+    } else if (respuestaSeleccionada.respuestas.pregunta10.toString() == 'vivienda') {
       dataRespuestas.pregunta10 = "Vivienda";
-    }else if(respuestaSeleccionada.respuestas.pregunta10.toString() == 'generacinoempleo'){
+    } else if (respuestaSeleccionada.respuestas.pregunta10.toString() == 'generacinoempleo') {
       dataRespuestas.pregunta10 = "Generación y conservación del empleo, actividades productivas y empresas del sector social de la economía";
-    }else if(respuestaSeleccionada.respuestas.pregunta10.toString() == 'obrasinfraestructura'){
+    } else if (respuestaSeleccionada.respuestas.pregunta10.toString() == 'obrasinfraestructura') {
       dataRespuestas.pregunta10 = "Obras de infraestructura para agua potable, drenaje, electrificación, caminos y otras vías de comunicación, saneamiento ambiental y equipamiento urbano";
-    }else if(respuestaSeleccionada.respuestas.pregunta10.toString() == 'desarrollopueblos'){
+    } else if (respuestaSeleccionada.respuestas.pregunta10.toString() == 'desarrollopueblos') {
       dataRespuestas.pregunta10 = "Fomentar el desarrollo de los pueblos y las comunidades Indígenas en el estado";
-    }else if(respuestaSeleccionada.respuestas.pregunta10.toString() == 'ninguno'){
+    } else if (respuestaSeleccionada.respuestas.pregunta10.toString() == 'ninguno') {
       dataRespuestas.pregunta10 = "Ninguno";
-    }else if(respuestaSeleccionada.respuestas.pregunta10.toString() == 'otro'){
-      dataRespuestas.pregunta10 = "Educación obligatoria";
+    } else if (respuestaSeleccionada.respuestas.pregunta10.toString() == 'otro') {
+      dataRespuestas.pregunta10 = "Otro : "+ respuestaSeleccionada.respuestas.pregunta10complemento;
     }
 
-    dataRespuestas.pregunta11 = respuestaSeleccionada.respuestas.pregunta11 ? respuestaSeleccionada.respuestas.pregunta11+ " " : "No ";
-    if(respuestaSeleccionada.respuestas.pregunta11.toString()=='si'){
+    dataRespuestas.pregunta11 = respuestaSeleccionada.respuestas.pregunta11 ? respuestaSeleccionada.respuestas.pregunta11 + " " : "No ";
+    if (respuestaSeleccionada.respuestas.pregunta11.toString() == 'si') {
       dataRespuestas.pregunta11 = dataRespuestas.pregunta11 + respuestaSeleccionada.respuestas.pregunta11complemento ? respuestaSeleccionada.respuestas.pregunta11complemento : "";
     }
 
-    dataRespuestas.pregunta12 = respuestaSeleccionada.respuestas.pregunta12 ? respuestaSeleccionada.respuestas.pregunta12 : "No"; 
-    dataRespuestas.pregunta12 = dataRespuestas.pregunta12 + (respuestaSeleccionada.respuestas.pregunta12complemento ? " "+respuestaSeleccionada.respuestas.pregunta12complemento : "");
+    dataRespuestas.pregunta12 = respuestaSeleccionada.respuestas.pregunta12 ? respuestaSeleccionada.respuestas.pregunta12 : "No";
+    dataRespuestas.pregunta12 = dataRespuestas.pregunta12 + (respuestaSeleccionada.respuestas.pregunta12complemento ? " " + respuestaSeleccionada.respuestas.pregunta12complemento : "");
 
     let comentario6 = "";
     let comentario7 = "";
-    if(respuestaSeleccionada.validaciones.validacion6a == false &&
-      (respuestaSeleccionada.validaciones.validacion1a == true || respuestaSeleccionada.validaciones.validacion2a == true)){
-        comentario6 = " (Nota: El Programa debe contar con Reglas de Operación)";
+    if (respuestaSeleccionada.validaciones.validacion6a == false &&
+      (respuestaSeleccionada.validaciones.validacion1a == true || respuestaSeleccionada.validaciones.validacion2a == true)) {
+      comentario6 = " (Nota: El Programa debe contar con Reglas de Operación)";
     }
-    
-    if(respuestaSeleccionada.validaciones.validacion5a && 
+
+    if (respuestaSeleccionada.validaciones.validacion5a &&
       (
-          respuestaSeleccionada.respuestas.pregunta1complemento != 'funcionario' && 
-          respuestaSeleccionada.respuestas.pregunta1complemento != 'noaplica'
+        respuestaSeleccionada.respuestas.pregunta1complemento != 'funcionario' &&
+        respuestaSeleccionada.respuestas.pregunta1complemento != 'noaplica'
       ) &&
-      !respuestaSeleccionada.validaciones.validacion7a 
-    ){
+      !respuestaSeleccionada.validaciones.validacion7a
+    ) {
       comentario7 = " (Nota: El Programa debe contar con Padrón de Beneficiarios)"
     }
-    
+
     //a)      Nombre del Reporte (Clasificador de Programas con Enfoque Social) - OK
     //b)      Clave y nombre de la dependencia o entidad. - OK
     //c)      Clave, eje, y nombre del programa. - OK
@@ -353,16 +358,16 @@ export class PdfServiceService {
             [{ text: data.propPrograma, fontSize: 6, rowSpan: 1, colSpan: 18 }, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
 
             [{ text: '', fontSize: 6, rowSpan: 1, colSpan: 18, alignment: 'center', border: [false, false, false, false] }, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
-            [{ text: 'Resultados del Clasificador de Programas con Enfoque Social', fontSize: 8, rowSpan: 1, colSpan: 18,  fillColor: '#e5e5e5',alignment: 'center', border: [true, true, true, true] }, '', '','', '', '','', '', '','', '', '','', '', '','', '', ''],
-            [{ text: '1.- ¿El Programa presupuestario es de enfoque social?', fontSize: 6, rowSpan: 1, colSpan: 11, alignment: 'left', border: [true, true, true, true] }, '', '','', '', '','', '', '','', '',  { text: respuestaSeleccionada.validaciones.validacion1a ? 'SI' : 'NO', fontSize: 6, rowSpan: 1, colSpan: 7, alignment: 'center', border: [true, true, true, true] }, '', '', '', '','', ''],
-            [{ text: '2.- ¿El Programa presupuestario coadyuva en el desarrollo social de las personas?', fontSize: 6, rowSpan: 1, colSpan: 11, alignment: 'left', border: [true, true, true, true] }, '', '','', '', '','', '', '','', '', { text: respuestaSeleccionada.validaciones.validacion2a ? 'SI' : 'NO', fontSize: 6, rowSpan: 1, colSpan: 7, alignment: 'center', border: [true, true, true, true] }, '', '', '', '','', ''],
-            [{ text: '3.- ¿El Programa presupuestario va dirigido a sujetos de derecho prioritarios?', fontSize: 6, rowSpan: 1, colSpan: 11, alignment: 'left', border: [true, true, true, true] }, '', '','', '', '','', '', '','', '', { text: respuestaSeleccionada.validaciones.validacion3a ? 'SI' : 'NO', fontSize: 6, rowSpan: 1, colSpan: 7, alignment: 'center', border: [true, true, true, true] }, '', '', '', '','', ''],
-            [{ text: '4.- ¿El Programa presupuestario se enfoca al desarrollo de capacidades en la población beneficiaria?', fontSize: 6, rowSpan: 1, colSpan: 11, alignment: 'left', border: [true, true, true, true] },  '', '','', '', '','', '', '','', '', { text: respuestaSeleccionada.validaciones.validacion4a ? 'SI' : 'NO', fontSize: 6, rowSpan: 1, colSpan: 7, alignment: 'center', border: [true, true, true, true] }, '', '', '', '','', ''],
-            [{ text: '5.- ¿El Programa presupuestario otorga algún tipo de apoyo?', fontSize: 6, rowSpan: 1, colSpan: 11, alignment: 'left', border: [true, true, true, true] }, '', '','', '', '','', '', '','', '',  { text: respuestaSeleccionada.validaciones.validacion5a ? 'SI' : 'NO', fontSize: 6, rowSpan: 1, colSpan: 7, alignment: 'center', border: [true, true, true, true] }, '', '', '', '','', ''],
-            [{ text: '6.- ¿El Programa presupuestario está sujeto a reglas de operación?', fontSize: 6, rowSpan: 1, colSpan: 11, alignment: 'left', border: [true, true, true, true] }, '', '','', '', '','', '', '','', '', { text: (respuestaSeleccionada.validaciones.validacion6a ? 'SI' : 'NO')+comentario6, fontSize: 6, rowSpan: 1, colSpan: 7, alignment: 'center', border: [true, true, true, true] }, '', '', '', '','', ''],
-            [{ text: '7.- ¿El Programa presupuestario cuenta con padrón general de beneficiarios?', fontSize: 6, rowSpan: 1, colSpan: 11, alignment: 'left', border: [true, true, true, true] }, '', '','', '', '','', '', '','', '', { text: (respuestaSeleccionada.validaciones.validacion7a ? 'SI' : 'NO')+comentario7, fontSize: 6, rowSpan: 1, colSpan: 7, alignment: 'center', border: [true, true, true, true] }, '', '', '', '','', ''],
-            
-            
+            [{ text: 'Resultados del Clasificador de Programas con Enfoque Social', fontSize: 8, rowSpan: 1, colSpan: 18, fillColor: '#e5e5e5', alignment: 'center', border: [true, true, true, true] }, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
+            [{ text: '1.- ¿El Programa presupuestario es de enfoque social?', fontSize: 6, rowSpan: 1, colSpan: 11, alignment: 'left', border: [true, true, true, true] }, '', '', '', '', '', '', '', '', '', '', { text: respuestaSeleccionada.validaciones.validacion1a ? 'SI' : 'NO', fontSize: 6, rowSpan: 1, colSpan: 7, alignment: 'center', border: [true, true, true, true] }, '', '', '', '', '', ''],
+            [{ text: '2.- ¿El Programa presupuestario coadyuva en el desarrollo social de las personas?', fontSize: 6, rowSpan: 1, colSpan: 11, alignment: 'left', border: [true, true, true, true] }, '', '', '', '', '', '', '', '', '', '', { text: respuestaSeleccionada.validaciones.validacion2a ? 'SI' : 'NO', fontSize: 6, rowSpan: 1, colSpan: 7, alignment: 'center', border: [true, true, true, true] }, '', '', '', '', '', ''],
+            [{ text: '3.- ¿El Programa presupuestario va dirigido a sujetos de derecho prioritarios?', fontSize: 6, rowSpan: 1, colSpan: 11, alignment: 'left', border: [true, true, true, true] }, '', '', '', '', '', '', '', '', '', '', { text: respuestaSeleccionada.validaciones.validacion3a ? 'SI' : 'NO', fontSize: 6, rowSpan: 1, colSpan: 7, alignment: 'center', border: [true, true, true, true] }, '', '', '', '', '', ''],
+            [{ text: '4.- ¿El Programa presupuestario se enfoca al desarrollo de capacidades en la población beneficiaria?', fontSize: 6, rowSpan: 1, colSpan: 11, alignment: 'left', border: [true, true, true, true] }, '', '', '', '', '', '', '', '', '', '', { text: respuestaSeleccionada.validaciones.validacion4a ? 'SI' : 'NO', fontSize: 6, rowSpan: 1, colSpan: 7, alignment: 'center', border: [true, true, true, true] }, '', '', '', '', '', ''],
+            [{ text: '5.- ¿El Programa presupuestario otorga algún tipo de apoyo?', fontSize: 6, rowSpan: 1, colSpan: 11, alignment: 'left', border: [true, true, true, true] }, '', '', '', '', '', '', '', '', '', '', { text: respuestaSeleccionada.validaciones.validacion5a ? 'SI' : 'NO', fontSize: 6, rowSpan: 1, colSpan: 7, alignment: 'center', border: [true, true, true, true] }, '', '', '', '', '', ''],
+            [{ text: '6.- ¿El Programa presupuestario está sujeto a reglas de operación?', fontSize: 6, rowSpan: 1, colSpan: 11, alignment: 'left', border: [true, true, true, true] }, '', '', '', '', '', '', '', '', '', '', { text: (respuestaSeleccionada.validaciones.validacion6a ? 'SI' : 'NO') + comentario6, fontSize: 6, rowSpan: 1, colSpan: 7, alignment: 'center', border: [true, true, true, true] }, '', '', '', '', '', ''],
+            [{ text: '7.- ¿El Programa presupuestario cuenta con padrón general de beneficiarios?', fontSize: 6, rowSpan: 1, colSpan: 11, alignment: 'left', border: [true, true, true, true] }, '', '', '', '', '', '', '', '', '', '', { text: (respuestaSeleccionada.validaciones.validacion7a ? 'SI' : 'NO') + comentario7, fontSize: 6, rowSpan: 1, colSpan: 7, alignment: 'center', border: [true, true, true, true] }, '', '', '', '', '', ''],
+
+
             /* 
             [{ text: ' ', fontSize: 6, rowSpan: 1, colSpan: 18, alignment: 'center', border: [false, false, false, false] }, '', '','', '', '','', '', '','', '', '','', '', '','', '', ''],
             [{ text: ' ', fontSize: 6, rowSpan: 1, colSpan: 18, alignment: 'center', border: [false, false, false, false] }, '', '','', '', '','', '', '','', '', '','', '', '','', '', ''],
@@ -370,13 +375,13 @@ export class PdfServiceService {
             [{ text: ' ', fontSize: 6, rowSpan: 1, colSpan: 18, alignment: 'center', border: [false, false, false, false] }, '', '','', '', '','', '', '','', '', '','', '', '','', '', ''],
             [{ text: ' ', fontSize: 6, rowSpan: 1, colSpan: 18, alignment: 'center', border: [false, false, false, false] }, '', '','', '', '','', '', '','', '', '','', '', '','', '', ''], */
             //FIRMAS
-            
-            [{ text: ' ', fontSize: 6, rowSpan: 1, colSpan: 18, alignment: 'center', border: [false, false, false, false] }, '', '','', '', '','', '', '','', '', '','', '', '','', '', ''],
-            [{ text: ' ', fontSize: 6, rowSpan: 1, colSpan: 18, alignment: 'center', border: [false, false, false, false] }, '', '','', '', '','', '', '','', '', '','', '', '','', '', ''],
-            [{ text: '', fontSize: 6, rowSpan: 1, colSpan: 2, alignment: 'center', border: [false, false, false, false] }, '', { text: '', fontSize: 6, rowSpan: 1, colSpan: 6, alignment: 'center', border: [false, false, false, true] },'', '', '','', '', { text: '', fontSize: 6, rowSpan: 1, colSpan: 2, alignment: 'center', border: [false, false, false, false] },'', { text: '', fontSize: 6, rowSpan: 1, colSpan: 6, alignment: 'center', border: [false, false, false, true] }, '','', '', '','',{ text: '', fontSize: 6, rowSpan: 1, colSpan: 2, alignment: 'center', border: [false, false, false, false] }, ''],
-            [{ text: '', fontSize: 6, rowSpan: 1, colSpan: 2, alignment: 'center', border: [false, false, false, false] }, '', { text: 'FIRMA DEL TITULAR DE LA DEPENDENCIA', fontSize: 5, rowSpan: 1, colSpan: 6, alignment: 'center', border: [false, false, false, false] },'', '', '','', '', { text: '', fontSize: 5, rowSpan: 1, colSpan: 2, alignment: 'center', border: [false, false, false, false] },'', { text: 'FIRMA DEL RESPONSABLE DE DAR RESPUESTA AL CLASIFICADOR', fontSize: 6, rowSpan: 1, colSpan: 6, alignment: 'center', border: [false, false, false, false] }, '','', '', '','',{ text: '', fontSize: 6, rowSpan: 1, colSpan: 2, alignment: 'center', border: [false, false, false, false] }, ''],
-            [{ text: '', fontSize: 6, rowSpan: 1, colSpan: 2, alignment: 'center', border: [false, false, false, false] }, '', { text: respuestaSeleccionada.titular, fontSize: 6, rowSpan: 1, colSpan: 6, alignment: 'center', border: [false, false, false, false] },'', '', '','', '', { text: '', fontSize: 6, rowSpan: 1, colSpan: 2, alignment: 'center', border: [false, false, false, false] },'', { text: respuestaSeleccionada.usuario, fontSize: 6, rowSpan: 1, colSpan: 6, alignment: 'center', border: [false, false, false, false] }, '','', '', '','',{ text: '', fontSize: 6, rowSpan: 1, colSpan: 2, alignment: 'center', border: [false, false, false, false] }, ''],
-            [{ text: ' ', fontSize: 6, rowSpan: 1, colSpan: 18, alignment: 'center', border: [false, false, false, false] }, '', '','', '', '','', '', '','', '', '','', '', '','', '', ''],
+
+            [{ text: ' ', fontSize: 6, rowSpan: 1, colSpan: 18, alignment: 'center', border: [false, false, false, false] }, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
+            [{ text: ' ', fontSize: 6, rowSpan: 1, colSpan: 18, alignment: 'center', border: [false, false, false, false] }, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
+            [{ text: '', fontSize: 6, rowSpan: 1, colSpan: 2, alignment: 'center', border: [false, false, false, false] }, '', { text: '', fontSize: 6, rowSpan: 1, colSpan: 6, alignment: 'center', border: [false, false, false, true] }, '', '', '', '', '', { text: '', fontSize: 6, rowSpan: 1, colSpan: 2, alignment: 'center', border: [false, false, false, false] }, '', { text: '', fontSize: 6, rowSpan: 1, colSpan: 6, alignment: 'center', border: [false, false, false, true] }, '', '', '', '', '', { text: '', fontSize: 6, rowSpan: 1, colSpan: 2, alignment: 'center', border: [false, false, false, false] }, ''],
+            [{ text: '', fontSize: 6, rowSpan: 1, colSpan: 2, alignment: 'center', border: [false, false, false, false] }, '', { text: 'FIRMA DEL TITULAR DE LA DEPENDENCIA', fontSize: 5, rowSpan: 1, colSpan: 6, alignment: 'center', border: [false, false, false, false] }, '', '', '', '', '', { text: '', fontSize: 5, rowSpan: 1, colSpan: 2, alignment: 'center', border: [false, false, false, false] }, '', { text: 'FIRMA DEL RESPONSABLE DE DAR RESPUESTA AL CLASIFICADOR', fontSize: 6, rowSpan: 1, colSpan: 6, alignment: 'center', border: [false, false, false, false] }, '', '', '', '', '', { text: '', fontSize: 6, rowSpan: 1, colSpan: 2, alignment: 'center', border: [false, false, false, false] }, ''],
+            [{ text: '', fontSize: 6, rowSpan: 1, colSpan: 2, alignment: 'center', border: [false, false, false, false] }, '', { text: respuestaSeleccionada.titular, fontSize: 6, rowSpan: 1, colSpan: 6, alignment: 'center', border: [false, false, false, false] }, '', '', '', '', '', { text: '', fontSize: 6, rowSpan: 1, colSpan: 2, alignment: 'center', border: [false, false, false, false] }, '', { text: respuestaSeleccionada.usuario, fontSize: 6, rowSpan: 1, colSpan: 6, alignment: 'center', border: [false, false, false, false] }, '', '', '', '', '', { text: '', fontSize: 6, rowSpan: 1, colSpan: 2, alignment: 'center', border: [false, false, false, false] }, ''],
+            [{ text: ' ', fontSize: 6, rowSpan: 1, colSpan: 18, alignment: 'center', border: [false, false, false, false] }, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
             /*['', '', '','', '', '','', '', '','', '', '','', '', '','', '', ''],
             ['', '', '','', '', '','', '', '','', '', '','', '', '','', '', ''],
             ['', '', '','', '', '','', '', '','', '', '','', '', '','', '', ''],
@@ -398,7 +403,7 @@ export class PdfServiceService {
             return .5;
           },
         }
-      },{
+      }, {
         style: 'tableExample',
         table: {
           widths: ['*', 'auto', '*'],
@@ -408,45 +413,45 @@ export class PdfServiceService {
             ['', { text: 'EJERCICIO FISCAL 2021', alignment: 'center', border: [false, false, false, false] }, ''],
           ]
         }
-      },{
+      }, {
         style: 'tableExample',
         table: {
           widths: ['*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*'],
           body: [
             [{ text: data.claveDep + ' - ' + data.nomEntidad, alignment: 'center', fontSize: 7, rowSpan: 1, colSpan: 18, fillColor: '#e5e5e5' }, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
-            /* 1 */[{ text: '1. CLAVE Y NOMBRE DEL PROGRAMA PRESUPUESTARIO',style: ['headerRespuestas'], fontSize: 6, rowSpan: 1, colSpan: 18, alignment: 'left', border: [true, true, true, true] }, '', '','', '', '','', '', '','', '', '','', '', '','', '', ''],
-            [{ text: dataRespuestas.pregunta1, fontSize: 5, rowSpan: 1, colSpan: 18, alignment: 'left', border: [true, true, true, true] }, '', '','', '', '','', '', '','', '', '','', '', '','', '', ''],
-            /* 2 */[{ text: '2. ¿CUÁL ES EL O LOS SUJETOS DE DERECHO QUE ATIENDE EL PROGRAMA?', fontSize: 6,style: ['headerRespuestas'], rowSpan: 1, colSpan: 18, alignment: 'left', border: [true, true, true, true] }, '', '','', '', '','', '', '','', '', '','', '', '','', '', ''],
-            [{ text: dataRespuestas.pregunta2, fontSize: 5, rowSpan: 1, colSpan: 18, alignment: 'left', border: [true, true, true, true] }, '', '','', '', '','', '', '','', '', '','', '', '','', '', ''],
-            /* 3 */[{ text: '3. ¿EL PROGRAMA PRESUPUESTARIO ESTÁ ALINEADO A ALGÚN DERECHO HUMANO - SOCIAL?', fontSize: 6,style: ['headerRespuestas'], rowSpan: 1, colSpan: 18, alignment: 'left', border: [true, true, true, true] }, '', '','', '', '','', '', '','', '', '','', '', '','', '', ''],
-            [{ text: dataRespuestas.pregunta3, fontSize: 5, rowSpan: 1, colSpan: 18, alignment: 'left', border: [true, true, true, true] }, '', '','', '', '','', '', '','', '', '','', '', '','', '', ''],
-            /* 4 */[{ text: '4. ¿EL PROGRAMA ATIENDE POBLACIÓN EN ALGUNA CONDICIÓN DE VULNERABILIDAD?', fontSize: 6,style: ['headerRespuestas'], rowSpan: 1, colSpan: 18, alignment: 'left', border: [true, true, true, true] }, '', '','', '', '','', '', '','', '', '','', '', '','', '', ''],
-            [{ text: dataRespuestas.pregunta4, fontSize: 5, rowSpan: 1, colSpan: 18, alignment: 'left', border: [true, true, true, true] }, '', '','', '', '','', '', '','', '', '','', '', '','', '', ''],
-            /* 5 */[{ text: '5. ¿EN CUÁL O CUÁLES DE LAS SIGUIENTES CATEGORÍAS SE CLASIFICAN LOS BIENES Y/O SERVICIOS DEL PROGRAMA PRESUPUESTARIO?', fontSize: 6,style: ['headerRespuestas'], rowSpan: 1, colSpan: 18, alignment: 'left', border: [true, true, true, true] }, '', '','', '', '','', '', '','', '', '','', '', '','', '', ''],
-            [{ text: dataRespuestas.pregunta5, fontSize: 5, rowSpan: 1, colSpan: 18, alignment: 'left', border: [true, true, true, true] }, '', '','', '', '','', '', '','', '', '','', '', '','', '', ''],
-            /* 6 */[{ text: '6. ¿EL APOYO SOCIAL SE ENTREGA DIRECTAMENTE O INDIRECTAMENTE A LA POBLACIÓN?', fontSize: 6,style: ['headerRespuestas'], rowSpan: 1, colSpan: 18, alignment: 'left', border: [true, true, true, true] }, '', '','', '', '','', '', '','', '', '','', '', '','', '', ''],
-            [{ text: dataRespuestas.pregunta6, fontSize: 5, rowSpan: 1, colSpan: 18, alignment: 'left', border: [true, true, true, true] }, '', '','', '', '','', '', '','', '', '','', '', '','', '', ''],
-            /* 7 */[{ text: '7. ¿CON QUÉ FRECUENCIA EL PROGRAMA ENTREGA EL APOYO SOCIAL A LA MISMA PERSONA BENEFICIARIA?', fontSize: 6,style: ['headerRespuestas'], rowSpan: 1, colSpan: 18, alignment: 'left', border: [true, true, true, true] }, '', '','', '', '','', '', '','', '', '','', '', '','', '', ''],
-            [{ text: dataRespuestas.pregunta7, fontSize: 5, rowSpan: 1, colSpan: 18, alignment: 'left', border: [true, true, true, true] }, '', '','', '', '','', '', '','', '', '','', '', '','', '', ''],
-            /* 8 */[{ text: '8. ¿EL PROGRAMA PRESUPUESTARIO COADYUVA AL CUMPLIMIENTO DE ALGUNO DE LOS OBJETIVOS DE LA POLÍTICA DE DESARROLLO SOCIAL Y HUMANO ESTATAL?', fontSize: 6,style: ['headerRespuestas'], rowSpan: 1, colSpan: 18, alignment: 'left', border: [true, true, true, true] }, '', '','', '', '','', '', '','', '', '','', '', '','', '', ''],
-            [{ text: dataRespuestas.pregunta8, fontSize: 5, rowSpan: 1, colSpan: 18, alignment: 'left', border: [true, true, true, true] }, '', '','', '', '','', '', '','', '', '','', '', '','', '', ''],
-            /* 9 */[{ text: '9. ¿CUÁL ES LA PROCEDENCIA DE LOS RECURSOS DESTINADOS AL PROGRAMA PRESUPUESTARIO?', fontSize: 6,style: ['headerRespuestas'], rowSpan: 1, colSpan: 18, alignment: 'left', border: [true, true, true, true] }, '', '','', '', '','', '', '','', '', '','', '', '','', '', ''],
-            [{ text: dataRespuestas.pregunta9, fontSize: 5, rowSpan: 1, colSpan: 18, alignment: 'left', border: [true, true, true, true] }, '', '','', '', '','', '', '','', '', '','', '', '','', '', ''],
-            /* 10 */[{ text: '10. LOS RECURSOS DESTINADOS AL PROGRAMA PRESUPUESTARIO SON PRIORITARIOS Y DE INTERÉS PÚBLICO PORQUE ESTÁN DIRIGIDOS A:', fontSize: 6,style: ['headerRespuestas'], rowSpan: 1, colSpan: 18, alignment: 'left', border: [true, true, true, true] }, '', '','', '', '','', '', '','', '', '','', '', '','', '', ''],
-            [{ text: dataRespuestas.pregunta10, fontSize: 5, rowSpan: 1, colSpan: 18, alignment: 'left', border: [true, true, true, true] }, '', '','', '', '','', '', '','', '', '','', '', '','', '', ''],
-            /* 11 */[{ text: '11. ¿EL PROGRAMA PRESUPUESTARIO CUENTA CON PADRÓN DE BENEFICIARIOS?', fontSize: 6,style: ['headerRespuestas'], rowSpan: 1, colSpan: 18, alignment: 'left', border: [true, true, true, true] }, '', '','', '', '','', '', '','', '', '','', '', '','', '', ''],
-            [{ text: dataRespuestas.pregunta11, fontSize: 5, rowSpan: 1, colSpan: 18, alignment: 'left', border: [true, true, true, true] }, '', '','', '', '','', '', '','', '', '','', '', '','', '', ''],
-            /* 12 */[{ text: '12. ¿EL PROGRAMA PRESUPUESTARIO CUENTA CON REGLAS DE OPERACIÓN VIGENTES Y/O NORMATIVIDAD APLICABLE?', fontSize: 6,style: ['headerRespuestas'], rowSpan: 1, colSpan: 18, alignment: 'left', border: [true, true, true, true] }, '', '','', '', '','', '', '','', '', '','', '', '','', '', ''],
-            [{ text: dataRespuestas.pregunta12, fontSize: 5, rowSpan: 1, colSpan: 18, alignment: 'left', border: [true, true, true, true] }, '', '','', '', '','', '', '','', '', '','', '', '','', '', ''],
-            /* Observaciones */[{ text: 'Observaciones o aclaraciones de la Dependencia o Entidad', fontSize: 6,style: ['headerRespuestas'], rowSpan: 1, colSpan: 18, alignment: 'left', border: [true, true, true, true] }, '', '','', '', '','', '', '','', '', '','', '', '','', '', ''],
-            [{ text: respuestaSeleccionada.respuestas.aclaraciones.length > 0 ? respuestaSeleccionada.respuestas.aclaraciones : "Ninguna", fontSize: 5, rowSpan: 1, colSpan: 18, alignment: 'left', border: [true, true, true, true] }, '', '','', '', '','', '', '','', '', '','', '', '','', '', ''],
-            
+            /* 1 */[{ text: '1. CLAVE Y NOMBRE DEL PROGRAMA PRESUPUESTARIO', style: ['headerRespuestas'], fontSize: 6, rowSpan: 1, colSpan: 18, alignment: 'left', border: [true, true, true, true] }, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
+            [{ text: dataRespuestas.pregunta1, fontSize: 5, rowSpan: 1, colSpan: 18, alignment: 'left', border: [true, true, true, true] }, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
+            /* 2 */[{ text: '2. ¿CUÁL ES EL O LOS SUJETOS DE DERECHO QUE ATIENDE EL PROGRAMA?', fontSize: 6, style: ['headerRespuestas'], rowSpan: 1, colSpan: 18, alignment: 'left', border: [true, true, true, true] }, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
+            [{ text: dataRespuestas.pregunta2, fontSize: 5, rowSpan: 1, colSpan: 18, alignment: 'left', border: [true, true, true, true] }, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
+            /* 3 */[{ text: '3. ¿EL PROGRAMA PRESUPUESTARIO ESTÁ ALINEADO A ALGÚN DERECHO HUMANO - SOCIAL?', fontSize: 6, style: ['headerRespuestas'], rowSpan: 1, colSpan: 18, alignment: 'left', border: [true, true, true, true] }, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
+            [{ text: dataRespuestas.pregunta3, fontSize: 5, rowSpan: 1, colSpan: 18, alignment: 'left', border: [true, true, true, true] }, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
+            /* 4 */[{ text: '4. ¿EL PROGRAMA ATIENDE POBLACIÓN EN ALGUNA CONDICIÓN DE VULNERABILIDAD?', fontSize: 6, style: ['headerRespuestas'], rowSpan: 1, colSpan: 18, alignment: 'left', border: [true, true, true, true] }, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
+            [{ text: dataRespuestas.pregunta4, fontSize: 5, rowSpan: 1, colSpan: 18, alignment: 'left', border: [true, true, true, true] }, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
+            /* 5 */[{ text: '5. ¿EN CUÁL O CUÁLES DE LAS SIGUIENTES CATEGORÍAS SE CLASIFICAN LOS BIENES Y/O SERVICIOS DEL PROGRAMA PRESUPUESTARIO?', fontSize: 6, style: ['headerRespuestas'], rowSpan: 1, colSpan: 18, alignment: 'left', border: [true, true, true, true] }, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
+            [{ text: dataRespuestas.pregunta5, fontSize: 5, rowSpan: 1, colSpan: 18, alignment: 'left', border: [true, true, true, true] }, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
+            /* 6 */[{ text: '6. ¿EL APOYO SOCIAL SE ENTREGA DIRECTAMENTE O INDIRECTAMENTE A LA POBLACIÓN?', fontSize: 6, style: ['headerRespuestas'], rowSpan: 1, colSpan: 18, alignment: 'left', border: [true, true, true, true] }, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
+            [{ text: dataRespuestas.pregunta6, fontSize: 5, rowSpan: 1, colSpan: 18, alignment: 'left', border: [true, true, true, true] }, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
+            /* 7 */[{ text: '7. ¿CON QUÉ FRECUENCIA EL PROGRAMA ENTREGA EL APOYO SOCIAL A LA MISMA PERSONA BENEFICIARIA?', fontSize: 6, style: ['headerRespuestas'], rowSpan: 1, colSpan: 18, alignment: 'left', border: [true, true, true, true] }, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
+            [{ text: dataRespuestas.pregunta7, fontSize: 5, rowSpan: 1, colSpan: 18, alignment: 'left', border: [true, true, true, true] }, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
+            /* 8 */[{ text: '8. ¿EL PROGRAMA PRESUPUESTARIO COADYUVA AL CUMPLIMIENTO DE ALGUNO DE LOS OBJETIVOS DE LA POLÍTICA DE DESARROLLO SOCIAL Y HUMANO ESTATAL?', fontSize: 6, style: ['headerRespuestas'], rowSpan: 1, colSpan: 18, alignment: 'left', border: [true, true, true, true] }, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
+            [{ text: dataRespuestas.pregunta8, fontSize: 5, rowSpan: 1, colSpan: 18, alignment: 'left', border: [true, true, true, true] }, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
+            /* 9 */[{ text: '9. ¿CUÁL ES LA PROCEDENCIA DE LOS RECURSOS DESTINADOS AL PROGRAMA PRESUPUESTARIO?', fontSize: 6, style: ['headerRespuestas'], rowSpan: 1, colSpan: 18, alignment: 'left', border: [true, true, true, true] }, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
+            [{ text: dataRespuestas.pregunta9, fontSize: 5, rowSpan: 1, colSpan: 18, alignment: 'left', border: [true, true, true, true] }, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
+            /* 10 */[{ text: '10. LOS RECURSOS DESTINADOS AL PROGRAMA PRESUPUESTARIO SON PRIORITARIOS Y DE INTERÉS PÚBLICO PORQUE ESTÁN DIRIGIDOS A:', fontSize: 6, style: ['headerRespuestas'], rowSpan: 1, colSpan: 18, alignment: 'left', border: [true, true, true, true] }, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
+            [{ text: dataRespuestas.pregunta10, fontSize: 5, rowSpan: 1, colSpan: 18, alignment: 'left', border: [true, true, true, true] }, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
+            /* 11 */[{ text: '11. ¿EL PROGRAMA PRESUPUESTARIO CUENTA CON PADRÓN DE BENEFICIARIOS?', fontSize: 6, style: ['headerRespuestas'], rowSpan: 1, colSpan: 18, alignment: 'left', border: [true, true, true, true] }, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
+            [{ text: dataRespuestas.pregunta11, fontSize: 5, rowSpan: 1, colSpan: 18, alignment: 'left', border: [true, true, true, true] }, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
+            /* 12 */[{ text: '12. ¿EL PROGRAMA PRESUPUESTARIO CUENTA CON REGLAS DE OPERACIÓN VIGENTES Y/O NORMATIVIDAD APLICABLE?', fontSize: 6, style: ['headerRespuestas'], rowSpan: 1, colSpan: 18, alignment: 'left', border: [true, true, true, true] }, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
+            [{ text: dataRespuestas.pregunta12, fontSize: 5, rowSpan: 1, colSpan: 18, alignment: 'left', border: [true, true, true, true] }, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
+            /* Observaciones */[{ text: 'Observaciones o aclaraciones de la Dependencia o Entidad', fontSize: 6, style: ['headerRespuestas'], rowSpan: 1, colSpan: 18, alignment: 'left', border: [true, true, true, true] }, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
+            [{ text: respuestaSeleccionada.respuestas.aclaraciones.length > 0 ? respuestaSeleccionada.respuestas.aclaraciones : "Ninguna", fontSize: 5, rowSpan: 1, colSpan: 18, alignment: 'left', border: [true, true, true, true] }, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
+
             //FIRMAS
-            [{ text: ' ', fontSize: 6, rowSpan: 1, colSpan: 18, alignment: 'center', border: [false, false, false, false] }, '', '','', '', '','', '', '','', '', '','', '', '','', '', ''],
-            [{ text: '', fontSize: 6, rowSpan: 1, colSpan: 2, alignment: 'center', border: [false, false, false, false] }, '', { text: '', fontSize: 6, rowSpan: 1, colSpan: 6, alignment: 'center', border: [false, false, false, true] },'', '', '','', '', { text: '', fontSize: 6, rowSpan: 1, colSpan: 2, alignment: 'center', border: [false, false, false, false] },'', { text: '', fontSize: 6, rowSpan: 1, colSpan: 6, alignment: 'center', border: [false, false, false, true] }, '','', '', '','',{ text: '', fontSize: 6, rowSpan: 1, colSpan: 2, alignment: 'center', border: [false, false, false, false] }, ''],
-            [{ text: '', fontSize: 6, rowSpan: 1, colSpan: 2, alignment: 'center', border: [false, false, false, false] }, '', { text: 'FIRMA DEL TITULAR DE LA DEPENDENCIA', fontSize: 5, rowSpan: 1, colSpan: 6, alignment: 'center', border: [false, false, false, false] },'', '', '','', '', { text: '', fontSize: 5, rowSpan: 1, colSpan: 2, alignment: 'center', border: [false, false, false, false] },'', { text: 'FIRMA DEL RESPONSABLE DE DAR RESPUESTA AL CLASIFICADOR', fontSize: 6, rowSpan: 1, colSpan: 6, alignment: 'center', border: [false, false, false, false] }, '','', '', '','',{ text: '', fontSize: 6, rowSpan: 1, colSpan: 2, alignment: 'center', border: [false, false, false, false] }, ''],
-            [{ text: '', fontSize: 6, rowSpan: 1, colSpan: 2, alignment: 'center', border: [false, false, false, false] }, '', { text: respuestaSeleccionada.titular, fontSize: 6, rowSpan: 1, colSpan: 6, alignment: 'center', border: [false, false, false, false] },'', '', '','', '', { text: '', fontSize: 6, rowSpan: 1, colSpan: 2, alignment: 'center', border: [false, false, false, false] },'', { text: respuestaSeleccionada.usuario, fontSize: 6, rowSpan: 1, colSpan: 6, alignment: 'center', border: [false, false, false, false] }, '','', '', '','',{ text: '', fontSize: 6, rowSpan: 1, colSpan: 2, alignment: 'center', border: [false, false, false, false] }, ''],
-            [{ text: ' ', fontSize: 6, rowSpan: 1, colSpan: 18, alignment: 'center', border: [false, false, false, false] }, '', '','', '', '','', '', '','', '', '','', '', '','', '', ''],
+            [{ text: ' ', fontSize: 6, rowSpan: 1, colSpan: 18, alignment: 'center', border: [false, false, false, false] }, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
+            [{ text: '', fontSize: 6, rowSpan: 1, colSpan: 2, alignment: 'center', border: [false, false, false, false] }, '', { text: '', fontSize: 6, rowSpan: 1, colSpan: 6, alignment: 'center', border: [false, false, false, true] }, '', '', '', '', '', { text: '', fontSize: 6, rowSpan: 1, colSpan: 2, alignment: 'center', border: [false, false, false, false] }, '', { text: '', fontSize: 6, rowSpan: 1, colSpan: 6, alignment: 'center', border: [false, false, false, true] }, '', '', '', '', '', { text: '', fontSize: 6, rowSpan: 1, colSpan: 2, alignment: 'center', border: [false, false, false, false] }, ''],
+            [{ text: '', fontSize: 6, rowSpan: 1, colSpan: 2, alignment: 'center', border: [false, false, false, false] }, '', { text: 'FIRMA DEL TITULAR DE LA DEPENDENCIA', fontSize: 5, rowSpan: 1, colSpan: 6, alignment: 'center', border: [false, false, false, false] }, '', '', '', '', '', { text: '', fontSize: 5, rowSpan: 1, colSpan: 2, alignment: 'center', border: [false, false, false, false] }, '', { text: 'FIRMA DEL RESPONSABLE DE DAR RESPUESTA AL CLASIFICADOR', fontSize: 6, rowSpan: 1, colSpan: 6, alignment: 'center', border: [false, false, false, false] }, '', '', '', '', '', { text: '', fontSize: 6, rowSpan: 1, colSpan: 2, alignment: 'center', border: [false, false, false, false] }, ''],
+            [{ text: '', fontSize: 6, rowSpan: 1, colSpan: 2, alignment: 'center', border: [false, false, false, false] }, '', { text: respuestaSeleccionada.titular, fontSize: 6, rowSpan: 1, colSpan: 6, alignment: 'center', border: [false, false, false, false] }, '', '', '', '', '', { text: '', fontSize: 6, rowSpan: 1, colSpan: 2, alignment: 'center', border: [false, false, false, false] }, '', { text: respuestaSeleccionada.usuario, fontSize: 6, rowSpan: 1, colSpan: 6, alignment: 'center', border: [false, false, false, false] }, '', '', '', '', '', { text: '', fontSize: 6, rowSpan: 1, colSpan: 2, alignment: 'center', border: [false, false, false, false] }, ''],
+            [{ text: ' ', fontSize: 6, rowSpan: 1, colSpan: 18, alignment: 'center', border: [false, false, false, false] }, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
           ]
         },
         layout: {
@@ -490,51 +495,87 @@ export class PdfServiceService {
         alignment: 'justify'
       }
     };
-    
+
 
     //Habilitar para enviar emails
-    if(sendEmail == false){
-      pdfMake.createPdf(documentDefinition).open(); 
-    }else{
+    if (sendEmail == false) {
+      pdfMake.createPdf(documentDefinition).open();
+    } else {
       const pdfDocGenerator = pdfMake.createPdf(documentDefinition);
       pdfDocGenerator.getBase64((pdfBase64) => {
         //alert(data);
-        this.sendEmail([this.apiDataService.user.email,respuestaSeleccionada.usuarioEmail],data,documentDefinition,pdfBase64)
+        /*this.sendEmail(
+          [ this.apiDataService.user.email ,respuestaSeleccionada.usuarioEmail, 'laura.teran@chihuahua.gob.mx'], 
+          data, 
+          documentDefinition, 
+          pdfBase64)*/
+          //console.log(pdfBase64);
+          
+
+        this.apiDataService.sendEmail({ 
+          toEmails : respuestaSeleccionada.usuarioEmail + ",laura.teran@chihuahua.gob.mx,alberto.cortes@chihuahua.gob.mx",
+          idRespuestas : respuestaSeleccionada.idrespuestas,
+          pdfBase64 : pdfBase64
+        })
+          .then((response: ServerMessage) => {
+            //console.log("exito");
+            //console.log(response);
+            if(response.error == false){
+              alert("Se a mandado un correo con el reporte a su email");
+              //Abre el pdf en una ventana
+              //pdfMake.createPdf(documentDefinition).open(); 
+              //console.log("exito mandando correo");
+            }else{
+              alert("Error enviando email");
+              console.log(response.message);
+            }
+            //this.apiDataService.showNotification(0, "Validaciones guardadas con Exito!", 6000);
+
+          }).catch((error) => {
+            console.log("error");
+            alert("Error 2 enviando email");
+            console.log(error);
+            //this.apiDataService.showNotification(1, "Error guardando validaciones!", 6000);
+          });
       });
     }
   }
 
-  sendEmail(toUserEmail : string[], dataPdf , documentDefinition, pdfBase64){
+  sendEmail(toUserEmails: string[], dataPdf, documentDefinition, pdfBase64) {
     Email.send({
       Host: 'smtp.elasticemail.com',
       Port: 2525,
       //Username: 'luismi.luu@gmail.com',
       //Password: 'CD71EF3F18D61EAC4DD8F549D65FF2E49ABE',
-      Username: 'clasificador@chihuahua.gob.mx',
-      Password: '8544CC6047C188E711D10459A5748FAB87E4',
-      To: toUserEmail,
-      Cc : 'luismi.luu@gmail.com'/* 'alberto.cortes@chihuahua.gob.mx' */,
-      From: 'clasificador@chihuahua.gob.mx',
+
+      //Username: 'clasificador@chihuahua.gob.mx',
+      //Password: '8544CC6047C188E711D10459A5748FAB87E4',
+
+      Username: 'alberto.cortes@chihuahua.gob.mx',
+      Password: '116D694F078CA2F4819B66C4262C856EA0C2',
+      To: /* 'luismi.luu@gmail.com' */toUserEmails,
+      Cc: /* 'luismi.luu@gmail.com' */'alberto.cortes@chihuahua.gob.mx',
+      From: 'alberto.cortes@chihuahua.gob.mx',
       Subject: "Reporte de validacion del programa presupuestario : " + dataPdf.noRespuestas,
       Body: email,
-      Attachments : [{
-        name : 'acuse-'+dataPdf.idrespuestas+'.pdf',
-        data :  pdfBase64
+      Attachments: [{
+        name: 'acuse-' + dataPdf.idrespuestas + '.pdf',
+        data: pdfBase64
       }],
-    }).then(message => { 
+    }).then(message => {
       if (message == "OK") {
         //alert(message); 
         alert("Se a mandado un correo con el reporte a su email");
         //Abre el pdf en una ventana
-        pdfMake.createPdf(documentDefinition).open(); 
+        //pdfMake.createPdf(documentDefinition).open(); 
         console.log("exito mandando correo");
-      }else{
+      } else {
         console.log("error enviando correo");
         alert(message);
       }
-       
+
       //console.log(message);
-    },(error)=>{
+    }, (error) => {
       console.log("error enviando correo");
       console.log(error);
     });

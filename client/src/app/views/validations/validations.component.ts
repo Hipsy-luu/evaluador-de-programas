@@ -216,7 +216,7 @@ export class ValidationsComponent implements OnInit {
       this.respuestas[index].respuestasp2.forEach(element => {
         pregunta2Fix = pregunta2Fix + "," +element;
       });
-      const element = {
+      let element = {
         IdRespuestas : this.respuestas[index].idrespuestas,
         Estatus : this.respuestas[index].estatus == true ? "Validado" : "No validado", 
         IdPrograma : this.respuestas[index].program.idprograma,
@@ -245,6 +245,29 @@ export class ValidationsComponent implements OnInit {
         pregunta11complemento: this.respuestas[index].respuestas.pregunta11complemento,
         pregunta12: this.respuestas[index].respuestas.pregunta12,
         aclaraciones: this.respuestas[index].respuestas.aclaraciones,
+        validacion1 : this.respuestas[index].validaciones.validacion1a ? 'SI' : 'NO',
+        validacion2 : this.respuestas[index].validaciones.validacion2a ? 'SI' : 'NO',
+        validacion3 : this.respuestas[index].validaciones.validacion3a ? 'SI' : 'NO',
+        validacion4 : this.respuestas[index].validaciones.validacion3a ? 'SI' : 'NO',
+        validacion5 : this.respuestas[index].validaciones.validacion3a ? 'SI' : 'NO',
+        validacion6 : this.respuestas[index].validaciones.validacion3a ? 'SI' : 'NO',
+        validacion6comentario : "",
+        validacion7 : this.respuestas[index].validaciones.validacion3a ? 'SI' : 'NO',
+        validacion7Comentario : "",
+      }
+      if(this.respuestas[index].validaciones.validacion6a == false &&
+        (this.respuestas[index].validaciones.validacion1a == true || this.respuestas[index].validaciones.validacion2a == true)){
+          element.validacion6comentario = " (Nota: El Programa debe contar con Reglas de Operación)";
+      }
+      
+      if(this.respuestas[index].validaciones.validacion5a && 
+        (
+          this.respuestas[index].respuestas.pregunta1complemento != 'funcionario' && 
+          this.respuestas[index].respuestas.pregunta1complemento != 'noaplica'
+        ) &&
+        !this.respuestas[index].validaciones.validacion7a 
+      ){
+        element.validacion7Comentario = " (Nota: El Programa debe contar con Padrón de Beneficiarios)"
       }
       
       data.push(element);
@@ -376,5 +399,19 @@ export class ValidationsComponent implements OnInit {
 
   sendPDFByEmail(){
     this.pdfServiceService.createPDF(this.respuestaSeleccionada,true);
+  }
+
+  sendEmail(){
+    this.apiDataService.sendEmail({})
+      .then((response: ServerMessage) => {   
+        console.log("exito");
+        console.log(response);
+        //this.apiDataService.showNotification(0, "Validaciones guardadas con Exito!", 6000);
+        
+      }).catch((error) => {
+        console.log("error");
+        console.log(error);
+        //this.apiDataService.showNotification(1, "Error guardando validaciones!", 6000);
+      });
   }
 }

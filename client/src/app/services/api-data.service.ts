@@ -14,6 +14,8 @@ export class ApiDataService {
   //Url producción
   baseURL: string = "https://evaluadorapi.enbibo.com/";
 
+  //baseURL: string = "https://evaluadorapi.com/";
+
   token : String;
   user : User;
   catPrograms : CatProgramas[];
@@ -111,6 +113,19 @@ export class ApiDataService {
     });
   }
 
+  async getUserResponses( entidad : string ) {
+    return new Promise(async (resolve,reject)=>{
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer '+this.user.token
+      })
+       
+      this.http.get(this.baseURL + 'user/user-responses',{ headers: headers }).subscribe((response : ServerMessage)=>{
+        resolve(response);
+      });;
+    });
+  }
+
   async getUsers() {
     return new Promise(async (resolve,reject)=>{
       const headers = new HttpHeaders({
@@ -164,6 +179,19 @@ export class ApiDataService {
       });
 
       this.http.post(this.baseURL + 'user/update-validaciones/'+idrespuestas,validaciones,{ headers: headers }).subscribe((response : ServerMessage)=>{
+        resolve(response);
+      });
+    })
+  }
+
+  async sendEmail(data : any){
+    return new Promise((resolve,reject)=>{
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer '+this.user.token
+      });
+
+      this.http.post(this.baseURL + 'user/enviar-validacion/',data,{ headers: headers }).subscribe((response : ServerMessage)=>{
         resolve(response);
       });
     })

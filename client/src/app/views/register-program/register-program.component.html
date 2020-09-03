@@ -863,9 +863,16 @@
                         </div>
                         <!-- /middle-wizard -->
                         <div id="bottom-wizard">
-                            <button type="button" name="backward" class="backward">Anterior </button>
-                            <button type="button" name="forward" class="forward">Siguiente</button>
-                            <button type="" name="" class="submit" (click)="saveData()">Enviar</button>
+                            <div class="row">
+                                <div class="col-6">
+                                    <button routerLink="/user-acuse" target="_blank" type="button" name="acuses" class="btn blu-btn">Ver Acuses</button>
+                                </div>
+                                <div class="col-6">
+                                    <button type="button" name="backward" class="backward">Anterior </button>
+                                    <button type="button" name="forward" class="forward">Siguiente</button>
+                                    <button type="" name="" class="submit" (click)="saveData()">Enviar</button>
+                                </div>
+                            </div>
                         </div>
                         <!-- /bottom-wizard -->
                     </form>

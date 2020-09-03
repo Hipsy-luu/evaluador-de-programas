@@ -1,6 +1,8 @@
 import { respuestasp1Providers } from './../../models/repositoriesModels/respuestasp1.providers';
 import { ValidacionesManuales } from './../../models/validacionesManuales.entity';
 import { Injectable, Inject } from '@nestjs/common';
+import { MailerService } from '@nestjs-modules/mailer';
+
 // import { USER_REPOSITORY } from '../utils/constants';
 import { User } from '../../models/user.entity';
 //Normalmente se usa para formatear el objeto que recibimos en el request
@@ -14,12 +16,16 @@ import { Catderechos } from '../../models/catderechos.entity';
 import { CatapoyosSociales } from '../../models/catapoyos_sociales.entity';
 import { CatobjetivosPolitica } from '../../models/catobjetivos_politica.entity';
 import { Validaciones } from '../../models/validaciones.entity';
-import { Sequelize } from 'sequelize-typescript';
+import { Sequelize, PrimaryKey } from 'sequelize-typescript';
 import { CatDependencias } from '../../models/catdependencias.entity';
+
+import { email } from './emails/emailValidations';
+import { async } from 'rxjs/internal/scheduler/async';
 
 @Injectable()
 export class UserService {
   constructor(
+    private readonly mailerService: MailerService,
     //Es una manera de dar de alta el repositorio de la tabla de usuarios
     @Inject('UserRepository') private readonly userRepository: typeof User,
     @Inject('RespuestasRepository') private readonly respuestasRepository: typeof Respuestas,
@@ -156,6 +162,142 @@ export class UserService {
       } catch (error) {
         return new ServerMessage(true, "A ocurrido un error actualizando el usuario", error);
       }
+    }
+  }
+
+  async getUserResponses( idUser ): Promise<ServerMessage> {
+    let dataResponse: any = {
+      respuestas: [Respuestas]
+    };
+    try {
+      dataResponse.respuestas = await this.respuestasRepository.findAll<Respuestas>({
+        /* attributes: ['idrespuestas','dependencia','pregunta1complemento','programapresupuestal','usuario','estatus'], */
+        where: {
+          usuario: idUser,
+        },
+        order: [
+          ['idrespuestas', 'DESC'],
+        ],
+        include: [{
+          model: CatapoyosSociales,
+          attributes: ['apoyo_social'],
+        }, {
+          model: CatobjetivosPolitica,
+          attributes: ['politica'],
+        }, {
+          model: Validaciones,
+        }, {
+          model: ValidacionesManuales,
+        }]
+      }).map(async (respuesta: Respuestas) => {
+        let respuestasp1 = await this.respuestasp1Repository.findAll<Respuestasp1>({
+          attributes: ['sujeto'],
+          where: {
+            idrespuesta: respuesta.idrespuestas,
+          }
+        }).map((respuesta1: any) => {
+          return Object.assign(respuesta1.sujeto)
+        });
+        //Dio ERRIR
+        let respuestasp2 = [];
+
+        try {
+          let respuestasp2Temp : any[] = await this.respuestasp2complementoRepository.findAll<Respuestasp2complemento>({
+            where: {
+              idrespuesta: respuesta.idrespuestas,
+            },
+            include: [{
+              model: Catderechos,
+              attributes: ['derecho'],
+            }]
+          })/* .map((respuestas2: any) => {
+            return Object.assign(respuestas2.respuesta.derecho)
+          }); */
+          //let respuestasp2Fix : any[] = [];
+
+          for (let index = 0; index < respuestasp2Temp.length; index++) {
+            respuestasp2.push(respuestasp2Temp[index].respuesta);
+          }
+
+          /* for (let index = 0; index < respuestasp2Fix.length; index++) {
+            respuestasp2.push(respuestasp2Fix[index].derecho);
+          } */
+        } catch (error) {
+          respuestasp2 = error;
+        }
+        
+
+        let programa: any = await this.catprogramasRepository.findOne<Catprogramas>({
+          // attributes: ['nombre_programa'], 
+          where: {
+            idprograma: respuesta.programapresupuestal,
+          }
+        });
+
+        let user = await this.userRepository.findOne<User>({
+          attributes: ['nombre', 'apellidos','email'],
+          where: { idusuarios: respuesta.usuario }
+        });
+
+        let titular = await this.catDependenciasRepository.findOne<CatDependencias>({
+          //attributes: ['titular'],
+          where: { clavedependencia: Number(respuesta.dependencia) }
+        });
+
+        return Object.assign(
+          {
+            idrespuestas: respuesta.idrespuestas,
+            dependencia: respuesta.dependencia ? respuesta.dependencia : 'Sin Dependencia',
+            programa: programa ? programa.nombre_programa : "Sin Programa",
+            usuario: user ? user.nombre.toLocaleUpperCase() + ' ' + user.apellidos.toLocaleUpperCase() : 'Sin Usuario',
+            usuarioEmail: user.email,
+            titular: titular ? titular.titular : 'Sin Titular',
+            estatus: respuesta.estatus ? respuesta.estatus : false,
+            respuestasp1: respuestasp1 ? respuestasp1 : [],
+            respuestasp2: respuestasp2, //DIO ERROR
+            validaciones: respuesta.validaciones,
+            validacionesManuales: respuesta.validacionesManuales,
+            //Respuestas
+            respuestas: {
+              pregunta1complemento: respuesta.pregunta1complemento ? respuesta.pregunta1complemento : "",
+              pregunta2: respuesta.pregunta2 ? respuesta.pregunta2 : "no",
+              pregunta3: respuesta.pregunta3 ? respuesta.pregunta3 : "no",
+              pregunta3complemento: respuesta.pregunta3complemento ? respuesta.pregunta3complemento : "",
+              pregunta4: respuesta.pregunta4 ? respuesta.pregunta4 : "no",
+              pregunta4complemento: respuesta.pregunta4complemento ? respuesta.pregunta4complemento : "",
+              pregunta5: respuesta.pregunta5 ? respuesta.pregunta5 : "no",
+              pregunta5otro: respuesta.pregunta5otro,
+              pregunta5complemento: respuesta.pregunta5complementoFix ? respuesta.pregunta5complementoFix.apoyo_social : "",
+              pregunta6: respuesta.pregunta6 ? respuesta.pregunta6 : "no",
+              pregunta7: respuesta.pregunta7 ? respuesta.pregunta7 : "no",
+              pregunta8: respuesta.pregunta8 ? respuesta.pregunta8 : "no",
+              pregunta8complemento: respuesta.pregunta8complementoFix ? respuesta.pregunta8complementoFix.politica : "",
+              pregunta9: respuesta.pregunta9 ? respuesta.pregunta9 : "no",
+              pregunta10: respuesta.pregunta10 ? respuesta.pregunta10 : "no",
+              pregunta10complemento: respuesta.pregunta10complemento ? respuesta.pregunta10complemento : "",
+              pregunta11: respuesta.pregunta11 ? respuesta.pregunta11 : "no",
+              pregunta11complemento: respuesta.pregunta11complemento ? respuesta.pregunta11complemento : "",
+              pregunta12: respuesta.pregunta12 ? respuesta.pregunta12 : "no",
+              pregunta12complemento: respuesta.pregunta12complemento ? respuesta.pregunta12complemento : "",
+              aclaraciones : respuesta.aclaraciones
+            },
+            program : programa
+          })
+      });
+
+      dataResponse.entities = await await this.respuestasRepository.findAll<Respuestas>({
+        attributes: [
+            // specify an array where the first element is the SQL function and the second is the alias
+            [Sequelize.fn('DISTINCT', Sequelize.col('dependencia')) ,'dependencia'],
+        ]
+      }).map((entidad : any) => {
+        return Object.assign(entidad.dependencia)
+      });
+
+      return new ServerMessage(false, "Respuestas obtenidas con éxito", dataResponse);
+    } catch (error) {
+      //console.log(error)
+      return new ServerMessage(true, "Error obteniendo respuestas", error);
     }
   }
 
@@ -460,5 +602,38 @@ export class UserService {
     } catch (error) {
       return new ServerMessage(true, "Error consultando las validaciones", error);
     }
+  }
+
+  async sendEmailValidations(data): Promise<ServerMessage> {
+    return new Promise(async (resolve,reject)=>{
+      try {
+        //console.log(data);
+        
+        this.mailerService.sendMail({
+          to: 'clasificador@chihuahua.gob.mx,'+data.toEmails, // list of receivers string separado por comas
+          from: 'clasificador@chihuahua.gob.mx', // sender address
+          subject: "✔ Reporte de validacion del programa presupuestario : "+ data.idRespuestas ,// Subject line
+          //text: 'welcome', // plaintext body
+          html: email, // HTML body content,
+          // encoded string as an attachment
+          attachments: [
+            {   
+              // encoded string as an attachment
+              filename: 'acuse-' + data.idRespuestas + '.pdf',
+              path: 'data:application/pdf;base64,'+data.pdfBase64
+            },
+          ]
+        })
+        .then((success) => {
+          resolve( new ServerMessage(false, "Email enviado con éxito", success) ); 
+        })
+        .catch((error) => {
+          console.log(error);
+          reject ( new ServerMessage(true, "Error enviando correo", error) );
+        });
+      } catch (error) {
+        reject( new ServerMessage(true, "Error 2 enviando correo", error) ) ;
+      }
+    })
   }
 }

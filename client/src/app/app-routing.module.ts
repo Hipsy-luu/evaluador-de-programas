@@ -6,6 +6,7 @@ import { RegisterProgramComponent } from './views/register-program/register-prog
 import { LoginComponent } from './views/login/login.component';
 import { ValidationsComponent } from './views/validations/validations.component';
 import { AdminDashboardComponent } from './views/admin-dashboard/admin-dashboard.component';
+import { UserAcuseComponent } from './views/user-acuse/user-acuse.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'admin-dashboard', component: AdminDashboardComponent },
   { path: 'glosary', component: GlosaryComponent },
   { path: 'concepts-basis-rights', component: ConceptsBasisRightsComponent },
+  { path: 'user-acuse', component: UserAcuseComponent },
   //Redireccionamiento en caso de que no exista la ruta
   {
     path: '**',

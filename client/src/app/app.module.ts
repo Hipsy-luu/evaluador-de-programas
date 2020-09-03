@@ -18,6 +18,7 @@ import { ValidationsComponent } from './views/validations/validations.component'
 import { AdminDashboardComponent } from './views/admin-dashboard/admin-dashboard.component';
 import { GlosaryComponent } from './views/glosary/glosary.component';
 import { ConceptsBasisRightsComponent } from './views/concepts-basis-rights/concepts-basis-rights.component';
+import { UserAcuseComponent } from './views/user-acuse/user-acuse.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { ConceptsBasisRightsComponent } from './views/concepts-basis-rights/conc
     AdminDashboardComponent,
     GlosaryComponent,
     ConceptsBasisRightsComponent,
+    UserAcuseComponent,
   ],
   imports: [
     BrowserModule,
