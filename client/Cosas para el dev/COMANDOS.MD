@@ -2,7 +2,7 @@ Para correr el repo con cambios en caliente:
 
     >> ng serve --open
 
-Para hacer el deploy para produccion:
+Para hacer el deploy para producción:
 
     >> npm run build
 

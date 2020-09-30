@@ -216,61 +216,75 @@ export class ValidationsComponent implements OnInit {
       this.respuestas[index].respuestasp2.forEach(element => {
         pregunta2Fix = pregunta2Fix + "," +element;
       });
-      let element = {
-        IdRespuestas : this.respuestas[index].idrespuestas,
-        Estatus : this.respuestas[index].estatus == true ? "Validado" : "No validado", 
-        IdPrograma : this.respuestas[index].program.idprograma,
-        NombrePrograma : this.respuestas[index].programa,
-        ClavePresupuestaria : this.respuestas[index].program.clave_presupuestaria,
-        Entidad : this.respuestas[index].dependencia,
-        nombreUsuario: this.respuestas[index].usuario,
-        pregunta1: pregunta1Fix,
-        pregunta1complemento: this.respuestas[index].respuestas.pregunta1complemento,
-        pregunta2: this.respuestas[index].respuestas.pregunta2,
-        pregunta2complemento: pregunta2Fix,
-        pregunta3: this.respuestas[index].respuestas.pregunta3,
-        pregunta3complemento: this.respuestas[index].respuestas.pregunta3complemento,
-        pregunta4: this.respuestas[index].respuestas.pregunta4,
-        pregunta4complemento: this.respuestas[index].respuestas.pregunta4complemento,
-        pregunta5: this.respuestas[index].respuestas.pregunta5,
-        pregunta5complemento: this.respuestas[index].respuestas.pregunta5complemento,
-        pregunta6: this.respuestas[index].respuestas.pregunta6,
-        pregunta7: this.respuestas[index].respuestas.pregunta7,
-        pregunta8: this.respuestas[index].respuestas.pregunta8,
-        pregunta8complemento: this.respuestas[index].respuestas.pregunta8complemento,
-        pregunta9: this.respuestas[index].respuestas.pregunta9,
-        pregunta10: this.respuestas[index].respuestas.pregunta10,
-        pregunta10complemento: this.respuestas[index].respuestas.pregunta10complemento,
-        pregunta11: this.respuestas[index].respuestas.pregunta11,
-        pregunta11complemento: this.respuestas[index].respuestas.pregunta11complemento,
-        pregunta12: this.respuestas[index].respuestas.pregunta12,
-        aclaraciones: this.respuestas[index].respuestas.aclaraciones,
-        validacion1 : this.respuestas[index].validaciones.validacion1a ? 'SI' : 'NO',
-        validacion2 : this.respuestas[index].validaciones.validacion2a ? 'SI' : 'NO',
-        validacion3 : this.respuestas[index].validaciones.validacion3a ? 'SI' : 'NO',
-        validacion4 : this.respuestas[index].validaciones.validacion3a ? 'SI' : 'NO',
-        validacion5 : this.respuestas[index].validaciones.validacion3a ? 'SI' : 'NO',
-        validacion6 : this.respuestas[index].validaciones.validacion3a ? 'SI' : 'NO',
-        validacion6comentario : "",
-        validacion7 : this.respuestas[index].validaciones.validacion3a ? 'SI' : 'NO',
-        validacion7Comentario : "",
-      }
-      if(this.respuestas[index].validaciones.validacion6a == false &&
-        (this.respuestas[index].validaciones.validacion1a == true || this.respuestas[index].validaciones.validacion2a == true)){
-          element.validacion6comentario = " (Nota: El Programa debe contar con Reglas de Operación)";
+
+      if(this.respuestas[index].validaciones != null && this.respuestas[index].program != null){
+        this.respuestas[index].respuestasp1.forEach(elem =>{
+          if(elem == "sujetoninasninos"){
+            this.respuestas[index].validaciones.validacion3a = true;
+          }
+        });
+
+        let element = {
+          IdRespuestas : this.respuestas[index].idrespuestas,
+          Estatus : this.respuestas[index].estatus == true ? "Validado" : "No validado", 
+          IdPrograma : this.respuestas[index].program.idprograma,
+          NombrePrograma : this.respuestas[index].programa,
+          ClavePresupuestaria : this.respuestas[index].program.clave_presupuestaria,
+          Entidad : this.respuestas[index].dependencia,
+          nombreUsuario: this.respuestas[index].usuario,
+          pregunta1: pregunta1Fix,
+          pregunta1complemento: this.respuestas[index].respuestas.pregunta1complemento,
+          pregunta2: this.respuestas[index].respuestas.pregunta2,
+          pregunta2complemento: pregunta2Fix,
+          pregunta3: this.respuestas[index].respuestas.pregunta3,
+          pregunta3complemento: this.respuestas[index].respuestas.pregunta3complemento,
+          pregunta4: this.respuestas[index].respuestas.pregunta4,
+          pregunta4complemento: this.respuestas[index].respuestas.pregunta4complemento,
+          pregunta5: this.respuestas[index].respuestas.pregunta5,
+          pregunta5complemento: this.respuestas[index].respuestas.pregunta5complemento,
+          pregunta6: this.respuestas[index].respuestas.pregunta6,
+          pregunta7: this.respuestas[index].respuestas.pregunta7,
+          pregunta8: this.respuestas[index].respuestas.pregunta8,
+          pregunta8complemento: this.respuestas[index].respuestas.pregunta8complemento,
+          pregunta9: this.respuestas[index].respuestas.pregunta9,
+          pregunta10: this.respuestas[index].respuestas.pregunta10,
+          pregunta10complemento: this.respuestas[index].respuestas.pregunta10complemento,
+          pregunta11: this.respuestas[index].respuestas.pregunta11,
+          pregunta11complemento: this.respuestas[index].respuestas.pregunta11complemento,
+          pregunta12: this.respuestas[index].respuestas.pregunta12,
+          pregunta12complemento: this.respuestas[index].respuestas.pregunta12complemento,
+          aclaraciones: this.respuestas[index].respuestas.aclaraciones,
+          validacion1 : this.respuestas[index].validaciones.validacion1a ? 'SI' : 'NO',
+          validacion2 : this.respuestas[index].validaciones.validacion2a ? 'SI' : 'NO',
+          validacion3 : this.respuestas[index].validaciones.validacion3a ? 'SI' : 'NO',
+          validacion4 : this.respuestas[index].validaciones.validacion4a ? 'SI' : 'NO',
+          validacion5 : this.respuestas[index].validaciones.validacion5a ? 'SI' : 'NO',
+          validacion6 : this.respuestas[index].validaciones.validacion6a ? 'SI' : 'NO',
+          validacion6comentario : "",
+          validacion7 : this.respuestas[index].validaciones.validacion7a ? 'SI' : 'NO',
+          validacion7Comentario : "",
+        }
+        if(this.respuestas[index].validaciones.validacion6a == false &&
+          (this.respuestas[index].validaciones.validacion1a == true || this.respuestas[index].validaciones.validacion2a == true)){
+            element.validacion6comentario = " (Nota: El Programa debe contar con Reglas de Operación)";
+        }
+        
+        if(this.respuestas[index].validaciones.validacion5a && 
+          (
+            this.respuestas[index].respuestas.pregunta1complemento != 'funcionario' && 
+            this.respuestas[index].respuestas.pregunta1complemento != 'noaplica'
+          ) &&
+          !this.respuestas[index].validaciones.validacion7a 
+        ){
+          element.validacion7Comentario = " (Nota: El Programa debe contar con Padrón de Beneficiarios)"
+        }
+        
+        data.push(element);
+      }else{
+
+        console.log(this.respuestas[index]);
       }
       
-      if(this.respuestas[index].validaciones.validacion5a && 
-        (
-          this.respuestas[index].respuestas.pregunta1complemento != 'funcionario' && 
-          this.respuestas[index].respuestas.pregunta1complemento != 'noaplica'
-        ) &&
-        !this.respuestas[index].validaciones.validacion7a 
-      ){
-        element.validacion7Comentario = " (Nota: El Programa debe contar con Padrón de Beneficiarios)"
-      }
-      
-      data.push(element);
     }
     this.exportAsExcelFile(data, 'Reporte Programas Presupuestarios ' + new Date().toUTCString());
   }
@@ -362,7 +376,13 @@ export class ValidationsComponent implements OnInit {
       this.respuestaSeleccionada.validaciones.idrespuesta = respuesta.idrespuestas;
     }else{
       if( this.respuestaSeleccionada.estatus == true){
+        console.log(this.respuestaSeleccionada.respuestasp1);
         this.respuestaSeleccionada.validaciones = JSON.parse(JSON.stringify(this.respuestaSeleccionada.validacionesManuales));
+        this.respuestaSeleccionada.respuestasp1.forEach(elem =>{
+          if(elem == "sujetoninasninos"){
+            this.respuestaSeleccionada.validaciones.validacion3a = true;
+          }
+        });
       }
     }
     console.log(this.respuestaSeleccionada);

@@ -185,30 +185,35 @@ export class PdfServiceService {
     }
 
     dataRespuestas.pregunta5 = respuestaSeleccionada.respuestas.pregunta4complemento ? respuestaSeleccionada.respuestas.pregunta4complemento : " ";
-    if (respuestaSeleccionada.respuestas.pregunta4.includes('entregaayudas') == true) {
-      dataRespuestas.pregunta5 = dataRespuestas.pregunta5 + " - El Programa entrega ayudas y subsidios directamente a la población";
-    }
-    if (respuestaSeleccionada.respuestas.pregunta4.includes('ninguno') == false) {
-      dataRespuestas.pregunta5 = dataRespuestas.pregunta5 + " - " + respuestaSeleccionada.respuestas.pregunta5complemento ? respuestaSeleccionada.respuestas.pregunta5complemento : "";
-    }
-    if (respuestaSeleccionada.respuestas.pregunta5complemento.toString() == "Otro") {
-      dataRespuestas.pregunta5 = dataRespuestas.pregunta5 + " - " + respuestaSeleccionada.respuestas.pregunta5otro ? respuestaSeleccionada.respuestas.pregunta5otro : "Sin Indicar";
-    }
-    if (respuestaSeleccionada.respuestas.pregunta4.includes('ninguno') == false) {
+    if(respuestaSeleccionada.respuestas.pregunta4.includes('ninguno') == false){
       dataRespuestas.pregunta5 = dataRespuestas.pregunta5 + " - " + respuestaSeleccionada.respuestas.pregunta5 ? respuestaSeleccionada.respuestas.pregunta5 : "No";
+      dataRespuestas.pregunta5 = dataRespuestas.pregunta5 + " - " + respuestaSeleccionada.respuestas.pregunta5complemento ? "Otro : "+respuestaSeleccionada.respuestas.pregunta5complemento : "";
+      if (respuestaSeleccionada.respuestas.pregunta4.includes('entregaayudas') == true) {
+        dataRespuestas.pregunta5 = dataRespuestas.pregunta5 + " - El Programa entrega ayudas y subsidios directamente a la población";
+      }
+      //nope
+      //if (respuestaSeleccionada.respuestas.pregunta5complemento.toString() == "Otro") {
+      //  dataRespuestas.pregunta5 = dataRespuestas.pregunta5 + " - Otro : " + (respuestaSeleccionada.respuestas.pregunta5otro.length == 0) ? respuestaSeleccionada.respuestas.pregunta5otro : "Sin Indicar";
+      //}
+      //nope
+      //if (respuestaSeleccionada.respuestas.pregunta4.includes('ninguno') == false) {
+      //  dataRespuestas.pregunta5 = dataRespuestas.pregunta5 + " - " + respuestaSeleccionada.respuestas.pregunta5 ? respuestaSeleccionada.respuestas.pregunta5 : "No";
+      //}
+      //nope
+      //if (respuestaSeleccionada.respuestas.pregunta4.includes('ninguno') == true) {
+      //  dataRespuestas.pregunta5 = dataRespuestas.pregunta5 + " - " + "No aplica";
+      //}
+
+      if (respuestaSeleccionada.respuestas.pregunta4.includes('desarrollocapacidades') == true) {
+        dataRespuestas.pregunta5 = dataRespuestas.pregunta5 + " - El Programa se enfoca al desarrollo de capacidades";
+      }
+      if (respuestaSeleccionada.respuestas.pregunta4.includes('desarrolloservicios') == true) {
+        dataRespuestas.pregunta5 = dataRespuestas.pregunta5 + " - El Programa se enfoca al desarrollo de servicios públicos";
+      }
+    }else{
+      dataRespuestas.pregunta5 = "No aplica";
     }
-    if (respuestaSeleccionada.respuestas.pregunta4.includes('ninguno') == true) {
-      dataRespuestas.pregunta5 = dataRespuestas.pregunta5 + " - " + "No aplica";
-    }
-    if (respuestaSeleccionada.respuestas.pregunta4.includes('desarrollocapacidades') == true) {
-      dataRespuestas.pregunta5 = dataRespuestas.pregunta5 + " - El Programa se enfoca al desarrollo de capacidades";
-    }
-    if (respuestaSeleccionada.respuestas.pregunta4.includes('desarrolloservicios') == true) {
-      dataRespuestas.pregunta5 = dataRespuestas.pregunta5 + " - El Programa desarrolla infraestructura social";
-    }
-    if (respuestaSeleccionada.respuestas.pregunta4.includes('ninguno') == true) {
-      dataRespuestas.pregunta5 = dataRespuestas.pregunta5 + " - Ninguno";
-    }
+    
 
     if (respuestaSeleccionada.respuestas.pregunta4.includes('ninguno') == false) {
       dataRespuestas.pregunta6 = respuestaSeleccionada.respuestas.pregunta6 ? respuestaSeleccionada.respuestas.pregunta6 : "No"
@@ -268,7 +273,13 @@ export class PdfServiceService {
       dataRespuestas.pregunta11 = dataRespuestas.pregunta11 + respuestaSeleccionada.respuestas.pregunta11complemento ? respuestaSeleccionada.respuestas.pregunta11complemento : "";
     }
 
-    dataRespuestas.pregunta12 = respuestaSeleccionada.respuestas.pregunta12 ? respuestaSeleccionada.respuestas.pregunta12 : "No";
+    //dataRespuestas.pregunta12 = respuestaSeleccionada.respuestas.pregunta12 ? respuestaSeleccionada.respuestas.pregunta12 : "No";
+
+    if(respuestaSeleccionada.respuestas.pregunta12.toString() == "si"){
+      dataRespuestas.pregunta12 = "Sí,";
+    }else{
+      dataRespuestas.pregunta12 = "No";
+    }
     dataRespuestas.pregunta12 = dataRespuestas.pregunta12 + (respuestaSeleccionada.respuestas.pregunta12complemento ? " " + respuestaSeleccionada.respuestas.pregunta12complemento : "");
 
     let comentario6 = "";
@@ -287,6 +298,14 @@ export class PdfServiceService {
     ) {
       comentario7 = " (Nota: El Programa debe contar con Padrón de Beneficiarios)"
     }
+
+
+    //Fix Validacion 3
+    respuestaSeleccionada.respuestasp1.forEach(elem =>{
+      if(elem == "sujetoninasninos"){
+        respuestaSeleccionada.validaciones.validacion3a = true;
+      }
+    });
 
     //a)      Nombre del Reporte (Clasificador de Programas con Enfoque Social) - OK
     //b)      Clave y nombre de la dependencia o entidad. - OK

@@ -624,7 +624,7 @@
                                         </div>
                                         <div class="form-group radio_input">
                                             <label><input (change)="pregunta7 = 'otro';pregunta7Otro=''" type="radio" value="otro" name="frecuenciaentrega" id="frecuenciaentrega" class="icheck required">Otro</label>
-                                            <input *ngIf="pregunta7 == 'otro'" [(ngModel)]="pregunta7Otro" placeholder='Especifique' type="text" class="">
+                                            <input *ngIf="pregunta7 == 'otro'" [(ngModel)]="pregunta7Otro" placeholder='Especifique' type="text" class="" [ngModelOptions]="{standalone: true}">
                                         </div>
                                     </div>
                                     <div *ngIf="pregunta4Selecciones[4] == true" class="col-md-12">

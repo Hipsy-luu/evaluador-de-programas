@@ -225,8 +225,10 @@ export class RegisterProgramComponent implements OnInit {
     data.pregunta5 = this.pregunta5;
     data.pregunta5otro = this.pregunta5otro;
     data.pregunta6 = this.pregunta6;
+
+    //data.pregunta7 = this.pregunta7.toLocaleUpperCase() +' : '+this.pregunta7Otro;
     if( this.pregunta7 == 'otro' ){
-      data.pregunta7 = 'Otro :'+this.pregunta7Otro;
+      data.pregunta7 = 'Otro : '+this.pregunta7Otro;
     }else{
       data.pregunta7 = this.pregunta7;
     }
@@ -260,7 +262,7 @@ export class RegisterProgramComponent implements OnInit {
     data.estatus = 0;
     data.aclaraciones = this.aclaraciones;
     //console.log("data enviada");
-    //console.log(data);
+    //console.log(data.pregunta7);
     this.apiDataService.saveRespuestas(data).then((response : ServerMessage)=>{
       console.log("simonki");
       console.log(response);
