@@ -12,8 +12,8 @@ export class ApiDataService {
   //Url testeo locales
   //baseURL: string = "http://localhost:3000/";
   //Url producción
-  baseURL: string = "https://evaluadorapi.enbibo.com/";
-
+  //baseURL: string = "https://evaluadorapi.enbibo.com/";
+  baseURL: string = "http://clasificadorapi.sds2.chihuahua.gob.mx/";
   //baseURL: string = "https://evaluadorapi.com/";
 
   token : String;

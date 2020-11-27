@@ -157,7 +157,7 @@ export class PdfServiceService {
       } else if (respuesta == 'sujetofamilias') {
         dataRespuestas.pregunta2 = dataRespuestas.pregunta2 + "- Familias o comunidades";
       } else if (respuesta == 'sujetosociedadcivil') {
-        dataRespuestas.pregunta2 = dataRespuestas.pregunta2 + "- Organizaciones d ela sociedad civil";
+        dataRespuestas.pregunta2 = dataRespuestas.pregunta2 + "- Organizaciones de la sociedad civil";
       } else if (respuesta == 'noaplica') {
         dataRespuestas.pregunta2 = dataRespuestas.pregunta2 + "- No aplica";
       } else if (respuesta == 'sujetootro') {
@@ -206,6 +206,7 @@ export class PdfServiceService {
 
       if (respuestaSeleccionada.respuestas.pregunta4.includes('desarrollocapacidades') == true) {
         dataRespuestas.pregunta5 = dataRespuestas.pregunta5 + " - El Programa se enfoca al desarrollo de capacidades";
+        respuestaSeleccionada.validaciones.validacion4a = true;
       }
       if (respuestaSeleccionada.respuestas.pregunta4.includes('desarrolloservicios') == true) {
         dataRespuestas.pregunta5 = dataRespuestas.pregunta5 + " - El Programa se enfoca al desarrollo de servicios públicos";
@@ -307,6 +308,15 @@ export class PdfServiceService {
       }
     });
 
+    //Fix Validacion 4
+    let validacion4texto = "";
+
+    if(respuestaSeleccionada.validaciones.validacion4a == true){
+      validacion4texto = "SI";
+    }else{
+      validacion4texto = "NO";
+    }
+
     //a)      Nombre del Reporte (Clasificador de Programas con Enfoque Social) - OK
     //b)      Clave y nombre de la dependencia o entidad. - OK
     //c)      Clave, eje, y nombre del programa. - OK
@@ -381,7 +391,7 @@ export class PdfServiceService {
             [{ text: '1.- ¿El Programa presupuestario es de enfoque social?', fontSize: 6, rowSpan: 1, colSpan: 11, alignment: 'left', border: [true, true, true, true] }, '', '', '', '', '', '', '', '', '', '', { text: respuestaSeleccionada.validaciones.validacion1a ? 'SI' : 'NO', fontSize: 6, rowSpan: 1, colSpan: 7, alignment: 'center', border: [true, true, true, true] }, '', '', '', '', '', ''],
             [{ text: '2.- ¿El Programa presupuestario coadyuva en el desarrollo social de las personas?', fontSize: 6, rowSpan: 1, colSpan: 11, alignment: 'left', border: [true, true, true, true] }, '', '', '', '', '', '', '', '', '', '', { text: respuestaSeleccionada.validaciones.validacion2a ? 'SI' : 'NO', fontSize: 6, rowSpan: 1, colSpan: 7, alignment: 'center', border: [true, true, true, true] }, '', '', '', '', '', ''],
             [{ text: '3.- ¿El Programa presupuestario va dirigido a sujetos de derecho prioritarios?', fontSize: 6, rowSpan: 1, colSpan: 11, alignment: 'left', border: [true, true, true, true] }, '', '', '', '', '', '', '', '', '', '', { text: respuestaSeleccionada.validaciones.validacion3a ? 'SI' : 'NO', fontSize: 6, rowSpan: 1, colSpan: 7, alignment: 'center', border: [true, true, true, true] }, '', '', '', '', '', ''],
-            [{ text: '4.- ¿El Programa presupuestario se enfoca al desarrollo de capacidades en la población beneficiaria?', fontSize: 6, rowSpan: 1, colSpan: 11, alignment: 'left', border: [true, true, true, true] }, '', '', '', '', '', '', '', '', '', '', { text: respuestaSeleccionada.validaciones.validacion4a ? 'SI' : 'NO', fontSize: 6, rowSpan: 1, colSpan: 7, alignment: 'center', border: [true, true, true, true] }, '', '', '', '', '', ''],
+            [{ text: '4.- ¿El Programa presupuestario se enfoca al desarrollo de capacidades en la población beneficiaria?', fontSize: 6, rowSpan: 1, colSpan: 11, alignment: 'left', border: [true, true, true, true] }, '', '', '', '', '', '', '', '', '', '', { text: validacion4texto, fontSize: 6, rowSpan: 1, colSpan: 7, alignment: 'center', border: [true, true, true, true] }, '', '', '', '', '', ''],
             [{ text: '5.- ¿El Programa presupuestario otorga algún tipo de apoyo?', fontSize: 6, rowSpan: 1, colSpan: 11, alignment: 'left', border: [true, true, true, true] }, '', '', '', '', '', '', '', '', '', '', { text: respuestaSeleccionada.validaciones.validacion5a ? 'SI' : 'NO', fontSize: 6, rowSpan: 1, colSpan: 7, alignment: 'center', border: [true, true, true, true] }, '', '', '', '', '', ''],
             [{ text: '6.- ¿El Programa presupuestario está sujeto a reglas de operación?', fontSize: 6, rowSpan: 1, colSpan: 11, alignment: 'left', border: [true, true, true, true] }, '', '', '', '', '', '', '', '', '', '', { text: (respuestaSeleccionada.validaciones.validacion6a ? 'SI' : 'NO') + comentario6, fontSize: 6, rowSpan: 1, colSpan: 7, alignment: 'center', border: [true, true, true, true] }, '', '', '', '', '', ''],
             [{ text: '7.- ¿El Programa presupuestario cuenta con padrón general de beneficiarios?', fontSize: 6, rowSpan: 1, colSpan: 11, alignment: 'left', border: [true, true, true, true] }, '', '', '', '', '', '', '', '', '', '', { text: (respuestaSeleccionada.validaciones.validacion7a ? 'SI' : 'NO') + comentario7, fontSize: 6, rowSpan: 1, colSpan: 7, alignment: 'center', border: [true, true, true, true] }, '', '', '', '', '', ''],
